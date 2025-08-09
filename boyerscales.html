@@ -241,6 +241,149 @@
             font-weight: 700;
         }
 
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="dots" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="10" r="1" fill="rgba(102,126,234,0.1)"/></pattern></defs><rect width="60" height="60" fill="url(%23dots)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .testimonials-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(102, 126, 234, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .testimonial-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15);
+            border-color: #667eea;
+        }
+
+        .testimonial-image {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #f0f4ff, #e8ecff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-image:hover {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-placeholder {
+            color: rgba(102, 126, 234, 0.5);
+            font-size: 3rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-image:hover .image-placeholder {
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .testimonial-content h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-content .company {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .testimonial-content p {
+            color: #666;
+            line-height: 1.7;
+            font-style: italic;
+            position: relative;
+            padding-left: 1rem;
+            border-left: 3px solid #667eea;
+        }
+
+        .testimonial-content p::before {
+            content: '"';
+            font-size: 4rem;
+            color: rgba(102, 126, 234, 0.2);
+            position: absolute;
+            top: -1rem;
+            left: -0.5rem;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
         /* Contact Section */
         .contact {
             padding: 80px 0;
@@ -373,6 +516,11 @@
             .services-grid {
                 grid-template-columns: 1fr;
             }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
         }
 
         /* Scroll animations */
@@ -395,6 +543,7 @@
             <ul class="nav-links">
                 <li><a href="#services">Services</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -450,6 +599,51 @@
                 <div class="about-visual fade-in">
                     <div style="background: linear-gradient(135deg, #667eea, #764ba2); height: 400px; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
                         📊
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="testimonials-content">
+                <h2 class="section-title fade-in">What Our Clients Say</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-image">
+                            <div class="image-placeholder">📊</div>
+                            <!-- Replace with: <img src="testimonial1.jpg" alt="Client testimonial 1"> -->
+                        </div>
+                        <div class="testimonial-content">
+                            <h4>Sarah Mitchell</h4>
+                            <div class="company">Tech Startup CEO</div>
+                            <p>Boyerscales transformed our digital presence completely. Within just 3 months, we saw a 300% increase in qualified leads and our conversion rate doubled. Their strategic approach and attention to detail is unmatched.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-image">
+                            <div class="image-placeholder">🏆</div>
+                            <!-- Replace with: <img src="testimonial2.jpg" alt="Client testimonial 2"> -->
+                        </div>
+                        <div class="testimonial-content">
+                            <h4>Marcus Rodriguez</h4>
+                            <div class="company">E-commerce Brand Owner</div>
+                            <p>The free week convinced me immediately. Their content creation and ad campaigns generated more revenue in one month than we typically see in a quarter. Working with Boyerscales was the best investment we've made.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card fade-in">
+                        <div class="testimonial-image">
+                            <div class="image-placeholder">💎</div>
+                            <!-- Replace with: <img src="testimonial3.jpg" alt="Client testimonial 3"> -->
+                        </div>
+                        <div class="testimonial-content">
+                            <h4>Jennifer Liang</h4>
+                            <div class="company">Local Service Business</div>
+                            <p>From day one, Elijah and the team understood our vision. Their website optimization and growth strategy helped us expand from local to regional, increasing our customer base by 250% in 6 months.</p>
+                        </div>
                     </div>
                 </div>
             </div>
