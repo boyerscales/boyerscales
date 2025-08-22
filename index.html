@@ -25,52 +25,78 @@
             padding: 0 20px;
         }
 
-        /* Header */
+        /* Enhanced Header */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(15px);
             z-index: 1000;
             transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        header.scrolled {
+            background: rgba(16, 21, 62, 0.98);
+            box-shadow: 0 4px 25px rgba(102, 126, 234, 0.15);
+            border-bottom-color: rgba(102, 126, 234, 0.3);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
+            padding: 1.2rem 0;
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: #667eea;
+            color: #fff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
         }
 
-        .logo:hover {
-            color: #764ba2;
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
-            transition: color 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.3s ease;
             position: relative;
+            padding: 0.5rem 0;
         }
 
         .nav-links a:hover {
-            color: #667eea;
+            color: #fff;
+            transform: translateY(-1px);
         }
 
         .nav-links a::after {
@@ -78,14 +104,33 @@
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
             transition: width 0.3s ease;
         }
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* Add subtle glow effect to nav items */
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10px;
+            right: -10px;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-links a:hover::before {
+            opacity: 1;
         }
 
         /* Enhanced Hero Section */
