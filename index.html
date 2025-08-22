@@ -15,7 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #0a0a0a;
             min-height: 100vh;
         }
 
@@ -88,29 +88,137 @@
             width: 100%;
         }
 
-        /* Hero Section */
+        /* Enhanced Hero Section */
         .hero {
             padding: 120px 0 80px;
             text-align: center;
             color: white;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
         }
 
-        .hero::before {
-            content: '';
+        /* Animated Car Elements */
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
+            opacity: 0.15;
+            overflow: hidden;
+        }
+
+        .car-silhouette {
+            position: absolute;
+            width: 300px;
+            height: 120px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 60px 60px 20px 20px;
+            opacity: 0.1;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .car-silhouette:nth-child(1) {
+            top: 20%;
+            left: -100px;
+            animation-delay: 0s;
+            transform: rotate(-15deg);
+        }
+
+        .car-silhouette:nth-child(2) {
+            top: 60%;
+            right: -100px;
+            animation-delay: 3s;
+            transform: rotate(15deg);
+        }
+
+        .car-silhouette:nth-child(3) {
+            top: 40%;
+            left: 50%;
+            animation-delay: 6s;
+            transform: translateX(-50%) rotate(-8deg);
+        }
+
+        /* Water Droplets Animation */
+        .water-droplets {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .droplet {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(102, 126, 234, 0.6);
+            border-radius: 50%;
+            animation: dropletFall linear infinite;
+        }
+
+        .droplet:nth-child(odd) {
+            background: rgba(118, 75, 162, 0.6);
+        }
+
+        /* Shine/Polish Effect */
+        .shine-overlay {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255, 255, 255, 0.1) 50%, 
+                transparent 100%);
+            animation: shine 10s linear infinite;
+        }
+
+        /* Floating Brand Icons */
+        .brand-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .brand-icon {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(102, 126, 234, 0.3);
+            animation: brandFloat 12s ease-in-out infinite;
+        }
+
+        .brand-icon:nth-child(1) {
+            top: 25%;
+            left: 15%;
+            animation-delay: 0s;
+        }
+
+        .brand-icon:nth-child(2) {
+            top: 65%;
+            right: 20%;
+            animation-delay: 4s;
+        }
+
+        .brand-icon:nth-child(3) {
+            top: 45%;
+            left: 80%;
+            animation-delay: 8s;
         }
 
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            padding-top: 5rem;
         }
 
         .hero h1 {
@@ -119,6 +227,10 @@
             margin-bottom: 1rem;
             opacity: 0;
             animation: fadeInUp 1s ease forwards;
+            background: linear-gradient(135deg, #fff 0%, #e0e6ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .hero p {
@@ -126,14 +238,15 @@
             margin-bottom: 2rem;
             opacity: 0;
             animation: fadeInUp 1s ease 0.2s forwards;
+            color: rgba(255, 255, 255, 0.9);
         }
 
         .cta-button {
             display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 1rem 2rem;
-            border: 2px solid white;
+            padding: 1.2rem 2.5rem;
+            border: none;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
@@ -141,14 +254,29 @@
             transition: all 0.3s ease;
             opacity: 0;
             animation: fadeInUp 1s ease 0.4s forwards;
-            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
         }
 
         .cta-button:hover {
-            background: white;
-            color: #667eea;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
         }
 
         /* Services Section */
@@ -497,6 +625,47 @@
             }
         }
 
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes dropletFall {
+            0% {
+                top: -10px;
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
+
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+
+        @keyframes brandFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            33% {
+                transform: translateY(-15px) rotate(5deg);
+            }
+            66% {
+                transform: translateY(-10px) rotate(-3deg);
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .nav-links {
@@ -520,6 +689,11 @@
             .testimonials-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .car-silhouette {
+                width: 200px;
+                height: 80px;
             }
         }
 
@@ -550,11 +724,31 @@
     </header>
 
     <section class="hero">
+        <!-- Animated Background Elements -->
+        <div class="hero-bg">
+            <div class="car-silhouette"></div>
+            <div class="car-silhouette"></div>
+            <div class="car-silhouette"></div>
+        </div>
+
+        <!-- Water Droplets -->
+        <div class="water-droplets" id="droplets"></div>
+
+        <!-- Shine Effect -->
+        <div class="shine-overlay"></div>
+
+        <!-- Brand Elements -->
+        <div class="brand-elements">
+            <div class="brand-icon">🚗</div>
+            <div class="brand-icon">✨</div>
+            <div class="brand-icon">🔧</div>
+        </div>
+
         <div class="container">
             <div class="hero-content">
-                <h1>Scale Your Brand to New Heights</h1>
-                <p>We transform growing businesses into industry leaders through strategic advertising, compelling content, and optimized digital presence.</p>
-                <a href="#contact" class="cta-button">Start Your Free Audit Today</a>
+                <h1>Scale Your Detailing Business</h1>
+                <p>Transform your car detailing business into an industry leader through strategic advertising, compelling content, and optimized digital presence that drives real results.</p>
+                <a href="#contact" class="cta-button">Get Your Free Business Audit</a>
             </div>
         </div>
     </section>
@@ -566,22 +760,22 @@
                 <div class="service-card fade-in">
                     <span class="service-icon">🚀</span>
                     <h3>Strategic Advertising</h3>
-                    <p>High-converting ad campaigns across all major platforms that maximize your ROI and drive qualified leads to your business.</p>
+                    <p>High-converting ad campaigns across all major platforms that maximize your ROI and drive qualified leads to your detailing business.</p>
                 </div>
                 <div class="service-card fade-in">
                     <span class="service-icon">✨</span>
                     <h3>Premium Content Creation</h3>
-                    <p>Engaging, brand-aligned content that resonates with your audience and builds lasting connections with your customers.</p>
+                    <p>Engaging, brand-aligned content that showcases your detailing expertise and builds lasting connections with your customers.</p>
                 </div>
                 <div class="service-card fade-in">
                     <span class="service-icon">🔧</span>
                     <h3>Website Optimization</h3>
-                    <p>Transform your website into a conversion machine with user experience improvements and performance enhancements.</p>
+                    <p>Transform your website into a booking machine with user experience improvements and conversion-focused design.</p>
                 </div>
                 <div class="service-card fade-in">
                     <span class="service-icon">📈</span>
                     <h3>Lead Generation</h3>
-                    <p>Generate qualifying leads like never before with our advanced systems and proven strategies to grow.</p>
+                    <p>Generate qualifying leads consistently with our proven systems designed specifically for car detailing businesses.</p>
                 </div>
             </div>
         </div>
@@ -592,9 +786,9 @@
             <div class="about-content">
                 <div class="about-text fade-in">
                     <h2>Why Choose <span class="highlight">Boyerscales</span>?</h2>
-                    <p>At BoyerScales, we’re not just another marketing agency—we’ve been in your shoes. Before starting BoyerScales, I spent over a year running a car detailing business myself. I know firsthand the challenges detailers face: getting consistent bookings, standing out from competitors, and converting attention into paying customers.</p>
-                    <p>That experience gave me a deep understanding of what works (and what doesn’t) when it comes to growing detailing businesses. Today, I combine that hands-on knowledge with proven digital marketing strategies—content, ads, and websites—designed specifically to bring more cars through your doors.</p>
-                    <p>When you work with BoyerScales, you’re not just hiring a marketer—you’re working with someone who’s been in your industry, understands your customers, and knows exactly how to scale your business.</p>
+                    <p>At BoyerScales, we're not just another marketing agency—we've been in your shoes. Before starting BoyerScales, I spent over a year running a car detailing business myself. I know firsthand the challenges detailers face: getting consistent bookings, standing out from competitors, and converting attention into paying customers.</p>
+                    <p>That experience gave me a deep understanding of what works (and what doesn't) when it comes to growing detailing businesses. Today, I combine that hands-on knowledge with proven digital marketing strategies—content, ads, and websites—designed specifically to bring more cars through your doors.</p>
+                    <p>When you work with BoyerScales, you're not just hiring a marketer—you're working with someone who's been in your industry, understands your customers, and knows exactly how to scale your business.</p>
                 </div>
                 <div class="about-visual fade-in">
                     <img src="whyimg.png" alt="Analytics chart" style="width: 100%; height: 400px; object-fit: cover; border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
@@ -615,7 +809,7 @@
                         </div>
                         <div class="testimonial-content">
                             <h4>Deshawn K.</h4>
-                            <div class="company">Tech Startup CEO</div>
+                            <div class="company">Detailing Business Owner</div>
                             <p>Boyerscales transformed our digital presence completely. Within just 3 months, we saw a 120% increase in qualified leads and our revenue increased 35%. Their strategic approach and attention to detail is unmatched.</p>
                         </div>
                     </div>
@@ -626,8 +820,8 @@
                         </div>
                         <div class="testimonial-content">
                             <h4>Hasnain K.</h4>
-                            <div class="company">E-commerce Brand Owner</div>
-                            <p>The free brand audits convinced me immediately. Their content creation and ad campaigns generated so much more traction and views in one month than we typically see in a quarter. Working with Boyerscales was the best investment we've made.</p>
+                            <div class="company">Mobile Detailing Service</div>
+                            <p>The free brand audits convinced me immediately. Their content creation and ad campaigns generated so much more traction and bookings in one month than we typically see in a quarter. Working with Boyerscales was the best investment we've made.</p>
                         </div>
                     </div>
                     
@@ -637,7 +831,7 @@
                         </div>
                         <div class="testimonial-content">
                             <h4>Jujhar R.</h4>
-                            <div class="company">Local Service Business</div>
+                            <div class="company">Auto Detailing Shop</div>
                             <p>From day one, Elijah and the team understood our vision. Their website optimization and growth strategy helped us expand from local to regional, increasing our customer base by 250% in 6 months.</p>
                         </div>
                     </div>
@@ -651,7 +845,7 @@
             <div class="contact-content">
                 <div class="contact-info fade-in">
                     <h2>Ready to Scale?</h2>
-                    <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Get in touch today and let's discuss how we can accelerate your brand's growth. Remember, your first audit is completely free!</p>
+                    <p style="font-size: 1.1rem; color: #666; margin-bottom: 2rem;">Get in touch today and let's discuss how we can accelerate your detailing business growth. Remember, your first audit is completely free!</p>
                     
                     <div class="contact-item">
                         <span>📧</span>
@@ -690,12 +884,12 @@
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="company">Company Name</label>
+                            <label for="company">Business Name</label>
                             <input type="text" id="company" name="company">
                         </div>
                         <div class="form-group">
-                            <label for="message">Tell us about your goals</label>
-                            <textarea id="message" name="message" rows="4" placeholder="What challenges are you facing? What growth goals do you have?"></textarea>
+                            <label for="message">Tell us about your detailing business goals</label>
+                            <textarea id="message" name="message" rows="4" placeholder="What challenges are you facing with your detailing business? What growth goals do you have?"></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Get Your Free Audit Started</button>
                     </form>
