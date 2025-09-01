@@ -1001,25 +1001,26 @@
 
         // Header background change based on sections
         const header = document.querySelector('header');
-        const servicesSection = document.querySelector('.services');
+        const heroSection = document.querySelector('.hero');
         
-        // Create an observer specifically for the services section
+        // Create an observer specifically for the hero section
         const headerObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // When services section is visible, change header to white
-                    header.classList.add('white-bg');
-                } else {
-                    // When services section is not visible (i.e., we're in the hero section), keep header dark
+                    // When hero section is visible, keep header dark
                     header.classList.remove('white-bg');
+                } else {
+                    // When hero section is not visible (i.e., we're in white sections), change header to white
+                    header.classList.add('white-bg');
                 }
             });
         }, {
-            rootMargin: '-80px 0px 0px 0px' // Adjust this to control exactly when the transition happens
+            threshold: 0,
+            rootMargin: '-80px 0px 0px 0px' // Header changes when hero section is 80px from top
         });
 
-        // Start observing the services section
-        headerObserver.observe(servicesSection);
+        // Start observing the hero section
+        headerObserver.observe(heroSection);
 
         // Form submission
         document.querySelector('form').addEventListener('submit', function(e) {
