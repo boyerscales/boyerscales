@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoyerScales - AI Call & Lead Assistant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,14 +16,13 @@
             --primary: #667eea;
             --primary-dark: #5568d3;
             --secondary: #764ba2;
-            --text-dark: #1a202c;
-            --text-gray: #4a5568;
-            --text-light: #718096;
-            --bg-light: #f7fafc;
+            --text-dark: #0f172a;
+            --text-gray: #475569;
+            --text-light: #94a3b8;
+            --bg-light: #f8fafc;
             --white: #ffffff;
             --border: #e2e8f0;
             --success: #10b981;
-            --warning: #f59e0b;
         }
 
         html {
@@ -35,12 +34,13 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            background: var(--white);
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 40px;
         }
 
         /* Navigation */
@@ -48,450 +48,520 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
             z-index: 1000;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border);
         }
 
         .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            max-width: 1200px;
+            padding: 24px 40px;
+            max-width: 1280px;
             margin: 0 auto;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: 700;
+            font-size: 26px;
+            font-weight: 800;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
         .nav-cta {
-            padding: 12px 30px;
+            padding: 14px 32px;
             background: var(--primary);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            transition: all 0.3s;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
         }
 
         .nav-cta:hover {
             background: var(--primary-dark);
             transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
         }
 
         /* Hero Section */
         .hero {
-            padding: 140px 0 80px;
-            background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
+            padding: 180px 0 100px;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
             text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 20px;
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 24px;
             color: var(--text-dark);
+            letter-spacing: -2px;
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            font-size: clamp(1.2rem, 2vw, 1.5rem);
             color: var(--text-gray);
-            margin-bottom: 40px;
-            max-width: 700px;
+            margin-bottom: 48px;
+            max-width: 720px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
+            line-height: 1.6;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 20px 50px;
+            padding: 22px 56px;
             background: var(--primary);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 20px;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            font-size: 18px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.25);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 16px 40px rgba(102, 126, 234, 0.35);
             background: var(--primary-dark);
         }
 
         /* Demo Phone Section */
         .demo-phone {
-            padding: 60px 0;
+            padding: 100px 0;
             background: var(--white);
         }
 
         .demo-phone-card {
-            max-width: 900px;
+            max-width: 960px;
             margin: 0 auto;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            padding: 50px 40px;
+            border-radius: 24px;
+            padding: 80px 60px;
             text-align: center;
             color: white;
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 24px 64px rgba(102, 126, 234, 0.25);
         }
 
         .demo-phone-card h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
-        .demo-phone-card p {
-            font-size: 1.2rem;
+        .demo-phone-card > p {
+            font-size: 1.3rem;
             opacity: 0.95;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            font-weight: 400;
         }
 
         .phone-number {
             display: inline-flex;
             align-items: center;
-            gap: 15px;
+            justify-content: center;
+            gap: 16px;
             background: white;
             color: var(--primary);
-            padding: 20px 40px;
+            padding: 24px 48px;
             border-radius: 60px;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 20px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 32px 0;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
         }
 
         .phone-number:hover {
             transform: scale(1.05);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
         }
 
         .phone-icon {
-            font-size: 2.5rem;
+            font-size: 2.6rem;
         }
 
         .demo-instructions {
-            margin-top: 30px;
-            padding: 25px;
+            margin-top: 48px;
+            padding: 32px;
             background: rgba(255,255,255,0.15);
-            border-radius: 15px;
+            border-radius: 20px;
             backdrop-filter: blur(10px);
         }
 
         .demo-instructions h3 {
-            font-size: 1.3rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+            font-weight: 700;
         }
 
         .demo-instructions ul {
             list-style: none;
-            text-align: left;
-            max-width: 600px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .demo-instructions li {
-            padding: 10px 0;
-            padding-left: 30px;
-            position: relative;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            text-align: left;
+            font-size: 1.05rem;
         }
 
-        .demo-instructions li:before {
-            content: "→";
-            position: absolute;
-            left: 0;
-            font-weight: bold;
-        }
-
-        /* What It Does Section */
-        .capabilities {
-            padding: 80px 0;
-            background: var(--bg-light);
+        /* Section styling */
+        .section {
+            padding: 100px 0;
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 700;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
             text-align: center;
             margin-bottom: 20px;
             color: var(--text-dark);
+            letter-spacing: -1.5px;
         }
 
         .section-subtitle {
             text-align: center;
             color: var(--text-gray);
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 50px;
+            font-size: 1.25rem;
+            max-width: 720px;
+            margin: 0 auto 64px;
+            font-weight: 400;
+        }
+
+        /* Capabilities */
+        .capabilities {
+            background: var(--bg-light);
         }
 
         .capabilities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-            max-width: 1000px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .capability-card {
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 4px solid var(--success);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            padding: 36px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .capability-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+            border-color: var(--primary);
         }
 
         .capability-card h3 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
+            font-size: 1.25rem;
+            margin-bottom: 12px;
             color: var(--text-dark);
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 12px;
+            font-weight: 700;
         }
 
-        .capability-card h3:before {
-            content: "✔️";
-            font-size: 1.4rem;
+        .checkmark {
+            color: var(--success);
+            font-size: 1.5rem;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
         .capability-card p {
             color: var(--text-gray);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
-        /* Video Demo Section */
+        /* Video Demo */
         .video-demo {
-            padding: 80px 0;
             background: var(--white);
         }
 
         .video-container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: var(--text-dark);
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.15);
             aspect-ratio: 16/9;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 1.2rem;
             position: relative;
         }
 
         .video-placeholder {
             text-align: center;
-            padding: 40px;
+            padding: 60px;
         }
 
-        .video-placeholder .play-icon {
-            font-size: 4rem;
-            margin-bottom: 20px;
-            opacity: 0.8;
+        .play-icon {
+            font-size: 5rem;
+            margin-bottom: 24px;
+            opacity: 0.9;
         }
 
-        /* Results Section */
+        .video-placeholder p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .video-placeholder p:last-child {
+            font-size: 1rem;
+            opacity: 0.6;
+            margin-top: 24px;
+        }
+
+        /* Results */
         .results {
-            padding: 80px 0;
             background: var(--bg-light);
         }
 
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 50px auto 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .result-card {
             background: white;
-            padding: 40px 30px;
-            border-radius: 15px;
+            padding: 48px 32px;
+            border-radius: 20px;
             text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .result-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
         }
 
         .result-number {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: 4rem;
+            font-weight: 900;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            letter-spacing: -2px;
         }
 
         .result-label {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            font-weight: 500;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
         .result-description {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-light);
-            margin-top: 10px;
         }
 
         /* Testimonials */
         .testimonials {
-            padding: 80px 0;
             background: var(--white);
         }
 
         .testimonial-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
 
         .testimonial {
             background: var(--bg-light);
-            padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .testimonial:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
         }
 
         .stars {
             color: #fbbf24;
-            font-size: 22px;
-            margin-bottom: 15px;
+            font-size: 24px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
         }
 
         .testimonial-text {
             color: var(--text-gray);
             font-style: italic;
-            margin-bottom: 25px;
-            line-height: 1.7;
-            font-size: 1.05rem;
+            margin-bottom: 28px;
+            line-height: 1.8;
+            font-size: 1.1rem;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 16px;
         }
 
         .author-avatar {
-            width: 50px;
-            height: 50px;
+            width: 56px;
+            height: 56px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
         }
 
         .author-info h4 {
-            font-weight: 600;
+            font-weight: 700;
             color: var(--text-dark);
+            font-size: 1.05rem;
         }
 
         .author-info p {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: var(--text-light);
         }
 
         /* Final CTA */
         .final-cta {
-            padding: 100px 0;
+            padding: 120px 0;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             text-align: center;
             color: white;
         }
 
         .final-cta h2 {
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            margin-bottom: 20px;
-            font-weight: 800;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 24px;
+            font-weight: 900;
+            letter-spacing: -2px;
         }
 
         .final-cta p {
-            font-size: 1.3rem;
-            margin-bottom: 40px;
+            font-size: 1.4rem;
+            margin-bottom: 48px;
             opacity: 0.95;
-            max-width: 600px;
+            max-width: 640px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 400;
         }
 
         .cta-button-white {
             background: white;
             color: var(--primary);
-            padding: 20px 50px;
+            padding: 22px 56px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 20px;
+            font-weight: 700;
+            font-size: 18px;
             display: inline-block;
-            transition: all 0.3s;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.25);
         }
 
         .cta-button-white:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.35);
         }
 
         /* Footer */
         footer {
             background: var(--text-dark);
             color: white;
-            padding: 40px 0;
+            padding: 48px 0;
             text-align: center;
         }
 
         .copyright {
             opacity: 0.6;
+            font-size: 0.95rem;
         }
 
         /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 100px 0 60px;
+        @media (max-width: 1024px) {
+            .capabilities-grid {
+                grid-template-columns: 1fr;
             }
 
-            .phone-number {
-                font-size: 1.5rem;
-                padding: 15px 30px;
-            }
-
-            .demo-phone-card {
-                padding: 40px 25px;
-            }
-
-            .demo-phone-card h2 {
-                font-size: 1.8rem;
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .testimonial-grid {
                 grid-template-columns: 1fr;
             }
 
-            .capabilities-grid {
+            .demo-instructions ul {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 24px;
+            }
+
+            .nav-container {
+                padding: 20px 24px;
+            }
+
+            .hero {
+                padding: 140px 0 80px;
+            }
+
+            .phone-number {
+                font-size: 1.6rem;
+                padding: 20px 36px;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .demo-phone-card {
+                padding: 60px 32px;
+            }
+
+            .demo-phone-card h2 {
+                font-size: 2rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 80px 0;
             }
         }
     </style>
@@ -510,7 +580,7 @@
         <div class="container">
             <h1>Never Miss Another Call or Lead</h1>
             <p class="hero-subtitle">Your AI assistant answers calls, books appointments, and follows up with leads 24/7 — so you don't have to</p>
-            <a href="#demo" class="cta-button">Try the Demo Now →</a>
+            <a href="#demo" class="cta-button">Try the Demo Now</a>
         </div>
     </section>
 
@@ -518,7 +588,7 @@
     <section id="demo" class="demo-phone">
         <div class="container">
             <div class="demo-phone-card">
-                <h2>🎯 Try It Right Now</h2>
+                <h2>Try It Right Now</h2>
                 <p>Call our AI assistant and experience it yourself. It's live 24/7.</p>
                 
                 <a href="tel:+19166598131" class="phone-number">
@@ -540,52 +610,47 @@
     </section>
 
     <!-- What It Actually Does -->
-    <section class="capabilities">
+    <section class="capabilities section">
         <div class="container">
-            <h2 class="section-title">What Your AI Assistant Actually Does</h2>
+            <h2 class="section-title">What Your AI Assistant Does</h2>
             <p class="section-subtitle">No apps to learn. No tech headaches. Just results.</p>
             
             <div class="capabilities-grid">
                 <div class="capability-card">
-                    <h3>Answers missed calls instantly</h3>
+                    <h3><span class="checkmark">✓</span> <span>Answers missed calls instantly</span></h3>
                     <p>24/7, even when you're busy or closed. Every call gets answered professionally, every time.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3>Books appointments by phone or SMS</h3>
+                    <h3><span class="checkmark">✓</span> <span>Books appointments by phone or SMS</span></h3>
                     <p>No back-and-forth. The AI checks your calendar and schedules directly — just like a real receptionist.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3>Replies to common questions</h3>
+                    <h3><span class="checkmark">✓</span> <span>Replies to common questions</span></h3>
                     <p>Pricing, hours, services, location — the AI knows your business and answers instantly.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3>Sends confirmations & follow-ups</h3>
+                    <h3><span class="checkmark">✓</span> <span>Sends confirmations & follow-ups</span></h3>
                     <p>Automatic reminders reduce no-shows and keep customers engaged without any effort from you.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3>Handles intake questions</h3>
+                    <h3><span class="checkmark">✓</span> <span>Handles intake questions</span></h3>
                     <p>Perfect for dentists and medical offices — collects insurance info, symptoms, and patient details.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3>Works with your current number</h3>
+                    <h3><span class="checkmark">✓</span> <span>Works with your current number</span></h3>
                     <p>No new apps or tech headaches. Integrates seamlessly with your existing phone system.</p>
-                </div>
-                
-                <div class="capability-card">
-                    <h3>Sounds like a real human assistant</h3>
-                    <p>Not a robot. Natural conversations that make your business look professional and responsive.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Video Demo Section -->
-    <section class="video-demo">
+    <section class="video-demo section">
         <div class="container">
             <h2 class="section-title">See It In Action</h2>
             <p class="section-subtitle">Watch how the AI handles real customer calls</p>
@@ -594,26 +659,27 @@
                 <div class="video-placeholder">
                     <div class="play-icon">▶️</div>
                     <p>Demo video shows actual call recording<br>of AI assistant booking an appointment</p>
-                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 20px;">[Your demo video will be embedded here]</p>
+                    <p>[Your demo video will be embedded here]</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Results Section -->
-    <section class="results">
+    <section class="results section">
         <div class="container">
-            <h2 class="section-title">Real Results From Real Businesses</h2>
+            <h2 class="section-title">Real Results</h2>
+            <p class="section-subtitle">From businesses just like yours</p>
             
             <div class="results-grid">
                 <div class="result-card">
                     <div class="result-number">3x</div>
                     <div class="result-label">More Appointments</div>
-                    <div class="result-description">Booked per month on average</div>
+                    <div class="result-description">Booked per month</div>
                 </div>
                 
                 <div class="result-card">
-                    <div class="result-number">< 5min</div>
+                    <div class="result-number">&lt;5min</div>
                     <div class="result-label">Response Time</div>
                     <div class="result-description">From any lead source</div>
                 </div>
@@ -621,22 +687,23 @@
                 <div class="result-card">
                     <div class="result-number">24/7</div>
                     <div class="result-label">Always Available</div>
-                    <div class="result-description">Nights, weekends, holidays</div>
+                    <div class="result-description">Nights & weekends</div>
                 </div>
                 
                 <div class="result-card">
                     <div class="result-number">67%</div>
                     <div class="result-label">Fewer No-Shows</div>
-                    <div class="result-description">With automated reminders</div>
+                    <div class="result-description">With auto reminders</div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="testimonials">
+    <section class="testimonials section">
         <div class="container">
-            <h2 class="section-title">What Business Owners Are Saying</h2>
+            <h2 class="section-title">What Owners Are Saying</h2>
+            <p class="section-subtitle">Real feedback from real businesses</p>
             
             <div class="testimonial-grid">
                 <div class="testimonial">
