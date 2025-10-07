@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoyerScales - AI Lead Automation for Real Estate & Local Business</title>
+    <title>BoyerScales - AI Call & Lead Assistant</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -13,14 +13,17 @@
         }
 
         :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --primary: #667eea;
+            --primary-dark: #5568d3;
+            --secondary: #764ba2;
             --text-dark: #1a202c;
             --text-gray: #4a5568;
             --text-light: #718096;
             --bg-light: #f7fafc;
             --white: #ffffff;
             --border: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
         }
 
         html {
@@ -63,261 +66,301 @@
         .logo {
             font-size: 24px;
             font-weight: 700;
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            list-style: none;
-        }
-
-        .nav-links a {
+        .nav-cta {
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
             text-decoration: none;
-            color: var(--text-gray);
-            font-weight: 500;
-            transition: color 0.3s;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
-        .nav-links a:hover {
-            color: #667eea;
+        .nav-cta:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
         }
 
         /* Hero Section */
         .hero {
             padding: 140px 0 80px;
             background: linear-gradient(180deg, #ffffff 0%, #f7fafc 100%);
-        }
-
-        .hero-content {
             text-align: center;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 5vw, 4rem);
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 20px;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-dark);
         }
 
         .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: var(--text-gray);
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 18px 40px;
-            background: var(--primary-gradient);
+            padding: 20px 50px;
+            background: var(--primary);
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 18px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 20px;
+            transition: all 0.3s;
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+            background: var(--primary-dark);
         }
 
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 60px;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        /* Problem Section */
-        .problem {
-            padding: 80px 0;
+        /* Demo Phone Section */
+        .demo-phone {
+            padding: 60px 0;
             background: var(--white);
+        }
+
+        .demo-phone-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            padding: 50px 40px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .demo-phone-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .demo-phone-card p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .phone-number {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: white;
+            color: var(--primary);
+            padding: 20px 40px;
+            border-radius: 60px;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .phone-number:hover {
+            transform: scale(1.05);
+        }
+
+        .phone-icon {
+            font-size: 2.5rem;
+        }
+
+        .demo-instructions {
+            margin-top: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-instructions h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .demo-instructions ul {
+            list-style: none;
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .demo-instructions li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .demo-instructions li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* What It Does Section */
+        .capabilities {
+            padding: 80px 0;
+            background: var(--bg-light);
         }
 
         .section-title {
-            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-size: clamp(2rem, 4vw, 2.8rem);
             font-weight: 700;
             text-align: center;
-            margin-bottom: 50px;
-            color: var(--text-dark);
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .problem-card {
-            padding: 30px;
-            border-radius: 15px;
-            background: var(--bg-light);
-            transition: transform 0.3s;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .problem-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--secondary-gradient);
-            border-radius: 15px;
             margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-        }
-
-        .problem-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
             color: var(--text-dark);
         }
 
-        .problem-text {
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        /* Solution Section */
-        .solution {
-            padding: 80px 0;
-            background: var(--bg-light);
-        }
-
-        .solution-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .step {
+        .section-subtitle {
             text-align: center;
+            color: var(--text-gray);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 50px;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .capability-card {
+            background: white;
             padding: 30px;
-            background: var(--white);
             border-radius: 15px;
-            position: relative;
+            border-left: 4px solid var(--success);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             transition: transform 0.3s;
         }
 
-        .step:hover {
+        .capability-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
-        .step-number {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-gradient);
-            color: white;
-            border-radius: 50%;
+        .capability-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-dark);
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin: 0 auto 20px;
+            gap: 10px;
         }
 
-        .step-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--text-dark);
+        .capability-card h3:before {
+            content: "✔️";
+            font-size: 1.4rem;
         }
 
-        .step-description {
+        .capability-card p {
             color: var(--text-gray);
+            line-height: 1.6;
         }
 
-        /* Why Choose Us */
-        .why-us {
+        /* Video Demo Section */
+        .video-demo {
             padding: 80px 0;
             background: var(--white);
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-            margin-top: 50px;
-        }
-
-        .feature {
-            text-align: center;
-            padding: 40px 30px;
-            border-radius: 15px;
-            border: 2px solid var(--border);
-            transition: all 0.3s;
-        }
-
-        .feature:hover {
-            border-color: #667eea;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.1);
-        }
-
-        .feature-icon {
-            width: 70px;
-            height: 70px;
-            background: var(--primary-gradient);
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--text-dark);
             border-radius: 20px;
-            margin: 0 auto 25px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            aspect-ratio: 16/9;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 30px;
+            color: white;
+            font-size: 1.2rem;
+            position: relative;
         }
 
-        .feature-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: var(--text-dark);
+        .video-placeholder {
+            text-align: center;
+            padding: 40px;
         }
 
-        .feature-text {
+        .video-placeholder .play-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        /* Results Section */
+        .results {
+            padding: 80px 0;
+            background: var(--bg-light);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 50px auto 0;
+        }
+
+        .result-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .result-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .result-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .result-label {
+            font-size: 1.1rem;
             color: var(--text-gray);
-            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        .result-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 10px;
         }
 
         /* Testimonials */
         .testimonials {
             padding: 80px 0;
-            background: var(--bg-light);
+            background: var(--white);
         }
 
         .testimonial-grid {
@@ -328,23 +371,24 @@
         }
 
         .testimonial {
-            background: var(--white);
-            padding: 30px;
+            background: var(--bg-light);
+            padding: 35px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
 
         .stars {
             color: #fbbf24;
-            font-size: 20px;
+            font-size: 22px;
             margin-bottom: 15px;
         }
 
         .testimonial-text {
             color: var(--text-gray);
             font-style: italic;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            font-size: 1.05rem;
         }
 
         .testimonial-author {
@@ -356,7 +400,7 @@
         .author-avatar {
             width: 50px;
             height: 50px;
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
         }
 
@@ -370,197 +414,45 @@
             color: var(--text-light);
         }
 
-        /* Pricing */
-        .pricing {
-            padding: 80px 0;
-            background: var(--white);
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .pricing-card {
-            padding: 40px 30px;
-            border-radius: 15px;
-            border: 2px solid var(--border);
-            text-align: center;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: #667eea;
-            box-shadow: 0 10px 40px rgba(102, 126, 234, 0.15);
-            transform: scale(1.05);
-        }
-
-        .badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary-gradient);
-            color: white;
-            padding: 5px 20px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .price {
-            font-size: 3rem;
-            font-weight: 700;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-        }
-
-        .price-period {
-            color: var(--text-light);
-            margin-bottom: 30px;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-
-        .pricing-features li {
-            padding: 10px 0;
-            color: var(--text-gray);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
         /* Final CTA */
         .final-cta {
             padding: 100px 0;
-            background: var(--primary-gradient);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             text-align: center;
             color: white;
         }
 
         .final-cta h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(2rem, 4vw, 3.5rem);
             margin-bottom: 20px;
+            font-weight: 800;
         }
 
         .final-cta p {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             margin-bottom: 40px;
             opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button-white {
             background: white;
-            color: #667eea;
-            padding: 18px 40px;
+            color: var(--primary);
+            padding: 20px 50px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 18px;
+            font-size: 20px;
             display: inline-block;
-            transition: transform 0.3s;
+            transition: all 0.3s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .cta-button-white:hover {
             transform: translateY(-2px);
-        }
-
-        /* Audit Section */
-        .audit-section {
-            padding: 80px 0;
-            background: var(--bg-light);
-        }
-
-        .audit-preview {
-            background: white;
-            border-radius: 15px;
-            padding: 40px;
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-        }
-
-        .audit-header {
-            text-align: center;
-            padding-bottom: 30px;
-            border-bottom: 2px solid var(--border);
-            margin-bottom: 30px;
-        }
-
-        .audit-score {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-        }
-
-        .score-item {
-            text-align: center;
-        }
-
-        .score-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin: 0 auto 10px;
-        }
-
-        .score-good {
-            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
-            color: white;
-        }
-
-        .score-warning {
-            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-            color: white;
-        }
-
-        .score-bad {
-            background: var(--secondary-gradient);
-            color: white;
-        }
-
-        .audit-findings {
-            margin-top: 40px;
-        }
-
-        .finding {
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            border-left: 4px solid;
-        }
-
-        .finding-good {
-            background: #f0fdf4;
-            border-left-color: #22c55e;
-        }
-
-        .finding-warning {
-            background: #fffbeb;
-            border-left-color: #f59e0b;
-        }
-
-        .finding-bad {
-            background: #fef2f2;
-            border-left-color: #ef4444;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
 
         /* Footer */
@@ -571,68 +463,36 @@
             text-align: center;
         }
 
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-bottom: 20px;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
         .copyright {
             opacity: 0.6;
-            margin-top: 20px;
         }
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
             .hero {
                 padding: 100px 0 60px;
             }
 
-            .hero-stats {
-                flex-direction: column;
-                gap: 30px;
+            .phone-number {
+                font-size: 1.5rem;
+                padding: 15px 30px;
             }
 
-            .pricing-card.featured {
-                transform: none;
+            .demo-phone-card {
+                padding: 40px 25px;
+            }
+
+            .demo-phone-card h2 {
+                font-size: 1.8rem;
             }
 
             .testimonial-grid {
                 grid-template-columns: 1fr;
             }
 
-            .audit-score {
-                flex-direction: column;
-                gap: 30px;
+            .capabilities-grid {
+                grid-template-columns: 1fr;
             }
-        }
-
-        /* Image placeholders */
-        .image-placeholder {
-            background: var(--bg-light);
-            border-radius: 10px;
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            margin: 30px 0;
         }
     </style>
 </head>
@@ -641,127 +501,133 @@
     <nav>
         <div class="nav-container">
             <div class="logo">BoyerScales</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#solution">How It Works</a></li>
-                <li><a href="#pricing">Pricing</a></li>
-                <li><a href="#audit">Free Audit</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <a href="#demo" class="nav-cta">Try the Demo</a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
+    <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h1>Never Lose Another Lead to Slow Follow-Up</h1>
-                <p class="hero-subtitle">AI agents that instantly reply, nurture leads, and book appointments 24/7 while you focus on closing deals</p>
-                <a href="#audit" class="cta-button">Get Free 1-Min Audit →</a>
+            <h1>Never Miss Another Call or Lead</h1>
+            <p class="hero-subtitle">Your AI assistant answers calls, books appointments, and follows up with leads 24/7 — so you don't have to</p>
+            <a href="#demo" class="cta-button">Try the Demo Now →</a>
+        </div>
+    </section>
+
+    <!-- Live Demo Phone Section -->
+    <section id="demo" class="demo-phone">
+        <div class="container">
+            <div class="demo-phone-card">
+                <h2>🎯 Try It Right Now</h2>
+                <p>Call our AI assistant and experience it yourself. It's live 24/7.</p>
                 
-                <div class="hero-stats">
-                    <div class="stat">
-                        <div class="stat-number">5min</div>
-                        <div class="stat-label">Average Response Time</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">3x</div>
-                        <div class="stat-label">More Appointments</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Always Working</div>
-                    </div>
+                <a href="tel:+19166598131" class="phone-number">
+                    <span class="phone-icon">📞</span>
+                    <span>+1 (916) 659-8131</span>
+                </a>
+                
+                <div class="demo-instructions">
+                    <h3>What to Try:</h3>
+                    <ul>
+                        <li>Ask about services and pricing</li>
+                        <li>Request to book an appointment</li>
+                        <li>Ask questions about business hours</li>
+                        <li>Notice how it sounds like a real person</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <section class="problem">
+    <!-- What It Actually Does -->
+    <section class="capabilities">
         <div class="container">
-            <h2 class="section-title">You're Losing Money Every Single Day</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto;">
-                78% of customers buy from the business that responds first. How fast are you?
-            </p>
+            <h2 class="section-title">What Your AI Assistant Actually Does</h2>
+            <p class="section-subtitle">No apps to learn. No tech headaches. Just results.</p>
             
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-icon">⏰</div>
-                    <h3 class="problem-title">Slow Response = Lost Sales</h3>
-                    <p class="problem-text">While you're in meetings or sleeping, competitors are stealing your leads. Every minute counts, and manual follow-up can't keep up.</p>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <h3>Answers missed calls instantly</h3>
+                    <p>24/7, even when you're busy or closed. Every call gets answered professionally, every time.</p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-icon">📱</div>
-                    <h3 class="problem-title">Leads Go Cold Fast</h3>
-                    <p class="problem-text">After 5 minutes, lead conversion drops by 80%. Your hot leads become cold leads, then ghost you completely.</p>
+                
+                <div class="capability-card">
+                    <h3>Books appointments by phone or SMS</h3>
+                    <p>No back-and-forth. The AI checks your calendar and schedules directly — just like a real receptionist.</p>
                 </div>
-                <div class="problem-card">
-                    <div class="problem-icon">💸</div>
-                    <h3 class="problem-title">Wasting Ad Spend</h3>
-                    <p class="problem-text">You're paying for leads but not converting them. Without instant follow-up, your marketing ROI stays negative.</p>
+                
+                <div class="capability-card">
+                    <h3>Replies to common questions</h3>
+                    <p>Pricing, hours, services, location — the AI knows your business and answers instantly.</p>
+                </div>
+                
+                <div class="capability-card">
+                    <h3>Sends confirmations & follow-ups</h3>
+                    <p>Automatic reminders reduce no-shows and keep customers engaged without any effort from you.</p>
+                </div>
+                
+                <div class="capability-card">
+                    <h3>Handles intake questions</h3>
+                    <p>Perfect for dentists and medical offices — collects insurance info, symptoms, and patient details.</p>
+                </div>
+                
+                <div class="capability-card">
+                    <h3>Works with your current number</h3>
+                    <p>No new apps or tech headaches. Integrates seamlessly with your existing phone system.</p>
+                </div>
+                
+                <div class="capability-card">
+                    <h3>Sounds like a real human assistant</h3>
+                    <p>Not a robot. Natural conversations that make your business look professional and responsive.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Solution Section -->
-    <section id="solution" class="solution">
+    <!-- Video Demo Section -->
+    <section class="video-demo">
         <div class="container">
-            <h2 class="section-title">Your AI Agent Never Sleeps, Never Forgets</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto;">
-                Set it up in 24 hours. Works forever. Zero technical skills needed.
-            </p>
+            <h2 class="section-title">See It In Action</h2>
+            <p class="section-subtitle">Watch how the AI handles real customer calls</p>
             
-            <div class="solution-steps">
-                <div class="step">
-                    <div class="step-number">1</div>
-                    <h3 class="step-title">Quick Setup</h3>
-                    <p class="step-description">We connect your existing tools (CRM, calendar, phone) and train your AI on your business in under 24 hours.</p>
+            <div class="video-container">
+                <div class="video-placeholder">
+                    <div class="play-icon">▶️</div>
+                    <p>Demo video shows actual call recording<br>of AI assistant booking an appointment</p>
+                    <p style="font-size: 0.9rem; opacity: 0.7; margin-top: 20px;">[Your demo video will be embedded here]</p>
                 </div>
-                <div class="step">
-                    <div class="step-number">2</div>
-                    <h3 class="step-title">Instant Response</h3>
-                    <p class="step-description">Your AI responds in seconds to every lead via text, email, or chat - sounding exactly like you would.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <h3 class="step-title">Smart Follow-Up</h3>
-                    <p class="step-description">Nurtures leads with personalized messages, answers questions, and sends reminders automatically.</p>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <h3 class="step-title">Books Meetings</h3>
-                    <p class="step-description">Qualifies leads and schedules appointments directly on your calendar. You just show up and close.</p>
-                </div>
-            </div>
-
-            <div class="image-placeholder">
-                [Dashboard Screenshot - New Conversations]
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
-    <section class="why-us">
+    <!-- Results Section -->
+    <section class="results">
         <div class="container">
-            <h2 class="section-title">Why Real Estate Agents Choose BoyerScales</h2>
+            <h2 class="section-title">Real Results From Real Businesses</h2>
             
-            <div class="features-grid">
-                <div class="feature">
-                    <div class="feature-icon">⚡</div>
-                    <h3 class="feature-title">Setup in 24 Hours</h3>
-                    <p class="feature-text">No complex integrations or months of development. We handle everything and get you live tomorrow.</p>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">3x</div>
+                    <div class="result-label">More Appointments</div>
+                    <div class="result-description">Booked per month on average</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">No Tech Skills Needed</h3>
-                    <p class="feature-text">If you can send a text, you can use this. We manage all the technical stuff behind the scenes.</p>
+                
+                <div class="result-card">
+                    <div class="result-number">< 5min</div>
+                    <div class="result-label">Response Time</div>
+                    <div class="result-description">From any lead source</div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon">📈</div>
-                    <h3 class="feature-title">Proven Results</h3>
-                    <p class="feature-text">Our clients see 3x more appointments booked and 67% reduction in response time within 30 days.</p>
+                
+                <div class="result-card">
+                    <div class="result-number">24/7</div>
+                    <div class="result-label">Always Available</div>
+                    <div class="result-description">Nights, weekends, holidays</div>
+                </div>
+                
+                <div class="result-card">
+                    <div class="result-number">67%</div>
+                    <div class="result-label">Fewer No-Shows</div>
+                    <div class="result-description">With automated reminders</div>
                 </div>
             </div>
         </div>
@@ -770,7 +636,7 @@
     <!-- Testimonials -->
     <section class="testimonials">
         <div class="container">
-            <h2 class="section-title">Agents Are Closing More Deals</h2>
+            <h2 class="section-title">What Business Owners Are Saying</h2>
             
             <div class="testimonial-grid">
                 <div class="testimonial">
@@ -784,6 +650,7 @@
                         </div>
                     </div>
                 </div>
+                
                 <div class="testimonial">
                     <div class="stars">★★★★★</div>
                     <p class="testimonial-text">"Game changer for my med spa. We're booking 40% more consultations and I'm not glued to my phone anymore. Worth every penny."</p>
@@ -799,90 +666,20 @@
         </div>
     </section>
 
-    <!-- Pricing Preview -->
-    <section id="pricing" class="pricing">
+    <!-- Final CTA -->
+    <section class="final-cta">
         <div class="container">
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto;">
-                Start seeing results in days, not months. Cancel anytime.
-            </p>
-            
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Starter</h3>
-                    <div class="price">$200</div>
-                    <div class="price-period">per month</div>
-                    <ul class="pricing-features">
-                        <li>1 AI Agent</li>
-                        <li>500 conversations/month</li>
-                        <li>SMS & Email follow-up</li>
-                        <li>Calendar integration</li>
-                        <li>Basic customization</li>
-                    </ul>
-                    <a href="#contact" class="cta-button" style="display: block; text-align: center;">Get Started</a>
-                </div>
-                
-                <div class="pricing-card featured">
-                    <div class="badge">MOST POPULAR</div>
-                    <h3 style="font-size: 1.5rem; margin-bottom: 20px;">Professional</h3>
-                    <div class="price">$497</div>
-                    <div class="price-period">per month</div>
-                    <ul class="pricing-features">
-                        <li>3 AI Agents</li>
-                        <li>Unlimited conversations</li>
-                        <li>SMS, Email & Voice</li>
-                        <li>CRM integration</li>
-                        <li>Custom workflows</li>
-                        <li>Priority support</li>
-                    </ul>
-                    <a href="#contact" class="cta-button" style="display: block; text-align: center;">Get Started</a>
-                </div>
-            </div>
-            
-            <p style="text-align: center; margin-top: 30px; color: var(--text-light);">
-                + One-time setup fee starting at $500 (waived for annual plans)
-            </p>
+            <h2>Ready to Never Miss Another Lead?</h2>
+            <p>Call the demo line now and see how it works. No commitment required.</p>
+            <a href="tel:+19166598131" class="cta-button-white">📞 Call +1 (916) 659-8131</a>
         </div>
     </section>
 
-    <!-- Audit Section -->
-    <section id="audit" class="audit-section">
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <h2 class="section-title">Your Free Lead Response Audit</h2>
-            <p style="text-align: center; color: var(--text-gray); max-width: 600px; margin: 0 auto 50px;">
-                See exactly where you're losing leads and how much money you're leaving on the table
-            </p>
-            
-            <div class="audit-preview">
-                <div class="audit-header">
-                    <h3 style="font-size: 1.8rem; margin-bottom: 10px;">Sample Business Audit Report</h3>
-                    <p style="color: var(--text-light);">Generated: September 2025</p>
-                </div>
-                
-                <div class="audit-score">
-                    <div class="score-item">
-                        <div class="score-circle score-bad">32%</div>
-                        <h4>Response Speed</h4>
-                        <p style="color: var(--text-light); font-size: 0.9rem;">Avg: 3.5 hours</p>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-circle score-warning">65%</div>
-                        <h4>Follow-up Rate</h4>
-                        <p style="color: var(--text-light); font-size: 0.9rem;">1.2 touchpoints</p>
-                    </div>
-                    <div class="score-item">
-                        <div class="score-circle score-good">78%</div>
-                        <h4>Conversion Potential</h4>
-                        <p style="color: var(--text-light); font-size: 0.9rem;">If optimized</p>
-                    </div>
-                </div>
-                
-                <div class="audit-findings">
-                    <h4 style="margin-bottom: 20px;">Key Findings:</h4>
-                    
-                    <div class="finding finding-bad">
-                        <strong>🚨 Critical:</strong> You're responding to leads 3.5 hours late on average. Industry leaders respond in under 5 minutes. This delay alone costs you 60% of potential conversions.
-                    </div>
-                    
-                    <div class="finding finding-warning">
-                        <strong>⚠️ Warning:</strong> Only 40% of your leads receive follow-up after initial contact. You need at least 5
+            <div class="copyright">© 2025 BoyerScales. All rights reserved.</div>
+        </div>
+    </footer>
+</body>
+</html>
