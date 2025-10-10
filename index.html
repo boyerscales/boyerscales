@@ -498,15 +498,53 @@
 
         /* Footer */
         footer {
-            background: var(--text-dark);
+            background: #000000;
             color: white;
-            padding: 48px 0;
-            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
         }
 
         .copyright {
-            opacity: 0.6;
-            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.875rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            font-size: 0.875rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .footer-links a.marketing-link {
+            color: rgba(255, 255, 255, 1);
+            text-decoration: underline;
+            text-decoration-color: rgba(217, 70, 239, 0.6);
+            text-underline-offset: 4px;
+        }
+
+        .footer-links a.marketing-link:hover {
+            text-decoration-color: rgba(217, 70, 239, 1);
         }
 
         /* Mobile Responsive */
@@ -562,6 +600,17 @@
 
             .section {
                 padding: 80px 0;
+            }
+
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 0 24px;
+                gap: 20px;
+            }
+
+            .footer-links {
+                justify-content: center;
             }
         }
     </style>
@@ -744,8 +793,15 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container">
+        <div class="footer-container">
             <div class="copyright">© 2025 BoyerScales. All rights reserved.</div>
+            <div class="footer-links">
+                <a href="https://instagram.com/boyerscales" target="_blank" rel="noopener noreferrer">Instagram</a>
+                <a href="https://tiktok.com/@boyerscales" target="_blank" rel="noopener noreferrer">TikTok</a>
+                <a href="https://twitter.com/boyerscales" target="_blank" rel="noopener noreferrer">X</a>
+                <a href="https://linkedin.com/company/boyerscales" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="boyerscales.com/marketing" class="marketing-link">BoyerScales Marketing</a>
+            </div>
         </div>
     </footer>
 </body>
