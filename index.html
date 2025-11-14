@@ -13,9 +13,9 @@
         }
 
         :root {
-            --primary: #667eea;
-            --primary-dark: #5568d3;
-            --secondary: #764ba2;
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #06b6d4;
             --text-dark: #0f172a;
             --text-gray: #475569;
             --text-light: #94a3b8;
@@ -66,7 +66,7 @@
         .logo {
             font-size: 26px;
             font-weight: 800;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             letter-spacing: -0.5px;
@@ -81,13 +81,13 @@
             font-weight: 600;
             font-size: 15px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
         }
 
         .nav-cta:hover {
             background: var(--primary-dark);
             transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
         }
 
         /* Hero Section */
@@ -95,6 +95,24 @@
             padding: 180px 0 100px;
             background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
         }
 
         .hero h1 {
@@ -104,6 +122,8 @@
             margin-bottom: 24px;
             color: var(--text-dark);
             letter-spacing: -2px;
+            position: relative;
+            z-index: 1;
         }
 
         .hero-subtitle {
@@ -115,113 +135,37 @@
             margin-right: auto;
             font-weight: 400;
             line-height: 1.6;
+            position: relative;
+            z-index: 1;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 22px 56px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 18px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 12px 32px rgba(102, 126, 234, 0.25);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(102, 126, 234, 0.35);
-            background: var(--primary-dark);
-        }
-
-        /* Demo Phone Section */
-        .demo-phone {
-            padding: 100px 0;
+        /* Video Demo Section - Now at top */
+        .video-demo {
             background: var(--white);
+            padding: 80px 0;
         }
 
-        .demo-phone-card {
-            max-width: 960px;
+        .video-container {
+            max-width: 1000px;
             margin: 0 auto;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--text-dark);
             border-radius: 24px;
-            padding: 80px 60px;
-            text-align: center;
-            color: white;
-            box-shadow: 0 24px 64px rgba(102, 126, 234, 0.25);
+            overflow: hidden;
+            box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+            aspect-ratio: 16/9;
+            position: relative;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .demo-phone-card h2 {
-            font-size: 3rem;
-            margin-bottom: 16px;
-            font-weight: 800;
-            letter-spacing: -1px;
+        .video-container:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 32px 80px rgba(0,0,0,0.25);
         }
 
-        .demo-phone-card > p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            margin-bottom: 40px;
-            font-weight: 400;
-        }
-
-        .phone-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            background: white;
-            color: var(--primary);
-            padding: 24px 48px;
-            border-radius: 60px;
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin: 32px 0;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
-        }
-
-        .phone-number:hover {
-            transform: scale(1.05);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
-        }
-
-        .phone-icon {
-            font-size: 2.6rem;
-        }
-
-        .demo-instructions {
-            margin-top: 48px;
-            padding: 32px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .demo-instructions h3 {
-            font-size: 1.4rem;
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
-
-        .demo-instructions ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .demo-instructions li {
-            padding: 16px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            text-align: left;
-            font-size: 1.05rem;
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
 
         /* Section styling */
@@ -297,31 +241,9 @@
             font-size: 1.05rem;
         }
 
-        /* Video Demo */
-        .video-demo {
-            background: var(--white);
-        }
-
-        .video-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: var(--text-dark);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 24px 64px rgba(0,0,0,0.15);
-            aspect-ratio: 16/9;
-            position: relative;
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
         /* Results */
         .results {
-            background: var(--bg-light);
+            background: var(--white);
         }
 
         .results-grid {
@@ -333,7 +255,7 @@
         }
 
         .result-card {
-            background: white;
+            background: var(--bg-light);
             padding: 48px 32px;
             border-radius: 20px;
             text-align: center;
@@ -349,7 +271,7 @@
         .result-number {
             font-size: 4rem;
             font-weight: 900;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 12px;
@@ -370,7 +292,7 @@
 
         /* Testimonials */
         .testimonials {
-            background: var(--white);
+            background: var(--bg-light);
         }
 
         .testimonial-grid {
@@ -382,7 +304,7 @@
         }
 
         .testimonial {
-            background: var(--bg-light);
+            background: white;
             padding: 40px;
             border-radius: 20px;
             border: 1px solid var(--border);
@@ -418,7 +340,7 @@
         .author-avatar {
             width: 56px;
             height: 56px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
             border-radius: 50%;
         }
 
@@ -433,47 +355,125 @@
             color: var(--text-light);
         }
 
-        /* Final CTA */
-        .final-cta {
-            padding: 120px 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Demo Phone Section - Now at bottom */
+        .demo-phone {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .demo-phone-card {
+            max-width: 960px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            border-radius: 24px;
+            padding: 80px 60px;
             text-align: center;
             color: white;
+            box-shadow: 0 24px 64px rgba(59, 130, 246, 0.25);
         }
 
-        .final-cta h2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            margin-bottom: 24px;
-            font-weight: 900;
-            letter-spacing: -2px;
+        .demo-phone-card h2 {
+            font-size: 3rem;
+            margin-bottom: 16px;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
-        .final-cta p {
-            font-size: 1.4rem;
-            margin-bottom: 48px;
+        .demo-phone-card > p {
+            font-size: 1.3rem;
             opacity: 0.95;
-            max-width: 640px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 40px;
             font-weight: 400;
         }
 
-        .cta-button-white {
+        .phone-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
             background: white;
             color: var(--primary);
-            padding: 22px 56px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            display: inline-block;
+            padding: 24px 48px;
+            border-radius: 60px;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 32px 0;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta-button-white:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.35);
+        .phone-number::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(59, 130, 246, 0.1);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .phone-number:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .phone-number:hover {
+            transform: scale(1.05);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+        }
+
+        .phone-number span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .phone-icon {
+            font-size: 2.6rem;
+            animation: ring 2s ease-in-out infinite;
+        }
+
+        @keyframes ring {
+            0%, 100% { transform: rotate(0deg); }
+            10%, 30% { transform: rotate(-10deg); }
+            20%, 40% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+        }
+
+        .demo-instructions {
+            margin-top: 48px;
+            padding: 32px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .demo-instructions h3 {
+            font-size: 1.4rem;
+            margin-bottom: 24px;
+            font-weight: 700;
+        }
+
+        .demo-instructions ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .demo-instructions li {
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            text-align: left;
+            font-size: 1.05rem;
         }
 
         /* Footer */
@@ -519,12 +519,12 @@
         .footer-links a.marketing-link {
             color: rgba(255, 255, 255, 1);
             text-decoration: underline;
-            text-decoration-color: rgba(217, 70, 239, 0.6);
+            text-decoration-color: rgba(59, 130, 246, 0.6);
             text-underline-offset: 4px;
         }
 
         .footer-links a.marketing-link:hover {
-            text-decoration-color: rgba(217, 70, 239, 1);
+            text-decoration-color: rgba(59, 130, 246, 1);
         }
 
         /* Mobile Responsive */
@@ -609,31 +609,17 @@
         <div class="container">
             <h1>Never Miss Another Call or Lead</h1>
             <p class="hero-subtitle">Your AI assistant answers calls, books appointments, and follows up with leads 24/7 — so you don't have to</p>
-            <a href="#demo" class="cta-button">Try the Demo Now</a>
         </div>
     </section>
 
-    <!-- Live Demo Phone Section -->
-    <section id="demo" class="demo-phone">
+    <!-- Video Demo Section - NOW AT TOP -->
+    <section class="video-demo">
         <div class="container">
-            <div class="demo-phone-card">
-                <h2>Try It Right Now</h2>
-                <p>Call our AI assistant and experience it yourself. It's live 24/7.</p>
-                
-                <a href="tel:+19166598131" class="phone-number">
-                    <span class="phone-icon">📞</span>
-                    <span>+1 (916) 659-8131</span>
-                </a>
-                
-                <div class="demo-instructions">
-                    <h3>What to Try:</h3>
-                    <ul>
-                        <li>Ask about services and pricing</li>
-                        <li>Request to book an appointment</li>
-                        <li>Ask questions about business hours</li>
-                        <li>Notice how it sounds like a real person</li>
-                    </ul>
-                </div>
+            <h2 class="section-title">See It In Action</h2>
+            <p class="section-subtitle">Watch how the AI handles real customer calls</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/gamyj_vPwL0?si=pARczyZkVnBOxMRm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -647,45 +633,33 @@
             <div class="capabilities-grid">
                 <div class="capability-card">
                     <h3><span class="checkmark">✓</span> <span>Answers missed calls instantly</span></h3>
-                    <p>24/7, even when you're busy or closed. Every call gets answered professionally, every time.</p>
+                    <p>Sounds natural — not robotic — and picks up every call you can't reach.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Books appointments by phone or SMS</span></h3>
-                    <p>No back-and-forth. The AI checks your calendar and schedules directly — just like a real receptionist.</p>
+                    <h3><span class="checkmark">✓</span> <span>Books jobs & captures leads</span></h3>
+                    <p>Collects caller info and job details so you never lose an opportunity.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Replies to common questions</span></h3>
-                    <p>Pricing, hours, services, location — the AI knows your business and answers instantly.</p>
+                    <h3><span class="checkmark">✓</span> <span>Handles common questions</span></h3>
+                    <p>Hours, pricing ranges, services, locations — answered instantly.</p>
                 </div>
                 
                 <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Sends confirmations & follow-ups</span></h3>
-                    <p>Automatic reminders reduce no-shows and keep customers engaged without any effort from you.</p>
-                </div>
-                
-                <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Handles intake questions</span></h3>
-                    <p>Perfect for dentists and medical offices — collects insurance info, symptoms, and patient details.</p>
+                    <h3><span class="checkmark">✓</span> <span>Sends confirmation texts</span></h3>
+                    <p>Professional follow-up messages sent automatically after each call.</p>
                 </div>
                 
                 <div class="capability-card">
                     <h3><span class="checkmark">✓</span> <span>Works with your current number</span></h3>
-                    <p>No new apps or tech headaches. Integrates seamlessly with your existing phone system.</p>
+                    <p>No new tech. No new apps. Just route missed calls and you're live.</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Demo Section -->
-    <section class="video-demo section">
-        <div class="container">
-            <h2 class="section-title">See It In Action</h2>
-            <p class="section-subtitle">Watch how the AI handles real customer calls</p>
-            
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/gamyj_vPwL0?si=pARczyZkVnBOxMRm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                
+                <div class="capability-card">
+                    <h3><span class="checkmark">✓</span> <span>24/7 availability</span></h3>
+                    <p>Your business always answers — even while you're busy or closed.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -758,12 +732,28 @@
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section class="final-cta">
+    <!-- Live Demo Phone Section - NOW AT BOTTOM -->
+    <section id="demo" class="demo-phone">
         <div class="container">
-            <h2>Ready to Never Miss Another Lead?</h2>
-            <p>Call the demo line now and see how it works. No commitment required.</p>
-            <a href="tel:+19166598131" class="cta-button-white">📞 Call +1 (916) 659-8131</a>
+            <div class="demo-phone-card">
+                <h2>Try It Right Now</h2>
+                <p>Call our AI assistant and experience it yourself. It's live 24/7.</p>
+                
+                <a href="tel:+19166598131" class="phone-number">
+                    <span class="phone-icon">📞</span>
+                    <span>+1 (916) 659-8131</span>
+                </a>
+                
+                <div class="demo-instructions">
+                    <h3>What to Try:</h3>
+                    <ul>
+                        <li>Tell the AI you want to book an appointment</li>
+                        <li>Notice how natural and human it sounds</li>
+                        <li>See how it handles your information</li>
+                        <li>Experience the booking process firsthand</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </section>
 
