@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoyerScales - AI Call & Lead Assistant</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
@@ -63,17 +64,13 @@
             margin: 0 auto;
         }
 
-        /* UPDATED LOGO STYLES (image instead of gradient text) */
         .logo {
-            display: inline-flex;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .logo img {
-            height: 32px; /* adjust if you want it bigger/smaller */
-            width: auto;
-            display: block;
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
         .nav-cta {
@@ -603,10 +600,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <!-- UPDATED: image logo -->
-            <a href="/" class="logo">
-                <img src="logo.png" alt="BoyerScales logo">
-            </a>
+            <div class="logo">BoyerScales</div>
             <a href="#demo" class="nav-cta">Try the Demo</a>
         </div>
     </nav>
