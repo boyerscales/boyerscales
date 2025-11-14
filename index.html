@@ -63,13 +63,17 @@
             margin: 0 auto;
         }
 
+        /* UPDATED LOGO STYLES (image instead of gradient text) */
         .logo {
-            font-size: 26px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 32px; /* adjust if you want it bigger/smaller */
+            width: auto;
+            display: block;
         }
 
         .nav-cta {
@@ -599,7 +603,10 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">BoyerScales</div>
+            <!-- UPDATED: image logo -->
+            <a href="/" class="logo">
+                <img src="logo.png" alt="BoyerScales logo">
+            </a>
             <a href="#demo" class="nav-cta">Try the Demo</a>
         </div>
     </nav>
