@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoyerScales - AI Call & Lead Assistant</title>
-    <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>BoyerScales AI | Never Miss Another Call</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,88 +15,144 @@
         }
 
         :root {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary: #06b6d4;
-            --text-dark: #0f172a;
-            --text-gray: #475569;
-            --text-light: #94a3b8;
-            --bg-light: #f8fafc;
-            --white: #ffffff;
-            --border: #e2e8f0;
-            --success: #10b981;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --primary: #3B82F6;
+            --primary-dark: #2563EB;
+            --gradient-start: #06B6D4;
+            --gradient-end: #6366F1;
+            --dark: #0F172A;
+            --dark-800: #1E293B;
+            --dark-700: #334155;
+            --dark-600: #475569;
+            --text-primary: #FFFFFF;
+            --text-secondary: #CBD5E1;
+            --text-tertiary: #94A3B8;
+            --accent: #10B981;
+            --accent-secondary: #EC4899;
+            --bg-card: rgba(255, 255, 255, 0.04);
+            --border: rgba(255, 255, 255, 0.08);
         }
 
         body {
-            font-family: 'Inter', sans-serif;
-            color: var(--text-dark);
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--dark);
+            color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            background: var(--white);
         }
 
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 2rem;
         }
 
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            left: 0;
+            right: 0;
             z-index: 1000;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
+            animation: slideDown 0.6s ease-out;
         }
 
-        .nav-container {
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 40px;
-            max-width: 1280px;
-            margin: 0 auto;
+            padding: 1.5rem 2rem;
         }
 
         .logo {
-            font-size: 26px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-cta {
-            padding: 14px 32px;
-            background: var(--primary);
-            color: white;
+            font-size: 1.5rem;
+            color: var(--text-primary);
             text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
         }
 
-        .nav-cta:hover {
-            background: var(--primary-dark);
-            transform: translateY(-1px);
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
+        .logo img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            box-shadow: 0 10px 40px rgba(45, 124, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 50px rgba(45, 124, 246, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card);
+            border-color: var(--primary);
         }
 
         /* Hero Section */
         .hero {
-            padding: 180px 0 100px;
-            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
             position: relative;
             overflow: hidden;
         }
@@ -104,672 +161,1916 @@
             content: '';
             position: absolute;
             top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
-            animation: pulse 8s ease-in-out infinite;
+            right: -20%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-50px, -50px) scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 6vw, 5rem);
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3rem, 6vw, 5.5rem);
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 24px;
-            color: var(--text-dark);
-            letter-spacing: -2px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.2rem, 2vw, 1.5rem);
-            color: var(--text-gray);
-            margin-bottom: 48px;
-            max-width: 720px;
-            margin-left: auto;
-            margin-right: auto;
-            font-weight: 400;
-            line-height: 1.6;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Video Demo Section - Now at top */
-        .video-demo {
-            background: var(--white);
-            padding: 80px 0;
-        }
-
-        .video-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: var(--text-dark);
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 24px 64px rgba(0,0,0,0.15);
-            aspect-ratio: 16/9;
-            position: relative;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .video-container:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 32px 80px rgba(0,0,0,0.25);
-        }
-
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* Section styling */
-        .section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            font-size: clamp(2.5rem, 5vw, 3.5rem);
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-            letter-spacing: -1.5px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-gray);
-            font-size: 1.25rem;
-            max-width: 720px;
-            margin: 0 auto 64px;
-            font-weight: 400;
-        }
-
-        /* Capabilities */
-        .capabilities {
-            background: var(--bg-light);
-        }
-
-        .capabilities-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .capability-card {
-            background: white;
-            padding: 36px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .capability-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-            border-color: var(--primary);
-        }
-
-        .capability-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-weight: 700;
-        }
-
-        .checkmark {
-            color: var(--success);
-            font-size: 1.5rem;
-            line-height: 1;
-            flex-shrink: 0;
-        }
-
-        .capability-card p {
-            color: var(--text-gray);
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
-
-        /* Results */
-        .results {
-            background: var(--white);
-        }
-
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 32px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .result-card {
-            background: var(--bg-light);
-            padding: 48px 32px;
-            border-radius: 20px;
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .result-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-        }
-
-        .result-number {
-            font-size: 4rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #F8FAFC 0%, #06B6D4 50%, #6366F1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-            letter-spacing: -2px;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
 
-        .result-label {
-            font-size: 1.15rem;
-            color: var(--text-dark);
-            font-weight: 700;
-            margin-bottom: 8px;
+        .hero .subheadline {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
-        .result-description {
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .trust-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-tertiary);
             font-size: 0.95rem;
-            color: var(--text-light);
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+
+        .trust-bar span {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%);
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.4s;
+        }
+
+        @media (max-width: 1200px) {
+            .problem-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-secondary);
+            box-shadow: 0 20px 60px rgba(236, 72, 153, 0.15);
+        }
+
+        .problem-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .problem-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-secondary);
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+            min-height: 520px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 25px 70px rgba(45, 124, 246, 0.25);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card .tagline {
+            color: var(--gradient-start);
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            font-size: 1rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .service-card li {
+            color: var(--text-secondary);
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .service-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--dark-800);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.4s;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        .stat-number {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-description {
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* ROI Breakdown */
+        .roi-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .roi-card {
+            background: linear-gradient(135deg, var(--dark-700), var(--dark-600));
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.5rem;
+            min-height: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .roi-card h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--gradient-start);
+            min-height: 60px;
+        }
+
+        .roi-card .roi-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .roi-card .roi-stat:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            display: block;
+            text-align: center;
+        }
+
+        .roi-card .roi-stat:last-child span {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .roi-card .roi-stat:last-child span:last-child {
+            font-size: 1.75rem;
+            color: var(--gradient-start);
+        }
+
+        /* Demo Section */
+        .demo {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%);
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .demo-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+        }
+
+        .demo-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .phone-number {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            font-size: 1.75rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 2rem 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .demo-prompts {
+            background: var(--dark-700);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .demo-prompts p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .demo-prompts ul {
+            list-style: none;
+        }
+
+        .demo-prompts li {
+            color: var(--text-tertiary);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .demo-prompts li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* SMS Conversation */
+        .sms-conversation {
+            background: var(--dark-700);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .sms-message {
+            background: var(--dark-600);
+            border-radius: 16px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 1rem;
+            max-width: 85%;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .sms-message.customer {
+            background: var(--dark-600);
+            margin-left: 0;
+        }
+
+        .sms-message.ai {
+            background: linear-gradient(135deg, rgba(45, 124, 246, 0.2), rgba(78, 92, 255, 0.2));
+            border: 1px solid rgba(45, 124, 246, 0.3);
+            margin-left: auto;
+        }
+
+        .sms-label {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .sms-text {
+            color: var(--text-primary);
+            line-height: 1.5;
         }
 
         /* Testimonials */
         .testimonials {
-            background: var(--bg-light);
+            background: var(--dark-800);
         }
 
-        .testimonial-grid {
+        .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-            max-width: 1100px;
-            margin: 0 auto;
+            gap: 2.5rem;
+            margin-top: 4rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .testimonial {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .testimonial-card {
+            background: var(--bg-card);
             border: 1px solid var(--border);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.4s;
         }
 
-        .testimonial:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
         }
 
         .stars {
-            color: #fbbf24;
-            font-size: 24px;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+            color: #FFD700;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .testimonial-text {
-            color: var(--text-gray);
-            font-style: italic;
-            margin-bottom: 28px;
-            line-height: 1.8;
-            font-size: 1.1rem;
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+            font-weight: 500;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
         }
 
-        .author-avatar {
-            width: 56px;
-            height: 56px;
-            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            border-radius: 50%;
+        .author-info {
+            flex: 1;
         }
 
-        .author-info h4 {
+        .author-name {
             font-weight: 700;
-            color: var(--text-dark);
-            font-size: 1.05rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
         }
 
-        .author-info p {
+        .author-title {
+            color: var(--text-tertiary);
             font-size: 0.95rem;
-            color: var(--text-light);
         }
 
-        /* Demo Phone Section - Now at bottom */
-        .demo-phone {
-            padding: 100px 0;
-            background: var(--white);
+        /* Before/After Table */
+        .comparison-table {
+            max-width: 900px;
+            margin: 4rem auto;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
         }
 
-        .demo-phone-card {
-            max-width: 960px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
-            border-radius: 24px;
-            padding: 80px 60px;
-            text-align: center;
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
             color: white;
-            box-shadow: 0 24px 64px rgba(59, 130, 246, 0.25);
+            padding: 1.5rem;
+            text-align: left;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
         }
 
-        .demo-phone-card h2 {
-            font-size: 3rem;
-            margin-bottom: 16px;
+        .comparison-table td {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table td:first-child {
+            color: var(--accent-secondary);
+        }
+
+        .comparison-table td:last-child {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Pricing */
+        .pricing {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--dark-800) 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 24px;
+            padding: 3rem;
+            transition: all 0.4s;
+            position: relative;
+            min-height: 720px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card.popular {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 30px 80px rgba(59, 130, 246, 0.3);
+        }
+
+        .pricing-card.popular::before {
+            content: '⭐ MOST POPULAR';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0 0 12px 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .pricing-card.premium {
+            border-color: var(--primary);
+        }
+
+        .pricing-card.premium::before {
+            content: '🔥 BEST VALUE';
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--accent), var(--gradient-start));
+            color: var(--dark);
+            padding: 0.5rem 1.5rem;
+            border-radius: 0 0 12px 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .pricing-card.popular:hover {
+            transform: scale(1.08) translateY(-8px);
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-plan {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-tagline {
+            color: var(--text-tertiary);
+            font-size: 1rem;
+        }
+
+        .pricing-price {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .price-amount {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4rem;
             font-weight: 800;
-            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .demo-phone-card > p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            margin-bottom: 40px;
-            font-weight: 400;
+        .price-period {
+            color: var(--text-tertiary);
+            font-size: 1.2rem;
         }
 
-        .phone-number {
-            display: inline-flex;
+        .pricing-features {
+            list-style: none;
+            margin: 2rem 0;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 1rem 0;
+            color: var(--text-secondary);
+            padding-left: 2rem;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .pricing-best-for {
+            background: var(--dark-700);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .pricing-best-for strong {
+            color: var(--text-primary);
+        }
+
+        .pricing-best-for span {
+            color: var(--text-secondary);
+        }
+
+        /* Guarantee */
+        .guarantee-box {
+            max-width: 800px;
+            margin: 4rem auto;
+            background: linear-gradient(135deg, rgba(0, 255, 163, 0.1), rgba(45, 124, 246, 0.1));
+            border: 2px solid var(--accent);
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .guarantee-box h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+
+        .guarantee-box p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+        }
+
+        /* Onboarding Steps */
+        .onboarding-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .step-card {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            background: white;
-            color: var(--primary);
-            padding: 24px 48px;
-            border-radius: 60px;
-            font-size: 2.2rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2rem;
             font-weight: 800;
-            margin: 32px 0;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            text-decoration: none;
+            margin: 0 auto 2rem;
+        }
+
+        .step-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .step-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* FAQ */
+        .faq {
+            background: var(--dark-800);
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 4rem auto;
+        }
+
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            padding: 2rem;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-size: 2rem;
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s;
+            padding: 0 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 2rem 2rem;
+        }
+
+        .faq-answer p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            background: linear-gradient(135deg, var(--dark-700), var(--dark-800));
+            text-align: center;
+            padding: 8rem 2rem;
             position: relative;
             overflow: hidden;
         }
 
-        .phone-number::before {
+        .final-cta::before {
             content: '';
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(59, 130, 246, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+            top: -50%;
+            left: -50%;
+            width: 1000px;
+            height: 1000px;
+            background: radial-gradient(circle, rgba(45, 124, 246, 0.2) 0%, transparent 70%);
+            animation: float 15s ease-in-out infinite;
         }
 
-        .phone-number:hover::before {
-            width: 400px;
-            height: 400px;
-        }
-
-        .phone-number:hover {
-            transform: scale(1.05);
-            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
-        }
-
-        .phone-number span {
+        .final-cta-content {
             position: relative;
             z-index: 1;
-        }
-
-        .phone-icon {
-            font-size: 2.6rem;
-            animation: ring 2s ease-in-out infinite;
-        }
-
-        @keyframes ring {
-            0%, 100% { transform: rotate(0deg); }
-            10%, 30% { transform: rotate(-10deg); }
-            20%, 40% { transform: rotate(10deg); }
-            50% { transform: rotate(0deg); }
-        }
-
-        .demo-instructions {
-            margin-top: 48px;
-            padding: 32px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-        }
-
-        .demo-instructions h3 {
-            font-size: 1.4rem;
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
-
-        .demo-instructions ul {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            max-width: 700px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .demo-instructions li {
-            padding: 16px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            text-align: left;
-            font-size: 1.05rem;
+        .final-cta h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--gradient-start) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .final-cta p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .final-cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .offer-box {
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            display: inline-block;
+        }
+
+        .offer-box strong {
+            color: var(--accent);
         }
 
         /* Footer */
         footer {
-            background: #000000;
-            color: white;
-            padding: 40px 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: var(--dark);
+            border-top: 1px solid var(--border);
+            padding: 3rem 0;
+            text-align: center;
         }
 
-        .footer-container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 40px;
+        .footer-trust {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .copyright {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.875rem;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-            font-size: 0.875rem;
+            justify-content: center;
+            gap: 2rem;
             flex-wrap: wrap;
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+            margin-top: 2rem;
         }
 
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .footer-trust span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .footer-links a:hover {
-            color: rgba(255, 255, 255, 1);
-        }
-
-        .footer-links a.marketing-link {
-            color: rgba(255, 255, 255, 1);
-            text-decoration: underline;
-            text-decoration-color: rgba(59, 130, 246, 0.6);
-            text-underline-offset: 4px;
-        }
-
-        .footer-links a.marketing-link:hover {
-            text-decoration-color: rgba(59, 130, 246, 1);
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 1024px) {
-            .capabilities-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .results-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .testimonial-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .demo-instructions ul {
-                grid-template-columns: 1fr;
-            }
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
+            .nav-links {
+                display: none;
             }
 
-            .nav-container {
-                padding: 20px 24px;
+            .hero h1 {
+                font-size: 2.5rem;
             }
 
-            .hero {
-                padding: 140px 0 80px;
+            .hero .subheadline {
+                font-size: 1.2rem;
             }
 
-            .phone-number {
-                font-size: 1.6rem;
-                padding: 20px 36px;
+            .hero-cta {
                 flex-direction: column;
-                gap: 12px;
             }
 
-            .demo-phone-card {
-                padding: 60px 32px;
+            .btn {
+                width: 100%;
+                text-align: center;
             }
 
-            .demo-phone-card h2 {
-                font-size: 2rem;
-            }
-
-            .results-grid {
+            .services-grid,
+            .stats-grid,
+            .demo-grid,
+            .testimonials-grid,
+            .pricing-grid,
+            .problem-grid {
                 grid-template-columns: 1fr;
             }
 
-            .section {
-                padding: 80px 0;
+            .pricing-card.popular {
+                transform: scale(1);
             }
 
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-                padding: 0 24px;
-                gap: 20px;
+            section {
+                padding: 4rem 0;
             }
 
-            .footer-links {
-                justify-content: center;
+            .container {
+                padding: 0 1.5rem;
             }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .slide-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* Additional refinements for modern, clean look */
+
+        /* Better typography spacing */
+        .hero h1,
+        .section-header h2,
+        .final-cta h2 {
+            letter-spacing: -0.02em;
+        }
+
+        .service-card h3,
+        .pricing-plan,
+        .step-card h3,
+        .faq-question {
+            letter-spacing: -0.01em;
+        }
+
+        /* Softer shadows for modern feel */
+        .btn-primary {
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25) !important;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 12px 40px rgba(99, 102, 241, 0.35) !important;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2) !important;
+        }
+
+        .pricing-card.popular {
+            box-shadow: 0 25px 70px rgba(99, 102, 241, 0.25) !important;
+        }
+
+        /* More refined stat numbers */
+        .stat-number {
+            font-weight: 900;
+            letter-spacing: -0.03em;
+        }
+
+        /* Better price display */
+        .price-amount {
+            font-weight: 900;
+            letter-spacing: -0.02em;
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
-        <div class="nav-container">
-            <div class="logo">BoyerScales</div>
-            <a href="#demo" class="nav-cta">Try the Demo</a>
+        <div class="container">
+            <a href="#" class="logo">
+                <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjM0I4MkY2Ii8+CiAgPHRleHQgeD0iMjAiIHk9IjI2IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZpbGw9IndoaXRlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5CUzwvdGV4dD4KPC9zdmc+" alt="BoyerScales Logo" style="width: 40px; height: 40px;">
+                BoyerScales
+            </a>
+            <ul class="nav-links">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#demo">Demo</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#cta" class="btn btn-primary">Start Free Trial</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1>Never Miss Another Call or Lead</h1>
-            <p class="hero-subtitle">Your AI assistant answers calls, books appointments, and follows up with leads 24/7 — so you don't have to</p>
-        </div>
-    </section>
-
-    <!-- Video Demo Section - NOW AT TOP -->
-    <section class="video-demo">
-        <div class="container">
-            <h2 class="section-title">See It In Action</h2>
-            <p class="section-subtitle">Watch how the AI handles real customer calls</p>
-            
-            <div class="video-container">
-                <iframe src="https://www.youtube.com/embed/Z7erwZ1ZtIo?si=NJbafgJicwnOaODm" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- What It Actually Does -->
-    <section class="capabilities section">
-        <div class="container">
-            <h2 class="section-title">What Your AI Assistant Does</h2>
-            <p class="section-subtitle">No apps to learn. No tech headaches. Just results.</p>
-            
-            <div class="capabilities-grid">
-                <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Answers missed calls instantly</span></h3>
-                    <p>Sounds natural — not robotic — and picks up every call you can't reach.</p>
+            <div class="hero-content">
+                <h1>Never Miss Another Call. Never Lose Another Lead.</h1>
+                <p class="subheadline">BoyerScales AI handles your phones, books appointments, captures reviews, and follows up with every lead—24/7. Built for local service businesses that can't afford to miss opportunities.</p>
+                <div class="hero-cta">
+                    <a href="#cta" class="btn btn-primary">Start Free Trial</a>
+                    <a href="#cta" class="btn btn-secondary">Book a Setup Call</a>
                 </div>
-                
-                <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Books jobs & captures leads</span></h3>
-                    <p>Collects caller info and job details so you never lose an opportunity.</p>
-                </div>
-                
-                <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Handles common questions</span></h3>
-                    <p>Hours, pricing ranges, services, locations — answered instantly.</p>
-                </div>
-                
-                <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Sends confirmation texts</span></h3>
-                    <p>Professional follow-up messages sent automatically after each call.</p>
-                </div>
-                
-                <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>Works with your current number</span></h3>
-                    <p>No new tech. No new apps. Just route missed calls and you're live.</p>
-                </div>
-                
-                <div class="capability-card">
-                    <h3><span class="checkmark">✓</span> <span>24/7 availability</span></h3>
-                    <p>Your business always answers — even while you're busy or closed.</p>
+                <div class="trust-bar">
+                    <span>Trusted by:</span>
+                    HVAC • Plumbing • Dental • Med Spas • Auto Repair • Contractors • Real Estate
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Results Section -->
-    <section class="results section">
+    <!-- Problem Section -->
+    <section class="problem">
         <div class="container">
-            <h2 class="section-title">Real Results</h2>
-            <p class="section-subtitle">From businesses just like yours</p>
-            
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-number">3x</div>
-                    <div class="result-label">More Appointments</div>
-                    <div class="result-description">Booked per month</div>
+            <div class="section-header">
+                <h2>Your Business Is Bleeding Revenue Every Single Day</h2>
+                <p>Every missed call is a customer calling your competitor. Every ignored text is a lost booking. Every quiet review request is a missed chance to stand out on Google.</p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="icon">📞</div>
+                    <h3>73% of Calls Go Unanswered</h3>
+                    <p>That's money walking out the door to competitors who picked up the phone.</p>
                 </div>
-                
-                <div class="result-card">
-                    <div class="result-number">&lt;5min</div>
-                    <div class="result-label">Response Time</div>
-                    <div class="result-description">From any lead source</div>
+                <div class="problem-card">
+                    <div class="icon">⏱️</div>
+                    <h3>5 Minutes = Lost Forever</h3>
+                    <p>Customers who don't hear back within 5 minutes book elsewhere. You're losing jobs before you even know they called.</p>
                 </div>
-                
-                <div class="result-card">
-                    <div class="result-number">24/7</div>
-                    <div class="result-label">Always Available</div>
-                    <div class="result-description">Nights & weekends</div>
+                <div class="problem-card">
+                    <div class="icon">⭐</div>
+                    <h3>No Reviews = Invisible</h3>
+                    <p>Businesses without recent reviews lose 40% of online traffic. Invisible equals irrelevant.</p>
                 </div>
-                
-                <div class="result-card">
-                    <div class="result-number">67%</div>
-                    <div class="result-label">Fewer No-Shows</div>
-                    <div class="result-description">With auto reminders</div>
+                <div class="problem-card">
+                    <div class="icon">💼</div>
+                    <h3>2+ Hours on Follow-Ups</h3>
+                    <p>Manual follow-ups waste time you could spend actually working and earning revenue.</p>
                 </div>
+                <div class="problem-card">
+                    <div class="icon">🌙</div>
+                    <h3>After Hours = Zero Revenue</h3>
+                    <p>Your phone goes silent while competitors stay open and capture every lead.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>One Platform. Four Systems. Unstoppable Growth.</h2>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI Receptionist</h3>
+                    <p class="tagline">Never miss a call or text again.</p>
+                    <ul>
+                        <li>Answers calls in your business voice</li>
+                        <li>Books appointments directly into your calendar</li>
+                        <li>Answers FAQs (hours, pricing, services)</li>
+                        <li>Transfers urgent calls to your team</li>
+                        <li>Works 24/7/365—no breaks, no sick days</li>
+                    </ul>
+                    <a href="#demo" class="btn btn-secondary">Try the Live Demo</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">⭐</div>
+                    <h3>AI Review Booster</h3>
+                    <p class="tagline">Turn every happy customer into a 5-star review.</p>
+                    <ul>
+                        <li>Sends personalized review requests via SMS</li>
+                        <li>Captures reviews on Google, Yelp, Facebook</li>
+                        <li>Filters unhappy customers privately</li>
+                        <li>Runs on autopilot after every completed job</li>
+                    </ul>
+                    <a href="#pricing" class="btn btn-secondary">Start Collecting Reviews</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">💬</div>
+                    <h3>Missed-Call Saver</h3>
+                    <p class="tagline">Instantly recover every missed opportunity.</p>
+                    <ul>
+                        <li>Detects missed calls in real-time</li>
+                        <li>Sends instant SMS within 60 seconds</li>
+                        <li>Books appointments or gathers details</li>
+                        <li>Logs everything in your CRM automatically</li>
+                    </ul>
+                    <a href="#pricing" class="btn btn-secondary">Stop Losing Leads</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">🔄</div>
+                    <h3>AI Lead Nurture System</h3>
+                    <p class="tagline">Automatically follow up with every estimate and inquiry.</p>
+                    <ul>
+                        <li>Follows up on estimates automatically</li>
+                        <li>Re-engages old leads from 30–90 days ago</li>
+                        <li>Sends appointment reminders</li>
+                        <li>Personalized sequences for each lead type</li>
+                    </ul>
+                    <a href="#pricing" class="btn btn-secondary">Revive Dead Leads</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats/ROI Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="section-header">
+                <h2>Real Numbers. Real Revenue.</h2>
+                <p>BoyerScales AI isn't just automation—it's a revenue engine.</p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">212+</div>
+                    <div class="stat-label">Missed calls saved</div>
+                    <div class="stat-description">in 90 days—that's 212 potential customers who would've booked with someone else</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">140+</div>
+                    <div class="stat-label">New 5-star reviews</div>
+                    <div class="stat-description">Higher rankings = more visibility = more bookings</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3,500+</div>
+                    <div class="stat-label">Messages processed</div>
+                    <div class="stat-description">Your AI never sleeps, never forgets, never misses a beat</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">$3,400</div>
+                    <div class="stat-label">Average monthly revenue recovered</div>
+                    <div class="stat-description">That's $40,800/year—just from not missing calls</div>
+                </div>
+            </div>
+
+            <div class="roi-cards">
+                <div class="roi-card">
+                    <h4>HVAC, Plumbing & Contractors</h4>
+                    <div class="roi-stat">
+                        <span>Average job value:</span>
+                        <span>$450</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span>Missed calls per month:</span>
+                        <span>15</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span>Revenue saved:</span>
+                        <span>$6,750/month</span>
+                    </div>
+                </div>
+
+                <div class="roi-card">
+                    <h4>Med Spas & Dental</h4>
+                    <div class="roi-stat">
+                        <span>Average appointment value:</span>
+                        <span>$280</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span>Missed calls per month:</span>
+                        <span>22</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span>Revenue saved:</span>
+                        <span>$6,160/month</span>
+                    </div>
+                </div>
+
+                <div class="roi-card">
+                    <h4>Auto Repair</h4>
+                    <div class="roi-stat">
+                        <span>Average repair ticket:</span>
+                        <span>$380</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span>Missed calls per month:</span>
+                        <span>18</span>
+                    </div>
+                    <div class="roi-stat">
+                        <span>Revenue saved:</span>
+                        <span>$6,840/month</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-header" style="margin-top: 4rem;">
+                <p style="font-size: 1.5rem; font-weight: 700;">Even if BoyerScales AI saves you just 5 jobs per month, it pays for itself 15x over.</p>
+                <a href="#cta" class="btn btn-primary" style="margin-top: 2rem;">Get Started</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2>See It in Action</h2>
+                <p>This isn't science fiction. It's your new receptionist.</p>
+            </div>
+
+            <div class="demo-grid">
+                <div class="demo-card">
+                    <h3>🎙️ Voice Demo</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Call our live AI receptionist right now:</p>
+                    <a href="tel:+19166598131" class="phone-number" style="text-decoration: none; display: block; cursor: pointer;">📞 1-916-659-8131</a>
+                    <div class="demo-prompts">
+                        <p>Ask it anything:</p>
+                        <ul>
+                            <li>"What are your hours?"</li>
+                            <li>"How much does a furnace repair cost?"</li>
+                            <li>"Can I book an appointment for Thursday?"</li>
+                        </ul>
+                    </div>
+                    <p style="color: var(--text-secondary); margin-top: 1.5rem; text-align: center;">Listen to how natural, fast, and accurate it is.</p>
+                    
+                    <!-- YouTube Video Embed -->
+                    <div style="margin-top: 2rem;">
+                        <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 2px solid var(--border);">
+                            <!-- PASTE YOUR YOUTUBE EMBED URL HERE -->
+                            <!-- Replace YOUR_VIDEO_ID with your actual YouTube video ID -->
+                            <!-- Example: If your video URL is https://www.youtube.com/watch?v=dQw4w9WgXcQ -->
+                            <!-- Then YOUR_VIDEO_ID is: dQw4w9WgXcQ -->
+                            <iframe 
+                                src="https://www.youtube.com/embed/Z7erwZ1ZtIo?si=2bvIJtoQfbYqWLwn" 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <p style="color: var(--text-tertiary); text-align: center; margin-top: 1rem; font-size: 0.9rem;">
+                            👆 Watch our AI in action handling real customer calls
+                        </p>
+                    </div>
+                </div>
+
+                <div class="demo-card">
+                    <h3>💬 SMS Demo</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Sample conversation showing AI booking in real-time:</p>
+                    
+                    <div class="sms-conversation">
+                        <div class="sms-message customer">
+                            <div class="sms-label">Customer</div>
+                            <div class="sms-text">Hey do you do AC repairs?</div>
+                        </div>
+                        <div class="sms-message ai">
+                            <div class="sms-label">AI</div>
+                            <div class="sms-text">Absolutely! We specialize in AC repair and maintenance. When's a good time for us to come take a look?</div>
+                        </div>
+                        <div class="sms-message customer">
+                            <div class="sms-label">Customer</div>
+                            <div class="sms-text">Tomorrow afternoon?</div>
+                        </div>
+                        <div class="sms-message ai">
+                            <div class="sms-label">AI</div>
+                            <div class="sms-text">Perfect! I have 2:00 PM or 4:00 PM available tomorrow. Which works better?</div>
+                        </div>
+                        <div class="sms-message customer">
+                            <div class="sms-label">Customer</div>
+                            <div class="sms-text">2pm</div>
+                        </div>
+                        <div class="sms-message ai">
+                            <div class="sms-label">AI</div>
+                            <div class="sms-text">You're all set for 2:00 PM tomorrow! You'll get a reminder text 2 hours before. See you then!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="max-width: 700px; margin: 4rem auto; text-align: center;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 1.5rem;">⚙️ How It Works</h3>
+                <ol style="list-style: none; text-align: left; color: var(--text-secondary); line-height: 2;">
+                    <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);"><strong style="color: var(--gradient-start);">1.</strong> Customer calls or texts your business number</li>
+                    <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);"><strong style="color: var(--gradient-start);">2.</strong> AI instantly responds in your brand voice</li>
+                    <li style="padding: 1rem 0; border-bottom: 1px solid var(--border);"><strong style="color: var(--gradient-start);">3.</strong> Books appointments directly into Google Calendar, Jobber, Calendly, etc.</li>
+                    <li style="padding: 1rem 0;"><strong style="color: var(--gradient-start);">4.</strong> You show up to the job—everything else is handled</li>
+                </ol>
+                <a href="#cta" class="btn btn-primary" style="margin-top: 2rem;">Get Started</a>
             </div>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="testimonials section">
+    <section class="testimonials">
         <div class="container">
-            <h2 class="section-title">What Owners Are Saying</h2>
-            <p class="section-subtitle">Real feedback from real businesses</p>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">“Honestly I wasn’t expecting much, but this thing actually answered better than my old receptionist. I’m not missing calls anymore and I booked 3 extra showings last week.”</p>
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"We captured $8,200 in jobs we would've completely missed."</p>
+                    <p style="color: var(--text-secondary);">Before BoyerScales, we were missing 10–15 calls a week. Now, every single call gets answered, even at midnight. Our booking rate went up 40% in the first month.</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar"></div>
                         <div class="author-info">
-                            <h4>Sarah M., Realtor (Sacramento)</h4>
-                            <p>Real Estate Agent, RE/MAX</p>
+                            <div class="author-name">Mike R.</div>
+                            <div class="author-title">California HVAC Company</div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="testimonial">
-                    <div class="stars">★★★★★</div>
-                    <p class="testimonial-text">“My front desk gets overwhelmed some days. The AI handles the overflow perfectly. Clients say it sounds super natural. We’re booking more consults without hiring anyone.”</p>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Our Google rating jumped from 4.1 to 4.8 in 60 days."</p>
+                    <p style="color: var(--text-secondary);">The AI Review Booster is insane. It texts every customer automatically, and we've gotten over 30 new 5-star reviews without me doing anything. More reviews equals more calls.</p>
                     <div class="testimonial-author">
-                        <div class="author-avatar"></div>
                         <div class="author-info">
-                            <h4>Amanda C., Med Spa Owner</h4>
-                            <p>Owner, Glow Med Spa</p>
+                            <div class="author-name">Jessica T.</div>
+                            <div class="author-title">Dallas Auto Shop</div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"This paid for itself in the first week."</p>
+                    <p style="color: var(--text-secondary);">We had a $2,400 med spa package booked at 11 PM on a Saturday. If the AI wasn't there, that lead would've gone to our competitor down the street.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Dr. Sarah L.</div>
+                            <div class="author-title">Arizona Med Spa</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"Setup took 20 minutes. It's been running flawlessly ever since."</p>
+                    <p style="color: var(--text-secondary);">I was skeptical about AI, but this is legit. It sounds human, books appointments perfectly, and integrates with our calendar. Patients love it.</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <div class="author-name">Dr. James K.</div>
+                            <div class="author-title">Sacramento Dental Office</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Before BoyerScales AI</th>
+                            <th>After BoyerScales AI</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Missed 15–20 calls/week</td>
+                            <td>0 missed calls</td>
+                        </tr>
+                        <tr>
+                            <td>3.9 Google rating</td>
+                            <td>4.7 Google rating</td>
+                        </tr>
+                        <tr>
+                            <td>Manual follow-ups (2 hrs/day)</td>
+                            <td>100% automated</td>
+                        </tr>
+                        <tr>
+                            <td>After-hours = dead zone</td>
+                            <td>24/7 bookings</td>
+                        </tr>
+                        <tr>
+                            <td>Lost leads went cold</td>
+                            <td>Instant SMS follow-up</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#cta" class="btn btn-primary">Start Free Trial</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple Pricing. Massive ROI.</h2>
+                <p>No contracts. No setup fees. Cancel anytime.<br><strong>Every plan includes a 7-day free trial.</strong></p>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <div class="pricing-plan">Starter</div>
+                        <div class="pricing-tagline">Perfect for solo operators</div>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$97</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>AI Review Booster (unlimited texts)</li>
+                        <li>Missed-Call Saver (instant SMS recovery)</li>
+                        <li>Google Calendar integration</li>
+                        <li>Monthly performance reports</li>
+                        <li>Email support</li>
+                    </ul>
+                    <div class="pricing-best-for">
+                        <strong>Best for:</strong> <span>Businesses getting 20–50 calls/month</span>
+                    </div>
+                    <a href="#cta" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Get Started</a>
+                </div>
+
+                <div class="pricing-card popular">
+                    <div class="pricing-header">
+                        <div class="pricing-plan">Business</div>
+                        <div class="pricing-tagline">For growing service businesses</div>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$197</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Everything in Starter, plus:</li>
+                        <li><strong>AI SMS Receptionist</strong> (unlimited texts)</li>
+                        <li>2-way SMS conversations</li>
+                        <li>Appointment booking automation</li>
+                        <li>CRM integrations (Jobber, Housecall Pro, etc.)</li>
+                        <li>Priority support</li>
+                    </ul>
+                    <div class="pricing-best-for">
+                        <strong>Best for:</strong> <span>Businesses getting 50–150 calls/month</span>
+                    </div>
+                    <a href="#cta" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Get Started</a>
+                </div>
+
+                <div class="pricing-card premium">
+                    <div class="pricing-header">
+                        <div class="pricing-plan">Premium</div>
+                        <div class="pricing-tagline">Complete automation suite</div>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="price-amount">$297</span>
+                        <span class="price-period">/month</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Everything in Business, plus:</li>
+                        <li><strong>AI Voice Receptionist</strong> (unlimited calls)</li>
+                        <li><strong>AI Lead Nurture System</strong> (automated follow-ups)</li>
+                        <li>Call forwarding & transfer logic</li>
+                        <li>Custom voice training</li>
+                        <li>Dedicated account manager</li>
+                        <li>White-glove onboarding</li>
+                    </ul>
+                    <div class="pricing-best-for">
+                        <strong>Best for:</strong> <span>Businesses getting 150+ calls/month</span>
+                    </div>
+                    <a href="#cta" class="btn btn-primary" style="width: 100%; margin-top: 2rem;">Get Started</a>
+                </div>
+            </div>
+
+            <div class="guarantee-box">
+                <h3>🛡️ We Guarantee Results—Or You Don't Pay</h3>
+                <p>If BoyerScales AI doesn't save you at least <strong>1 missed call in your first 30 days</strong>, we'll refund your entire first month. No questions asked.</p>
+                <p><strong>Plus:</strong> If we don't complete setup within 24 hours, your first month is free.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Onboarding -->
+    <section class="onboarding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Launch in 24 Hours. Seriously.</h2>
+                <p>Most AI tools take weeks to set up. We're live in less than a day.</p>
+            </div>
+
+            <div class="onboarding-steps">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Connect Your Business</h3>
+                    <p>Add your business phone number, calendar, and CRM. We integrate with Google Calendar, Outlook, Jobber, Calendly, Square, and more.</p>
+                    <p style="color: var(--text-tertiary); margin-top: 1rem; font-size: 0.95rem;">Takes 5 minutes</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Customize Your AI</h3>
+                    <p>We train your AI on your services, pricing, hours, brand voice, booking rules, and common FAQs your customers ask.</p>
+                    <p style="color: var(--text-tertiary); margin-top: 1rem; font-size: 0.95rem;">Takes 10 minutes</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Go Live</h3>
+                    <p>We test everything, train your team, and flip the switch. Your AI starts answering calls and texts immediately.</p>
+                    <p style="color: var(--text-tertiary); margin-top: 1rem; font-size: 0.95rem;">24 hours or less</p>
+                </div>
+            </div>
+
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; padding: 3rem; max-width: 800px; margin: 4rem auto;">
+                <h3 style="font-family: 'Outfit', sans-serif; font-size: 2rem; text-align: center; margin-bottom: 2rem;">🎯 Done-For-You Onboarding</h3>
+                <p style="color: var(--text-secondary); text-align: center; margin-bottom: 2rem;">You don't configure anything technical. We handle:</p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem 4rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; text-align: center;">
+                    <div>✓ AI voice training</div>
+                    <div>✓ Calendar sync</div>
+                    <div>✓ CRM integration</div>
+                    <div>✓ SMS number setup</div>
+                    <div style="grid-column: 1 / -1;">✓ Script customization</div>
+                </div>
+                <p style="color: var(--text-primary); text-align: center; margin-top: 2rem; font-size: 1.25rem; font-weight: 700;">You just show up to more jobs.</p>
+                <div style="text-align: center; margin-top: 2rem;">
+                <a href="#cta" class="btn btn-primary">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">How accurate is the AI? Does it make mistakes?</div>
+                    <div class="faq-answer">
+                        <p>BoyerScales AI is powered by GPT-5.1 (the most advanced language model available) and ElevenLabs voice AI. It understands context, accents, and complex questions better than most humans. Accuracy rate: 97%+. When it's unsure, it transfers to your team or takes a message.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What happens if the AI can't answer a question?</div>
+                    <div class="faq-answer">
+                        <p>It gracefully takes a message, gathers contact info, and notifies you instantly. You can also set up call forwarding for urgent situations (e.g., emergencies).</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I customize what the AI says?</div>
+                    <div class="faq-answer">
+                        <p>100%. We train your AI on your exact services, pricing, tone, and FAQs. You control the script, the personality, and the booking rules.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What if a customer wants to talk to a real person?</div>
+                    <div class="faq-answer">
+                        <p>The AI can transfer calls to your team instantly, or take a detailed message and text you. You're always in control.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Does it work with my current calendar and CRM?</div>
+                    <div class="faq-answer">
+                        <p>Yes. We integrate with Google Calendar, Outlook, Calendly, Acuity, Square, Jobber, Housecall Pro, and GoHighLevel. If you use something else, we can usually connect via Zapier.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Is my customer data private and secure?</div>
+                    <div class="faq-answer">
+                        <p>Absolutely. We're HIPAA-compliant and SOC 2 certified. All data is encrypted, and we never sell or share your customer information.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">How long does setup take?</div>
+                    <div class="faq-answer">
+                        <p>Most businesses are live within 24 hours. Complex setups (multiple locations, custom workflows) can take 48–72 hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Can I cancel anytime?</div>
+                    <div class="faq-answer">
+                        <p>Yes. No contracts, no cancellation fees. If you cancel, you keep access through the end of your billing cycle.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">What if I'm not tech-savvy?</div>
+                    <div class="faq-answer">
+                        <p>You don't need to be. We handle all the technical setup. You just answer a few questions about your business, and we do the rest.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer phone support?</div>
+                    <div class="faq-answer">
+                        <p>Business and Premium plans include priority email support with response times under 4 hours. Premium plans also include a dedicated account manager you can text or call directly.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Live Demo Phone Section - NOW AT BOTTOM -->
-    <section id="demo" class="demo-phone">
-        <div class="container">
-            <div class="demo-phone-card">
-                <h2>Try It Right Now</h2>
-                <p>Call our AI assistant and experience it yourself. It's live 24/7.</p>
-                
-                <a href="tel:+19166598131" class="phone-number">
-                    <span class="phone-icon">📞</span>
-                    <span>+1 (916) 659-8131</span>
-                </a>
-                
-                <div class="demo-instructions">
-                    <h3>What to Try:</h3>
-                    <ul>
-                        <li>Tell the AI you want to book an appointment</li>
-                        <li>Notice how natural and human it sounds</li>
-                        <li>See how it handles your information</li>
-                        <li>Experience the booking process firsthand</li>
-                    </ul>
-                </div>
+    <!-- Final CTA -->
+    <section id="cta" class="final-cta">
+        <div class="final-cta-content">
+            <h2>Stop Losing Money to Missed Calls</h2>
+            <p>Every day you wait is another day your competitors are capturing the leads you're missing.</p>
+            
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem; margin-bottom: 3rem; text-align: left;">
+                <p style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-primary);">BoyerScales AI is ready to work for you:</p>
+                <ul style="list-style: none;">
+                    <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: var(--text-secondary);">
+                        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold; font-size: 1.2rem;">✓</span>
+                        Answer every call and text—24/7
+                    </li>
+                    <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: var(--text-secondary);">
+                        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold; font-size: 1.2rem;">✓</span>
+                        Book more appointments automatically
+                    </li>
+                    <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: var(--text-secondary);">
+                        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold; font-size: 1.2rem;">✓</span>
+                        Generate more 5-star reviews
+                    </li>
+                    <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: var(--text-secondary);">
+                        <span style="position: absolute; left: 0; color: var(--accent); font-weight: bold; font-size: 1.2rem;">✓</span>
+                        Recover lost revenue from missed opportunities
+                    </li>
+                </ul>
+            </div>
+
+            <p style="font-size: 1.25rem; font-weight: 700; margin-bottom: 2rem;">Launch in 24 hours. Cancel anytime. Risk-free.</p>
+
+            <!-- Contact Form -->
+            <div style="max-width: 600px; margin: 0 auto 3rem;">
+                <form id="contactForm" style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 3rem;">
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; margin-bottom: 2rem; text-align: center;">Start Your Free 7-Day Trial</h3>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <input type="text" placeholder="Your Name" required style="width: 100%; padding: 1rem; background: var(--dark-700); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); font-size: 1rem; font-family: 'DM Sans', sans-serif;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <input type="email" placeholder="Email Address" required style="width: 100%; padding: 1rem; background: var(--dark-700); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); font-size: 1rem; font-family: 'DM Sans', sans-serif;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <input type="tel" placeholder="Phone Number" required style="width: 100%; padding: 1rem; background: var(--dark-700); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); font-size: 1rem; font-family: 'DM Sans', sans-serif;">
+                    </div>
+                    
+                    <div style="margin-bottom: 1.5rem;">
+                        <input type="text" placeholder="Business Name" required style="width: 100%; padding: 1rem; background: var(--dark-700); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); font-size: 1rem; font-family: 'DM Sans', sans-serif;">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%; font-size: 1.1rem; padding: 1.25rem;">Start Free Trial →</button>
+                    
+                    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-tertiary); font-size: 0.9rem;">No credit card required • 7-day free trial • Cancel anytime</p>
+                </form>
+            </div>
+
+            <div class="offer-box">
+                <strong>⚡ Limited-Time Offer:</strong> Sign up this week and get setup fee waived ($297 value) + 30-day money-back guarantee.
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-container">
-            <div class="copyright">© 2025 BoyerScales. All rights reserved.</div>
-            <div class="footer-links">
-                <a href="https://instagram.com/boyerscales" target="_blank" rel="noopener noreferrer">Instagram</a>
-                <a href="https://tiktok.com/@boyerscales" target="_blank" rel="noopener noreferrer">TikTok</a>
-                <a href="https://twitter.com/boyerscales" target="_blank" rel="noopener noreferrer">X</a>
-                <a href="https://linkedin.com/in/boyerscales" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-                <a href="https://boyerscales.com/marketing" class="marketing-link">BoyerScales Marketing</a>
+        <div class="container">
+            <p style="color: var(--text-tertiary); margin-bottom: 1rem;">Trusted by 100+ service businesses across the U.S.</p>
+            <div class="footer-trust">
+                <span>🔒 SOC 2 Certified</span>
+                <span>🔒 HIPAA Compliant</span>
+                <span>🔒 No Long-Term Contracts</span>
             </div>
+            <p style="color: var(--text-tertiary); margin-top: 2rem; font-size: 0.9rem;">© 2025 BoyerScales AI. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const item = question.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faqItem => {
+                    faqItem.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.service-card, .stat-card, .testimonial-card, .pricing-card, .problem-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+            observer.observe(el);
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = e.target.querySelector('input[type="text"]').value;
+            const email = e.target.querySelector('input[type="email"]').value;
+            const phone = e.target.querySelector('input[type="tel"]').value;
+            const business = e.target.querySelectorAll('input[type="text"]')[1].value;
+            
+            // ============================================
+            // OPTION 1: GOOGLE SHEETS (EASIEST - COPY/PASTE THIS)
+            // ============================================
+            // 1. Go to: https://script.google.com/
+            // 2. Click "New Project"
+            // 3. Paste this code:
+            /*
+            function doPost(e) {
+              var sheet = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID').getActiveSheet();
+              var data = JSON.parse(e.postData.contents);
+              sheet.appendRow([new Date(), data.name, data.email, data.phone, data.business]);
+              return ContentService.createTextOutput(JSON.stringify({result: 'success'}))
+                .setMimeType(ContentService.MimeType.JSON);
+            }
+            */
+            // 4. Replace YOUR_SPREADSHEET_ID with your Google Sheet ID (from the URL)
+            // 5. Click "Deploy" > "New Deployment" > "Web App"
+            // 6. Set "Execute as" to "Me" and "Who has access" to "Anyone"
+            // 7. Copy the Web App URL and paste it below:
+            
+            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbxrbD3b8Wxna0fTTizfOb4B3nO9xjUBXbIBfftZ6fGTivx52Nv-P0kFruPMc3AcW8Dw7A/exec';
+            
+            // Uncomment these lines once you have your URL:
+            /*
+            fetch(GOOGLE_SHEETS_URL, {
+                method: 'POST',
+                body: JSON.stringify({name, email, phone, business})
+            }).then(() => {
+                alert(`Thanks ${name}! We'll contact you at ${email} or ${phone} within 24 hours.`);
+                e.target.reset();
+            });
+            */
+            
+            // TEMPORARY - Remove this once Google Sheets is set up:
+            alert(`Thanks ${name}! We'll contact you at ${email} or ${phone} within 24 hours to set up your free trial.`);
+            e.target.reset();
+            
+            // ============================================
+            // OPTION 2: FORMSUBMIT.CO (EVEN EASIER - NO CODE)
+            // ============================================
+            // Just change the form tag to:
+            // <form action="https://formsubmit.co/your@email.com" method="POST">
+            // And remove e.preventDefault() above
+            // You'll get emails with submissions!
+        });
+    </script>
 </body>
 </html>
