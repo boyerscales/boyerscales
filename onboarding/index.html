@@ -3,22 +3,2212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test - BoyerScales</title>
+    <title>BoyerScales Client Onboarding</title>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a1628;
+            padding: 20px;
+            line-height: 1.6;
+            color: #e2e8f0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #0f1729;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .header {
+            background: #0a1628;
+            color: white;
+            padding: 64px 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .header > * {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .header p {
+            font-size: 16px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #cbd5e1;
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: #1a2332;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        
+        .form-body {
+            padding: 48px 40px;
+            background: #0f1729;
+        }
+        
+        .section {
+            margin-bottom: 56px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        
+        .section-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            margin-right: 16px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        
+        .section-subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 8px;
+            padding-left: 56px;
+            margin-bottom: 24px;
+        }
+        
+        .field-group {
+            margin-bottom: 28px;
+        }
+        
+        .field-label {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 8px;
+        }
+        
+        .required {
+            color: #ef4444;
+            margin-left: 4px;
+            font-weight: 700;
+        }
+        
+        .field-help {
+            font-size: 13px;
+            color: #64748b;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: all 0.2s;
+            background: #1a2332;
+            color: #e2e8f0;
+        }
+        
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: #1e293b;
+        }
+        
+        input::placeholder,
+        textarea::placeholder {
+            color: #475569;
+        }
+        
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        select {
+            cursor: pointer;
+        }
+        
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .radio-option,
+        .checkbox-option {
+            display: flex;
+            align-items: flex-start;
+            padding: 14px;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #1a2332;
+        }
+        
+        .radio-option:hover,
+        .checkbox-option:hover {
+            border-color: #3b82f6;
+            background: #1e293b;
+            box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2);
+        }
+        
+        .radio-option input[type="radio"]:checked + .option-label,
+        .checkbox-option input[type="checkbox"]:checked + .option-label {
+            color: #60a5fa;
+        }
+        
+        .radio-option input[type="radio"],
+        .checkbox-option input[type="checkbox"] {
+            margin-right: 12px;
+            margin-top: 2px;
+            width: 20px;
+            height: 20px;
+            accent-color: #3b82f6;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .option-label {
+            flex: 1;
+        }
+        
+        .option-title {
+            font-weight: 600;
+            color: #f1f5f9;
+            display: block;
+            margin-bottom: 4px;
+        }
+        
+        .option-description {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+        
+        .tier-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-left: 8px;
+        }
+        
+        .badge-starter {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .badge-business {
+            background: rgba(147, 51, 234, 0.2);
+            color: #a78bfa;
+            border: 1px solid rgba(147, 51, 234, 0.3);
+        }
+        
+        .badge-pro {
+            background: rgba(236, 72, 153, 0.2);
+            color: #f472b6;
+            border: 1px solid rgba(236, 72, 153, 0.3);
+        }
+        
+        .info-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-left: 4px solid #3b82f6;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .info-box-title {
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 6px;
+        }
+        
+        .info-box-text {
+            font-size: 14px;
+            color: #94a3b8;
+            line-height: 1.6;
+        }
+        
+        .warning-box {
+            background: rgba(251, 191, 36, 0.1);
+            border-left: 4px solid #f59e0b;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(251, 191, 36, 0.2);
+        }
+        
+        .warning-box-title {
+            font-weight: 600;
+            color: #fbbf24;
+            margin-bottom: 6px;
+        }
+        
+        .warning-box-text {
+            font-size: 14px;
+            color: #94a3b8;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .consent-box {
+            background: #1a2332;
+            border: 1px solid #1e293b;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .consent-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        
+        .consent-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .consent-item input[type="checkbox"] {
+            margin-right: 12px;
+            margin-top: 2px;
+            width: 20px;
+            height: 20px;
+            accent-color: #3b82f6;
+            flex-shrink: 0;
+        }
+        
+        .consent-text {
+            font-size: 14px;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+        
+        .submit-section {
+            background: #1a2332;
+            padding: 32px 40px;
+            text-align: center;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            color: white;
+            border: none;
+            padding: 16px 48px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+        }
+        
+        .submit-note {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-top: 16px;
+        }
+        
+        .submit-note strong {
+            color: #cbd5e1;
+        }
+        
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-body {
+                padding: 32px 24px;
+            }
+            
+            .header {
+            background: #0a1628;
+            color: white;
+            padding: 64px 40px;
+            text-align: center;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(96, 165, 250, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        
+        .header > * {
+            position: relative;
+            z-index: 1;
+        }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .section-number {
+                margin-bottom: 12px;
+            }
+            
+            .section-subtitle {
+                padding-left: 0;
+            }
+        }
+
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .section {
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        
+        .section-number {
+            animation: pulse 2s infinite;
+        }
+        
+        .field-group {
+            animation: slideIn 0.4s ease-out;
+        }
+        
+        /* Hover effects */
+        input[type="text"]:hover,
+        input[type="email"]:hover,
+        input[type="tel"]:hover,
+        input[type="url"]:hover,
+        input[type="number"]:hover,
+        textarea:hover,
+        select:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+        
+        .radio-option,
+        .checkbox-option {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .radio-option::before,
+        .checkbox-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .radio-option:hover::before,
+        .checkbox-option:hover::before {
+            left: 100%;
+        }
+        
+        /* Improved badges */
+        .tier-badge {
+            animation: fadeInUp 0.5s ease-out;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+        }
+        
+        .badge-business {
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
+        }
+        
+        .badge-pro {
+            box-shadow: 0 0 10px rgba(236, 72, 153, 0.3);
+        }
+        
+        /* Submit button enhancement */
+        .submit-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .submit-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Loading state for inputs */
+        input:focus,
+        textarea:focus,
+        select:focus {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Section divider enhancement */
+        .section::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            transition: width 0.5s;
+        }
+        
+        .section:hover::after {
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <h1>Simple Test Form</h1>
-    <p>If this works, your Netlify forms are configured correctly.</p>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Welcome to BoyerScales</h1>
+            <p>Let's get your AI receptionist configured and ready to transform your customer communications. This should take about 10-15 minutes.</p>
+        </div>
+        
+        <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+        </div>
+        
+        <form name="client-onboarding" method="POST" data-netlify="true" action="/onboarding/success">
+            <input type="hidden" name="form-name" value="client-onboarding" />
+            
+        <div class="form-body">
+            <!-- SECTION 1: BUSINESS FUNDAMENTALS -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <div class="section-title">Business Fundamentals</div>
+                </div>
+                <div class="section-subtitle">Basic information to get your account set up correctly</div>
+                
+                <div class="field-group">
+                    <label class="field-label">Business Legal Name<span class="required">*</span></label>
+                    <input type="text" name="business_legal_name" required placeholder="ABC Plumbing LLC">
+                    <div class="field-help">This will appear on invoices and legal documents</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Doing Business As (DBA) / Brand Name<span class="required">*</span></label>
+                    <input name="abc_plumbing" type="text" required placeholder="ABC Plumbing">
+                    <div class="field-help">How should the AI answer calls? "Thank you for calling [Brand Name]..."</div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label class="field-label">Primary Contact Name<span class="required">*</span></label>
+                        <input name="john_smith" type="text" required placeholder="John Smith">
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Job Title<span class="required">*</span></label>
+                        <input name="owner_manager" type="text" required placeholder="Owner / Manager">
+                    </div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label class="field-label">Email Address<span class="required">*</span></label>
+                        <input name="john_abcplumbing_com" type="email" required placeholder="john@abcplumbing.com">
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">Mobile Phone<span class="required">*</span></label>
+                        <input name="1_555_123_4567" type="tel" required placeholder="+1 (555) 123-4567">
+                        <div class="field-help">For urgent notifications and verification</div>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Industry / Business Type<span class="required">*</span></label>
+                    <select name="industry" required>
+                        <option value="">Select your industry</option>
+                        <option value="plumbing">Plumbing</option>
+                        <option value="hvac">HVAC</option>
+                        <option value="electrical">Electrical</option>
+                        <option value="roofing">Roofing</option>
+                        <option value="landscaping">Landscaping</option>
+                        <option value="cleaning">Cleaning Services</option>
+                        <option value="handyman">Handyman</option>
+                        <option value="pest-control">Pest Control</option>
+                        <option value="locksmith">Locksmith</option>
+                        <option value="garage-door">Garage Door</option>
+                        <option value="painting">Painting</option>
+                        <option value="flooring">Flooring</option>
+                        <option value="pool-service">Pool Service</option>
+                        <option value="appliance-repair">Appliance Repair</option>
+                        <option value="moving">Moving Services</option>
+                        <option value="junk-removal">Junk Removal</option>
+                        <option value="legal">Legal Services</option>
+                        <option value="medical">Medical / Healthcare</option>
+                        <option value="dental">Dental</option>
+                        <option value="veterinary">Veterinary</option>
+                        <option value="auto-repair">Auto Repair</option>
+                        <option value="salon-spa">Salon / Spa</option>
+                        <option value="real-estate">Real Estate</option>
+                        <option value="insurance">Insurance</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label class="field-label">Business Address<span class="required">*</span></label>
+                        <input name="123_main_st" type="text" required placeholder="123 Main St">
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">City<span class="required">*</span></label>
+                        <input name="los_angeles" type="text" required placeholder="Los Angeles">
+                    </div>
+                </div>
+                
+                <div class="grid-2">
+                    <div class="field-group">
+                        <label class="field-label">State<span class="required">*</span></label>
+                        <select name="state" required>
+                        <option value="">Select state</option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+                    
+                    <div class="field-group">
+                        <label class="field-label">ZIP Code<span class="required">*</span></label>
+                        <input name="90001" type="text" required placeholder="90001">
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Time Zone<span class="required">*</span></label>
+                    <select name="timezone" required>
+                        <option value="">Select time zone</option>
+                        <option value="America/New_York">Eastern Time (ET)</option>
+                        <option value="America/Chicago">Central Time (CT)</option>
+                        <option value="America/Denver">Mountain Time (MT)</option>
+                        <option value="America/Phoenix">Mountain Time - Arizona (no DST)</option>
+                        <option value="America/Los_Angeles">Pacific Time (PT)</option>
+                        <option value="America/Anchorage">Alaska Time (AKT)</option>
+                        <option value="Pacific/Honolulu">Hawaii Time (HST)</option>
+                    </select>
+                    <div class="field-help">Critical for accurate scheduling and after-hours rules</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Website (if applicable)</label>
+                    <input name="https_www_abcplumbing_com" type="url" placeholder="https://www.abcplumbing.com">
+                </div>
+            </div>
+            
+            <!-- SECTION 2: SUBSCRIPTION TIER SELECTION -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <div class="section-title">Choose Your Plan</div>
+                </div>
+                <div class="section-subtitle">Select the subscription tier that best fits your business needs</div>
+                
+                <div class="info-box">
+                    <div class="info-box-title">💡 Not sure which plan to choose?</div>
+                    <div class="info-box-text">Choose based on your communication volume and automation needs. You can always upgrade later as your business grows.</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Select Your Plan<span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="tier" value="starter" required>
+                            <div class="option-label">
+                                <span class="option-title">
+                                    Starter - $97/month
+                                    <span class="tier-badge badge-starter">Best for Solo</span>
+                                </span>
+                                <span class="option-description">
+                                    Perfect for solo operators or small teams just getting started<br>
+                                    ✓ Missed-call SMS recovery<br>
+                                    ✓ Automated review request system<br>
+                                    ✓ Google Calendar integration<br>
+                                    ✓ Monthly performance reports<br>
+                                    ✓ Email support
+                                </span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="tier" value="business">
+                            <div class="option-label">
+                                <span class="option-title">
+                                    Business - $197/month
+                                    <span class="tier-badge badge-business">Most Popular</span>
+                                </span>
+                                <span class="option-description">
+                                    For growing service businesses ready to automate customer engagement<br>
+                                    ✓ Everything in Starter, PLUS:<br>
+                                    ✓ AI SMS Receptionist (2-way conversations)<br>
+                                    ✓ Automated appointment booking<br>
+                                    ✓ CRM integrations (Jobber, Housecall Pro, etc.)<br>
+                                    ✓ Priority support
+                                </span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="tier" value="pro">
+                            <div class="option-label">
+                                <span class="option-title">
+                                    Pro - $297/month
+                                    <span class="tier-badge badge-pro">Full Suite</span>
+                                </span>
+                                <span class="option-description">
+                                    Complete automation suite for serious growth<br>
+                                    ✓ Everything in Business, PLUS:<br>
+                                    ✓ AI Voice Receptionist (unlimited calls)<br>
+                                    ✓ Live call transfer & custom routing logic<br>
+                                    ✓ Custom voice training & persona<br>
+                                    ✓ AI Lead Nurture System (automated follow-ups)<br>
+                                    ✓ Call forwarding & transfer logic<br>
+                                    ✓ Dedicated account manager<br>
+                                    ✓ White-glove onboarding
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 3: PHONE & NUMBER CONFIGURATION -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <div class="section-title">Phone & Number Setup</div>
+                </div>
+                <div class="section-subtitle">Configure how customers will reach you and how calls/texts are handled</div>
+                
+                <div class="field-group">
+                    <label class="field-label">Current Business Phone Number<span class="required">*</span></label>
+                    <input name="1_555_987_6543" type="tel" required placeholder="+1 (555) 987-6543">
+                    <div class="field-help">The main number customers currently use to reach you</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">What would you like to do with your number?<span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="number-strategy" value="port" required>
+                            <div class="option-label">
+                                <span class="option-title">Port my existing number to BoyerScales</span>
+                                <span class="option-description">Keep your current number and move it to our system (recommended if customers know this number)</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="number-strategy" value="new">
+                            <div class="option-label">
+                                <span class="option-title">Get a new number from BoyerScales</span>
+                                <span class="option-description">We'll provide a new local number for your business</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="number-strategy" value="forward">
+                            <div class="option-label">
+                                <span class="option-title">Forward my existing number to BoyerScales</span>
+                                <span class="option-description">Keep your current provider, but forward calls to our AI system</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">If getting a new number, preferred area code</label>
+                    <input name="e_g_213_310_818" type="text" placeholder="e.g., 213, 310, 818" maxlength="3">
+                    <div class="field-help">We'll try to match your local area code</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Backup/Owner Mobile Number<span class="required">*</span></label>
+                    <input name="1_555_111_2222" type="tel" required placeholder="+1 (555) 111-2222">
+                    <div class="field-help">For emergency escalations and call transfers (Pro plan)</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Additional Team Member Phone Numbers</label>
+                    <textarea placeholder="Enter additional phone numbers for call routing/transfers (one per line)
+Example:
+John - (555) 333-4444 - Owner
+Sarah - (555) 555-6666 - Service Manager"></textarea>
+                    <div class="field-help">Pro plan: Used for intelligent call routing and transfers</div>
+                </div>
+            </div>
+            
+            <!-- SECTION 4: BUSINESS HOURS & SCHEDULING -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <div class="section-title">Operating Hours & Availability</div>
+                </div>
+                <div class="section-subtitle">Define when you're open, when the AI should handle calls, and after-hours behavior</div>
+                
+                <div class="info-box">
+                    <div class="info-box-title">📅 Why this matters</div>
+                    <div class="info-box-text">Your AI will behave differently during business hours vs. after-hours. During business hours, it can transfer calls or book appointments. After hours, it captures leads and sets expectations.</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Regular Business Hours<span class="required">*</span></label>
+                    <textarea required name="business_hours" placeholder="Monday: 8:00 AM - 6:00 PM
+Tuesday: 8:00 AM - 6:00 PM
+Wednesday: 8:00 AM - 6:00 PM
+Thursday: 8:00 AM - 6:00 PM
+Friday: 8:00 AM - 6:00 PM
+Saturday: 9:00 AM - 3:00 PM
+Sunday: Closed"></textarea>
+                    <div class="field-help">Be specific with times. Use AM/PM format.</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Do you offer 24/7 emergency service?<span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="emergency-service" value="yes" required>
+                            <div class="option-label">
+                                <span class="option-title">Yes - We handle emergencies 24/7</span>
+                                <span class="option-description">AI will ask if it's an emergency and route accordingly</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="emergency-service" value="no">
+                            <div class="option-label">
+                                <span class="option-title">No - Regular hours only</span>
+                                <span class="option-description">After-hours calls will be captured for next-day follow-up</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">What qualifies as an "emergency" for your business?</label>
+                    <textarea placeholder="Example for plumber: 
+- Burst pipes or major leaks
+- No hot water in winter
+- Completely clogged main drain
+- Gas leak (tell them to call 911 first)
+
+Example for HVAC:
+- No heat when temperature is below 40°F
+- No AC when temperature is above 90°F
+- Gas smell or carbon monoxide alarm"></textarea>
+                    <div class="field-help">The AI will use this to determine if a caller has a true emergency</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">After-Hours Behavior<span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="after-hours-behavior" value="message-only" required>
+                            <div class="option-label">
+                                <span class="option-title">Take message only</span>
+                                <span class="option-description">Capture details, send SMS confirmation, follow up next business day</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="after-hours-behavior" value="message-and-transfer">
+                            <div class="option-label">
+                                <span class="option-title">Take message, but transfer emergencies</span>
+                                <span class="option-description">Regular calls get scheduled, emergencies get transferred to on-call phone</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="after-hours-behavior" value="always-transfer">
+                            <div class="option-label">
+                                <span class="option-title">Always attempt transfer after-hours</span>
+                                <span class="option-description">Try to reach owner/on-call for all after-hours calls</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">On-Call Phone (for after-hours emergencies)</label>
+                    <input name="1_555_999_8888" type="tel" placeholder="+1 (555) 999-8888">
+                    <div class="field-help">Only needed if you selected emergency transfer option above</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Holidays / Planned Closures</label>
+                    <textarea placeholder="List any holidays or dates you're typically closed:
+Example:
+- New Year's Day
+- Memorial Day
+- July 4th
+- Labor Day
+- Thanksgiving & day after
+- Christmas Eve & Christmas Day
+- December 28-31 (year-end shutdown)"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECTION 5: SERVICES & APPOINTMENT BOOKING -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <div class="section-title">Services & Appointment Configuration</div>
+                </div>
+                <div class="section-subtitle">Define your services, pricing (optional), and booking rules</div>
+                
+                <div class="warning-box">
+                    <div class="warning-box-title">⚙️ Business & Pro Plans</div>
+                    <div class="warning-box-text">Automated appointment booking requires Business ($197/mo) or Pro ($297/mo) plan</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">List of Services Offered<span class="required">*</span></label>
+                    <textarea required name="services_offered" placeholder="List each service with duration and pricing (if you want AI to mention it):
+
+Example:
+- Drain cleaning - 1 hour - Starting at $150
+- Water heater repair - 2 hours - Starting at $250
+- Emergency service - 1-2 hours - $350 minimum
+- General plumbing inspection - 30 min - $95
+
+The AI will offer these options when callers ask 'what do you do?' or 'how much do you charge?'"></textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Should the AI provide pricing estimates?<span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="pricing-behavior" value="yes" required>
+                            <div class="option-label">
+                                <span class="option-title">Yes - Share starting prices</span>
+                                <span class="option-description">AI will mention "starting at $X" based on the services above</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="pricing-behavior" value="ranges">
+                            <div class="option-label">
+                                <span class="option-title">Share price ranges only</span>
+                                <span class="option-description">AI will say "typically ranges from $X to $Y depending on the job"</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="pricing-behavior" value="no">
+                            <div class="option-label">
+                                <span class="option-title">No - Pricing requires quote</span>
+                                <span class="option-description">AI will say "We provide free quotes - let me schedule an appointment"</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Typical Appointment Slots<span class="required">*</span></label>
+                    <textarea required name="appointment_slots" placeholder="What appointment windows do you offer?
+
+Example:
+- Morning: 8:00 AM - 12:00 PM
+- Afternoon: 12:00 PM - 4:00 PM  
+- Evening: 4:00 PM - 7:00 PM
+- 2-hour windows (8-10, 10-12, 12-2, 2-4, 4-6)
+
+Or if you book specific times:
+- 8:00 AM, 9:00 AM, 10:00 AM, 11:00 AM, 1:00 PM, 2:00 PM, 3:00 PM, 4:00 PM"></textarea>
+                    <div class="field-help">The AI will offer these time slots when booking appointments</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Booking Lead Time<span class="required">*</span></label>
+                    <select required>
+                        <option value="">Select minimum lead time</option>
+                        <option value="same-day">Same day (if available)</option>
+                        <option value="next-day">Next business day minimum</option>
+                        <option value="2-day">2 business days minimum</option>
+                        <option value="1-week">1 week minimum</option>
+                    </select>
+                    <div class="field-help">How far in advance do appointments need to be booked?</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Maximum Booking Window</label>
+                    <select>
+                        <option value="">Select maximum advance booking</option>
+                        <option value="1-week">1 week out</option>
+                        <option value="2-weeks">2 weeks out</option>
+                        <option value="1-month">1 month out</option>
+                        <option value="2-months">2 months out</option>
+                        <option value="3-months">3 months out</option>
+                        <option value="unlimited">No limit</option>
+                    </select>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Service Area / Geographic Coverage<span class="required">*</span></label>
+                    <textarea required name="service_area" placeholder="Where do you provide services?
+
+Example:
+- All of Los Angeles County
+- Within 25 miles of downtown Austin
+- Orange County, San Bernardino County
+- ZIP codes: 90001-90089, 90201-90250
+
+Or list specific cities:
+- Pasadena, Glendale, Burbank, Beverly Hills, Santa Monica"></textarea>
+                    <div class="field-help">AI will confirm caller is in your service area before booking</div>
+                </div>
+            </div>
+            
+            <!-- SECTION 6: AI VOICE PERSONA & BEHAVIOR (PRO PLAN) -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <div class="section-title">AI Voice Persona & Personality</div>
+                </div>
+                <div class="section-subtitle">Customize how your AI receptionist sounds and behaves (Pro plan feature)</div>
+                
+                <div class="warning-box">
+                    <div class="warning-box-title">🎤 Pro Plan Exclusive</div>
+                    <div class="warning-box-text">Custom voice training and persona configuration is only available on the Pro plan ($297/mo)</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Preferred Voice Gender</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="voice-gender" value="female">
+                            <div class="option-label">
+                                <span class="option-title">Female voice</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="voice-gender" value="male">
+                            <div class="option-label">
+                                <span class="option-title">Male voice</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="voice-gender" value="no-preference">
+                            <div class="option-label">
+                                <span class="option-title">No preference - choose best for my industry</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Voice Energy & Pace</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="voice-energy" value="calm-slow">
+                            <div class="option-label">
+                                <span class="option-title">Calm & Measured</span>
+                                <span class="option-description">Slower pace, soothing tone (good for medical, legal, senior services)</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="voice-energy" value="professional-moderate">
+                            <div class="option-label">
+                                <span class="option-title">Professional & Balanced</span>
+                                <span class="option-description">Standard pace, clear articulation (good for most industries)</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="voice-energy" value="upbeat-fast">
+                            <div class="option-label">
+                                <span class="option-title">Upbeat & Energetic</span>
+                                <span class="option-description">Faster pace, enthusiastic tone (good for sales, fitness, events)</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Brand Personality / Tone</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="brand-tone" value="luxury-premium">
+                            <div class="option-label">
+                                <span class="option-title">Luxury / Premium</span>
+                                <span class="option-description">Sophisticated, polished, high-end language</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="brand-tone" value="corporate-professional">
+                            <div class="option-label">
+                                <span class="option-title">Corporate / Professional</span>
+                                <span class="option-description">Formal, respectful, business-like</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="brand-tone" value="friendly-approachable">
+                            <div class="option-label">
+                                <span class="option-title">Friendly / Approachable</span>
+                                <span class="option-description">Warm, conversational, down-to-earth</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="brand-tone" value="casual-fun">
+                            <div class="option-label">
+                                <span class="option-title">Casual / Fun</span>
+                                <span class="option-description">Relaxed, humorous when appropriate, laid-back</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Call Opening / Greeting Script</label>
+                    <textarea placeholder="How should the AI answer calls?
+
+Example 1: 'Thank you for calling ABC Plumbing, where we've been serving Los Angeles for over 20 years. This is Sarah, how can I help you today?'
+
+Example 2: 'Good morning! ABC Plumbing, this is Michael. How can I make your day easier?'
+
+Example 3: 'ABC Plumbing, Sarah speaking. Do you have a plumbing emergency or are you looking to schedule service?'"></textarea>
+                    <div class="field-help">Leave blank to use industry best-practice greeting</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Key Phrases / Company Values to Include</label>
+                    <textarea placeholder="What should the AI emphasize about your business?
+
+Examples:
+- 'We're family-owned and operated since 1995'
+- 'Licensed, bonded, and insured'
+- 'Same-day service available'
+- '100% satisfaction guaranteed or your money back'
+- 'We're A+ rated with the Better Business Bureau'
+- 'All our technicians are background-checked'"></textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Things the AI Should NEVER Say</label>
+                    <textarea placeholder="Any phrases, words, or topics to avoid?
+
+Examples:
+- Don't mention competitors by name
+- Don't promise specific arrival times (only windows)
+- Don't guarantee prices without seeing the job
+- Avoid technical jargon like 'P-trap' or 'PEX' - use simple terms
+- Never say 'I don't know' - say 'Let me connect you with a specialist'"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECTION 7: CALL TRANSFER & ESCALATION RULES (PRO PLAN) -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <div class="section-title">Call Transfer & Escalation Logic</div>
+                </div>
+                <div class="section-subtitle">Define when and how the AI should transfer calls to humans (Pro plan feature)</div>
+                
+                <div class="warning-box">
+                    <div class="warning-box-title">📞 Pro Plan Exclusive</div>
+                    <div class="warning-box-text">Live call transfer and custom routing logic requires Pro plan ($297/mo)</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">When should the AI transfer calls to you?</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="emergency">
+                            <div class="option-label">
+                                <span class="option-title">Emergency situations</span>
+                                <span class="option-description">Based on emergency criteria defined earlier</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="vip">
+                            <div class="option-label">
+                                <span class="option-title">VIP customers / known phone numbers</span>
+                                <span class="option-description">You can provide a list of VIP customer numbers</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="high-value">
+                            <div class="option-label">
+                                <span class="option-title">High-value jobs (over specific $ amount)</span>
+                                <span class="option-description">Transfer if estimated job value exceeds threshold</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="complaint">
+                            <div class="option-label">
+                                <span class="option-title">Customer complaints or service issues</span>
+                                <span class="option-description">Escalate unhappy customers immediately</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="confused">
+                            <div class="option-label">
+                                <span class="option-title">AI can't understand or help</span>
+                                <span class="option-description">Fallback when AI detects confusion or complex request</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="request">
+                            <div class="option-label">
+                                <span class="option-title">Customer specifically asks for owner/manager</span>
+                                <span class="option-description">Respect direct requests to speak with a human</span>
+                            </div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="never">
+                            <div class="option-label">
+                                <span class="option-title">Never transfer - AI handles everything</span>
+                                <span class="option-description">All calls get scheduled/captured, no live transfers</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">High-value job threshold (for transfer)</label>
+                    <input name="e_g_500_1000_2500" type="number" placeholder="e.g., 500, 1000, 2500">
+                    <div class="field-help">If job value exceeds this amount, transfer to owner</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">What should AI say before transferring?</label>
+                    <textarea placeholder="Example: 'I understand this is urgent. Let me connect you with our on-call technician right away. Please hold for just a moment.'
+
+Or: 'I'd be happy to connect you with the owner. Let me see if he's available. Can you hold for 30 seconds?'"></textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">If transfer fails (no answer), what should AI do?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="transfer-fallback" value="message">
+                            <div class="option-label">
+                                <span class="option-title">Take detailed message and promise callback</span>
+                                <span class="option-description">"I'm sorry, they're on another call. Let me take your information and have them call you back within 15 minutes."</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="transfer-fallback" value="voicemail">
+                            <div class="option-label">
+                                <span class="option-title">Send to voicemail</span>
+                                <span class="option-description">Connect caller to owner's voicemail box</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="transfer-fallback" value="try-next">
+                            <div class="option-label">
+                                <span class="option-title">Try next person in rotation</span>
+                                <span class="option-description">Attempt to reach backup team member</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Call Transfer Priority Order</label>
+                    <textarea placeholder="If primary contact doesn't answer, who should AI try next?
+
+Example:
+1. John (Owner) - (555) 111-2222
+2. Sarah (Service Manager) - (555) 333-4444  
+3. After-hours answering service - (555) 555-6666"></textarea>
+                    <div class="field-help">AI will attempt in this order until someone answers</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">VIP Customer Phone Numbers</label>
+                    <textarea placeholder="List VIP customer numbers that should always be transferred:
+
+(555) 777-8888 - ABC Property Management
+(555) 999-0000 - City of Los Angeles (government contract)
+(555) 111-3333 - John Smith (repeat high-value customer)"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECTION 8: INTEGRATIONS & SYSTEMS -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">8</div>
+                    <div class="section-title">Calendar & CRM Integrations</div>
+                </div>
+                <div class="section-subtitle">Connect your existing tools for seamless automation</div>
+                
+                <div class="field-group">
+                    <label class="field-label">Google Calendar Email<span class="required">*</span></label>
+                    <input name="yourbusiness_gmail_com" type="email" required placeholder="yourbusiness@gmail.com">
+                    <div class="field-help">We'll send integration instructions to this email. All plans include Google Calendar sync.</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Do you use a CRM or field service management software?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="uses-crm" value="yes">
+                            <div class="option-label">
+                                <span class="option-title">Yes</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="uses-crm" value="no">
+                            <div class="option-label">
+                                <span class="option-title">No</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="uses-crm" value="planning">
+                            <div class="option-label">
+                                <span class="option-title">Not yet, but planning to implement one</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Which CRM/Software?</label>
+                    <select>
+                        <option value="">Select your platform</option>
+                        <option value="jobber">Jobber</option>
+                        <option value="housecall-pro">Housecall Pro</option>
+                        <option value="servicetitan">ServiceTitan</option>
+                        <option value="fieldedge">FieldEdge</option>
+                        <option value="service-fusion">Service Fusion</option>
+                        <option value="workiz">Workiz</option>
+                        <option value="salesforce">Salesforce</option>
+                        <option value="hubspot">HubSpot</option>
+                        <option value="zoho">Zoho CRM</option>
+                        <option value="pipedrive">Pipedrive</option>
+                        <option value="excel-sheets">Excel / Google Sheets</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <div class="field-help">Business & Pro plans include CRM integration</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">If "Other", please specify</label>
+                    <input name="name_of_your_crm_or_system" type="text" placeholder="Name of your CRM or system">
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Do you have admin/API access to your CRM?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="crm-access" value="yes">
+                            <div class="option-label">
+                                <span class="option-title">Yes</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="crm-access" value="no">
+                            <div class="option-label">
+                                <span class="option-title">No</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="crm-access" value="unsure">
+                            <div class="option-label">
+                                <span class="option-title">Not sure - need help</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="field-help">Required for automatic data sync</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Google Business Profile URL (for reviews)</label>
+                    <input name="https_g_page_your_business_n" type="url" placeholder="https://g.page/your-business-name">
+                    <div class="field-help">Find this by googling your business and copying the URL. Used for automated review requests.</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Other review platforms you want to target</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="yelp">
+                            <div class="option-label">Yelp</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="facebook">
+                            <div class="option-label">Facebook</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="bbb">
+                            <div class="option-label">Better Business Bureau</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="angi">
+                            <div class="option-label">Angi (Angie's List)</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="homeadvisor">
+                            <div class="option-label">HomeAdvisor</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="thumbtack">
+                            <div class="option-label">Thumbtack</div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 9: LEAD NURTURE & FOLLOW-UP AUTOMATION (PRO PLAN) -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">9</div>
+                    <div class="section-title">Lead Nurture & Follow-Up Automation</div>
+                </div>
+                <div class="section-subtitle">Configure automated follow-up sequences (Pro plan feature)</div>
+                
+                <div class="warning-box">
+                    <div class="warning-box-title">🎯 Pro Plan Exclusive</div>
+                    <div class="warning-box-text">AI Lead Nurture System with automated follow-ups requires Pro plan ($297/mo)</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">How quickly should we follow up on new leads?</label>
+                    <select>
+                        <option value="">Select response time</option>
+                        <option value="immediate">Immediately (within 60 seconds)</option>
+                        <option value="5-min">Within 5 minutes</option>
+                        <option value="15-min">Within 15 minutes</option>
+                        <option value="30-min">Within 30 minutes</option>
+                        <option value="1-hour">Within 1 hour</option>
+                        <option value="next-business">Next business day</option>
+                    </select>
+                    <div class="field-help">Faster response = higher conversion rates</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">For leads that don't book immediately, how should we nurture?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="nurture-cadence" value="aggressive">
+                            <div class="option-label">
+                                <span class="option-title">Aggressive (High-Ticket Services)</span>
+                                <span class="option-description">
+                                    Day 1: Initial contact<br>
+                                    Day 2: Follow-up call + SMS<br>
+                                    Day 4: Value-add message (tip/article)<br>
+                                    Day 7: Special offer / urgency<br>
+                                    Day 14: Final attempt
+                                </span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="nurture-cadence" value="moderate">
+                            <div class="option-label">
+                                <span class="option-title">Moderate (Standard Services)</span>
+                                <span class="option-description">
+                                    Day 1: Initial contact<br>
+                                    Day 3: Friendly reminder<br>
+                                    Day 7: Check-in + availability<br>
+                                    Day 14: Final follow-up
+                                </span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="nurture-cadence" value="light">
+                            <div class="option-label">
+                                <span class="option-title">Light Touch (Referral-Based / Low Pressure)</span>
+                                <span class="option-description">
+                                    Day 1: Initial contact<br>
+                                    Day 7: Gentle reminder<br>
+                                    Day 30: Seasonal check-in
+                                </span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="nurture-cadence" value="custom">
+                            <div class="option-label">
+                                <span class="option-title">Custom (I'll define my own)</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Custom nurture sequence (if selected above)</label>
+                    <textarea placeholder="Define your custom follow-up cadence:
+
+Day 1: SMS with booking link
+Day 3: Call attempt
+Day 5: Email with customer testimonials
+Day 10: Final SMS with limited-time offer"></textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">When should we request a review after job completion?</label>
+                    <select>
+                        <option value="">Select timing</option>
+                        <option value="same-day">Same day (2 hours after job marked complete)</option>
+                        <option value="next-day">Next day</option>
+                        <option value="2-days">2 days later</option>
+                        <option value="3-days">3 days later</option>
+                        <option value="1-week">1 week later</option>
+                    </select>
+                    <div class="field-help">All plans include automated review requests</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Review request message tone</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="review-tone" value="direct">
+                            <div class="option-label">
+                                <span class="option-title">Direct & Brief</span>
+                                <span class="option-description">"Hi John! Thanks for choosing us. Mind leaving a quick review? [link]"</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="review-tone" value="grateful">
+                            <div class="option-label">
+                                <span class="option-title">Grateful & Personal</span>
+                                <span class="option-description">"Hi John! We really appreciate your business. If you were happy with our service, we'd be so grateful if you could share your experience..."</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="review-tone" value="incentivized">
+                            <div class="option-label">
+                                <span class="option-title">Incentivized</span>
+                                <span class="option-description">"Hi John! Leave us a review and get 10% off your next service!"</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- SECTION 10: LANGUAGE & LOCALIZATION -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">10</div>
+                    <div class="section-title">Language & Localization</div>
+                </div>
+                <div class="section-subtitle">Configure language support and regional preferences</div>
+                
+                <div class="field-group">
+                    <label class="field-label">Primary Language<span class="required">*</span></label>
+                    <select required>
+                        <option value="english">English</option>
+                        <option value="spanish">Spanish</option>
+                        <option value="bilingual">Bilingual (English & Spanish)</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">If bilingual, when should AI switch to Spanish?</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="language-trigger" value="auto-detect">
+                            <div class="option-label">
+                                <span class="option-title">Auto-detect language and respond accordingly</span>
+                                <span class="option-description">AI detects Spanish and switches automatically</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="language-trigger" value="ask">
+                            <div class="option-label">
+                                <span class="option-title">Ask customer preference</span>
+                                <span class="option-description">"For English press 1, para Español oprima 2"</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="language-trigger" value="greeting">
+                            <div class="option-label">
+                                <span class="option-title">Mention both languages in greeting</span>
+                                <span class="option-description">"Thank you for calling ABC Plumbing, English and Spanish available"</span>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">If other language, please specify</label>
+                    <input name="e_g_french_mandarin_vietna" type="text" placeholder="e.g., French, Mandarin, Vietnamese">
+                    <div class="field-help">Note: Additional languages may require custom configuration</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Regional dialect or terminology preferences</label>
+                    <textarea placeholder="Any regional terms or pronunciations to use?
+
+Example:
+- Say 'soda' not 'pop'
+- Say 'freeway' not 'highway'
+- Use 'y'all' for Southern hospitality
+- Avoid certain slang or regional terms"></textarea>
+                </div>
+            </div>
+            
+            <!-- SECTION 11: COMPLIANCE & PERMISSIONS -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">11</div>
+                    <div class="section-title">Legal Compliance & Permissions</div>
+                </div>
+                <div class="section-subtitle">Required consents for SMS, call recording, and automated communications</div>
+                
+                <div class="info-box">
+                    <div class="info-box-title">⚖️ Important Legal Notice</div>
+                    <div class="info-box-text">Federal and state laws require explicit consent for automated communications, call recording, and SMS marketing. Please review and accept all applicable consents below.</div>
+                </div>
+                
+                <div class="consent-box">
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-sms" required>
+                        <label for="consent-sms" class="consent-text">
+                            <strong>SMS/Text Messaging Consent:</strong> I authorize BoyerScales to send automated SMS messages on behalf of my business to customers who have provided their phone numbers. I understand that standard message and data rates may apply to recipients, and I will comply with TCPA regulations by only texting customers who have provided consent.
+                        </label>
+                    </div>
+                    
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-recording" required>
+                        <label for="consent-recording" class="consent-text">
+                            <strong>Call Recording Consent:</strong> I authorize BoyerScales to record phone conversations for quality assurance, training, and AI improvement purposes. I understand that my state may require two-party consent, and I will ensure proper notification is given to callers (e.g., "This call may be recorded...").
+                        </label>
+                    </div>
+                    
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-auto-dial" required>
+                        <label for="consent-auto-dial" class="consent-text">
+                            <strong>Automated Calling Consent:</strong> I authorize BoyerScales to place automated calls and voicemails on behalf of my business for appointment confirmations, reminders, and follow-ups. I will only use this for customers who have provided consent to be contacted.
+                        </label>
+                    </div>
+                    
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-data" required>
+                        <label for="consent-data" class="consent-text">
+                            <strong>Data Usage & Storage:</strong> I authorize BoyerScales to collect, store, and process customer data (names, phone numbers, addresses, appointment details) necessary to provide services. I understand BoyerScales will handle data in accordance with its Privacy Policy and applicable data protection laws.
+                        </label>
+                    </div>
+                    
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-review" required>
+                        <label for="consent-review" class="consent-text">
+                            <strong>Review Request Authorization:</strong> I authorize BoyerScales to send automated review requests to customers after service completion via SMS or email, directing them to Google, Yelp, or other review platforms I've specified.
+                        </label>
+                    </div>
+                    
+                    <div class="consent-item">
+                        <input type="checkbox" id="consent-ai-voice">
+                        <label for="consent-ai-voice" class="consent-text">
+                            <strong>AI Voice Disclosure (Pro Plan):</strong> I understand that the AI Voice Receptionist will identify itself appropriately (e.g., "This is Sarah, your AI assistant") and will not impersonate a human in a deceptive manner, in compliance with FTC guidelines.
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Should the AI disclose it's an AI to callers?<span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="ai-disclosure" value="upfront" required>
+                            <div class="option-label">
+                                <span class="option-title">Yes - Disclose upfront</span>
+                                <span class="option-description">"Hi, this is Sarah, your AI assistant. How can I help you?"</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="ai-disclosure" value="if-asked">
+                            <div class="option-label">
+                                <span class="option-title">Only if asked</span>
+                                <span class="option-description">Don't volunteer it, but truthfully confirm if customer asks</span>
+                            </div>
+                        </label>
+                        
+                        <label class="radio-option">
+                            <input type="radio" name="ai-disclosure" value="transparent">
+                            <div class="option-label">
+                                <span class="option-title">Natural transparency</span>
+                                <span class="option-description">"I'm here to help schedule your appointment. Let me ask you a few quick questions..."</span>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="field-help">Recommended: Be transparent to build trust and comply with regulations</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Call recording disclosure message</label>
+                    <input type="text" placeholder='e.g., "This call may be recorded for quality assurance"'>
+                    <div class="field-help">Required in many states. AI will say this at the start of calls.</div>
+                </div>
+            </div>
+            
+            <!-- SECTION 12: GOALS & ONBOARDING PREFERENCES -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">12</div>
+                    <div class="section-title">Goals & Timeline</div>
+                </div>
+                <div class="section-subtitle">Help us understand your objectives and preferred launch timeline</div>
+                
+                <div class="field-group">
+                    <label class="field-label">What are your top 3 goals with BoyerScales?<span class="required">*</span></label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="capture-leads">
+                            <div class="option-label">Never miss a lead / Capture every call</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="save-time">
+                            <div class="option-label">Save time on phone calls and admin</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="booking">
+                            <div class="option-label">Automate appointment booking</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="reviews">
+                            <div class="option-label">Get more 5-star reviews</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="availability">
+                            <div class="option-label">Provide 24/7 availability</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="scale">
+                            <div class="option-label">Scale my business without hiring</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="customer-service">
+                            <div class="option-label">Improve customer service / response time</div>
+                        </label>
+                        
+                        <label class="checkbox-option">
+                            <input type="checkbox" value="professional-image">
+                            <div class="option-label">Create more professional image</div>
+                        </label>
+                    </div>
+                    <div class="field-help">Select up to 3</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">What's your biggest pain point right now?<span class="required">*</span></label>
+                    <textarea required placeholder="Example: 'I miss calls while I'm on jobs and lose business' or 'Spending 2 hours a day on the phone scheduling appointments' or 'Can't find good office staff'"></textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Current monthly call/text volume (estimate)</label>
+                    <select>
+                        <option value="">Select range</option>
+                        <option value="0-50">0-50 per month</option>
+                        <option value="51-100">51-100 per month</option>
+                        <option value="101-250">101-250 per month</option>
+                        <option value="251-500">251-500 per month</option>
+                        <option value="501-1000">501-1,000 per month</option>
+                        <option value="1000+">1,000+ per month</option>
+                    </select>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">When would you like to go live?<span class="required">*</span></label>
+                    <select required>
+                        <option value="">Select timeline</option>
+                        <option value="asap">ASAP - This week</option>
+                        <option value="1-week">Within 1 week</option>
+                        <option value="2-weeks">Within 2 weeks</option>
+                        <option value="1-month">Within 1 month</option>
+                        <option value="flexible">Flexible - No rush</option>
+                    </select>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Preferred onboarding call time</label>
+                    <textarea placeholder="What days/times work best for a 30-45 minute onboarding call?
+
+Example:
+Monday-Friday 7-9 AM or 4-6 PM
+Weekends anytime"></textarea>
+                    <div class="field-help">Pro plan includes white-glove onboarding with dedicated call. All plans get setup support.</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">How did you hear about BoyerScales?</label>
+                    <select>
+                        <option value="">Select source</option>
+                        <option value="google">Google Search</option>
+                        <option value="facebook">Facebook</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="youtube">YouTube</option>
+                        <option value="referral">Referral from friend/colleague</option>
+                        <option value="podcast">Podcast</option>
+                        <option value="industry-group">Industry group/forum</option>
+                        <option value="email">Email marketing</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">If referral, who referred you?</label>
+                    <input name="name_of_person_or_business" type="text" placeholder="Name of person or business">
+                </div>
+            </div>
+            
+            <!-- SECTION 13: ADDITIONAL NOTES -->
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">13</div>
+                    <div class="section-title">Additional Information</div>
+                </div>
+                <div class="section-subtitle">Anything else we should know?</div>
+                
+                <div class="field-group">
+                    <label class="field-label">Special requirements, unique situations, or concerns</label>
+                    <textarea name="special_requirements" placeholder="Tell us about any unique aspects of your business:
+
+- Unusual service offerings
+- Complex booking rules
+- Industry-specific terminology
+- Concerns or questions about the AI
+- Past experiences with automation
+- Anything that will help us configure the system perfectly for you"></textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Sample of common customer questions</label>
+                    <textarea name="common_questions" placeholder="What are the top 5-10 questions customers typically ask?
+
+Example:
+1. How much does it cost to fix a leaky faucet?
+2. Do you offer emergency service?
+3. Are you licensed and insured?
+4. How soon can you come out?
+5. Do you provide free estimates?
+
+This helps us train the AI to answer accurately."></textarea>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">Questions for us?</label>
+                    <textarea name="client_questions" placeholder="Any questions about the service, implementation, or how it works?"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUBMIT SECTION -->
+        <div class="submit-section">
+            <button type="submit" class="submit-btn"><span>Complete Onboarding →</span></button>
+            <div class="submit-note">
+                <strong>Next Steps:</strong> Our team will review your submission and contact you within 24 hours to begin setup. 
+                <br>Pro plan members will be contacted within 2 hours for white-glove onboarding scheduling.
+            </div>
+        </div>
+        </form>
+    </div>
     
-    <form name="test" method="POST" data-netlify="true" action="/success">
-        <p>
-            <label>Name: <input type="text" name="name" required /></label>
-        </p>
-        <p>
-            <label>Email: <input type="email" name="email" required /></label>
-        </p>
-        <p>
-            <button type="submit">Submit Test</button>
-        </p>
-    </form>
+    <script>
+        // Enhanced progress bar with smooth animation
+        window.addEventListener('scroll', function() {
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+            document.querySelector('.progress-fill').style.width = scrollPercentage + '%';
+        });
+        
+        // Section reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Interactive field validation
+        const inputs = document.querySelectorAll('input[required], textarea[required], select[required]');
+        inputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                if (this.value.trim() !== '') {
+                    this.style.borderColor = '#10b981';
+                    this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+                }
+            });
+            
+            input.addEventListener('focus', function() {
+                this.style.borderColor = '#3b82f6';
+            });
+        });
+        
+        // Radio/checkbox selection animation
+        document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const parent = this.closest('.radio-option, .checkbox-option');
+                
+                // For radio buttons, clear all other options in the same group first
+                if (this.type === 'radio') {
+                    const groupName = this.name;
+                    document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach(radio => {
+                        const radioParent = radio.closest('.radio-option');
+                        if (radioParent) {
+                            radioParent.style.borderColor = '#1e293b';
+                            radioParent.style.background = '#1a2332';
+                        }
+                    });
+                }
+                
+                // Now apply styling to the selected option
+                if (this.checked) {
+                    parent.style.borderColor = '#3b82f6';
+                    parent.style.background = 'rgba(59, 130, 246, 0.1)';
+                    parent.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        parent.style.transform = 'scale(1)';
+                    }, 200);
+                } else {
+                    // For checkboxes, remove styling when unchecked
+                    parent.style.borderColor = '#1e293b';
+                    parent.style.background = '#1a2332';
+                }
+            });
+        });
+        
+        // Form submission with loading state
+        const form = document.querySelector('form');
+        
+        form.addEventListener('submit', function(e) {
+            const requiredFields = form.querySelectorAll('[required]');
+            let allValid = true;
+            let firstInvalid = null;
+            
+            requiredFields.forEach(field => {
+                const isRadio = field.type === 'radio';
+                const isCheckbox = field.type === 'checkbox';
+                let isValid = false;
+                
+                if (isRadio) {
+                    isValid = document.querySelector(`input[name="${field.name}"]:checked`) !== null;
+                } else if (isCheckbox) {
+                    isValid = field.checked;
+                } else {
+                    isValid = field.value.trim() !== '';
+                }
+                
+                if (!isValid) {
+                    allValid = false;
+                    field.style.borderColor = '#ef4444';
+                    field.style.animation = 'shake 0.5s';
+                    if (!firstInvalid) firstInvalid = field;
+                } else {
+                    field.style.borderColor = '#10b981';
+                }
+            });
+            
+            if (!allValid) {
+                e.preventDefault();
+                
+                // Scroll to first invalid field
+                if (firstInvalid) {
+                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+                
+                // Show error message
+                const errorDiv = document.createElement('div');
+                errorDiv.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #ef4444;
+                    color: white;
+                    padding: 16px 24px;
+                    border-radius: 8px;
+                    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease-out;
+                `;
+                errorDiv.textContent = '⚠️ Please fill out all required fields';
+                document.body.appendChild(errorDiv);
+                
+                setTimeout(() => {
+                    errorDiv.style.animation = 'fadeOut 0.3s ease-out';
+                    setTimeout(() => errorDiv.remove(), 300);
+                }, 3000);
+            } else {
+                // Show loading state on submit button
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.innerHTML = '<span>Submitting...</span>';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                
+                // Let the form submit naturally to Netlify
+                // Don't preventDefault here!
+            }
+        });
+        
+        // Add shake animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-10px); }
+                75% { transform: translateX(10px); }
+            }
+            @keyframes fadeOut {
+                to { opacity: 0; transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // Auto-save to localStorage (optional)
+        const formFields = document.querySelectorAll('input, textarea, select');
+        formFields.forEach(field => {
+            // Load saved value
+            const saved = localStorage.getItem(`onboarding_${field.name}`);
+            if (saved && !field.value) {
+                field.value = saved;
+            }
+            
+            // Save on change
+            field.addEventListener('change', function() {
+                if (this.name) {
+                    localStorage.setItem(`onboarding_${this.name}`, this.value);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
