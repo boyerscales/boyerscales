@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Page not found</title>
+  <script>
+    (function () {
+      // Normalize the path (remove trailing slash)
+      var path = window.location.pathname.replace(/\/+$/, "");
+
+      // If someone hit /onboarding on the main domain, send them to the app
+      if (path === "/onboarding") {
+        window.location.replace("https://app.boyerscales.com/onboarding");
+        return;
+      }
+
+      // You can add other special-case redirects here later if you want
+    })();
+  </script>
+</head>
+<body>
+  <h1>Page not found</h1>
+  <p>
+    If you were trying to onboard as a client, go here:
+    <a href="https://app.boyerscales.com/onboarding">
+      https://app.boyerscales.com/onboarding
+    </a>
+  </p>
+</body>
+</html>
