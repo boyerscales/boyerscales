@@ -622,8 +622,11 @@
             <div class="progress-fill" style="width: 0%"></div>
         </div>
         
-        <form name="client-onboarding" method="POST" data-netlify="true">
+        <form name="client-onboarding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
             <input type="hidden" name="form-name" value="client-onboarding" />
+            <p style="display: none;">
+                <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
         <div class="form-body">
             <!-- SECTION 1: BUSINESS FUNDAMENTALS -->
             <div class="section">
@@ -2107,8 +2110,9 @@ This helps us train the AI to answer accurately."></textarea>
         });
         
         // Form submission with loading state
-        document.querySelector('.submit-btn').addEventListener('click', function(e) {
-            const form = document.querySelector('form');
+        const form = document.querySelector('form');
+        
+        form.addEventListener('submit', function(e) {
             const requiredFields = form.querySelectorAll('[required]');
             let allValid = true;
             let firstInvalid = null;
@@ -2166,10 +2170,14 @@ This helps us train the AI to answer accurately."></textarea>
                     setTimeout(() => errorDiv.remove(), 300);
                 }, 3000);
             } else {
-                // Show loading state
-                this.innerHTML = '<span>Submitting...</span>';
-                this.disabled = true;
-                this.style.opacity = '0.7';
+                // Show loading state on submit button
+                const submitBtn = form.querySelector('.submit-btn');
+                submitBtn.innerHTML = '<span>Submitting...</span>';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                
+                // Let the form submit naturally to Netlify
+                // Don't preventDefault here!
             }
         });
         
