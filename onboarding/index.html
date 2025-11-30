@@ -2076,14 +2076,32 @@ This helps us train the AI to answer accurately."></textarea>
         // Radio/checkbox selection animation
         document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
             input.addEventListener('change', function() {
+                const parent = this.closest('.radio-option, .checkbox-option');
+                
+                // For radio buttons, clear all other options in the same group first
+                if (this.type === 'radio') {
+                    const groupName = this.name;
+                    document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach(radio => {
+                        const radioParent = radio.closest('.radio-option');
+                        if (radioParent) {
+                            radioParent.style.borderColor = '#1e293b';
+                            radioParent.style.background = '#1a2332';
+                        }
+                    });
+                }
+                
+                // Now apply styling to the selected option
                 if (this.checked) {
-                    const parent = this.closest('.radio-option, .checkbox-option');
                     parent.style.borderColor = '#3b82f6';
                     parent.style.background = 'rgba(59, 130, 246, 0.1)';
                     parent.style.transform = 'scale(1.02)';
                     setTimeout(() => {
                         parent.style.transform = 'scale(1)';
                     }, 200);
+                } else {
+                    // For checkboxes, remove styling when unchecked
+                    parent.style.borderColor = '#1e293b';
+                    parent.style.background = '#1a2332';
                 }
             });
         });
