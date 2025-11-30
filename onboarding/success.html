@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - BoyerScales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #0a1628;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .success-container {
+            max-width: 600px;
+            background: #0f1729;
+            border-radius: 16px;
+            padding: 64px 48px;
+            text-align: center;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 32px;
+            animation: bounce 1s ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        h1 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #ffffff 0%, #60a5fa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .message {
+            font-size: 18px;
+            color: #cbd5e1;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+        
+        .submessage {
+            font-size: 16px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 48px;
+        }
+        
+        .highlight {
+            color: #60a5fa;
+            font-weight: 600;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 48px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.5);
+        }
+        
+        .timeline {
+            margin: 48px 0 32px 0;
+            padding: 24px;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(59, 130, 246, 0.1);
+        }
+        
+        .timeline-title {
+            color: #60a5fa;
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 16px;
+        }
+        
+        .timeline-item {
+            color: #cbd5e1;
+            font-size: 15px;
+            line-height: 2;
+            text-align: left;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .timeline-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">🎉</div>
+        
+        <h1>Thank You!</h1>
+        
+        <p class="message">
+            Your onboarding form has been successfully submitted. We're excited to help transform your customer communications with AI!
+        </p>
+        
+        <div class="timeline">
+            <div class="timeline-title">What Happens Next:</div>
+            <div class="timeline-item">Our team reviews your submission</div>
+            <div class="timeline-item">We'll contact you within <span class="highlight">24 hours</span></div>
+            <div class="timeline-item">Pro plan members contacted within <span class="highlight">2 hours</span></div>
+            <div class="timeline-item">Begin your white-glove onboarding experience</div>
+        </div>
+        
+        <p class="submessage">
+            Check your email for confirmation and next steps.<br>
+            We'll be in touch very soon!
+        </p>
+        
+        <a href="/" class="back-btn">Return to Home</a>
+    </div>
+</body>
+</html>
