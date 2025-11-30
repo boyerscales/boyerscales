@@ -5,20 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoyerScales Client Onboarding</title>
 
-    <script>
+<script>
   (function () {
     var host = window.location.hostname;
-    // If we're on the main site, send to the app subdomain
+
+    // If user is on the main site version, push them to the app version
     if (host === "boyerscales.com" || host === "www.boyerscales.com") {
-      var newUrl =
-        "https://app.boyerscales.com" +
-        window.location.pathname +
-        window.location.search +
-        window.location.hash;
-      window.location.replace(newUrl);
+      window.location.replace("https://app.boyerscales.com/onboarding");
     }
   })();
 </script>
+
 
         <style>
         * {
