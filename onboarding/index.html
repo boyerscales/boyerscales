@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<script>
+  (function () {
+    var host = window.location.hostname;
+
+    // If user is on the main site version, push them to the app version
+    if (host === "boyerscales.com" || host === "www.boyerscales.com") {
+      window.location.replace("https://app.boyerscales.com/onboarding");
+    }
+  })();
+</script>
+
     <title>BoyerScales Client Onboarding</title>
         <style>
         * {
