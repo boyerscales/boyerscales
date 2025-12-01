@@ -4,6 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoyerScales Client Onboarding</title>
+    <script>
+    // 404 Guard - Block naked domain access
+    (function() {
+      const hostname = window.location.hostname;
+      const isNakedDomain = hostname === 'boyerscales.com' || hostname === 'www.boyerscales.com';
+      
+      if (isNakedDomain) {
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.innerHTML = `
+            <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#0a1628;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:#e2e8f0;padding:20px;">
+              <div style="text-align:center;max-width:500px;">
+                <div style="font-size:120px;font-weight:700;color:#3b82f6;margin-bottom:24px;background:linear-gradient(135deg,#ffffff 0%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">404</div>
+                <h1 style="font-size:32px;font-weight:600;margin-bottom:16px;color:#f1f5f9;">Page Not Found</h1>
+                <p style="font-size:18px;color:#94a3b8;margin-bottom:32px;line-height:1.6;">This onboarding form is only accessible via your personalized client portal.</p>
+                <p style="font-size:14px;color:#64748b;margin-bottom:24px;">If you're a BoyerScales client, please check your email for your unique onboarding link.</p>
+                <a href="/" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#3b82f6 0%,#60a5fa 100%);color:white;text-decoration:none;border-radius:8px;font-weight:600;box-shadow:0 4px 12px rgba(59,130,246,0.4);transition:transform 0.2s;" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">← Back to Home</a>
+              </div>
+            </div>
+          `;
+        });
+      }
+    })();
+    </script>
         <style>
         * {
             margin: 0;
@@ -2031,184 +2054,182 @@ This helps us train the AI to answer accurately."></textarea>
                 <strong>Next Steps:</strong> Our team will review your submission and contact you within 24 hours to begin setup. 
                 <br>Pro plan members will be contacted within 2 hours for white-glove onboarding scheduling.
             </div>
-        </div>
-        </form>
-    </div>
+            </div>
+    </form>
+</div>
+
+<script>
+    // Enhanced progress bar with smooth animation
+    window.addEventListener('scroll', function() {
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
+        document.querySelector('.progress-fill').style.width = scrollPercentage + '%';
+    });
     
-    <script>
-        // Enhanced progress bar with smooth animation
-        window.addEventListener('scroll', function() {
-            const windowHeight = window.innerHeight;
-            const documentHeight = document.documentElement.scrollHeight;
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollPercentage = (scrollTop / (documentHeight - windowHeight)) * 100;
-            document.querySelector('.progress-fill').style.width = scrollPercentage + '%';
+    // Section reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.section').forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Interactive field validation
+    const inputs = document.querySelectorAll('input[required], textarea[required], select[required]');
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.value.trim() !== '') {
+                this.style.borderColor = '#10b981';
+                this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
+            }
         });
         
-        // Section reveal on scroll
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
+        input.addEventListener('focus', function() {
+            this.style.borderColor = '#3b82f6';
         });
-        
-        // Interactive field validation
-        const inputs = document.querySelectorAll('input[required], textarea[required], select[required]');
-        inputs.forEach(input => {
-            input.addEventListener('blur', function() {
-                if (this.value.trim() !== '') {
-                    this.style.borderColor = '#10b981';
-                    this.style.boxShadow = '0 0 0 3px rgba(16, 185, 129, 0.1)';
-                }
-            });
+    });
+    
+    // Radio/checkbox selection animation
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
+        input.addEventListener('change', function() {
+            const parent = this.closest('.radio-option, .checkbox-option');
             
-            input.addEventListener('focus', function() {
-                this.style.borderColor = '#3b82f6';
-            });
-        });
-        
-        // Radio/checkbox selection animation
-        document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
-            input.addEventListener('change', function() {
-                const parent = this.closest('.radio-option, .checkbox-option');
-                
-                // For radio buttons, clear all other options in the same group first
-                if (this.type === 'radio') {
-                    const groupName = this.name;
-                    document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach(radio => {
-                        const radioParent = radio.closest('.radio-option');
-                        if (radioParent) {
-                            radioParent.style.borderColor = '#1e293b';
-                            radioParent.style.background = '#1a2332';
-                        }
-                    });
-                }
-                
-                // Now apply styling to the selected option
-                if (this.checked) {
-                    parent.style.borderColor = '#3b82f6';
-                    parent.style.background = 'rgba(59, 130, 246, 0.1)';
-                    parent.style.transform = 'scale(1.02)';
-                    setTimeout(() => {
-                        parent.style.transform = 'scale(1)';
-                    }, 200);
-                } else {
-                    // For checkboxes, remove styling when unchecked
-                    parent.style.borderColor = '#1e293b';
-                    parent.style.background = '#1a2332';
-                }
-            });
-        });
-        
-        // Form submission with loading state
-        const form = document.querySelector('form');
-        
-        form.addEventListener('submit', function(e) {
-            const requiredFields = form.querySelectorAll('[required]');
-            let allValid = true;
-            let firstInvalid = null;
+            // For radio buttons, clear all other options in the same group first
+            if (this.type === 'radio') {
+                const groupName = this.name;
+                document.querySelectorAll(`input[type="radio"][name="${groupName}"]`).forEach(radio => {
+                    const radioParent = radio.closest('.radio-option');
+                    if (radioParent) {
+                        radioParent.style.borderColor = '#1e293b';
+                        radioParent.style.background = '#1a2332';
+                    }
+                });
+            }
             
-            requiredFields.forEach(field => {
-                const isRadio = field.type === 'radio';
-                const isCheckbox = field.type === 'checkbox';
-                let isValid = false;
-                
-                if (isRadio) {
-                    isValid = document.querySelector(`input[name="${field.name}"]:checked`) !== null;
-                } else if (isCheckbox) {
-                    isValid = field.checked;
-                } else {
-                    isValid = field.value.trim() !== '';
-                }
-                
-                if (!isValid) {
-                    allValid = false;
-                    field.style.borderColor = '#ef4444';
-                    field.style.animation = 'shake 0.5s';
-                    if (!firstInvalid) firstInvalid = field;
-                } else {
-                    field.style.borderColor = '#10b981';
-                }
-            });
-            
-            if (!allValid) {
-                e.preventDefault();
-                
-                // Scroll to first invalid field
-                if (firstInvalid) {
-                    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                
-                // Show error message
-                const errorDiv = document.createElement('div');
-                errorDiv.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: #ef4444;
-                    color: white;
-                    padding: 16px 24px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
-                    z-index: 1000;
-                    animation: slideIn 0.3s ease-out;
-                `;
-                errorDiv.textContent = '⚠️ Please fill out all required fields';
-                document.body.appendChild(errorDiv);
-                
+            // Now apply styling to the selected option
+            if (this.checked) {
+                parent.style.borderColor = '#3b82f6';
+                parent.style.background = 'rgba(59, 130, 246, 0.1)';
+                parent.style.transform = 'scale(1.02)';
                 setTimeout(() => {
-                    errorDiv.style.animation = 'fadeOut 0.3s ease-out';
-                    setTimeout(() => errorDiv.remove(), 300);
-                }, 3000);
+                    parent.style.transform = 'scale(1)';
+                }, 200);
             } else {
-                // Show loading state on submit button
-                const submitBtn = form.querySelector('.submit-btn');
-                submitBtn.innerHTML = '<span>Submitting...</span>';
-                submitBtn.disabled = true;
-                submitBtn.style.opacity = '0.7';
-                
-                // Let the form submit naturally to Netlify
-                // Don't preventDefault here!
+                // For checkboxes, remove styling when unchecked
+                parent.style.borderColor = '#1e293b';
+                parent.style.background = '#1a2332';
             }
         });
+    });
+    
+    // Form submission with loading state
+    const form = document.querySelector('form');
+    
+    form.addEventListener('submit', function(e) {
+        const requiredFields = form.querySelectorAll('[required]');
+        let allValid = true;
+        let firstInvalid = null;
         
-        // Add shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                0%, 100% { transform: translateX(0); }
-                25% { transform: translateX(-10px); }
-                75% { transform: translateX(10px); }
-            }
-            @keyframes fadeOut {
-                to { opacity: 0; transform: translateY(-10px); }
-            }
-        `;
-        document.head.appendChild(style);
-        
-        // Auto-save to localStorage (optional)
-        const formFields = document.querySelectorAll('input, textarea, select');
-        formFields.forEach(field => {
-            // Load saved value
-            const saved = localStorage.getItem(`onboarding_${field.name}`);
-            if (saved && !field.value) {
-                field.value = saved;
+        requiredFields.forEach(field => {
+            const isRadio = field.type === 'radio';
+            const isCheckbox = field.type === 'checkbox';
+            let isValid = false;
+            
+            if (isRadio) {
+                isValid = document.querySelector(`input[name="${field.name}"]:checked`) !== null;
+            } else if (isCheckbox) {
+                isValid = field.checked;
+            } else {
+                isValid = field.value.trim() !== '';
             }
             
-            // Save on change
-            field.addEventListener('change', function() {
-                if (this.name) {
-                    localStorage.setItem(`onboarding_${this.name}`, this.value);
-                }
-            });
+            if (!isValid) {
+                allValid = false;
+                field.style.borderColor = '#ef4444';
+                field.style.animation = 'shake 0.5s';
+                if (!firstInvalid) firstInvalid = field;
+            } else {
+                field.style.borderColor = '#10b981';
+            }
         });
-    </script>
-</body>
-</html>
+        
+        if (!allValid) {
+            e.preventDefault();
+            
+            // Scroll to first invalid field
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+            
+            // Show error message
+            const errorDiv = document.createElement('div');
+            errorDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #ef4444;
+                color: white;
+                padding: 16px 24px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            errorDiv.textContent = '⚠️ Please fill out all required fields';
+            document.body.appendChild(errorDiv);
+            
+            setTimeout(() => {
+                errorDiv.style.animation = 'fadeOut 0.3s ease-out';
+                setTimeout(() => errorDiv.remove(), 300);
+            }, 3000);
+        } else {
+            // Show loading state on submit button
+            const submitBtn = form.querySelector('.submit-btn');
+            submitBtn.innerHTML = '<span>Submitting...</span>';
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+            
+            // Let the form submit naturally to Netlify
+            // Don't preventDefault here!
+        }
+    });
+    
+    // Add shake animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        @keyframes fadeOut {
+            to { opacity: 0; transform: translateY(-10px); }
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Auto-save to localStorage (optional)
+    const formFields = document.querySelectorAll('input, textarea, select');
+    formFields.forEach(field => {
+        // Load saved value
+        const saved = localStorage.getItem(`onboarding_${field.name}`);
+        if (saved && !field.value) {
+            field.value = saved;
+        }
+        
+        // Save on change
+        field.addEventListener('change', function() {
+            if (this.name) {
+                localStorage.setItem(`onboarding_${this.name}`, this.value);
+            }
+        });
+    });
+</script>
