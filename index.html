@@ -247,10 +247,17 @@
 
         .problem-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
+        }
+
+        @media (max-width: 968px) {
+            .problem-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .problem-card {
@@ -260,6 +267,10 @@
             padding: 2rem;
             text-align: center;
             transition: all 0.3s;
+            min-height: 280px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .problem-card:hover {
@@ -281,14 +292,15 @@
         }
 
         .problem-card h3 {
-            font-size: 1.15rem;
+            font-size: 1.25rem;
+            font-weight: 700;
             margin-bottom: 0.75rem;
             color: var(--text-primary);
         }
 
         .problem-card p {
-            color: var(--text-tertiary);
-            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
             line-height: 1.6;
         }
 
@@ -305,9 +317,16 @@
 
         .solution-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
             margin-top: 3rem;
+        }
+
+        @media (max-width: 968px) {
+            .solution-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .feature-card {
@@ -315,6 +334,16 @@
             border: 1px solid var(--border);
             border-radius: 16px;
             padding: 1.75rem;
+            min-height: 240px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(59, 130, 246, 0.2);
         }
 
         .feature-card .icon {
@@ -324,14 +353,15 @@
 
         .feature-card h3 {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.25rem;
+            font-size: 1.35rem;
+            font-weight: 700;
             margin-bottom: 0.75rem;
         }
 
         .feature-card p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
+            font-size: 1rem;
+            line-height: 1.65;
         }
 
         /* Results Section */
@@ -342,14 +372,36 @@
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 2.5rem;
-            max-width: 900px;
+            max-width: 1100px;
             margin: 3rem auto;
+        }
+
+        @media (max-width: 968px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .stat-box {
             text-align: center;
+            min-height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.2);
         }
 
         .stat-number {
@@ -471,10 +523,17 @@
 
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 3rem auto;
+        }
+
+        @media (max-width: 968px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
         }
 
         .pricing-card {
@@ -484,6 +543,9 @@
             padding: 2.5rem;
             transition: all 0.3s;
             position: relative;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
         }
 
         .pricing-card.featured {
@@ -547,6 +609,7 @@
         .pricing-features {
             list-style: none;
             margin-bottom: 2rem;
+            flex-grow: 1;
         }
 
         .pricing-features li {
@@ -733,7 +796,7 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">✓ Local Sacramento Business</div>
-                <h1>Your Phone Team That <span class="highlight">Never Misses a Customer</span></h1>
+                <h1>Your Revenue Team That <span class="highlight">Never Misses a Customer</span></h1>
                 <p class="subheadline">Stop losing money to missed calls. We answer every customer 24/7, book appointments directly into your calendar, and turn happy customers into 5-star reviews. No robots. No complexity. Just more bookings.</p>
                 <div class="hero-cta">
                     <a href="#start" class="btn btn-primary">Start Free 7-Day Trial</a>
@@ -755,20 +818,20 @@
                 <div class="problem-card">
                     <div class="icon">📞</div>
                     <div class="stat">73%</div>
-                    <h3>Calls Go Unanswered</h3>
-                    <p>That's 3 out of every 4 potential customers calling your competitor next</p>
+                    <h3>Unanswered Calls</h3>
+                    <p>3 out of 4 potential customers call your competitor next because you didn't pick up</p>
                 </div>
                 <div class="problem-card">
                     <div class="icon">⏱️</div>
                     <div class="stat">5 min</div>
-                    <h3>Is All You Have</h3>
-                    <p>Customers who don't hear back in 5 minutes book with someone else</p>
+                    <h3>To Respond or Lose</h3>
+                    <p>Customers book with whoever responds first. After 5 minutes, they're gone forever</p>
                 </div>
                 <div class="problem-card">
                     <div class="icon">🌙</div>
                     <div class="stat">$0</div>
-                    <h3>After-Hours Revenue</h3>
-                    <p>Your phone goes silent at night while competitors keep booking</p>
+                    <h3>After-Hours Bookings</h3>
+                    <p>While you sleep, competitors with 24/7 service are stealing your customers</p>
                 </div>
             </div>
         </div>
@@ -778,30 +841,30 @@
     <section class="solution">
         <div class="container">
             <div class="section-header">
-                <h2>Meet Your New Phone Team</h2>
-                <p>Humans answering calls + smart automation = never miss another customer</p>
+                <h2>Meet Your New Revenue Team</h2>
+                <p>Professional service handling every customer interaction = more bookings, more revenue</p>
             </div>
             <div class="solution-content">
                 <div class="solution-grid">
                     <div class="feature-card">
                         <div class="icon">📱</div>
-                        <h3>24/7 Phone Coverage</h3>
-                        <p>Every call answered. Every text replied to. Day, night, weekends—we're always there.</p>
+                        <h3>Answer Every Call</h3>
+                        <p>Calls and texts answered instantly, 24/7. No more missed opportunities while you're busy or closed.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">📅</div>
-                        <h3>Instant Booking</h3>
-                        <p>Appointments booked directly into your calendar while you're working, sleeping, or on vacation.</p>
+                        <h3>Book More Jobs</h3>
+                        <p>Appointments scheduled directly into your calendar automatically—even while you sleep.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">⭐</div>
-                        <h3>Review Collection</h3>
-                        <p>Automatically text happy customers for 5-star reviews. More reviews = more calls.</p>
+                        <h3>Get More Reviews</h3>
+                        <p>Happy customers automatically texted for 5-star reviews. Better rankings = more calls.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">💬</div>
-                        <h3>Smart Follow-Up</h3>
-                        <p>Never let a lead go cold. Automatic follow-ups keep you top of mind.</p>
+                        <h3>Never Lose Leads</h3>
+                        <p>Smart follow-ups with every lead so they remember you when they're ready to buy.</p>
                     </div>
                 </div>
             </div>
@@ -847,7 +910,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Try It Right Now</h2>
-                <p>Call our live demo line and see how it works for yourself</p>
+                <p>Experience how your revenue team will sound for yourself</p>
             </div>
 
             <div class="demo-box">
@@ -861,7 +924,7 @@
                         <li>"Can I book an appointment?"</li>
                     </ul>
                 </div>
-                <p style="color: var(--text-secondary); margin-top: 1.5rem;">Experience how natural and helpful your phone team will be.</p>
+                <p style="color: var(--text-secondary); margin-top: 1.5rem;">Experience how natural and professional your revenue team sounds.</p>
             </div>
         </div>
     </section>
