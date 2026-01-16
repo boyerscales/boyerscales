@@ -219,6 +219,20 @@
             font-weight: 600;
         }
 
+        .trial-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(6, 182, 212, 0.15));
+            border: 1.5px solid var(--accent);
+            padding: 0.6rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
         /* Problem Section */
         .problem {
             padding: 6rem 0;
@@ -773,6 +787,17 @@
             .pricing-card.featured {
                 transform: scale(1);
             }
+
+            /* Fix for mobile header overlap */
+            .hero-badge {
+                position: relative;
+                z-index: 2;
+            }
+
+            .hero h1 {
+                position: relative;
+                z-index: 2;
+            }
         }
     </style>
 </head>
@@ -789,7 +814,7 @@
                     <span>📞</span>
                     <span>(916) 659-8131</span>
                 </a>
-                <a href="#start" class="btn btn-primary">Get Started Free</a>
+                <a href="#start" class="btn btn-primary">Start Free Trial</a>
             </div>
         </div>
     </nav>
@@ -799,11 +824,15 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">Sacramento-Based Business Service</div>
-                <h1>Stop Losing Revenue to <span class="highlight">Missed Calls</span></h1>
-                <p class="subheadline">Every unanswered call is a customer booking with your competitor. We answer every phone call and text message 24/7, book appointments directly into your calendar, and follow up with every lead. You focus on the work. We handle the phone.</p>
+                <h1>Your Digital Phone Team Works <span class="highlight">24/7</span> So You Don't Miss Revenue</h1>
+                <p class="subheadline">Every unanswered call is a customer booking with your competitor. Our intelligent phone assistants answer every call and text 24/7, book appointments directly into your calendar, and follow up with every lead. You focus on the work—we handle the phone.</p>
                 <div class="hero-cta">
-                    <a href="#start" class="btn btn-primary">Schedule a Call</a>
+                    <a href="#start" class="btn btn-primary">Start Your Free Trial</a>
                     <a href="tel:+19166598131" class="btn btn-secondary">Try the Demo: (916) 659-8131</a>
+                </div>
+                <div class="trial-badge">
+                    <span>✓</span>
+                    <span>7-Day Free Trial · No Credit Card Required</span>
                 </div>
                 <p class="trust-line"><strong>Working with:</strong> HVAC contractors, plumbers, dental offices, med spas, auto repair shops</p>
             </div>
@@ -844,30 +873,30 @@
     <section class="solution">
         <div class="container">
             <div class="section-header">
-                <h2>How It Works</h2>
+                <h2>How Your Digital Team Works</h2>
                 <p>Three steps to stop missing calls and start booking more revenue</p>
             </div>
             <div class="solution-content">
                 <div class="solution-grid">
                     <div class="feature-card">
                         <div class="icon">1</div>
-                        <h3>Step 1: Discovery Call</h3>
+                        <h3>Discovery Call</h3>
                         <p>We analyze your current call volume, missed opportunities, and booking process. Most businesses are losing 15-30% of potential revenue to missed calls.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">2</div>
-                        <h3>Step 2: Custom Setup</h3>
-                        <p>We build your system, train it on your services and pricing, and integrate with your calendar and CRM. Takes 24-48 hours.</p>
+                        <h3>Custom Setup</h3>
+                        <p>We build your phone assistants, train them on your services and pricing, and integrate with your calendar and CRM. Takes 24-48 hours.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">3</div>
-                        <h3>Step 3: Go Live</h3>
-                        <p>Your phone system goes live. Every call answered, every appointment booked, every lead followed up. You show up to more jobs.</p>
+                        <h3>Go Live</h3>
+                        <p>Your phone team goes live. Every call answered, every appointment booked, every lead followed up. You show up to more jobs.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">4</div>
-                        <h3>Ongoing Optimization</h3>
-                        <p>We monitor performance, optimize scripts, and adjust based on results. Most clients see ROI within the first 30 days.</p>
+                        <h3>Optimization</h3>
+                        <p>We monitor performance, optimize responses, and adjust based on results. Most clients see ROI within the first 30 days.</p>
                     </div>
                 </div>
             </div>
@@ -878,7 +907,7 @@
     <section class="solution" style="background: var(--dark-800);">
         <div class="container">
             <div class="section-header">
-                <h2>What You Get</h2>
+                <h2>What Your Digital Team Handles</h2>
                 <p>Professional phone coverage that pays for itself in recovered revenue</p>
             </div>
             <div class="solution-content">
@@ -886,7 +915,7 @@
                     <div class="feature-card">
                         <div class="icon">📱</div>
                         <h3>24/7 Phone Coverage</h3>
-                        <p>Every call answered by a professional system that sounds like your employee. No voicemail, no missed opportunities.</p>
+                        <p>Every call answered by intelligent assistants that sound professional and knowledgeable. No voicemail, no missed opportunities.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">📅</div>
@@ -947,26 +976,26 @@
         <div class="container">
             <div class="section-header">
                 <h2>Common Questions</h2>
-                <p>What business owners ask before they sign up</p>
+                <p>What business owners ask before they start their free trial</p>
             </div>
 
             <div style="max-width: 900px; margin: 0 auto; display: grid; gap: 2rem;">
                 <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"Will customers know they're not talking to a real person?"</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Our phone assistants are trained specifically on your business. They answer questions naturally, book appointments accurately, and handle objections professionally. Most customers can't tell the difference—and they don't need to, because they're getting excellent service.</p>
+                    <p style="color: var(--text-secondary); line-height: 1.7;">Think of them like very well-trained employees who never sleep, never take breaks, and never forget to follow up.</p>
+                </div>
+
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
                     <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"This sounds expensive."</h3>
                     <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">The average HVAC company loses $6,000+ per month to missed calls alone. If you're getting 20+ calls per week and missing even 5 of them, you're bleeding revenue. This service pays for itself if it books you two additional jobs per month.</p>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">Think of it this way: What's the cost of NOT answering your phone 24/7?</p>
+                    <p style="color: var(--text-secondary); line-height: 1.7;">Plus, you can try it free for 7 days—no credit card required. See the results before you pay a dollar.</p>
                 </div>
 
                 <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
                     <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"I already have a receptionist."</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Good. They can focus on in-person customers and admin work instead of answering the same questions 40 times per day. This system handles after-hours calls, weekends, and overflow when your receptionist is busy or on lunch.</p>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Perfect. They can focus on in-person customers and admin work instead of answering the same questions 40 times per day. Your digital team handles after-hours calls, weekends, and overflow when your receptionist is busy or on lunch.</p>
                     <p style="color: var(--text-secondary); line-height: 1.7;">Most clients keep their receptionist and use this as backup coverage. It's not replacement—it's insurance against missed revenue.</p>
-                </div>
-
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"How do I know this will work for my business?"</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Call the demo line right now: <a href="tel:+19166598131" style="color: var(--primary); text-decoration: none; font-weight: 600;">(916) 659-8131</a>. Ask it anything your customers would ask. Hear how it responds. If you're not impressed, don't book a call.</p>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">We've worked with HVAC contractors, plumbers, med spas, dental offices, and auto shops across Sacramento. The system adapts to your business, your pricing, and your schedule.</p>
                 </div>
             </div>
         </div>
@@ -977,7 +1006,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Try It Right Now</h2>
-                <p>Experience how your revenue team will sound for yourself</p>
+                <p>Experience how your digital phone team will sound for yourself</p>
             </div>
 
             <div class="demo-box">
@@ -991,7 +1020,7 @@
                         <li>"Can I book an appointment?"</li>
                     </ul>
                 </div>
-                <p style="color: var(--text-secondary); margin-top: 1.5rem;">Experience how natural and professional your revenue team sounds.</p>
+                <p style="color: var(--text-secondary); margin-top: 1.5rem;">Experience how natural and professional your phone team sounds.</p>
             </div>
         </div>
     </section>
@@ -1016,8 +1045,9 @@
                         <li>Missed call recovery</li>
                         <li>Calendar integration</li>
                         <li>Performance reporting</li>
+                        <li>7-day free trial included</li>
                     </ul>
-                    <a href="#start" class="btn btn-primary" style="width: 100%;">Get Custom Quote</a>
+                    <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
                 </div>
 
                 <div class="pricing-card featured">
@@ -1032,8 +1062,9 @@
                         <li>Two-way conversations</li>
                         <li>CRM integration</li>
                         <li>Priority support</li>
+                        <li>7-day free trial included</li>
                     </ul>
-                    <a href="#start" class="btn btn-primary" style="width: 100%;">Get Custom Quote</a>
+                    <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
                 </div>
 
                 <div class="pricing-card">
@@ -1048,8 +1079,9 @@
                         <li>Custom workflow automation</li>
                         <li>Dedicated account manager</li>
                         <li>White-glove onboarding</li>
+                        <li>7-day free trial included</li>
                     </ul>
-                    <a href="#start" class="btn btn-primary" style="width: 100%;">Get Custom Quote</a>
+                    <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
                 </div>
             </div>
 
@@ -1066,10 +1098,10 @@
         <div class="container">
             <div class="cta-content">
                 <h2>Stop Losing Customers to Competitors</h2>
-                <p>Every day you wait is another week of missed calls and lost bookings. Schedule a 15-minute discovery call to see if this makes sense for your business.</p>
+                <p>Start your 7-day free trial today. No credit card required. See results before you pay a dollar.</p>
 
                 <div class="form-box">
-                    <h3>Book Your Discovery Call</h3>
+                    <h3>Start Your Free Trial</h3>
                     <form id="contactForm">
                         <input type="text" placeholder="Your Name" required>
                         <input type="email" placeholder="Email Address" required>
@@ -1082,16 +1114,16 @@
                             <option value="75-200">75-200</option>
                             <option value="200+">200+</option>
                         </select>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule Discovery Call</button>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Start Free Trial</button>
                     </form>
-                    <p style="color: var(--text-tertiary); font-size: 0.9rem; margin-top: 1rem; text-align: center;">We'll call you within 24 hours to discuss pricing and setup</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.9rem; margin-top: 1rem; text-align: center;">We'll call you within 24 hours to set up your 7-day trial</p>
                 </div>
 
                 <div class="guarantee">
                     <h4>What Happens Next</h4>
-                    <p style="margin-bottom: 0.75rem;">1. We call you within 24 hours to discuss your current call volume and missed opportunities</p>
-                    <p style="margin-bottom: 0.75rem;">2. We provide custom pricing based on your specific needs</p>
-                    <p>3. If it makes sense, we set up your system in 24-48 hours and you start recovering lost revenue immediately</p>
+                    <p style="margin-bottom: 0.75rem;">1. We call you within 24 hours to discuss your current call volume and setup</p>
+                    <p style="margin-bottom: 0.75rem;">2. We build and configure your digital phone team in 24-48 hours</p>
+                    <p>3. You get 7 days completely free to see results—if you love it, keep going. If not, no charge.</p>
                 </div>
             </div>
         </div>
@@ -1143,10 +1175,10 @@
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({name, email, phone, business})
             }).then(() => {
-                alert(`Thanks ${name}! We'll call you within 24 hours to discuss pricing and setup for ${business}.`);
+                alert(`Thanks ${name}! We'll call you within 24 hours to set up your 7-day free trial for ${business}.`);
                 e.target.reset();
             }).catch(() => {
-                alert(`Thanks ${name}! We'll call you within 24 hours to discuss pricing and setup for ${business}.`);
+                alert(`Thanks ${name}! We'll call you within 24 hours to set up your 7-day free trial for ${business}.`);
                 e.target.reset();
             });
         });
