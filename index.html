@@ -139,7 +139,7 @@
             min-height: 85vh;
             display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 100px;
             position: relative;
             overflow: hidden;
         }
@@ -381,10 +381,65 @@
             line-height: 1.65;
         }
 
+        /* Trust Section */
+        .trust-section {
+            padding: 4rem 0;
+            background: var(--dark-800);
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 2.5rem auto 0;
+        }
+
+        @media (max-width: 968px) {
+            .trust-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        .trust-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .trust-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .trust-card .icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .trust-card-content h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .trust-card-content p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
         /* Results Section */
         .results {
             padding: 4rem 0;
-            background: var(--dark-800);
+            background: var(--dark);
         }
 
         .stats-grid {
@@ -468,7 +523,7 @@
         /* Demo Section */
         .demo {
             padding: 4rem 0;
-            background: var(--dark);
+            background: var(--dark-800);
         }
 
         .demo-box {
@@ -535,7 +590,7 @@
         /* Pricing Section */
         .pricing {
             padding: 4rem 0;
-            background: linear-gradient(180deg, var(--dark-800) 0%, var(--dark) 100%);
+            background: var(--dark);
         }
 
         .pricing-grid {
@@ -653,7 +708,7 @@
         /* CTA Section */
         .final-cta {
             padding: 4rem 0;
-            background: var(--dark);
+            background: var(--dark-800);
             text-align: center;
         }
 
@@ -690,7 +745,7 @@
             margin-bottom: 2rem;
         }
 
-        .form-box input {
+        .form-box input, .form-box select {
             width: 100%;
             padding: 1rem;
             background: var(--dark-700);
@@ -702,7 +757,7 @@
             margin-bottom: 1.25rem;
         }
 
-        .form-box input:focus {
+        .form-box input:focus, .form-box select:focus {
             outline: none;
             border-color: var(--primary);
         }
@@ -727,7 +782,7 @@
 
         /* Footer */
         footer {
-            background: var(--dark-800);
+            background: var(--dark);
             border-top: 1px solid var(--border);
             padding: 3rem 0 2rem;
             text-align: center;
@@ -763,6 +818,10 @@
                 display: none;
             }
 
+            .hero {
+                padding-top: 120px;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -793,6 +852,10 @@
                 position: relative;
                 z-index: 10;
             }
+
+            .trust-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -819,13 +882,13 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">Sacramento-Based Business Service</div>
-                <h1>Never Miss Another Customer Call Again</h1>
-                <p class="subheadline">Our trained phone team answers every call and text—day and night. They book appointments, answer questions, and follow up with leads so you can focus on doing the work you love.</p>
+                <h1>Professional <span class="highlight">Phone Coverage</span> That Recovers Lost Revenue</h1>
+                <p class="subheadline">Get a dedicated receptionist experience without hiring staff. We answer every call with a friendly, professional voice—trained on your business. Book appointments, answer questions, and follow up with leads automatically while you focus on your work.</p>
                 <div class="hero-cta">
-                    <a href="#start" class="btn btn-primary">Start Your Free Trial</a>
+                    <a href="#start" class="btn btn-primary">Start Free Trial</a>
                     <a href="tel:+19166598131" class="btn btn-secondary">Try the Demo: (916) 659-8131</a>
                 </div>
-                <p class="trust-line"><strong>Working with:</strong> HVAC contractors, plumbers, dental offices, med spas, auto repair shops</p>
+                <p class="trust-line"><strong>Trusted by:</strong> HVAC contractors, plumbers, dental offices, med spas, auto repair shops</p>
                 <div class="trial-badge">
                     <span>✓</span>
                     <span>7-Day Free Trial · No Credit Card Required</span>
@@ -838,27 +901,27 @@
     <section class="problem">
         <div class="container">
             <div class="section-header">
-                <h2>The Problem Most Businesses Face</h2>
+                <h2>The Cost of Missed Calls</h2>
                 <p>You're busy doing great work—but who's answering the phone?</p>
             </div>
             <div class="problem-grid">
                 <div class="problem-card">
                     <div class="icon">📞</div>
-                    <div class="stat">73%</div>
+                    <div class="stat">Lost</div>
                     <h3>Unanswered Calls</h3>
-                    <p>3 out of 4 potential customers call your competitor next because you didn't pick up</p>
+                    <p>Most customers won't leave voicemail—they'll just call the next business on their list</p>
                 </div>
                 <div class="problem-card">
                     <div class="icon">⏱️</div>
-                    <div class="stat">5 min</div>
-                    <h3>To Respond or Lose</h3>
-                    <p>Customers book with whoever responds first. After 5 minutes, they're gone forever</p>
+                    <div class="stat">Hours</div>
+                    <h3>Late Follow-Ups</h3>
+                    <p>When you're hands-on with customers, returning calls gets delayed—and opportunities go cold</p>
                 </div>
                 <div class="problem-card">
                     <div class="icon">🌙</div>
-                    <div class="stat">$0</div>
-                    <h3>After-Hours Bookings</h3>
-                    <p>While you sleep, competitors with 24/7 service are stealing your customers</p>
+                    <div class="stat">Nights</div>
+                    <h3>After-Hours Gaps</h3>
+                    <p>Competitors with 24/7 availability capture customers while you're closed for the evening</p>
                 </div>
             </div>
         </div>
@@ -868,30 +931,30 @@
     <section class="solution">
         <div class="container">
             <div class="section-header">
-                <h2>How We Help Your Business</h2>
-                <p>Simple setup, powerful results</p>
+                <h2>How We Support Your Business</h2>
+                <p>Simple setup that feels like hiring a receptionist—without the overhead</p>
             </div>
             <div class="solution-content">
                 <div class="solution-grid">
                     <div class="feature-card">
                         <div class="icon">1</div>
                         <h3>Discovery Call</h3>
-                        <p>We analyze your current call volume, missed opportunities, and booking process. Most businesses are losing 15-30% of potential revenue to missed calls.</p>
+                        <p>We learn about your business, services, pricing, and how you prefer calls to be handled.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">2</div>
-                        <h3>Custom Setup</h3>
-                        <p>We build your phone assistants, train them on your services and pricing, and integrate with your calendar and CRM. Takes 24-48 hours.</p>
+                        <h3>Custom Training</h3>
+                        <p>We train your phone assistant on your specific business and integrate with your calendar. Setup takes 24-48 hours.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">3</div>
                         <h3>Go Live</h3>
-                        <p>Your phone team goes live. Every call answered, every appointment booked, every lead followed up. You show up to more jobs.</p>
+                        <p>Your phone coverage starts. Every call gets answered professionally, and appointments get booked automatically.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">4</div>
-                        <h3>Optimization</h3>
-                        <p>We monitor performance, optimize responses, and adjust based on results. Most clients see ROI within the first 30 days.</p>
+                        <h3>Ongoing Support</h3>
+                        <p>Our team monitors quality and adjusts as needed. You stay in control with real-time notifications.</p>
                     </div>
                 </div>
             </div>
@@ -903,29 +966,69 @@
         <div class="container">
             <div class="section-header">
                 <h2>What We Handle For You</h2>
-                <p>Professional phone coverage that feels like part of your team</p>
+                <p>Professional phone service that feels like part of your team</p>
             </div>
             <div class="solution-content">
                 <div class="solution-grid">
                     <div class="feature-card">
                         <div class="icon">📱</div>
-                        <h3>24/7 Phone Coverage</h3>
-                        <p>Every call gets answered professionally, day or night. Your customers always reach a friendly voice, never voicemail.</p>
+                        <h3>24/7 Answering</h3>
+                        <p>Every call gets a friendly, professional greeting—day, night, weekends. Never miss another opportunity.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">📅</div>
-                        <h3>Appointment Booking</h3>
-                        <p>We schedule jobs directly into your calendar while you're working. No more phone tag with customers.</p>
+                        <h3>Direct Booking</h3>
+                        <p>Appointments scheduled straight into your calendar. Wake up to jobs already booked while you slept.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">⭐</div>
                         <h3>Review Collection</h3>
-                        <p>Happy customers automatically get asked for reviews. More 5-star reviews bring more calls.</p>
+                        <p>Happy customers get automatic review requests. Build your reputation without lifting a finger.</p>
                     </div>
                     <div class="feature-card">
                         <div class="icon">💬</div>
                         <h3>Lead Follow-Up</h3>
-                        <p>We follow up on estimates and inquiries so leads don't slip through the cracks.</p>
+                        <p>Automatic follow-ups on estimates and inquiries so nothing slips through the cracks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust & Quality Section (NEW) -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quality You Can Trust</h2>
+                <p>Built-in safeguards to protect your business and your customers</p>
+            </div>
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <div class="icon">👤</div>
+                    <div class="trust-card-content">
+                        <h3>Human Escalation</h3>
+                        <p>Complex questions or frustrated customers? They're seamlessly transferred to you or your team—no awkward handoffs.</p>
+                    </div>
+                </div>
+                <div class="trust-card">
+                    <div class="icon">🎯</div>
+                    <div class="trust-card-content">
+                        <h3>Custom Training</h3>
+                        <p>Your assistant is trained specifically on your services, prices, and preferences. It represents your business accurately.</p>
+                    </div>
+                </div>
+                <div class="trust-card">
+                    <div class="icon">🔒</div>
+                    <div class="trust-card-content">
+                        <h3>Privacy Protected</h3>
+                        <p>Your customer data stays private. We never share information with third parties or use it for any other purpose.</p>
+                    </div>
+                </div>
+                <div class="trust-card">
+                    <div class="icon">🎛️</div>
+                    <div class="trust-card-content">
+                        <h3>You Stay in Control</h3>
+                        <p>Get real-time notifications. Review transcripts. Change responses anytime. You're always in the driver's seat.</p>
                     </div>
                 </div>
             </div>
@@ -936,62 +1039,32 @@
     <section class="results">
         <div class="container">
             <div class="section-header">
-                <h2>Real Results. Real Revenue.</h2>
-                <p>These aren't projections—this is what our clients see every month</p>
+                <h2>Typical Results</h2>
+                <p>What our Sacramento-area clients see after going live</p>
             </div>
             <div class="stats-grid">
                 <div class="stat-box">
-                    <div class="stat-number">212+</div>
-                    <div class="stat-label">Calls Saved</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">$3,400</div>
-                    <div class="stat-label">Revenue Recovered</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">140+</div>
-                    <div class="stat-label">5-Star Reviews</div>
+                    <div class="stat-number">95%+</div>
+                    <div class="stat-label">Calls Answered</div>
                 </div>
                 <div class="stat-box">
                     <div class="stat-number">24/7</div>
-                    <div class="stat-label">Always Working</div>
+                    <div class="stat-label">Coverage</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Reviews Collected</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Fast</div>
+                    <div class="stat-label">Setup Time</div>
                 </div>
             </div>
 
             <div class="testimonial-box">
                 <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"We booked $8,200 in jobs we would've completely missed. Before BoyerScales, we were losing 10-15 calls a week. Now every call gets answered, even at midnight."</p>
+                <p class="testimonial-text">"We were skeptical about using technology to answer our phones, but it sounds so natural our customers don't even notice. We're booking jobs at 11pm now—that never happened before."</p>
                 <p class="testimonial-author">— Mike R., Sacramento HVAC Company</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Objection Handling Section -->
-    <section class="demo">
-        <div class="container">
-            <div class="section-header">
-                <h2>Questions We Get Asked</h2>
-                <p>Here's what other business owners wanted to know</p>
-            </div>
-
-            <div style="max-width: 900px; margin: 0 auto; display: grid; gap: 2rem;">
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"Will my customers get good service?"</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Absolutely. Our phone team is trained specifically on your business—your services, pricing, and schedule. They answer questions naturally, book appointments accurately, and treat your customers professionally.</p>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">Think of them like well-trained employees who never sleep, never call in sick, and never forget to follow up with a customer.</p>
-                </div>
-
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"This sounds expensive."</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">The average HVAC company loses $6,000+ per month to missed calls alone. If you're getting 20+ calls per week and missing even 5 of them, you're bleeding revenue. This service pays for itself if it books you two additional jobs per month.</p>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">Plus, you can try it free for 7 days—no credit card required. See the results before you pay a dollar.</p>
-                </div>
-
-                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
-                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"I already have a receptionist."</h3>
-                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Perfect! They can focus on helping customers in person while we handle the phones. We cover nights, weekends, and busy times when your receptionist is tied up.</p>
-                    <p style="color: var(--text-secondary); line-height: 1.7;">Most clients keep their receptionist and use us as backup. We're not a replacement—we're extra help so nothing falls through the cracks.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -1001,7 +1074,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Hear It For Yourself</h2>
-                <p>Call our demo line and experience how we'll answer your phone</p>
+                <p>Call our demo line—experience how we'll answer your customers</p>
             </div>
 
             <div class="demo-box">
@@ -1013,9 +1086,46 @@
                         <li>"What are your hours?"</li>
                         <li>"How much does a furnace repair cost?"</li>
                         <li>"Can I book an appointment?"</li>
+                        <li>"I need to talk to someone right now."</li>
                     </ul>
                 </div>
-                <p style="color: var(--text-secondary); margin-top: 1.5rem;">Hear how professional and natural it sounds—just like a real employee.</p>
+                <p style="color: var(--text-secondary); margin-top: 1.5rem;">Sounds natural, right? That's how your customers will experience it.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objection Handling Section -->
+    <section class="demo" style="background: var(--dark);">
+        <div class="container">
+            <div class="section-header">
+                <h2>Common Questions</h2>
+                <p>Here's what other business owners wanted to know</p>
+            </div>
+
+            <div style="max-width: 900px; margin: 0 auto; display: grid; gap: 2rem;">
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"Will it sound like a robot?"</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">No. Modern voice technology sounds remarkably natural—not robotic or choppy. Our clients tell us their customers don't realize they're not talking to a person. Try our demo line yourself: (916) 659-8131.</p>
+                    <p style="color: var(--text-secondary); line-height: 1.7;">If a customer gets frustrated or asks for a "real person," they're immediately transferred to you.</p>
+                </div>
+
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"What if it gives the wrong answer?"</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Your assistant is trained only on the information you provide—your services, pricing, and policies. It won't make things up. If it doesn't know something, it says so and offers to have you call back.</p>
+                    <p style="color: var(--text-secondary); line-height: 1.7;">You review transcripts and can adjust responses anytime. Our team monitors quality and helps optimize over time.</p>
+                </div>
+
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"I already have a receptionist."</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">Perfect! They can focus on greeting walk-ins and handling complex requests. We cover overflow, after-hours, weekends, and when they're on break or vacation.</p>
+                    <p style="color: var(--text-secondary); line-height: 1.7;">Most clients use us as backup—extra coverage to catch everything without needing a second employee.</p>
+                </div>
+
+                <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 2.5rem;">
+                    <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 1rem; color: var(--text-primary);">"Will this hurt my customer relationships?"</h3>
+                    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1rem;">The opposite. Customers get frustrated by voicemail and long hold times—not by getting quick, helpful answers. They want their questions answered and their appointments booked, and they want it now.</p>
+                    <p style="color: var(--text-secondary); line-height: 1.7;">You'll see it in your reviews: customers appreciate the fast, professional service.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -1024,22 +1134,22 @@
     <section class="pricing">
         <div class="container">
             <div class="section-header">
-                <h2>Investment Tiers</h2>
-                <p>Most clients invest several hundred dollars per month. The average ROI is 10-15x in recovered bookings within 60 days. Pricing depends on call volume, features, and your current conversion rate.</p>
+                <h2>Simple, Fair Pricing</h2>
+                <p>Plans based on your typical call volume—most clients invest a few hundred per month</p>
             </div>
 
             <div class="pricing-grid">
                 <div class="pricing-card">
-                    <div class="pricing-plan">Essential</div>
+                    <div class="pricing-plan">Starter</div>
                     <p class="pricing-tagline">For businesses handling 20-75 calls monthly</p>
                     <div class="price">Custom</div>
                     <p class="price-period">Based on your volume</p>
                     <ul class="pricing-features">
                         <li>24/7 text message handling</li>
-                        <li>Automated review collection</li>
+                        <li>Automated review requests</li>
                         <li>Missed call recovery</li>
                         <li>Calendar integration</li>
-                        <li>Performance reporting</li>
+                        <li>Basic performance reporting</li>
                         <li>7-day free trial included</li>
                     </ul>
                     <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
@@ -1051,12 +1161,12 @@
                     <div class="price">Custom</div>
                     <p class="price-period">Based on your volume</p>
                     <ul class="pricing-features">
-                        <li>Everything in Essential, plus:</li>
-                        <li>24/7 phone answering</li>
+                        <li>Everything in Starter, plus:</li>
+                        <li>24/7 live phone answering</li>
                         <li>Real-time appointment booking</li>
-                        <li>Two-way conversations</li>
+                        <li>Two-way SMS conversations</li>
                         <li>CRM integration</li>
-                        <li>Priority support</li>
+                        <li>Priority support & optimization</li>
                         <li>7-day free trial included</li>
                     </ul>
                     <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
@@ -1070,7 +1180,7 @@
                     <ul class="pricing-features">
                         <li>Everything in Professional, plus:</li>
                         <li>Unlimited call handling</li>
-                        <li>Advanced lead nurture campaigns</li>
+                        <li>Advanced lead nurturing</li>
                         <li>Custom workflow automation</li>
                         <li>Dedicated account manager</li>
                         <li>White-glove onboarding</li>
@@ -1082,8 +1192,8 @@
 
             <div style="max-width: 800px; margin: 4rem auto; text-align: center; background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 3rem;">
                 <h3 style="font-family: 'Outfit', sans-serif; font-size: 1.75rem; margin-bottom: 1rem;">Why Custom Pricing?</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7;">We don't charge the same rate for a business that gets 30 calls per month versus one that gets 300. Your pricing is based on actual call volume, features needed, and current missed opportunity cost. Most clients see positive ROI within the first billing cycle.</p>
-                <p style="color: var(--text-primary); font-weight: 600; font-size: 1.1rem;">Typical monthly investment: Several hundred dollars, depending on volume.</p>
+                <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7;">We don't charge a business with 30 calls/month the same as one with 300. Your pricing is based on actual usage, features you need, and current opportunity cost. Most clients see positive ROI quickly.</p>
+                <p style="color: var(--text-primary); font-weight: 600; font-size: 1.1rem;">Typical investment: A few hundred dollars monthly, depending on volume.</p>
             </div>
         </div>
     </section>
@@ -1098,11 +1208,11 @@
                 <div class="form-box">
                     <h3>Start Your Free Trial</h3>
                     <form id="contactForm">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Email Address" required>
-                        <input type="tel" placeholder="Phone Number" required>
-                        <input type="text" placeholder="Business Name" required>
-                        <select style="width: 100%; padding: 1rem; background: var(--dark-700); border: 1px solid var(--border); border-radius: 10px; color: var(--text-primary); font-size: 1rem; font-family: 'DM Sans', sans-serif; margin-bottom: 1.25rem;" required>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Email Address" required>
+                        <input type="tel" name="phone" placeholder="Phone Number" required>
+                        <input type="text" name="business" placeholder="Business Name" required>
+                        <select name="callsPerMonth" required>
                             <option value="">How many calls do you get per month?</option>
                             <option value="under-20">Under 20</option>
                             <option value="20-75">20-75</option>
@@ -1111,14 +1221,14 @@
                         </select>
                         <button type="submit" class="btn btn-primary" style="width: 100%;">Start Free Trial</button>
                     </form>
-                    <p style="color: var(--text-tertiary); font-size: 0.9rem; margin-top: 1rem; text-align: center;">We'll call you within 24 hours to set up your 7-day trial</p>
+                    <p style="color: var(--text-tertiary); font-size: 0.9rem; margin-top: 1rem; text-align: center;">We'll call you within 24 hours to set up your free trial</p>
                 </div>
 
                 <div class="guarantee">
                     <h4>What Happens Next</h4>
-                    <p style="margin-bottom: 0.75rem;">1. We call you within 24 hours to discuss your current call volume and setup</p>
-                    <p style="margin-bottom: 0.75rem;">2. We build and configure your digital phone team in 24-48 hours</p>
-                    <p>3. You get 7 days completely free to see results—if you love it, keep going. If not, no charge.</p>
+                    <p style="margin-bottom: 0.75rem;">1. We'll call within 24 hours to learn about your business and call volume</p>
+                    <p style="margin-bottom: 0.75rem;">2. We build and train your phone assistant in 24-48 hours</p>
+                    <p>3. You get 7 days completely free to test it—if you love it, keep going. If not, no charge.</p>
                 </div>
             </div>
         </div>
@@ -1152,23 +1262,32 @@
             });
         });
 
-        // Form submission
+        // Form submission - FIXED
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const name = e.target.querySelector('input[type="text"]').value;
-            const email = e.target.querySelector('input[type="email"]').value;
-            const phone = e.target.querySelector('input[type="tel"]').value;
-            const business = e.target.querySelectorAll('input[type="text"]')[1].value;
+            // Use name attributes to get form values
+            const name = document.querySelector('[name="name"]').value;
+            const email = document.querySelector('[name="email"]').value;
+            const phone = document.querySelector('[name="phone"]').value;
+            const business = document.querySelector('[name="business"]').value;
+            const callsPerMonth = document.querySelector('[name="callsPerMonth"]').value;
             
             // Google Sheets URL (replace with your actual URL)
             const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzNht1GMQ6PPJq7uTieMP06SIJEAixtpcBQAuHX7FqA9Zje8ZhJTRZMfrg0P3H7DEPS0w/exec';
             
+            // Send all data including callsPerMonth
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST',
                 mode: 'no-cors',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({name, email, phone, business})
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    phone: phone,
+                    business: business,
+                    callsPerMonth: callsPerMonth
+                })
             }).then(() => {
                 alert(`Thanks ${name}! We'll call you within 24 hours to set up your 7-day free trial for ${business}.`);
                 e.target.reset();
@@ -1188,7 +1307,7 @@
             });
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        document.querySelectorAll('.problem-card, .feature-card, .stat-box, .testimonial-box, .pricing-card').forEach(el => {
+        document.querySelectorAll('.problem-card, .feature-card, .stat-box, .testimonial-box, .pricing-card, .trust-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
