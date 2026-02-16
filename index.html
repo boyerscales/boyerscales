@@ -4,39 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BoyerScales | Stop Losing Money on Missed Calls</title>
-    <link rel="icon" type="image/png" href="data:image/png;base64,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">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cal+Sans:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            /* Updated color palette - more modern */
             --primary: #2563EB;
             --primary-light: #3B82F6;
             --accent: #0EA5E9;
             --success: #10B981;
-            --dark: #0A0F1E;
-            --dark-800: #151B2E;
-            --dark-700: #1E2840;
-            --dark-600: #2D3A5F;
-            --text-primary: #FFFFFF;
-            --text-secondary: #CBD5E1;
-            --text-tertiary: #94A3B8;
-            --bg-card: rgba(255, 255, 255, 0.03);
-            --bg-card-hover: rgba(255, 255, 255, 0.06);
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(59, 130, 246, 0.3);
+            --dark: #080D1C;
+            --dark-800: #0F1629;
+            --dark-700: #1A2240;
+            --dark-600: #243058;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --text-tertiary: #64748B;
+            --bg-card: rgba(255,255,255,0.03);
+            --bg-card-hover: rgba(255,255,255,0.055);
+            --border: rgba(255,255,255,0.07);
+            --border-hover: rgba(59,130,246,0.35);
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', -apple-system, sans-serif;
             background: var(--dark);
             color: var(--text-primary);
             line-height: 1.6;
@@ -44,1259 +37,965 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-        /* Navigation - Refined */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(10, 15, 30, 0.8);
-            backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--border);
-        }
-
-        nav .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: opacity 0.3s;
-        }
-
-        .logo:hover {
-            opacity: 0.8;
-        }
-
-        .logo img {
-            width: 36px;
-            height: 36px;
-        }
-
-        .nav-cta {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .phone-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-        }
-
-        .phone-link:hover {
-            color: var(--accent);
-        }
-
-        /* Buttons - Modern */
-        .btn {
+        /* SVG Icon styles */
+        .icon-wrap {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            border: none;
-            font-size: 0.95rem;
-            font-family: 'Inter', sans-serif;
-            white-space: nowrap;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.4);
-        }
-
-        .btn-secondary {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            border: 1.5px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-hover);
-        }
-
-        /* Hero Section - More engaging */
-        .hero {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            margin-bottom: 1.25rem;
             position: relative;
-            overflow: hidden;
+            flex-shrink: 0;
         }
-
-        /* Animated gradient background */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 1000px;
-            height: 1000px;
-            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 20s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -20%;
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: float 15s ease-in-out infinite reverse;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-40px, -40px) scale(1.1); }
-        }
-
-        .hero-content {
+        .icon-wrap svg {
+            width: 26px;
+            height: 26px;
             position: relative;
             z-index: 1;
-            max-width: 900px;
+        }
+        .icon-wrap.blue {
+            background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(14,165,233,0.15));
+            border: 1px solid rgba(59,130,246,0.25);
+        }
+        .icon-wrap.teal {
+            background: linear-gradient(135deg, rgba(14,165,233,0.2), rgba(16,185,129,0.12));
+            border: 1px solid rgba(14,165,233,0.25);
+        }
+        .icon-wrap.green {
+            background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(14,165,233,0.1));
+            border: 1px solid rgba(16,185,129,0.25);
+        }
+        .icon-wrap.amber {
+            background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(239,68,68,0.1));
+            border: 1px solid rgba(245,158,11,0.2);
         }
 
-        .hero-badge {
+        /* Step numbers */
+        .step-num {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .hero h1 {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.25rem;
-            letter-spacing: -0.03em;
-        }
-
-        .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--primary-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero .subheadline {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.65;
-            max-width: 700px;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .trust-line {
-            color: var(--text-tertiary);
-            font-size: 0.95rem;
-        }
-
-        .trust-line strong {
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        .trial-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(14, 165, 233, 0.1));
-            border: 1.5px solid var(--success);
-            padding: 0.6rem 1.25rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            color: var(--success);
-            font-weight: 600;
-            margin-top: 1.5rem;
-        }
-
-        /* Section Headers - Modern */
-        .section-header {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 3.5rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-
-        .section-header p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Problem Section - Cleaner cards */
-        .problem {
-            padding: 6rem 0;
-            background: var(--dark);
-        }
-
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .problem-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem 2rem;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .problem-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--border-hover);
-            background: var(--bg-card-hover);
-        }
-
-        .problem-card:hover::before {
-            opacity: 1;
-        }
-
-        .problem-card .icon {
-            font-size: 3rem;
-            margin-bottom: 1.25rem;
-            display: block;
-        }
-
-        .problem-card .stat {
-            font-family: 'Outfit', sans-serif;
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 0.75rem;
-        }
-
-        .problem-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .problem-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Solution Section */
-        .solution {
-            padding: 6rem 0;
-            background: var(--dark-800);
-        }
-
-        .solution-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 2rem 1.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 14px;
-            padding: 1px;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            background: var(--bg-card-hover);
-        }
-
-        .feature-card:hover::before {
-            opacity: 1;
-        }
-
-        .feature-card .icon {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Trust Section */
-        .trust-section {
-            padding: 6rem 0;
-            background: var(--dark);
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 1000px;
-            margin: 2.5rem auto 0;
-        }
-
-        .trust-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 2rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1.25rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .trust-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-3px);
-            background: var(--bg-card-hover);
-        }
-
-        .trust-card .icon {
-            font-size: 2.25rem;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: white;
+            margin-bottom: 1.25rem;
             flex-shrink: 0;
         }
 
-        .trust-card h3 {
-            font-size: 1.15rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(8,13,28,0.85);
+            backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+        }
+        nav .container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; }
+
+        .logo {
+            display: flex; align-items: center; gap: 0.75rem;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800; font-size: 1.45rem;
+            color: var(--text-primary); text-decoration: none;
+        }
+        .logo-mark {
+            width: 36px; height: 36px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-mark img { width: 36px; height: 36px; }
+
+        .nav-cta { display: flex; gap: 1rem; align-items: center; }
+        .phone-link {
+            color: var(--text-secondary); text-decoration: none;
+            font-weight: 600; transition: color 0.2s;
+            display: flex; align-items: center; gap: 0.6rem; font-size: 0.925rem;
+        }
+        .phone-link:hover { color: var(--text-primary); }
+        .phone-link-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: var(--success); box-shadow: 0 0 0 3px rgba(16,185,129,0.2);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+        @keyframes pulse-dot {
+            0%,100% { box-shadow: 0 0 0 3px rgba(16,185,129,0.2); }
+            50% { box-shadow: 0 0 0 6px rgba(16,185,129,0.1); }
         }
 
-        .trust-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.95rem;
+        /* ── BUTTONS ── */
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.75rem 1.5rem; border-radius: 9px;
+            font-weight: 600; text-decoration: none;
+            transition: all 0.2s cubic-bezier(0.4,0,0.2,1);
+            cursor: pointer; border: none; font-size: 0.95rem;
+            font-family: 'DM Sans', sans-serif; white-space: nowrap; gap: 0.5rem;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white; box-shadow: 0 4px 20px rgba(37,99,235,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(37,99,235,0.45); }
+        .btn-secondary {
+            background: var(--bg-card); color: var(--text-primary);
+            border: 1.5px solid var(--border);
+        }
+        .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 92vh; display: flex; align-items: center;
+            padding-top: 80px; position: relative; overflow: hidden;
+        }
+        .hero-glow-1 {
+            position: absolute; top: -20%; right: -15%;
+            width: 900px; height: 900px;
+            background: radial-gradient(circle, rgba(37,99,235,0.13) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: drift 22s ease-in-out infinite;
+        }
+        .hero-glow-2 {
+            position: absolute; bottom: -25%; left: -15%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(14,165,233,0.09) 0%, transparent 65%);
+            border-radius: 50%;
+            animation: drift 17s ease-in-out infinite reverse;
+        }
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image: linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black 30%, transparent 100%);
+        }
+        @keyframes drift {
+            0%,100% { transform: translate(0,0) scale(1); }
+            50% { transform: translate(-30px,-30px) scale(1.08); }
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 860px; }
+
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            background: rgba(14,165,233,0.08); border: 1px solid rgba(14,165,233,0.2);
+            padding: 0.45rem 1rem; border-radius: 50px;
+            font-size: 0.85rem; color: var(--accent); font-weight: 600;
+            margin-bottom: 1.75rem; letter-spacing: 0.02em;
+        }
+        .hero-badge-dot {
+            width: 6px; height: 6px; border-radius: 50%;
+            background: var(--accent); opacity: 0.9;
         }
 
-        /* Results/Stats - More visual */
-        .results {
-            padding: 6rem 0;
-            background: var(--dark-800);
+        .hero h1 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(2.6rem, 6vw, 4.75rem);
+            font-weight: 800; line-height: 1.08;
+            margin-bottom: 1.35rem; letter-spacing: -0.03em;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--accent) 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 3rem auto;
+        .hero .subheadline {
+            font-size: 1.2rem; color: var(--text-secondary);
+            margin-bottom: 2.25rem; line-height: 1.7; max-width: 660px; font-weight: 400;
         }
 
-        .stat-box {
-            text-align: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 2.5rem 2rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .hero-cta { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+
+        .trust-row {
+            display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+        }
+        .trust-pills { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .trust-pill {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 0.3rem 0.75rem; border-radius: 50px;
+            font-size: 0.8rem; color: var(--text-secondary); font-weight: 500;
         }
 
-        .stat-box:hover {
-            transform: translateY(-5px);
-            border-color: var(--border-hover);
-            background: var(--bg-card-hover);
+        .proof-bar {
+            display: flex; align-items: center; gap: 1.75rem; margin-top: 2rem; flex-wrap: wrap;
         }
+        .proof-item { display: flex; align-items: center; gap: 0.5rem; }
+        .proof-check {
+            width: 18px; height: 18px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--success), #059669);
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .proof-check svg { width: 10px; height: 10px; }
+        .proof-item span { font-size: 0.875rem; color: var(--text-secondary); font-weight: 500; }
 
-        .stat-number {
-            font-family: 'Outfit', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
+        /* ── SECTION SHARED ── */
+        .section-header { text-align: center; max-width: 680px; margin: 0 auto 3.5rem; }
+        .section-eyebrow {
+            font-size: 0.8rem; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+        }
+        .section-header h2 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800;
+            margin-bottom: 1rem; line-height: 1.18; letter-spacing: -0.025em;
+        }
+        .section-header p { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ── PROBLEM ── */
+        .problem { padding: 6rem 0; background: var(--dark); }
+        .problem-grid {
+            display: grid; grid-template-columns: repeat(3,1fr);
+            gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+        }
+        .problem-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 18px; padding: 2.5rem 2rem; text-align: center;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1); position: relative; overflow: hidden;
+        }
+        .problem-card::after {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .problem-card:hover { transform: translateY(-5px); border-color: var(--border-hover); background: var(--bg-card-hover); }
+        .problem-card:hover::after { opacity: 1; }
+
+        .problem-card .stat {
+            font-family: 'Bricolage Grotesque', sans-serif; font-size: 3rem; font-weight: 800;
             background: linear-gradient(135deg, var(--primary-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            line-height: 1;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 0.75rem; line-height: 1.1;
         }
+        .problem-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .problem-card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.65; }
 
-        .stat-label {
-            color: var(--text-secondary);
-            font-weight: 600;
-            font-size: 1rem;
+        /* ── SOLUTION ── */
+        .solution { padding: 6rem 0; background: var(--dark-800); }
+        .solution-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+
+        .feature-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2rem 1.65rem;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1); position: relative;
         }
+        .feature-card:hover { transform: translateY(-5px); background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.925rem; line-height: 1.65; }
+
+        /* ── TRUST ── */
+        .trust-section { padding: 6rem 0; background: var(--dark); }
+        .trust-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.5rem; max-width: 980px; margin: 2.5rem auto 0; }
+        .trust-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2rem;
+            display: flex; align-items: flex-start; gap: 1.25rem;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .trust-card:hover { border-color: var(--border-hover); transform: translateY(-3px); background: var(--bg-card-hover); }
+        .trust-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .trust-card p { color: var(--text-secondary); line-height: 1.65; font-size: 0.925rem; }
+
+        /* ── RESULTS ── */
+        .results { padding: 6rem 0; background: var(--dark-800); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; max-width: 1100px; margin: 3rem auto; }
+        .stat-box {
+            text-align: center; background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 16px; padding: 2.5rem 2rem;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .stat-box:hover { transform: translateY(-5px); border-color: var(--border-hover); background: var(--bg-card-hover); }
+        .stat-number {
+            font-family: 'Bricolage Grotesque', sans-serif; font-size: 3.5rem; font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 0.5rem; line-height: 1;
+        }
+        .stat-label { color: var(--text-secondary); font-weight: 600; font-size: 0.95rem; }
 
         /* Testimonial */
         .testimonial-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            max-width: 700px;
-            margin: 3rem auto;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 18px; padding: 2.75rem; max-width: 680px; margin: 3rem auto;
         }
+        .stars { display: flex; gap: 4px; margin-bottom: 1.25rem; }
+        .stars svg { width: 20px; height: 20px; }
+        .testimonial-text { font-size: 1.1rem; line-height: 1.75; margin-bottom: 1.5rem; color: var(--text-primary); font-style: italic; }
+        .testimonial-author { color: var(--text-secondary); font-weight: 600; font-size: 0.95rem; }
 
-        .stars {
-            color: #FFD700;
-            font-size: 1.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .testimonial-text {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
-        }
-
-        .testimonial-author {
-            color: var(--text-secondary);
-            font-weight: 600;
-        }
-
-        /* Demo Section - More interactive */
-        .demo {
-            padding: 6rem 0;
-            background: var(--dark);
-        }
-
+        /* ── DEMO ── */
+        .demo { padding: 6rem 0; background: var(--dark); }
         .demo-box {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(14, 165, 233, 0.08));
-            border: 2px solid var(--border-hover);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
-            margin: 3rem auto;
-            text-align: center;
+            background: linear-gradient(135deg, rgba(37,99,235,0.07), rgba(14,165,233,0.07));
+            border: 1.5px solid rgba(59,130,246,0.2);
+            border-radius: 22px; padding: 3rem; max-width: 580px; margin: 3rem auto; text-align: center;
         }
+        .demo-box-label {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            font-size: 0.85rem; font-weight: 700; color: var(--accent); letter-spacing: 0.05em;
+            text-transform: uppercase; margin-bottom: 1rem;
+        }
+        .demo-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.75rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .demo-box > p { color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; }
 
         .phone-number {
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 1.25rem;
-            border-radius: 12px;
-            font-size: 2rem;
-            font-weight: 800;
-            font-family: 'Outfit', sans-serif;
-            margin: 2rem 0;
-            text-decoration: none;
-            display: block;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: white; padding: 1.1rem 2rem;
+            border-radius: 12px; font-size: 1.75rem; font-weight: 800;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            margin: 0 0 2rem; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1); letter-spacing: -0.01em;
         }
-
-        .phone-number:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 40px rgba(37, 99, 235, 0.3);
-        }
+        .phone-number svg { width: 28px; height: 28px; }
+        .phone-number:hover { transform: scale(1.02); box-shadow: 0 12px 40px rgba(37,99,235,0.35); }
 
         .demo-prompts {
-            text-align: left;
-            background: var(--dark-700);
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin-top: 2rem;
+            text-align: left; background: var(--dark-700);
+            border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border);
         }
-
-        .demo-prompts p {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .demo-prompts ul {
-            list-style: none;
-        }
-
+        .demo-prompts p { font-weight: 600; margin-bottom: 1rem; color: var(--text-primary); font-size: 0.9rem; }
+        .demo-prompts ul { list-style: none; }
         .demo-prompts li {
-            color: var(--text-secondary);
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-            font-size: 0.95rem;
+            color: var(--text-secondary); padding: 0.45rem 0;
+            padding-left: 1.5rem; position: relative; font-size: 0.9rem;
         }
-
         .demo-prompts li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            width: 16px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%230EA5E9' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' d='M5 12h14m-7-7 7 7-7 7'/%3E%3C/svg%3E") center/contain no-repeat;
         }
 
-        /* Pricing - Refined */
-        .pricing {
-            padding: 6rem 0;
-            background: var(--dark-800);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
-            margin: 3rem auto;
-        }
-
+        /* ── PRICING ── */
+        .pricing { padding: 6rem 0; background: var(--dark-800); }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; max-width: 1100px; margin: 3rem auto; }
         .pricing-card {
-            background: var(--bg-card);
-            border: 1.5px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            display: flex;
-            flex-direction: column;
+            background: var(--bg-card); border: 1.5px solid var(--border);
+            border-radius: 18px; padding: 2.5rem; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            position: relative; display: flex; flex-direction: column;
         }
-
         .pricing-card.featured {
-            border-color: var(--primary);
-            transform: scale(1.03);
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(14, 165, 233, 0.05));
+            border-color: rgba(37,99,235,0.5); transform: scale(1.03);
+            background: linear-gradient(145deg, rgba(37,99,235,0.06), rgba(14,165,233,0.04));
         }
-
-        .pricing-card.featured::before {
-            content: '⭐ MOST POPULAR';
-            position: absolute;
-            top: -1px;
-            left: 50%;
-            transform: translateX(-50%);
+        .popular-badge {
+            position: absolute; top: -1px; left: 50%; transform: translateX(-50%);
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white;
-            padding: 0.5rem 1.25rem;
-            border-radius: 0 0 12px 12px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            letter-spacing: 0.5px;
+            color: white; padding: 0.35rem 1.1rem;
+            border-radius: 0 0 10px 10px; font-weight: 700;
+            font-size: 0.72rem; letter-spacing: 0.06em; white-space: nowrap;
         }
+        .pricing-card:hover { transform: translateY(-5px); border-color: var(--border-hover); }
+        .pricing-card.featured:hover { transform: scale(1.05) translateY(-5px); }
 
-        .pricing-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--border-hover);
-        }
-
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-5px);
-        }
-
-        .pricing-plan {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-tagline {
-            color: var(--text-tertiary);
-            margin-bottom: 1.5rem;
-            font-size: 0.9rem;
-        }
-
+        .pricing-plan { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.45rem; font-weight: 800; margin-bottom: 0.35rem; }
+        .pricing-tagline { color: var(--text-tertiary); margin-bottom: 1.5rem; font-size: 0.875rem; }
         .price {
-            font-family: 'Outfit', sans-serif;
-            font-size: 3rem;
-            font-weight: 800;
+            font-family: 'Bricolage Grotesque', sans-serif; font-size: 2.75rem; font-weight: 800;
             background: linear-gradient(135deg, var(--primary-light), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            line-height: 1;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            margin-bottom: 0.35rem; line-height: 1;
         }
-
-        .price-period {
-            color: var(--text-tertiary);
-            font-size: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-            flex-grow: 1;
-        }
-
+        .price-period { color: var(--text-tertiary); font-size: 0.9rem; margin-bottom: 2rem; }
+        .pricing-features { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
         .pricing-features li {
-            padding: 0.75rem 0;
-            color: var(--text-secondary);
-            padding-left: 2rem;
-            position: relative;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
+            padding: 0.7rem 0; color: var(--text-secondary);
+            padding-left: 1.75rem; position: relative;
+            border-bottom: 1px solid var(--border); font-size: 0.925rem;
         }
-
-        .pricing-features li:last-child {
-            border-bottom: none;
-        }
-
+        .pricing-features li:last-child { border-bottom: none; }
         .pricing-features li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--success);
-            font-weight: bold;
-            font-size: 1.2rem;
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            width: 16px; height: 16px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='rgba(16,185,129,0.15)'/%3E%3Cpath stroke='%2310B981' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m8 12 3 3 5-5'/%3E%3C/svg%3E") center/contain no-repeat;
         }
 
-        /* Final CTA */
-        .final-cta {
-            padding: 6rem 0;
-            background: var(--dark);
-            text-align: center;
-        }
-
+        /* ── FINAL CTA ── */
+        .final-cta { padding: 6rem 0; background: var(--dark); text-align: center; }
         .form-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            max-width: 550px;
-            margin: 3rem auto;
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: 18px; padding: 2.75rem; max-width: 530px; margin: 3rem auto;
         }
-
-        .form-box h3 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.75rem;
-            margin-bottom: 2rem;
-        }
-
+        .form-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.65rem; margin-bottom: 2rem; font-weight: 800; }
         .form-box input, .form-box select {
-            width: 100%;
-            padding: 1rem;
-            background: var(--dark-700);
-            border: 1.5px solid var(--border);
-            border-radius: 8px;
-            color: var(--text-primary);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            margin-bottom: 1rem;
-            transition: border-color 0.3s;
+            width: 100%; padding: 0.9rem 1rem;
+            background: var(--dark-700); border: 1.5px solid var(--border);
+            border-radius: 9px; color: var(--text-primary);
+            font-size: 0.95rem; font-family: 'DM Sans', sans-serif;
+            margin-bottom: 0.875rem; transition: border-color 0.2s;
         }
+        .form-box input:focus, .form-box select:focus { outline: none; border-color: var(--primary); }
+        .form-box select option { background: #1A2240; }
 
-        .form-box input:focus, .form-box select:focus {
-            outline: none;
-            border-color: var(--primary);
+        .next-steps {
+            background: rgba(16,185,129,0.06); border: 1.5px solid rgba(16,185,129,0.2);
+            border-radius: 14px; padding: 2rem; margin-top: 2.5rem; text-align: left;
         }
-
-        .guarantee {
-            background: rgba(16, 185, 129, 0.08);
-            border: 1.5px solid var(--success);
-            border-radius: 14px;
-            padding: 2rem;
-            margin-top: 2.5rem;
+        .next-steps h4 { color: var(--success); font-size: 1rem; margin-bottom: 1rem; font-weight: 700; }
+        .next-step-item {
+            display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.5rem 0;
         }
-
-        .guarantee h4 {
-            color: var(--success);
-            font-size: 1.15rem;
-            margin-bottom: 0.75rem;
+        .step-icon-sm {
+            width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800;
+            font-size: 0.75rem; color: white; margin-top: 1px;
         }
+        .next-step-item p { color: var(--text-secondary); font-size: 0.9rem; }
 
-        .guarantee p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Footer */
+        /* ── FOOTER ── */
         footer {
-            background: var(--dark);
-            border-top: 1px solid var(--border);
-            padding: 3rem 0 2rem;
-            text-align: center;
+            background: var(--dark); border-top: 1px solid var(--border);
+            padding: 3rem 0 2rem; text-align: center;
         }
-
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
+        .footer-social { display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .footer-social a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-            font-size: 1.1rem;
+            color: var(--text-tertiary); text-decoration: none;
+            transition: color 0.2s; font-size: 0.9rem; font-weight: 500;
         }
+        .footer-social a:hover { color: var(--text-primary); }
+        footer p { color: var(--text-tertiary); font-size: 0.875rem; }
 
-        .footer-social a:hover {
-            color: var(--primary);
-        }
-
-        footer p {
-            color: var(--text-tertiary);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive */
+        /* ── RESPONSIVE ── */
         @media (max-width: 968px) {
-            .nav-cta {
-                display: none;
-            }
-
-            .hero {
-                padding-top: 100px;
-                min-height: 80vh;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero .subheadline {
-                font-size: 1.1rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-                text-align: center;
-            }
-
-            .problem-grid,
-            .solution-grid,
-            .trust-grid,
-            .stats-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-                gap: 1.25rem;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-
-            .pricing-card.featured:hover {
-                transform: translateY(-5px);
-            }
-
-            section {
-                padding: 4rem 0;
-            }
+            .nav-cta { display: none; }
+            .hero { padding-top: 100px; min-height: 80vh; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .subheadline { font-size: 1.05rem; }
+            .hero-cta { flex-direction: column; }
+            .btn { width: 100%; text-align: center; }
+            .problem-grid, .solution-grid, .trust-grid, .stats-grid, .pricing-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+            .pricing-card.featured { transform: scale(1); }
+            .pricing-card.featured:hover { transform: translateY(-5px); }
+            section { padding: 4rem 0; }
         }
 
-        /* Smooth entrance animations */
+        /* ── ANIMATIONS ── */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out forwards;
+            from { opacity: 0; transform: translateY(28px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <a href="#" class="logo">
+
+<!-- SVG Gradient Defs (invisible, reused by icons) -->
+<svg style="width:0;height:0;position:absolute;" aria-hidden="true">
+    <defs>
+        <linearGradient id="grad-blue" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#3B82F6"/>
+            <stop offset="100%" stop-color="#0EA5E9"/>
+        </linearGradient>
+        <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#10B981"/>
+            <stop offset="100%" stop-color="#0EA5E9"/>
+        </linearGradient>
+        <linearGradient id="grad-amber" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#F59E0B"/>
+            <stop offset="100%" stop-color="#EF4444"/>
+        </linearGradient>
+        <linearGradient id="grad-teal" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0EA5E9"/>
+            <stop offset="100%" stop-color="#10B981"/>
+        </linearGradient>
+    </defs>
+</svg>
+
+<!-- Navigation -->
+<nav>
+    <div class="container">
+        <a href="#" class="logo">
+            <div class="logo-mark">
                 <img src="data:image/png;base64,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" alt="BoyerScales">
-                BoyerScales
+            </div>
+            BoyerScales
+        </a>
+        <div class="nav-cta">
+            <a href="tel:+19166598131" class="phone-link">
+                <div class="phone-link-dot"></div>
+                (916) 659-8131
             </a>
-            <div class="nav-cta">
-                <a href="tel:+19166598131" class="phone-link">
-                    <span>📞</span>
-                    <span>(916) 659-8131</span>
+            <a href="#start" class="btn btn-primary">Start Free Trial</a>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-glow-1"></div>
+    <div class="hero-glow-2"></div>
+    <div class="hero-grid"></div>
+    <div class="container">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <div class="hero-badge-dot"></div>
+                Sacramento's Phone Coverage Service
+            </div>
+            <h1>Stop Losing Money on <span class="highlight">Missed Calls</span></h1>
+            <p class="subheadline">Every missed call is a lost job. Our automated system instantly responds to missed callers, books appointments, and follows up automatically — so you capture every opportunity, even after hours.</p>
+            <div class="hero-cta">
+                <a href="#start" class="btn btn-primary">
+                    Start Free 7-Day Trial
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </a>
-                <a href="#start" class="btn btn-primary">Start Free Trial</a>
+                <a href="tel:+19166598131" class="btn btn-secondary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#CBD5E1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z"/></svg>
+                    Try the Live Demo
+                </a>
             </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span>🎯</span>
-                    Sacramento's Phone Coverage Service
-                </div>
-                <h1>Stop Losing Money on <span class="highlight">Missed Calls</span></h1>
-                <p class="subheadline">Every missed call is a lost job. Our automated revenue system instantly responds to missed callers, books appointments, follows up automatically, and helps you capture every opportunity — even after hours.</p>
-                <div class="hero-cta">
-                    <a href="#start" class="btn btn-primary">Start Free 7-Day Trial →</a>
-                    <a href="tel:+19166598131" class="btn btn-secondary">📞 Try the Demo Live</a>
-                </div>
-                <p class="trust-line"><strong>Trusted by:</strong> HVAC contractors · Plumbers · Med spas · Auto shops · Dental offices</p>
-                <div class="trial-badge">
-                    <span>✓</span>
-                    <span>7-Day Free Trial · No Credit Card · Cancel Anytime</span>
+            <div class="trust-row">
+                <span style="color:var(--text-tertiary);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;">Trusted by:</span>
+                <div class="trust-pills">
+                    <span class="trust-pill">HVAC Contractors</span>
+                    <span class="trust-pill">Plumbers</span>
+                    <span class="trust-pill">Med Spas</span>
+                    <span class="trust-pill">Auto Shops</span>
+                    <span class="trust-pill">Dental Offices</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Problem Section -->
-    <section class="problem">
-        <div class="container">
-            <div class="section-header">
-                <h2>Every Missed Call Is Money Lost</h2>
-                <p>While you're doing great work, who's answering your phone?</p>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="icon">📞</div>
-                    <div class="stat">40%</div>
-                    <h3>Calls Go Unanswered</h3>
-                    <p>Your team is busy, in the truck, or with another customer. Most people won't leave voicemail—they just call your competitor.</p>
+            <div class="proof-bar">
+                <div class="proof-item">
+                    <div class="proof-check">
+                        <svg viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4 10-9"/></svg>
+                    </div>
+                    <span>7-Day Free Trial</span>
                 </div>
-                <div class="problem-card">
-                    <div class="icon">💸</div>
-                    <div class="stat">$1,200</div>
-                    <h3>Average Lost Job</h3>
-                    <p>By the time you call back hours later, they've already booked someone else. That's real revenue walking out the door.</p>
+                <div class="proof-item">
+                    <div class="proof-check">
+                        <svg viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4 10-9"/></svg>
+                    </div>
+                    <span>No Credit Card Required</span>
                 </div>
-                <div class="problem-card">
-                    <div class="icon">🌙</div>
-                    <div class="stat">24/7</div>
-                    <h3>After-Hours Gaps</h3>
-                    <p>Competitors with round-the-clock availability capture your customers while you're closed for the evening.</p>
+                <div class="proof-item">
+                    <div class="proof-check">
+                        <svg viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4 10-9"/></svg>
+                    </div>
+                    <span>Cancel Anytime</span>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- How It Works -->
-    <section class="solution">
-        <div class="container">
-            <div class="section-header">
-                <h2>How BoyerScales Works</h2>
-                <p>Professional phone coverage in 4 simple steps</p>
-            </div>
-            <div class="solution-grid">
-                <div class="feature-card">
-                    <div class="icon">1️⃣</div>
-                    <h3>Discovery Call</h3>
-                    <p>We learn your business, services, pricing, and how you want calls handled.</p>
+<!-- Problem -->
+<section class="problem">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">The Problem</div>
+            <h2>Every Missed Call Is Money Lost</h2>
+            <p>While you're doing great work on the job, who's answering your phone?</p>
+        </div>
+        <div class="problem-grid">
+            <div class="problem-card">
+                <div class="icon-wrap amber" style="margin:0 auto 1.25rem;">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="url(#grad-amber)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <line x1="1" y1="1" x2="23" y2="23" stroke="url(#grad-amber)" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
                 </div>
-                <div class="feature-card">
-                    <div class="icon">2️⃣</div>
+                <div class="stat">40%</div>
+                <h3>Calls Go Unanswered</h3>
+                <p>Your team is busy, in the truck, or with a customer. Most people won't leave voicemail—they call your competitor.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon-wrap amber" style="margin:0 auto 1.25rem;">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="10" stroke="url(#grad-amber)" stroke-width="1.8"/>
+                        <path d="M12 6v6l4 2" stroke="url(#grad-amber)" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M12 8v4" stroke="url(#grad-amber)" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="stat">$1,200</div>
+                <h3>Average Lost Job</h3>
+                <p>By the time you call back hours later, they've already booked someone else. That's real revenue walking out the door.</p>
+            </div>
+            <div class="problem-card">
+                <div class="icon-wrap amber" style="margin:0 auto 1.25rem;">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" stroke="url(#grad-amber)" stroke-width="1.8" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="stat">24/7</div>
+                <h3>After-Hours Gaps</h3>
+                <p>Competitors with round-the-clock availability capture your customers while you're closed for the evening.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="solution">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">How It Works</div>
+            <h2>Professional Coverage in 4 Steps</h2>
+            <p>From setup to live in 48 hours — we handle everything</p>
+        </div>
+        <div class="solution-grid">
+            <div class="feature-card">
+                <div class="step-num">1</div>
+                <h3>Discovery Call</h3>
+                <p>We learn your business, services, pricing, and exactly how you want calls handled.</p>
+            </div>
+            <div class="feature-card">
+                <div class="step-num">2</div>
+                <h3>Custom Training</h3>
+                <p>We train your phone assistant and integrate with your calendar. Full setup in 24–48 hours.</p>
+            </div>
+            <div class="feature-card">
+                <div class="step-num">3</div>
+                <h3>Go Live</h3>
+                <p>Every call gets answered professionally. Appointments book automatically into your calendar.</p>
+            </div>
+            <div class="feature-card">
+                <div class="step-num">4</div>
+                <h3>Monitor & Optimize</h3>
+                <p>Real-time notifications, full transcripts, and the ability to adjust responses anytime.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- What We Handle -->
+<section class="solution" style="background: var(--dark);">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Capabilities</div>
+            <h2>What We Handle For You</h2>
+            <p>Professional service that feels like a natural part of your team</p>
+        </div>
+        <div class="solution-grid">
+            <div class="feature-card">
+                <div class="icon-wrap blue">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="url(#grad-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>24/7 Answering</h3>
+                <p>Every call gets a friendly, professional greeting — day, night, and weekends.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-wrap teal">
+                    <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" stroke="url(#grad-teal)" stroke-width="1.8"/><line x1="16" y1="2" x2="16" y2="6" stroke="url(#grad-teal)" stroke-width="1.8" stroke-linecap="round"/><line x1="8" y1="2" x2="8" y2="6" stroke="url(#grad-teal)" stroke-width="1.8" stroke-linecap="round"/><line x1="3" y1="10" x2="21" y2="10" stroke="url(#grad-teal)" stroke-width="1.8"/><path d="m9 16 2 2 4-4" stroke="url(#grad-teal)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Direct Booking</h3>
+                <p>Appointments scheduled straight into your calendar while you're busy on the job.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-wrap green">
+                    <svg viewBox="0 0 24 24" fill="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" stroke="url(#grad-green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Review Collection</h3>
+                <p>Automatic review requests sent to happy customers to build your reputation online.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-wrap blue">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="url(#grad-blue)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+                <h3>Lead Follow-Up</h3>
+                <p>Automatic follow-ups on estimates and inquiries so nothing falls through the cracks.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust -->
+<section class="trust-section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Quality Safeguards</div>
+            <h2>Built to Protect Your Business</h2>
+            <p>Every feature is designed with your customers' experience in mind</p>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="icon-wrap blue" style="margin-bottom:0;">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" stroke="url(#grad-blue)" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="url(#grad-blue)" stroke-width="1.8"/></svg>
+                </div>
+                <div>
+                    <h3>Human Escalation</h3>
+                    <p>Complex questions or frustrated customers get seamlessly transferred to you — no awkward handoffs.</p>
+                </div>
+            </div>
+            <div class="trust-card">
+                <div class="icon-wrap teal" style="margin-bottom:0;">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="url(#grad-teal)" stroke-width="1.8"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" stroke="url(#grad-teal)" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <div>
                     <h3>Custom Training</h3>
-                    <p>We train your phone assistant and integrate with your calendar. Setup takes 24-48 hours.</p>
+                    <p>Trained specifically on your services, pricing, and preferences. Represents your business accurately.</p>
                 </div>
-                <div class="feature-card">
-                    <div class="icon">3️⃣</div>
-                    <h3>Go Live</h3>
-                    <p>Every call gets answered professionally. Appointments book automatically into your calendar.</p>
+            </div>
+            <div class="trust-card">
+                <div class="icon-wrap green" style="margin-bottom:0;">
+                    <svg viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="url(#grad-green)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
-                <div class="feature-card">
-                    <div class="icon">4️⃣</div>
-                    <h3>Monitor & Optimize</h3>
-                    <p>Get real-time notifications, review transcripts, and adjust as needed. You stay in control.</p>
+                <div>
+                    <h3>Privacy Protected</h3>
+                    <p>Your customer data stays private. Never shared with third parties or used for any other purpose.</p>
+                </div>
+            </div>
+            <div class="trust-card">
+                <div class="icon-wrap blue" style="margin-bottom:0;">
+                    <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="url(#grad-blue)" stroke-width="1.8"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke="url(#grad-blue)" stroke-width="1.8" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                    <h3>You Stay in Control</h3>
+                    <p>Real-time notifications, full transcripts, and the ability to update responses at any time.</p>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- What We Handle -->
-    <section class="solution" style="background: var(--dark);">
-        <div class="container">
-            <div class="section-header">
-                <h2>What We Handle For You</h2>
-                <p>Professional service that feels like part of your team</p>
+<!-- Results -->
+<section class="results">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Results</div>
+            <h2>What Happens When You Never Miss a Call</h2>
+            <p>Real outcomes from businesses using BoyerScales</p>
+        </div>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <div class="stat-number">95%+</div>
+                <div class="stat-label">Calls Answered</div>
             </div>
-            <div class="solution-grid">
-                <div class="feature-card">
-                    <div class="icon">📱</div>
-                    <h3>24/7 Answering</h3>
-                    <p>Every call gets a friendly, professional greeting—day, night, weekends.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">📅</div>
-                    <h3>Direct Booking</h3>
-                    <p>Appointments scheduled straight into your calendar while you work.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">⭐</div>
-                    <h3>Review Collection</h3>
-                    <p>Automatic review requests sent to happy customers to build your reputation.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="icon">💬</div>
-                    <h3>Lead Follow-Up</h3>
-                    <p>Automatic follow-ups on estimates and inquiries so nothing falls through.</p>
-                </div>
+            <div class="stat-box">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">Coverage</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Reviews Collected</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">48hr</div>
+                <div class="stat-label">Setup Time</div>
             </div>
         </div>
-    </section>
 
-    <!-- Trust Section -->
-    <section class="trust-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Built to Protect Your Business</h2>
-                <p>Quality safeguards that keep your customers happy</p>
+        <div class="testimonial-box">
+            <div class="stars">
+                <svg viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <svg viewBox="0 0 24 24" fill="#F59E0B"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             </div>
-            <div class="trust-grid">
-                <div class="trust-card">
-                    <div class="icon">👤</div>
-                    <div>
-                        <h3>Human Escalation</h3>
-                        <p>Complex questions or frustrated customers get seamlessly transferred to you—no awkward handoffs.</p>
-                    </div>
-                </div>
-                <div class="trust-card">
-                    <div class="icon">🎯</div>
-                    <div>
-                        <h3>Custom Training</h3>
-                        <p>Trained specifically on your services, prices, and preferences. Represents your business accurately.</p>
-                    </div>
-                </div>
-                <div class="trust-card">
-                    <div class="icon">🔒</div>
-                    <div>
-                        <h3>Privacy Protected</h3>
-                        <p>Your customer data stays private. Never shared with third parties or used for any other purpose.</p>
-                    </div>
-                </div>
-                <div class="trust-card">
-                    <div class="icon">🎛️</div>
-                    <div>
-                        <h3>You Stay in Control</h3>
-                        <p>Real-time notifications, full transcripts, and the ability to change responses anytime.</p>
-                    </div>
-                </div>
+            <p class="testimonial-text">"We were skeptical about using technology to answer our phones, but it sounds so natural our customers don't even notice. We're booking jobs at 11pm now — that never happened before."</p>
+            <p class="testimonial-author">— Mike R., Sacramento HVAC Company</p>
+        </div>
+    </div>
+</section>
+
+<!-- Demo -->
+<section class="demo">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Live Demo</div>
+            <h2>Hear It For Yourself</h2>
+            <p>Call our demo line and experience how natural it sounds</p>
+        </div>
+        <div class="demo-box">
+            <div class="demo-box-label">
+                <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#0EA5E9"/></svg>
+                Live &amp; Active
+            </div>
+            <h3>Try Our Live Demo</h3>
+            <p>Hear exactly what your customers will experience</p>
+            <a href="tel:+19166598131" class="phone-number">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                (916) 659-8131
+            </a>
+            <div class="demo-prompts">
+                <p>Try asking the assistant:</p>
+                <ul>
+                    <li>"What are your hours?"</li>
+                    <li>"How much does a furnace repair cost?"</li>
+                    <li>"Can I book an appointment?"</li>
+                    <li>"I need to talk to someone right now."</li>
+                </ul>
+            </div>
+            <p style="color:var(--text-tertiary);margin-top:1.5rem;font-size:0.875rem;">Sounds natural, right? That's exactly how your customers will experience it.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Pricing</div>
+            <h2>Simple, Fair Pricing</h2>
+            <p>Plans based on your call volume — most clients invest a few hundred per month</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="pricing-plan">Starter</div>
+                <p class="pricing-tagline">20–75 calls monthly</p>
+                <div class="price">Custom</div>
+                <p class="price-period">Based on volume</p>
+                <ul class="pricing-features">
+                    <li>24/7 text message handling</li>
+                    <li>Automated review requests</li>
+                    <li>Missed call recovery</li>
+                    <li>Calendar integration</li>
+                    <li>Basic reporting</li>
+                    <li>7-day free trial</li>
+                </ul>
+                <a href="#start" class="btn btn-primary" style="width:100%;">Start Free Trial</a>
+            </div>
+            <div class="pricing-card featured">
+                <div class="popular-badge">⭐ Most Popular</div>
+                <div class="pricing-plan">Professional</div>
+                <p class="pricing-tagline">75–200 calls monthly</p>
+                <div class="price">Custom</div>
+                <p class="price-period">Based on volume</p>
+                <ul class="pricing-features">
+                    <li>Everything in Starter, plus:</li>
+                    <li>24/7 live phone answering</li>
+                    <li>Real-time appointment booking</li>
+                    <li>Two-way SMS conversations</li>
+                    <li>CRM integration</li>
+                    <li>Priority support</li>
+                    <li>7-day free trial</li>
+                </ul>
+                <a href="#start" class="btn btn-primary" style="width:100%;">Start Free Trial</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-plan">Enterprise</div>
+                <p class="pricing-tagline">200+ calls monthly</p>
+                <div class="price">Custom</div>
+                <p class="price-period">Based on volume</p>
+                <ul class="pricing-features">
+                    <li>Everything in Professional, plus:</li>
+                    <li>Unlimited call handling</li>
+                    <li>Advanced lead nurturing</li>
+                    <li>Custom workflow automation</li>
+                    <li>Dedicated account manager</li>
+                    <li>White-glove onboarding</li>
+                    <li>7-day free trial</li>
+                </ul>
+                <a href="#start" class="btn btn-primary" style="width:100%;">Start Free Trial</a>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Results -->
-    <section class="results">
-        <div class="container">
-            <div class="section-header">
-                <h2>Real Results from Sacramento Businesses</h2>
-                <p>What happens when you never miss a call again</p>
+<!-- Final CTA -->
+<section id="start" class="final-cta">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-eyebrow">Get Started</div>
+            <h2>Ready to Stop Missing Calls?</h2>
+            <p>Try it free for 7 days. No credit card. See how it works for your business.</p>
+        </div>
+        <div class="form-box">
+            <h3>Start Your Free Trial</h3>
+            <form id="contactForm">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Email Address" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <input type="text" name="business" placeholder="Business Name" required>
+                <select name="callsPerMonth" required>
+                    <option value="">Monthly call volume?</option>
+                    <option value="under-20">Under 20</option>
+                    <option value="20-75">20–75</option>
+                    <option value="75-200">75–200</option>
+                    <option value="200+">200+</option>
+                </select>
+                <button type="submit" class="btn btn-primary" style="width:100%;padding:1rem;">
+                    Start Free Trial
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+            </form>
+            <p style="color:var(--text-tertiary);font-size:0.875rem;margin-top:1rem;text-align:center;">We'll call you within 24 hours to set everything up</p>
+        </div>
+        <div class="next-steps">
+            <h4>What Happens Next</h4>
+            <div class="next-step-item">
+                <div class="step-icon-sm">1</div>
+                <p>We'll call within 24 hours to learn about your business</p>
             </div>
-            <div class="stats-grid">
-                <div class="stat-box">
-                    <div class="stat-number">95%+</div>
-                    <div class="stat-label">Calls Answered</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">Coverage</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Reviews Collected</div>
-                </div>
-                <div class="stat-box">
-                    <div class="stat-number">48hr</div>
-                    <div class="stat-label">Setup Time</div>
-                </div>
+            <div class="next-step-item">
+                <div class="step-icon-sm">2</div>
+                <p>We build and train your phone assistant in 24–48 hours</p>
             </div>
-
-            <div class="testimonial-box">
-                <div class="stars">⭐⭐⭐⭐⭐</div>
-                <p class="testimonial-text">"We were skeptical about using technology to answer our phones, but it sounds so natural our customers don't even notice. We're booking jobs at 11pm now—that never happened before."</p>
-                <p class="testimonial-author">— Mike R., Sacramento HVAC Company</p>
+            <div class="next-step-item">
+                <div class="step-icon-sm">3</div>
+                <p>You get 7 days free to test it — keep going or cancel, no charge either way</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Demo Section -->
-    <section class="demo">
-        <div class="container">
-            <div class="section-header">
-                <h2>Hear It For Yourself</h2>
-                <p>Call our demo line and experience how natural it sounds</p>
-            </div>
-
-            <div class="demo-box">
-                <h3>🎙️ Try Our Live Demo</h3>
-                <a href="tel:+19166598131" class="phone-number">📞 (916) 659-8131</a>
-                <div class="demo-prompts">
-                    <p>Try asking:</p>
-                    <ul>
-                        <li>"What are your hours?"</li>
-                        <li>"How much does a furnace repair cost?"</li>
-                        <li>"Can I book an appointment?"</li>
-                        <li>"I need to talk to someone right now."</li>
-                    </ul>
-                </div>
-                <p style="color: var(--text-secondary); margin-top: 1.5rem;">Sounds natural, right? That's exactly how your customers will experience it.</p>
-            </div>
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-social">
+            <a href="https://instagram.com/boyerscales" target="_blank">Instagram</a>
+            <a href="https://x.com/boyerscales" target="_blank">X / Twitter</a>
+            <a href="https://tiktok.com/@boyerscales" target="_blank">TikTok</a>
+            <a href="https://linkedin.com/company/boyerscales" target="_blank">LinkedIn</a>
         </div>
-    </section>
+        <p>© 2025 BoyerScales. Sacramento-based. Locally trusted.</p>
+        <p style="margin-top:0.5rem;">
+            <a href="https://boyerscales.com/marketing" target="_blank" style="color:var(--text-tertiary);text-decoration:none;">Marketing Services</a>
+        </p>
+    </div>
+</footer>
 
-    <!-- Pricing -->
-    <section class="pricing">
-        <div class="container">
-            <div class="section-header">
-                <h2>Simple, Fair Pricing</h2>
-                <p>Plans based on your call volume—most clients invest a few hundred per month</p>
-            </div>
-
-            <div class="pricing-grid">
-                <div class="pricing-card">
-                    <div class="pricing-plan">Starter</div>
-                    <p class="pricing-tagline">20-75 calls monthly</p>
-                    <div class="price">Custom</div>
-                    <p class="price-period">Based on volume</p>
-                    <ul class="pricing-features">
-                        <li>24/7 text message handling</li>
-                        <li>Automated review requests</li>
-                        <li>Missed call recovery</li>
-                        <li>Calendar integration</li>
-                        <li>Basic reporting</li>
-                        <li>7-day free trial</li>
-                    </ul>
-                    <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
-                </div>
-
-                <div class="pricing-card featured">
-                    <div class="pricing-plan">Professional</div>
-                    <p class="pricing-tagline">75-200 calls monthly</p>
-                    <div class="price">Custom</div>
-                    <p class="price-period">Based on volume</p>
-                    <ul class="pricing-features">
-                        <li>Everything in Starter, plus:</li>
-                        <li>24/7 live phone answering</li>
-                        <li>Real-time appointment booking</li>
-                        <li>Two-way SMS conversations</li>
-                        <li>CRM integration</li>
-                        <li>Priority support</li>
-                        <li>7-day free trial</li>
-                    </ul>
-                    <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-plan">Enterprise</div>
-                    <p class="pricing-tagline">200+ calls monthly</p>
-                    <div class="price">Custom</div>
-                    <p class="price-period">Based on volume</p>
-                    <ul class="pricing-features">
-                        <li>Everything in Professional, plus:</li>
-                        <li>Unlimited call handling</li>
-                        <li>Advanced lead nurturing</li>
-                        <li>Custom workflow automation</li>
-                        <li>Dedicated account manager</li>
-                        <li>White-glove onboarding</li>
-                        <li>7-day free trial</li>
-                    </ul>
-                    <a href="#start" class="btn btn-primary" style="width: 100%;">Start Free Trial</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section id="start" class="final-cta">
-        <div class="container">
-            <div class="section-header">
-                <h2>Ready to Stop Missing Calls?</h2>
-                <p>Try it free for 7 days. No credit card. See how it works for your business.</p>
-            </div>
-
-            <div class="form-box">
-                <h3>Start Your Free Trial</h3>
-                <form id="contactForm">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Email Address" required>
-                    <input type="tel" name="phone" placeholder="Phone Number" required>
-                    <input type="text" name="business" placeholder="Business Name" required>
-                    <select name="callsPerMonth" required>
-                        <option value="">Monthly call volume?</option>
-                        <option value="under-20">Under 20</option>
-                        <option value="20-75">20-75</option>
-                        <option value="75-200">75-200</option>
-                        <option value="200+">200+</option>
-                    </select>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Start Free Trial →</button>
-                </form>
-                <p style="color: var(--text-tertiary); font-size: 0.9rem; margin-top: 1rem; text-align: center;">We'll call you within 24 hours to set everything up</p>
-            </div>
-
-            <div class="guarantee">
-                <h4>What Happens Next</h4>
-                <p style="margin-bottom: 0.75rem;">1. We'll call within 24 hours to learn about your business</p>
-                <p style="margin-bottom: 0.75rem;">2. We build and train your phone assistant in 24-48 hours</p>
-                <p>3. You get 7 days free to test it—keep going or cancel, no charge either way</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-social">
-                <a href="https://instagram.com/boyerscales" target="_blank">Instagram</a>
-                <a href="https://x.com/boyerscales" target="_blank">X</a>
-                <a href="https://tiktok.com/@boyerscales" target="_blank">TikTok</a>
-                <a href="https://linkedin.com/company/boyerscales" target="_blank">LinkedIn</a>
-            </div>
-            <p>© 2025 BoyerScales. Sacramento-based. Locally trusted.</p>
-            <p style="margin-top: 0.5rem;">
-                <a href="https://boyerscales.com/marketing" target="_blank" style="color: var(--text-secondary); text-decoration: none;">Marketing Services</a>
-            </p>
-        </div>
-    </footer>
-
-    <script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
+<script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const name = document.querySelector('[name="name"]').value;
-            const email = document.querySelector('[name="email"]').value;
-            const phone = document.querySelector('[name="phone"]').value;
-            const business = document.querySelector('[name="business"]').value;
-            const callsPerMonth = document.querySelector('[name="callsPerMonth"]').value;
-            
-            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzNht1GMQ6PPJq7uTieMP06SIJEAixtpcBQAuHX7FqA9Zje8ZhJTRZMfrg0P3H7DEPS0w/exec';
-            
-            fetch(GOOGLE_SHEETS_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    business: business,
-                    callsPerMonth: callsPerMonth
-                })
-            }).then(() => {
-                alert(`Thanks ${name}! We'll call you within 24 hours to set up your 7-day free trial for ${business}.`);
-                e.target.reset();
-            }).catch(() => {
-                alert(`Thanks ${name}! We'll call you within 24 hours to set up your 7-day free trial for ${business}.`);
-                e.target.reset();
-            });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
+    });
 
-        // Fade-in animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.problem-card, .feature-card, .stat-box, .testimonial-box, .pricing-card, .trust-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-            observer.observe(el);
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.querySelector('[name="name"]').value;
+        const email = document.querySelector('[name="email"]').value;
+        const phone = document.querySelector('[name="phone"]').value;
+        const business = document.querySelector('[name="business"]').value;
+        const callsPerMonth = document.querySelector('[name="callsPerMonth"]').value;
+        const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzNht1GMQ6PPJq7uTieMP06SIJEAixtpcBQAuHX7FqA9Zje8ZhJTRZMfrg0P3H7DEPS0w/exec';
+        fetch(GOOGLE_SHEETS_URL, {
+            method: 'POST', mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, phone, business, callsPerMonth })
+        }).then(() => {
+            alert(`Thanks ${name}! We'll call you within 24 hours to set up your 7-day free trial for ${business}.`);
+            e.target.reset();
+        }).catch(() => {
+            alert(`Thanks ${name}! We'll call you within 24 hours to set up your 7-day free trial for ${business}.`);
+            e.target.reset();
         });
-    </script>
+    });
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.problem-card, .feature-card, .stat-box, .testimonial-box, .pricing-card, .trust-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(28px)';
+        el.style.transition = 'opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1)';
+        observer.observe(el);
+    });
+</script>
 </body>
 </html>
