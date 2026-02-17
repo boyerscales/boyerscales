@@ -268,10 +268,11 @@
         .problem-card{
             background:var(--bg-card);border:1px solid var(--border);
             border-radius:var(--radius-lg);padding:2.75rem 2rem;text-align:center;
-            transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1);
+            transition:border-color 0.4s,background 0.4s;
             position:relative;overflow:hidden;
             will-change:transform;
         }
+        .problem-card.revealed{transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1)}
         .problem-card::before{
             content:'';position:absolute;inset:0;
             border-radius:var(--radius-lg);
@@ -301,9 +302,10 @@
         .feature-card{
             background:var(--bg-card);border:1px solid var(--border);
             border-radius:var(--radius-lg);padding:2.25rem 1.75rem;
-            transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1);
+            transition:border-color 0.4s,background 0.4s;
             position:relative;will-change:transform;
         }
+        .feature-card.revealed{transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1)}
         .feature-card:hover{background:var(--bg-card-hover);border-color:var(--border-hover)}
         .feature-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.75rem}
         .feature-card p{color:var(--text-secondary);font-size:0.9rem;line-height:1.65}
@@ -315,9 +317,10 @@
             background:var(--bg-card);border:1px solid var(--border);
             border-radius:var(--radius-lg);padding:2rem;
             display:flex;align-items:flex-start;gap:1.25rem;
-            transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1);
+            transition:border-color 0.4s,background 0.4s;
             will-change:transform;
         }
+        .trust-card.revealed{transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1)}
         .trust-card:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
         .trust-card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.5rem}
         .trust-card p{color:var(--text-secondary);line-height:1.65;font-size:0.9rem}
@@ -328,9 +331,10 @@
         .stat-box{
             text-align:center;background:var(--bg-card);border:1px solid var(--border);
             border-radius:var(--radius-lg);padding:2.75rem 2rem;
-            transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1);
+            transition:border-color 0.4s,background 0.4s;
             will-change:transform;
         }
+        .stat-box.revealed{transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1)}
         .stat-box:hover{border-color:var(--border-hover);background:var(--bg-card-hover)}
         .stat-number{
             font-family:'Bricolage Grotesque',sans-serif;font-size:3.5rem;font-weight:800;
@@ -426,13 +430,14 @@
             background:rgba(255,255,255,0.02);
             border:1px solid var(--border);
             border-radius:var(--radius-lg);padding:2.75rem 2.25rem;
-            transition:all 0.4s cubic-bezier(0.2,0,0,1);
+            transition:border-color 0.4s,background 0.4s;
             position:relative;display:flex;flex-direction:column;
             overflow:hidden;will-change:transform;
             /* glassmorphism */
             backdrop-filter:blur(20px);
             -webkit-backdrop-filter:blur(20px);
         }
+        .pricing-card.revealed{transition:border-color 0.4s,background 0.4s,transform 0.4s cubic-bezier(0.2,0,0,1)}
         .pricing-card::before{
             content:'';position:absolute;inset:-1px;
             border-radius:var(--radius-lg);padding:1px;
@@ -456,7 +461,7 @@
             font-size:0.7rem;letter-spacing:0.06em;white-space:nowrap;
         }
         .pricing-card:hover{border-color:var(--border-hover)}
-        .pricing-card.featured:hover{transform:scale(1.05)}
+        .pricing-card.featured:hover{transform:scale(1.05) !important}
 
         .pricing-plan{font-family:'Bricolage Grotesque',sans-serif;font-size:1.4rem;font-weight:800;margin-bottom:0.35rem}
         .pricing-tagline{color:var(--text-tertiary);margin-bottom:1.5rem;font-size:0.85rem}
@@ -1110,14 +1115,18 @@
     if (!isMobile && !prefersReduced) {
         document.querySelectorAll('.magnetic-card').forEach(card => {
             card.addEventListener('mousemove', e => {
+                if (!card.classList.contains('revealed')) return;
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left - rect.width / 2;
                 const y = e.clientY - rect.top - rect.height / 2;
-                card.style.transform = `translate(${x * 0.03}px, ${y * 0.03}px)`;
+                const base = card.classList.contains('featured') ? 'scale(1.03) ' : '';
+                card.style.transform = `${base}translate(${x * 0.03}px, ${y * 0.03}px)`;
             });
             card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
-                card.style.transition = 'transform 0.5s cubic-bezier(0.2,0,0,1)';
+                if (!card.classList.contains('revealed')) return;
+                const base = card.classList.contains('featured') ? 'scale(1.03)' : '';
+                card.style.transform = base;
+                card.style.transition = 'transform 0.5s cubic-bezier(0.2,0,0,1), border-color 0.4s, background 0.4s';
                 setTimeout(() => { card.style.transition = ''; }, 500);
             });
         });
@@ -1220,7 +1229,19 @@
                     opacity: 1,
                     duration: 0.8,
                     stagger: 0.12,
-                    ease: 'power3.out'
+                    ease: 'power3.out',
+                    onComplete: () => {
+                        cards.forEach(c => {
+                            c.classList.add('revealed');
+                            // Clear GSAP inline styles so CSS can take over
+                            c.style.removeProperty('opacity');
+                            c.style.removeProperty('transform');
+                            // Restore featured card scale
+                            if (c.classList.contains('featured')) {
+                                c.style.transform = 'scale(1.03)';
+                            }
+                        });
+                    }
                 });
             },
             once: true
