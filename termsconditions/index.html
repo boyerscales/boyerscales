@@ -1,45 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Terms and Conditions - BoyerScales LLC</title>
-<style>
-body {font-family: Arial, sans-serif; max-width: 900px; margin: 40px auto; line-height: 1.6; padding: 20px;}
-h1, h2 {color: #222;}
-</style>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions — BoyerScales LLC</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #060608;
+            --surface: #0d0d10;
+            --border: rgba(255,255,255,0.05);
+            --text: #f2f2f4;
+            --text-muted: #8b8b98;
+            --text-dim: #4e4e5a;
+            --pink: #60a5fa;
+            --pink-hot: #3b82f6;
+            --fuchsia: #818cf8;
+            --serif: 'Instrument Serif', Georgia, serif;
+            --sans: 'Outfit', -apple-system, sans-serif;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection { background: var(--pink); color: var(--bg); }
+
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            background: rgba(6,6,8,0.85);
+            backdrop-filter: blur(24px) saturate(1.5);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: var(--sans);
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .nav-logo span { color: var(--pink); }
+
+        .nav-back {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.25s;
+        }
+
+        .nav-back:hover { color: var(--text); }
+
+        .nav-back svg {
+            width: 16px; height: 16px;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 2;
+        }
+
+        /* ─── HEADER ─── */
+        .page-header {
+            padding: 140px 24px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0; right: 0;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .page-header-glow {
+            position: absolute;
+            width: 500px; height: 500px;
+            top: 30%; left: 50%;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(96,165,250,0.04), transparent 70%);
+            filter: blur(80px);
+            pointer-events: none;
+        }
+
+        .page-header h1 {
+            font-family: var(--sans);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .page-header .effective {
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            font-weight: 500;
+            position: relative;
+        }
+
+        /* ─── CONTENT ─── */
+        .content-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 64px 24px 120px;
+        }
+
+        .legal-intro {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.8;
+            padding-bottom: 48px;
+            margin-bottom: 48px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .legal-section {
+            margin-bottom: 48px;
+        }
+
+        .legal-section h2 {
+            font-family: var(--sans);
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.01em;
+        }
+
+        .legal-section h2 .section-line {
+            width: 20px;
+            height: 2px;
+            background: var(--pink);
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        .legal-section p {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.8;
+        }
+
+        /* ─── CONTACT BLOCK ─── */
+        .contact-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-top: 8px;
+        }
+
+        .contact-block p {
+            color: var(--text-muted) !important;
+            font-size: 0.9rem !important;
+            line-height: 1.9 !important;
+        }
+
+        .contact-block a {
+            color: var(--pink);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-block a:hover { color: var(--text); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            padding: 40px 0 28px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+        }
+
+        .footer-inner a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-inner a:hover { color: var(--text); }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        @media (max-width: 600px) {
+            .footer-inner {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
 <body>
 
-<h1>Terms and Conditions — BoyerScales LLC</h1>
-<p><strong>Effective Date:</strong> February 5, 2026</p>
+    <!-- Nav -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-logo">Boyer<span>Scales</span></a>
+            <a href="/" class="nav-back">
+                <svg viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                Back to Home
+            </a>
+        </div>
+    </nav>
 
-<p>These Terms and Conditions ("Terms") govern the use of services provided by BoyerScales LLC ("we," "our," or "us"). By using our services, you agree to these Terms.</p>
+    <!-- Header -->
+    <div class="page-header">
+        <div class="page-header-glow"></div>
+        <h1>Terms and Conditions</h1>
+        <p class="effective">Effective Date: February 5, 2026</p>
+    </div>
 
-<h2>Service Description</h2>
-<p>BoyerScales LLC provides communication automation systems, AI receptionist services, appointment scheduling systems, messaging automation tools, and operational workflow services for businesses.</p>
+    <!-- Content -->
+    <div class="content-wrap">
+        <p class="legal-intro">These Terms and Conditions ("Terms") govern the use of services provided by BoyerScales LLC ("we," "our," or "us"). By using our services, you agree to these Terms in their entirety.</p>
 
-<h2>Client Messaging Responsibility</h2>
-<p>Messaging services operated by BoyerScales LLC are performed on behalf of client businesses. Clients are solely responsible for obtaining prior express consent from their customers before sending SMS, automated voice calls, or prerecorded communications. Clients agree to comply with all applicable TCPA, CTIA, and carrier messaging regulations.</p>
+        <div class="legal-section">
+            <h2><span class="section-line"></span> Service Description</h2>
+            <p>BoyerScales LLC provides communication automation systems, AI receptionist services, appointment scheduling systems, messaging automation tools, and operational workflow services for businesses.</p>
+        </div>
 
-<h2>Website Contact Form Submissions</h2>
-<p>Phone numbers submitted through the BoyerScales website contact forms are used only for direct communication regarding requested services unless separate messaging consent is explicitly provided.</p>
+        <div class="legal-section">
+            <h2><span class="section-line"></span> Client Messaging Responsibility</h2>
+            <p>Messaging services operated by BoyerScales LLC are performed on behalf of client businesses. Clients are solely responsible for obtaining prior express consent from their customers before sending SMS, automated voice calls, or prerecorded communications. Clients agree to comply with all applicable TCPA, CTIA, and carrier messaging regulations.</p>
+        </div>
 
-<h2>Data Usage</h2>
-<p>Client and customer data is processed only for service delivery purposes and in accordance with our Privacy Policy.</p>
+        <div class="legal-section">
+            <h2><span class="section-line"></span> Website Contact Form Submissions</h2>
+            <p>Phone numbers submitted through the BoyerScales website contact forms are used only for direct communication regarding requested services unless separate messaging consent is explicitly provided.</p>
+        </div>
 
-<h2>Limitation of Liability</h2>
-<p>BoyerScales LLC is not liable for damages resulting from improper client use of messaging systems or failure to obtain proper customer consent.</p>
+        <div class="legal-section">
+            <h2><span class="section-line"></span> Data Usage</h2>
+            <p>Client and customer data is processed only for service delivery purposes and in accordance with our Privacy Policy.</p>
+        </div>
 
-<h2>Contact Information</h2>
-<p>
-BoyerScales LLC<br>
-Sacramento, California<br>
-Email: elijaboyer@icloud.com
-</p>
+        <div class="legal-section">
+            <h2><span class="section-line"></span> Limitation of Liability</h2>
+            <p>BoyerScales LLC is not liable for damages resulting from improper client use of messaging systems or failure to obtain proper customer consent.</p>
+        </div>
 
-<h2>Updates</h2>
-<p>We may update these Terms periodically. Continued use of services after updates indicates acceptance of the revised Terms.</p>
+        <div class="legal-section">
+            <h2><span class="section-line"></span> Contact Information</h2>
+            <div class="contact-block">
+                <p>
+                    <strong style="color:var(--text)">BoyerScales LLC</strong><br>
+                    Sacramento, California<br>
+                    <a href="mailto:elijah@boyerscales.com">elijah@boyerscales.com</a>
+                </p>
+            </div>
+        </div>
+
+        <div class="legal-section">
+            <h2><span class="section-line"></span> Updates</h2>
+            <p>We may update these Terms periodically. Continued use of services after updates indicates acceptance of the revised Terms.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <span>© 2026 BoyerScales LLC. All rights reserved.</span>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/ai">AI</a>
+                <a href="/marketing">Marketing</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
