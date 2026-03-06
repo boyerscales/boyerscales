@@ -68,7 +68,6 @@
             min-height: 100vh;
         }
 
-        /* Ambient orbs */
         body::before {
             content: '';
             position: fixed;
@@ -106,7 +105,6 @@
             position: relative; z-index: 1;
         }
 
-        /* ─── HEADER ─── */
         .header {
             background: linear-gradient(160deg, #080f20 0%, #0a1628 60%, #0d1f3c 100%);
             color: white;
@@ -214,7 +212,6 @@
             margin-top: 2px;
         }
 
-        /* ─── PROGRESS BAR ─── */
         .progress-bar { height: 3px; background: rgba(30,41,59,0.8); }
         .progress-fill {
             height: 100%;
@@ -227,10 +224,8 @@
         }
         @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 
-        /* ─── FORM BODY ─── */
         .form-body { padding: 48px 44px; }
 
-        /* ─── SECTIONS ─── */
         .section {
             margin-bottom: 40px;
             padding: 36px;
@@ -271,7 +266,6 @@
             margin-bottom: 28px;
         }
 
-        /* ─── FORM FIELDS ─── */
         .field-group { margin-bottom: 24px; }
 
         .field-label {
@@ -316,7 +310,6 @@
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-        /* ─── RADIO / CHECKBOX OPTIONS ─── */
         .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
 
         .radio-option, .checkbox-option {
@@ -343,7 +336,6 @@
         .option-title { font-weight: 600; color: var(--text-heading); display: block; margin-bottom: 3px; font-size: 0.9rem; }
         .option-description { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; }
 
-        /* ─── TIER BADGES ─── */
         .tier-badge {
             display: inline-flex; align-items: center;
             padding: 3px 10px;
@@ -352,11 +344,8 @@
             text-transform: uppercase; letter-spacing: 0.08em;
             margin-left: 10px; vertical-align: middle;
         }
-        .badge-starter { background: rgba(59,130,246,0.12); color: var(--blue-lighter); border: 1px solid rgba(59,130,246,0.2); }
-        .badge-business { background: rgba(139,92,246,0.12); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.2); }
-        .badge-pro { background: rgba(236,72,153,0.12); color: #f9a8d4; border: 1px solid rgba(236,72,153,0.2); }
+        .badge-founding { background: rgba(59,130,246,0.12); color: var(--blue-lighter); border: 1px solid rgba(59,130,246,0.25); }
 
-        /* ─── INFO / WARNING BOXES ─── */
         .info-box {
             background: rgba(59,130,246,0.05);
             border: 1px solid rgba(59,130,246,0.12);
@@ -368,18 +357,6 @@
         .info-box-title { font-weight: 700; color: var(--blue-light); margin-bottom: 5px; font-size: 0.82rem; display: flex; align-items: center; gap: 8px; }
         .info-box-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
 
-        .warning-box {
-            background: rgba(245,158,11,0.05);
-            border: 1px solid rgba(245,158,11,0.12);
-            border-left: 3px solid var(--yellow);
-            padding: 16px 18px;
-            border-radius: 12px;
-            margin-bottom: 24px;
-        }
-        .warning-box-title { font-weight: 700; color: #fbbf24; margin-bottom: 5px; font-size: 0.82rem; display: flex; align-items: center; gap: 8px; }
-        .warning-box-text { font-size: 0.82rem; color: var(--text-muted); }
-
-        /* ─── ICON HELPERS ─── */
         .box-icon {
             display: inline-flex; align-items: center; justify-content: center;
             width: 22px; height: 22px; border-radius: 6px;
@@ -387,17 +364,10 @@
         }
         .box-icon svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
         .box-icon-blue { background: rgba(59,130,246,0.15); color: var(--blue-light); }
-        .box-icon-yellow { background: rgba(245,158,11,0.15); color: #fbbf24; }
-        .box-icon-pink { background: rgba(236,72,153,0.15); color: #f9a8d4; }
 
-        .badge-svg { display: inline-flex; align-items: center; }
-        .badge-svg svg { width: 11px; height: 11px; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; margin-right: 5px; }
-
-        /* Checkmark icon for plan features */
         .ck { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 3px; }
         .ck svg { width: 13px; height: 13px; fill: none; stroke: var(--blue-light); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
 
-        /* ─── CONSENT ─── */
         .consent-box {
             background: var(--surface-input);
             border: 1px solid var(--border);
@@ -411,7 +381,6 @@
         .consent-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
         .consent-text strong { color: var(--text-label); }
 
-        /* ─── SUBMIT ─── */
         .submit-section {
             background: linear-gradient(160deg, #080f20 0%, #0a1628 100%);
             padding: 48px 44px;
@@ -468,11 +437,9 @@
         }
         .submit-note strong { color: var(--text-muted); }
 
-        /* ─── ANIMATIONS ─── */
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .section { animation: fadeInUp 0.6s ease-out both; }
 
-        /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
             .grid-2 { grid-template-columns: 1fr; }
             .form-body { padding: 24px 18px; }
@@ -647,65 +614,54 @@
         <div class="section">
             <div class="section-header">
                 <div class="section-number">2</div>
-                <div class="section-title">Choose Your Plan</div>
+                <div class="section-title">Your Plan</div>
             </div>
-            <div class="section-subtitle">Select the plan that fits your business — you can always upgrade later</div>
-
-            <div class="info-box">
-                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> Not sure which plan to choose?</div>
-                <div class="info-box-text">Start with Starter to get your missed call system running, then upgrade as revenue grows. Most clients see ROI within the first week.</div>
-            </div>
+            <div class="section-subtitle">One straightforward offer — built for serious service businesses</div>
 
             <div class="field-group">
                 <label class="field-label">Select Your Plan<span class="required">*</span></label>
                 <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="plan" value="starter_297" required>
+                    <label class="radio-option" style="border-color: rgba(59,130,246,0.28); background: rgba(59,130,246,0.04);">
+                        <input type="radio" name="plan" value="founding_597" required>
                         <div class="option-label">
-                            <span class="option-title">Starter — $297/month <span class="tier-badge badge-starter">Entry Level</span></span>
+                            <span class="option-title" style="font-size: 1rem;">
+                                Founding Client — $597/month
+                                <span class="tier-badge badge-founding">Limited Availability</span>
+                            </span>
+                            <span style="display: block; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 10px; margin-top: 3px;">
+                                Standard rate: $997/month — locked in for founding clients at setup
+                            </span>
                             <span class="option-description">
-                                Perfect for getting your missed call problem solved fast<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Missed Call Save — AI texts back missed callers instantly<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Automated review request system<br>
+                                The complete AI revenue system — missed call recovery, automated follow-up, review generation, calendar integration, and full onboarding support. Configured and live within 30 minutes.<br><br>
+                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Missed call save — AI texts back instantly<br>
+                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Automated lead follow-up sequences<br>
+                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Review request automation<br>
                                 <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Google Calendar integration<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Monthly performance reports<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Email support<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Setup in 30 minutes
-                            </span>
-                        </div>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="plan" value="growth_497">
-                        <div class="option-label">
-                            <span class="option-title">Growth — $497/month <span class="tier-badge badge-business">Most Popular</span></span>
-                            <span class="option-description">
-                                Full revenue recovery stack for growing service businesses<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Starter, PLUS:<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Lead Follow Up — AI automatically follows up on every lead<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Review Booster — automated review campaigns on autopilot<br>
                                 <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>AI 2-way SMS conversations<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>CRM integrations (Jobber, Housecall Pro, etc.)<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Priority support
-                            </span>
-                        </div>
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="plan" value="pro_797">
-                        <div class="option-label">
-                            <span class="option-title">Pro — $797/month <span class="tier-badge badge-pro">Full Suite</span></span>
-                            <span class="option-description">
-                                Complete AI revenue system — nothing falls through the cracks<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Everything in Growth, PLUS:<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Lead Save — captures and qualifies every inbound lead automatically<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>AI Voice Receptionist (unlimited calls)<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Live call transfer & custom routing logic<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Custom voice training & persona<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Dedicated account manager<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>White-glove onboarding
+                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Monthly performance reports<br>
+                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Priority support & guided setup
                             </span>
                         </div>
                     </label>
                 </div>
+            </div>
+
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 22px; margin-top: 8px;">
+                <p style="font-size: 0.78rem; color: var(--text-dim); margin-bottom: 12px;">Need something more tailored?</p>
+                <div class="radio-group">
+                    <label class="radio-option" style="background: transparent; border-color: var(--border);">
+                        <input type="radio" name="plan" value="custom">
+                        <div class="option-label">
+                            <span class="option-title" style="font-size: 0.87rem; color: var(--text-muted); font-weight: 500;">Custom setup</span>
+                            <span class="option-description">For multi-location businesses, advanced routing, or special integrations. We'll scope it together.</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-group" id="custom_requirements_field" style="margin-top: 20px; display: none;">
+                <label class="field-label">Describe your setup requirements</label>
+                <textarea name="custom_requirements_plan" placeholder="Tell us what makes your situation unique — multiple locations, custom routing logic, specific integrations, or anything else we should know before scoping."></textarea>
             </div>
         </div>
 
@@ -746,7 +702,7 @@
             <div class="field-group">
                 <label class="field-label">Additional Team Member Numbers</label>
                 <textarea name="team_numbers" placeholder="List any team members for call routing (one per line):&#10;Sarah — Service Manager&#10;Mike — Lead Technician"></textarea>
-                <div class="field-help">Pro plan: used for intelligent call routing and transfers</div>
+                <div class="field-help">Used for intelligent call routing and transfers on advanced setups</div>
             </div>
         </div>
 
@@ -852,11 +808,11 @@
                 <div class="section-number">6</div>
                 <div class="section-title">AI Voice Persona & Personality</div>
             </div>
-            <div class="section-subtitle">Customize how your AI receptionist sounds and speaks (Pro plan)</div>
+            <div class="section-subtitle">Customize how your AI receptionist sounds and speaks</div>
 
-            <div class="warning-box">
-                <div class="warning-box-title"><span class="box-icon box-icon-pink"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span> Pro Plan Feature</div>
-                <div class="warning-box-text">Custom voice training and persona configuration is available on the Pro plan ($797/mo)</div>
+            <div class="info-box">
+                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span> Voice Persona Configuration</div>
+                <div class="info-box-text">Custom voice training is included in the founding setup and expandable for custom builds. Fill in as much or as little as you'd like — we'll handle the rest.</div>
             </div>
 
             <div class="field-group">
@@ -909,11 +865,11 @@
                 <div class="section-number">7</div>
                 <div class="section-title">Call Transfer & Escalation Logic</div>
             </div>
-            <div class="section-subtitle">Define when and how the AI should hand off to a human (Pro plan)</div>
+            <div class="section-subtitle">Define when and how the AI should hand off to a human</div>
 
-            <div class="warning-box">
-                <div class="warning-box-title"><span class="box-icon box-icon-pink"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span> Pro Plan Feature</div>
-                <div class="warning-box-text">Live call transfer and custom routing logic requires Pro plan ($797/mo)</div>
+            <div class="info-box">
+                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span> Call Transfer & Routing</div>
+                <div class="info-box-text">Live transfer and custom routing logic is included in the founding setup. Advanced multi-destination routing and complex escalation trees can be configured for custom builds.</div>
             </div>
 
             <div class="field-group">
@@ -960,7 +916,7 @@
             <div class="field-group">
                 <label class="field-label">Google Calendar Email<span class="required">*</span></label>
                 <input type="email" name="google_calendar_email" required placeholder="The Gmail connected to your Google Calendar">
-                <div class="field-help">We'll send integration instructions here. All plans include Google Calendar sync.</div>
+                <div class="field-help">We'll send integration instructions here. Google Calendar sync is included in all setups.</div>
             </div>
 
             <div class="field-group">
@@ -978,7 +934,7 @@
                     <option value="">Select your platform</option>
                     <option value="jobber">Jobber</option><option value="housecall_pro">Housecall Pro</option><option value="servicetitan">ServiceTitan</option><option value="fieldedge">FieldEdge</option><option value="service_fusion">Service Fusion</option><option value="workiz">Workiz</option><option value="salesforce">Salesforce</option><option value="hubspot">HubSpot</option><option value="zoho">Zoho CRM</option><option value="pipedrive">Pipedrive</option><option value="sheets">Excel / Google Sheets</option><option value="other">Other</option>
                 </select>
-                <div class="field-help">Growth & Pro plans include CRM integration</div>
+                <div class="field-help">CRM integration is included in the founding setup and expandable for advanced workflows</div>
             </div>
 
             <div class="field-group">
@@ -1011,11 +967,11 @@
                 <div class="section-number">9</div>
                 <div class="section-title">Lead Follow Up & Nurture Automation</div>
             </div>
-            <div class="section-subtitle">Configure your automated follow-up sequences (Growth & Pro plans)</div>
+            <div class="section-subtitle">Configure your automated follow-up sequences</div>
 
-            <div class="warning-box">
-                <div class="warning-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> Growth & Pro Feature</div>
-                <div class="warning-box-text">AI lead follow up and nurture sequences require Growth ($497/mo) or Pro ($797/mo)</div>
+            <div class="info-box">
+                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> Lead Follow-Up Automation</div>
+                <div class="info-box-text">AI lead follow-up and nurture sequences are included in your founding setup. Extended cadences and custom sequence logic are available for advanced setups.</div>
             </div>
 
             <div class="field-group">
@@ -1234,7 +1190,7 @@
     <div class="submit-section">
         <button type="submit" class="submit-btn"><span>Complete Onboarding →</span></button>
         <div class="submit-note">
-            <strong>What happens next:</strong> We'll review your submission and reach out within 24 hours to begin setup. Pro plan clients get a dedicated onboarding call within 2 hours.
+            <strong>What happens next:</strong> We'll review your submission and reach out within 24 hours to begin setup. Founding clients get a dedicated onboarding call within 2 hours.
         </div>
     </div>
 
@@ -1291,6 +1247,18 @@
             } else {
                 parent.style.borderColor = '';
                 parent.style.background = '';
+            }
+        });
+    });
+
+    // Custom plan toggle
+    document.querySelectorAll('input[name="plan"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            const customField = document.getElementById('custom_requirements_field');
+            if (this.value === 'custom') {
+                customField.style.display = 'block';
+            } else {
+                customField.style.display = 'none';
             }
         });
     });
