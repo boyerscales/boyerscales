@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Get a Free Home Value Estimate | Local Market Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0c1018;
+  --surface: rgba(255,255,255,0.04);
+  --border: rgba(255,255,255,0.09);
+  --border-warm: rgba(201,169,110,0.22);
+  --gold: #c9a96e;
+  --gold-light: #e0bc82;
+  --gold-dim: rgba(201,169,110,0.13);
+  --text: #f2ede5;
+  --text-muted: rgba(242,237,229,0.55);
+  --text-dim: rgba(242,237,229,0.28);
+  --input-bg: rgba(255,255,255,0.07);
+  --input-border: rgba(255,255,255,0.13);
+  --input-placeholder: rgba(242,237,229,0.38);
+  --radius: 14px;
+  --radius-lg: 22px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+  cursor: default;
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.022;
+  pointer-events: none; z-index: 1000;
+}
+
+section { position: relative; z-index: 1; }
+
+.spotlight {
+  position: fixed;
+  width: 560px; height: 560px;
+  background: radial-gradient(circle, rgba(201,169,110,0.055) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none; z-index: 0;
+  transform: translate(-50%, -50%);
+}
+
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 90px 0 72px;
+  position: relative; overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 65% 38%, rgba(201,169,110,0.065) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 35% at 15% 75%, rgba(120,160,200,0.04) 0%, transparent 55%),
+    linear-gradient(155deg, #0e1420 0%, #0c1018 55%, #0d1015 100%);
+  z-index: 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px; align-items: center;
+  position: relative; z-index: 1;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 11.5px; font-weight: 500; letter-spacing: 0.11em;
+  text-transform: uppercase; color: var(--gold);
+  background: var(--gold-dim); border: 1px solid rgba(201,169,110,0.18);
+  padding: 5px 13px; border-radius: 100px; margin-bottom: 26px;
+}
+
+.eyebrow-dot {
+  width: 6px; height: 6px; background: var(--gold); border-radius: 50%;
+  animation: blink 2.2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2.2rem, 4.2vw, 3.4rem);
+  font-weight: 800; line-height: 1.1;
+  letter-spacing: -0.03em; color: var(--text); margin-bottom: 18px;
+}
+.hero h1 .line { display: block; overflow: hidden; }
+.hero h1 .line-inner { display: block; transform: translateY(110%); }
+.hero h1 .accent { color: var(--gold); }
+
+.hero-sub {
+  font-size: 1.02rem; color: var(--text-muted); line-height: 1.75;
+  max-width: 440px; margin-bottom: 34px;
+  opacity: 0; transform: translateY(18px);
+}
+
+.hero-cta-solo { opacity: 0; transform: translateY(18px); }
+
+.hero-trust-row {
+  display: flex; align-items: center; gap: 20px; margin-top: 22px;
+  opacity: 0; flex-wrap: wrap;
+}
+.trust-chip {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 0.8rem; color: var(--text-dim);
+}
+.trust-chip svg { color: var(--gold); opacity: 0.7; flex-shrink: 0; }
+
+/* ═══ BUTTONS ═══ */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, var(--gold-light), #b8924a);
+  color: #0c1018; font-family: 'DM Sans', sans-serif;
+  font-size: 0.97rem; font-weight: 700;
+  padding: 15px 30px; border-radius: 100px; border: none;
+  cursor: pointer; text-decoration: none; position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 22px rgba(201,169,110,0.22);
+}
+.btn-primary::after {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.32), transparent);
+  transform: skewX(-20deg); transition: left 0.5s;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,169,110,0.32); }
+.btn-primary:hover::after { left: 160%; }
+
+/* ═══ FORM ═══ */
+.form-card {
+  background: rgba(255,255,255,0.035);
+  border: 1px solid var(--border); border-radius: var(--radius-lg);
+  padding: 38px 34px 32px;
+  backdrop-filter: blur(20px);
+  position: relative; overflow: hidden;
+  transition: border-color 0.4s;
+}
+.form-card::before {
+  content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent); opacity: 0.45;
+}
+.form-card:focus-within { border-color: rgba(201,169,110,0.2); }
+
+.form-card-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--text); margin-bottom: 6px;
+}
+.form-card-sub { font-size: 0.84rem; color: var(--text-muted); margin-bottom: 26px; }
+
+.form-group { margin-bottom: 13px; }
+.form-group label {
+  display: block; font-size: 0.75rem; font-weight: 600;
+  color: var(--text-muted); letter-spacing: 0.05em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.form-group input {
+  width: 100%; background: var(--input-bg);
+  border: 1px solid var(--input-border); border-radius: 10px;
+  padding: 13px 15px; color: var(--text);
+  font-family: 'DM Sans', sans-serif; font-size: 0.95rem;
+  outline: none; transition: border-color 0.22s, background 0.22s, box-shadow 0.22s;
+  -webkit-appearance: none;
+}
+.form-group input::placeholder { color: var(--input-placeholder); }
+.form-group input:focus {
+  border-color: rgba(201,169,110,0.45);
+  background: rgba(201,169,110,0.04);
+  box-shadow: 0 0 0 3px rgba(201,169,110,0.07);
+}
+.form-group input.error {
+  border-color: rgba(240,100,100,0.5);
+  box-shadow: 0 0 0 3px rgba(240,100,100,0.06);
+}
+
+.phone-privacy {
+  font-size: 0.73rem; color: var(--text-dim); margin-top: 5px;
+  display: flex; align-items: center; gap: 4px;
+}
+.phone-privacy svg { opacity: 0.5; }
+
+.form-submit-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--gold-light), #b8924a);
+  color: #0c1018; font-family: 'DM Sans', sans-serif;
+  font-size: 1rem; font-weight: 700; padding: 15px;
+  border-radius: 11px; border: none; cursor: pointer; margin-top: 10px;
+  position: relative; overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 18px rgba(201,169,110,0.18);
+  letter-spacing: 0.01em;
+}
+.form-submit-btn::after {
+  content: ''; position: absolute; top: 0; left: -100%;
+  width: 55%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  transform: skewX(-20deg); transition: left 0.5s;
+}
+.form-submit-btn:hover { transform: translateY(-1px); box-shadow: 0 7px 26px rgba(201,169,110,0.28); }
+.form-submit-btn:hover::after { left: 160%; }
+
+.form-bottom-trust {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  margin-top: 12px; font-size: 0.76rem; color: var(--text-dim); text-align: center;
+}
+.form-bottom-trust svg { opacity: 0.45; flex-shrink: 0; }
+
+.form-success {
+  display: none; text-align: center; padding: 32px 16px 24px;
+}
+.success-check {
+  width: 54px; height: 54px;
+  background: linear-gradient(135deg, var(--gold-light), #b8924a);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 18px; font-size: 1.5rem; color: #0c1018;
+  box-shadow: 0 4px 20px rgba(201,169,110,0.25);
+}
+.form-success h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 10px;
+}
+.form-success p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.65; }
+
+/* ═══ TRUST STRIP ═══ */
+.trust-strip { padding: 0 0 80px; }
+
+.trust-strip-inner {
+  display: flex; align-items: center;
+  border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.strip-item {
+  flex: 1; display: flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 18px 20px; font-size: 0.85rem; color: var(--text-muted);
+  border-right: 1px solid var(--border);
+  transition: background 0.25s, color 0.25s;
+}
+.strip-item:last-child { border-right: none; }
+.strip-item:hover { background: var(--surface); color: var(--text); }
+.strip-item svg { color: var(--gold); flex-shrink: 0; }
+
+/* ═══ TRUST CARDS ═══ */
+.trust-section { padding: 96px 0; }
+
+.section-eyebrow {
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.13em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.section-heading {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.7rem, 2.8vw, 2.3rem);
+  font-weight: 700; letter-spacing: -0.025em; color: var(--text);
+  line-height: 1.2; margin-bottom: 14px;
+}
+.section-sub {
+  font-size: 0.98rem; color: var(--text-muted); line-height: 1.72; max-width: 480px;
+}
+
+.trust-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 14px; margin-top: 52px;
+}
+.trust-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 26px 22px;
+  transition: border-color 0.3s, transform 0.3s;
+  position: relative; overflow: hidden;
+}
+.trust-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold-dim), transparent 70%);
+  opacity: 0; transition: opacity 0.3s;
+}
+.trust-card:hover { border-color: var(--border-warm); transform: translateY(-3px); }
+.trust-card:hover::after { opacity: 1; }
+
+.trust-icon {
+  width: 40px; height: 40px; background: var(--gold-dim);
+  border: 1px solid rgba(201,169,110,0.18); border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 14px; position: relative; z-index: 1;
+}
+.trust-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.97rem;
+  font-weight: 700; color: var(--text); margin-bottom: 7px;
+  position: relative; z-index: 1;
+}
+.trust-card p {
+  font-size: 0.83rem; color: var(--text-muted); line-height: 1.6;
+  position: relative; z-index: 1;
+}
+
+/* ═══ HOW IT WORKS ═══ */
+.how-section {
+  padding: 96px 0;
+  background: linear-gradient(180deg, transparent, rgba(201,169,110,0.02) 50%, transparent);
+}
+.how-steps {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 14px; margin-top: 52px; position: relative;
+}
+.how-steps::before {
+  content: ''; position: absolute;
+  top: 40px;
+  left: calc(16.5% + 24px); right: calc(16.5% + 24px);
+  height: 1px;
+  background: linear-gradient(90deg, rgba(201,169,110,0.5), rgba(201,169,110,0.18), rgba(201,169,110,0.5));
+  z-index: 0; pointer-events: none;
+}
+.step-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 30px 24px 28px; text-align: center;
+  position: relative; z-index: 1;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.step-card:hover { border-color: var(--border-warm); transform: translateY(-3px); }
+
+.step-num {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--gold-light), #b8924a);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 0.95rem;
+  font-weight: 700; color: #0c1018;
+  margin: 0 auto 18px;
+  box-shadow: 0 0 20px rgba(201,169,110,0.22);
+  position: relative; z-index: 2;
+}
+.step-card h3 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 1rem;
+  font-weight: 700; color: var(--text); margin-bottom: 9px;
+}
+.step-card p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.65; }
+.step-tag {
+  display: inline-block; margin-top: 12px; font-size: 0.68rem;
+  font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase;
+  color: var(--gold); background: var(--gold-dim);
+  border: 1px solid rgba(201,169,110,0.18); padding: 3px 10px; border-radius: 100px;
+}
+
+/* ═══ SOFT CTA ═══ */
+.soft-cta { padding: 96px 0; }
+
+.cta-card {
+  background: linear-gradient(140deg, rgba(201,169,110,0.07), rgba(201,169,110,0.025));
+  border: 1px solid rgba(201,169,110,0.18); border-radius: var(--radius-lg);
+  padding: 68px 56px; text-align: center; position: relative; overflow: hidden;
+}
+.cta-card::before {
+  content: ''; position: absolute; top: -40%; left: 50%;
+  transform: translateX(-50%); width: 55%; height: 90%;
+  background: radial-gradient(ellipse, rgba(201,169,110,0.1), transparent 70%);
+  pointer-events: none;
+}
+.cta-card h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(1.7rem, 2.8vw, 2.4rem);
+  font-weight: 800; letter-spacing: -0.03em; color: var(--text);
+  line-height: 1.15; margin-bottom: 14px; position: relative;
+}
+.cta-card p {
+  font-size: 0.97rem; color: var(--text-muted); max-width: 440px;
+  margin: 0 auto 32px; line-height: 1.7; position: relative;
+}
+
+/* ═══ FOOTER ═══ */
+footer { border-top: 1px solid var(--border); padding: 32px 0; }
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+.footer-brand { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); letter-spacing: -0.02em; }
+.footer-brand span { color: var(--gold); }
+.footer-links { display: flex; gap: 22px; list-style: none; }
+.footer-links a { font-size: 0.8rem; color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: var(--text-muted); }
+.footer-copy { font-size: 0.77rem; color: var(--text-dim); }
+
+.fade-up { will-change: transform, opacity; }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 880px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 44px; }
+  .hero { min-height: auto; padding: 76px 0 56px; }
+  .trust-grid { grid-template-columns: repeat(2, 1fr); }
+  .how-steps { grid-template-columns: 1fr; }
+  .how-steps::before { display: none; }
+  .cta-card { padding: 48px 28px; }
+  .trust-strip-inner { flex-direction: column; }
+  .strip-item { border-right: none; border-bottom: 1px solid var(--border); width: 100%; }
+  .strip-item:last-child { border-bottom: none; }
+}
+@media (max-width: 580px) {
+  .trust-grid { grid-template-columns: 1fr; }
+  .form-card { padding: 28px 18px 24px; }
+  .footer-inner { flex-direction: column; text-align: center; }
+  .footer-links { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::after,*::before { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  .spotlight { display: none; }
+  body { cursor: auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="spotlight" id="spotlight"></div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="hero-bg"></div>
+  <div class="container">
+    <div class="hero-grid">
+
+      <div>
+        <div class="hero-eyebrow">
+          <span class="eyebrow-dot"></span>
+          Free Estimate · No Obligation
+        </div>
+
+        <h1 id="hero-title">
+          <span class="line"><span class="line-inner">Thinking of Selling?</span></span>
+          <span class="line"><span class="line-inner">Start With a <span class="accent">Free</span></span></span>
+          <span class="line"><span class="line-inner"><span class="accent">Home Value Estimate.</span></span></span>
+        </h1>
+
+        <p class="hero-sub">
+          Find out what your home could sell for in today's market — in minutes, not days. A local expert reviews your property and reaches out with a real, personalized estimate. Easy, fast, no pressure.
+        </p>
+
+        <div class="hero-cta-solo">
+          <a href="#form" class="btn-primary">
+            Get My Home Value
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+              <path d="M3 7.5h9M9 4l3.5 3.5L9 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="hero-trust-row">
+          <span class="trust-chip">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M6.5 1.5L2 3.5v3c0 2.5 1.9 4.7 4.5 5.5C9.1 11.2 11 9 11 6.5v-3L6.5 1.5z" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Private request
+          </span>
+          <span class="trust-chip">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.3"/><path d="M6.5 4v2.5l1.5 1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+            Response within 24 hrs
+          </span>
+          <span class="trust-chip">
+            <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 7l3 3 6-6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No pressure, ever
+          </span>
+        </div>
+      </div>
+
+      <!-- FORM -->
+      <div id="form">
+        <div class="form-card">
+          <p class="form-card-title">Get Your Free Estimate</p>
+          <p class="form-card-sub">Takes about 60 seconds. A local expert reviews your property and follows up personally.</p>
+
+          <form id="lead-form" novalidate>
+            <div class="form-group">
+              <label for="address">Property Address</label>
+              <input type="text" id="address" name="address" placeholder="123 Oak Street, Houston, TX" autocomplete="street-address" />
+            </div>
+            <div class="form-group">
+              <label for="fullname">Your Name</label>
+              <input type="text" id="fullname" name="fullname" placeholder="Jane Smith" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(555) 000-0000" autocomplete="tel" />
+              <p class="phone-privacy">
+                <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1L2 2.5v2.7c0 2.1 1.5 3.9 3.5 4.6 2-.7 3.5-2.5 3.5-4.6V2.5L5.5 1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Your number stays private. We'll only call about your request.
+              </p>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="jane@email.com" autocomplete="email" />
+            </div>
+            <button type="submit" class="form-submit-btn">Get My Home Value →</button>
+          </form>
+
+          <div class="form-success" id="form-success">
+            <div class="success-check">✓</div>
+            <h3>You're all set!</h3>
+            <p>A local market expert will review your property and reach out within 24 hours with your personalized estimate.</p>
+          </div>
+
+          <p class="form-bottom-trust" id="form-trust-line">
+            <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1L2 2.5v2.7c0 2.1 1.5 3.9 3.5 4.6 2-.7 3.5-2.5 3.5-4.6V2.5L5.5 1z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No spam. No obligation. Free estimate.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="trust-strip">
+  <div class="container">
+    <div class="trust-strip-inner fade-up">
+      <div class="strip-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5l2 2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Fast response · usually same day
+      </div>
+      <div class="strip-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M2 8h12M8 2c-2 2-2.5 4-2.5 6s.5 4 2.5 6M8 2c2 2 2.5 4 2.5 6S10 12 8 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Local market insight
+      </div>
+      <div class="strip-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 1.5L3 4v4c0 3.2 2.1 6 5 7 2.9-1 5-3.8 5-7V4L8 1.5z" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Private &amp; confidential
+      </div>
+      <div class="strip-item">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5 6.5-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        No pressure, ever
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST CARDS -->
+<section class="trust-section">
+  <div class="container">
+    <div class="fade-up">
+      <p class="section-eyebrow">Why Homeowners Trust Us</p>
+      <h2 class="section-heading">Everything you need to decide<br>with confidence</h2>
+      <p class="section-sub">Whether you're ready to list next month or still just curious — this is a low-stakes first step.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card fade-up">
+        <div class="trust-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#c9a96e" stroke-width="1.5"/><path d="M9 5.5V9.5l2.5 2.5" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>We Respond Fast</h3>
+        <p>A real local expert reaches out — usually the same day, always within 24 hours.</p>
+      </div>
+      <div class="trust-card fade-up">
+        <div class="trust-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="#c9a96e" stroke-width="1.5"/><path d="M2 9h14M9 2c-2 2-2.5 4-2.5 7s.5 5 2.5 7M9 2c2 2 2.5 4 2.5 7S11 14 9 16" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Local Expertise</h3>
+        <p>We know your neighborhood, recent sales, and real buyer activity — not just an algorithm.</p>
+      </div>
+      <div class="trust-card fade-up">
+        <div class="trust-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2l-6 3v4c0 3.5 2.5 6.5 6 7.5 3.5-1 6-4 6-7.5V5L9 2z" stroke="#c9a96e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Private &amp; Secure</h3>
+        <p>Your information goes directly to your local advisor. We never sell or share it.</p>
+      </div>
+      <div class="trust-card fade-up">
+        <div class="trust-icon">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9l4 4 8-8" stroke="#c9a96e" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Zero Pressure</h3>
+        <p>A conversation, not a commitment. Learn your options at your own pace, on your timeline.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+  <div class="container">
+    <div class="fade-up" style="text-align:center;max-width:520px;margin:0 auto;">
+      <p class="section-eyebrow">How It Works</p>
+      <h2 class="section-heading">Simple. Fast. No strings.</h2>
+    </div>
+    <div class="how-steps">
+      <div class="step-card fade-up">
+        <div class="step-num">1</div>
+        <h3>Enter Your Address</h3>
+        <p>Fill in your property address and contact info. The whole form takes under 60 seconds.</p>
+        <span class="step-tag">Under 60 seconds</span>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">2</div>
+        <h3>Receive Your Estimate</h3>
+        <p>A local expert reviews recent comparable sales and reaches out with a real, personalized estimate.</p>
+        <span class="step-tag">Within 24 hours</span>
+      </div>
+      <div class="step-card fade-up">
+        <div class="step-num">3</div>
+        <h3>Explore Your Options</h3>
+        <p>Want to go deeper? We'll walk you through your selling options — no obligation to do anything.</p>
+        <span class="step-tag">Totally optional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOFT CTA -->
+<section class="soft-cta">
+  <div class="container">
+    <div class="cta-card fade-up">
+      <h2>Thinking about selling?<br>Start with a free home value estimate.</h2>
+      <p>No commitment, no pressure. Just a clear picture of what your home is worth in today's market — so you can decide what's right for you.</p>
+      <a href="#form" class="btn-primary">
+        Get My Home Value
+        <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
+          <path d="M3 7.5h9M9 4l3.5 3.5L9 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">Boyer<span>Scales RE</span></div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <p class="footer-copy">© 2026 BoyerScales RE. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* SPOTLIGHT ONLY - no cursor */
+const spot = document.getElementById('spotlight');
+document.addEventListener('mousemove', e => {
+  gsap.to(spot, { x: e.clientX, y: e.clientY, duration: 0.9, ease: 'power2.out' });
+});
+
+/* HERO TITLE */
+gsap.to('.hero h1 .line-inner',{translateY:'0%',duration:0.95,ease:'power3.out',stagger:0.11,delay:0.25});
+gsap.to('.hero-sub',{opacity:1,y:0,duration:0.85,delay:0.75,ease:'power2.out'});
+gsap.to('.hero-cta-solo',{opacity:1,y:0,duration:0.85,delay:0.92,ease:'power2.out'});
+gsap.to('.hero-trust-row',{opacity:1,duration:0.8,delay:1.1,ease:'power2.out'});
+
+/* PARALLAX */
+window.addEventListener('scroll',()=>{
+  document.getElementById('hero-bg').style.transform=`translateY(${scrollY*0.28}px)`;
+});
+
+/* SCROLL REVEALS - fromTo so elements are visible immediately, animate in on scroll */
+gsap.utils.toArray('.fade-up').forEach((el, i) => {
+  gsap.fromTo(el,
+    { opacity: 0, y: 28 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.65,
+      ease: 'power2.out',
+      delay: (i % 4) * 0.06,
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 95%',
+        once: true
+      }
+    }
+  );
+});
+
+/* FORM */
+const form    = document.getElementById('lead-form');
+const success = document.getElementById('form-success');
+const trustLine = document.getElementById('form-trust-line');
+
+function validate(inp){
+  const v=inp.value.trim();
+  const ok=v&&(inp.type!=='email'||/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
+  inp.classList.toggle('error',!ok);
+  return ok;
+}
+form.querySelectorAll('input').forEach(inp=>{
+  inp.addEventListener('blur',()=>validate(inp));
+  inp.addEventListener('input',()=>{if(inp.classList.contains('error'))validate(inp);});
+});
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  const inputs=[...form.querySelectorAll('input')];
+  if(!inputs.every(validate))return;
+  /* ← plug your endpoint here */
+  console.log('Lead:',{address:form.address.value,name:form.fullname.value,phone:form.phone.value,email:form.email.value});
+  gsap.to(form,{opacity:0,y:-8,duration:0.3,onComplete:()=>{
+    form.style.display='none';
+    if(trustLine)trustLine.style.display='none';
+    success.style.display='block';
+    gsap.from(success,{opacity:0,y:12,duration:0.5,ease:'power2.out'});
+  }});
+});
+
+/* PHONE FORMAT */
+document.getElementById('phone').addEventListener('input',function(){
+  let v=this.value.replace(/\D/g,'');
+  if(v.length>=6)v=`(${v.slice(0,3)}) ${v.slice(3,6)}-${v.slice(6,10)}`;
+  else if(v.length>=3)v=`(${v.slice(0,3)}) ${v.slice(3)}`;
+  this.value=v;
+});
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+</body>
+</html>
