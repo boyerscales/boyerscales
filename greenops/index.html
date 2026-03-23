@@ -179,6 +179,7 @@ nav button:hover { color: var(--text); }
 .ba-photos { display: grid; grid-template-columns: 1fr 1fr; position: relative; flex-shrink: 0; }
 .ba-photo { aspect-ratio: 1/1; position: relative; overflow: hidden; }
 .ba-photo-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.ba-photo-inner img { width: 100%; height: 100%; object-fit: cover; }
 .before-bg { background: linear-gradient(145deg, #3d2b1f, #5d4037); }
 .after-bg  { background: linear-gradient(145deg, #1b4d1e, #2e7d32); }
 .ba-photo-inner svg { opacity: 0.45; }
@@ -527,13 +528,13 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
     <div class="section-head reveal">
       <div class="label">Real Jobs</div>
       <h2 class="section-title">Before &amp; After Transformations</h2>
-      <p class="section-sub">Real yards we've cleaned up right here in Sacramento and surrounding areas. Photos coming soon — these are placeholder cards.</p>
+      <p class="section-sub">Real yards we've cleaned up right here in Sacramento and surrounding areas.</p>
     </div>
     <div class="ba-grid">
       <div class="ba-card reveal d1">
         <div class="ba-photos">
-          <div class="ba-photo"><div class="ba-photo-inner before-bg"><svg width="44" height="44" color="#fff"><use href="#ic-leaf"/></svg></div><span class="ba-tag left">Before</span></div>
-          <div class="ba-photo"><div class="ba-photo-inner after-bg"><svg width="44" height="44" color="#fff"><use href="#ic-check"/></svg></div><span class="ba-tag right">After</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/17804865/pexels-photo-17804865.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Overgrown backyard before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5502221/pexels-photo-5502221.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Clean lawn after cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
           <div class="ba-divider-line"></div>
         </div>
         <div class="ba-info">
@@ -543,8 +544,8 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
       </div>
       <div class="ba-card reveal d2">
         <div class="ba-photos">
-          <div class="ba-photo"><div class="ba-photo-inner before-bg"><svg width="44" height="44" color="#fff"><use href="#ic-leaf"/></svg></div><span class="ba-tag left">Before</span></div>
-          <div class="ba-photo"><div class="ba-photo-inner after-bg"><svg width="44" height="44" color="#fff"><use href="#ic-check"/></svg></div><span class="ba-tag right">After</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/18671993/pexels-photo-18671993.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Overgrown front yard before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5178034/pexels-photo-5178034.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Clean yard after cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
           <div class="ba-divider-line"></div>
         </div>
         <div class="ba-info">
@@ -554,8 +555,8 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
       </div>
       <div class="ba-card reveal d3">
         <div class="ba-photos">
-          <div class="ba-photo"><div class="ba-photo-inner before-bg"><svg width="44" height="44" color="#fff"><use href="#ic-leaf"/></svg></div><span class="ba-tag left">Before</span></div>
-          <div class="ba-photo"><div class="ba-photo-inner after-bg"><svg width="44" height="44" color="#fff"><use href="#ic-check"/></svg></div><span class="ba-tag right">After</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5712887/pexels-photo-5712887.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Overgrown side yard before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/7546775/pexels-photo-7546775.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Clean backyard after cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
           <div class="ba-divider-line"></div>
         </div>
         <div class="ba-info">
