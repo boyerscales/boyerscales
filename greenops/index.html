@@ -161,19 +161,6 @@ nav button:hover { color: var(--text); }
 .trust-item:nth-child(4), .trust-item:nth-child(5), .trust-item:nth-child(6) { border-bottom: none; }
 .trust-item svg { color: var(--green); flex-shrink: 0; }
 
-/* PHONE BANNER */
-.phone-banner {
-  background: var(--green); padding: 18px 24px;
-  display: flex; align-items: center; justify-content: center; gap: 1.5rem;
-  flex-wrap: wrap;
-}
-.phone-banner p { font-size: 1rem; font-weight: 700; color: #0d1a0d; }
-.phone-banner a {
-  font-size: 1.4rem; font-weight: 800; color: #0d1a0d;
-  text-decoration: none; letter-spacing: -0.5px;
-  display: flex; align-items: center; gap: 0.5rem;
-}
-
 /* BEFORE/AFTER */
 .ba-grid {
   display: grid;
@@ -488,10 +475,10 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
   <div class="header-inner">
     <span class="logo" onclick="scrollToTop()">Green<span>Ops</span></span>
     <nav>
-      <button onclick="scrollTo('services')">Services</button>
-      <button onclick="scrollTo('how')">How It Works</button>
-      <button onclick="scrollTo('pricing')">Pricing</button>
-      <button onclick="scrollTo('faq')">FAQ</button>
+      <button onclick="navTo('services')">Services</button>
+      <button onclick="navTo('how')">How It Works</button>
+      <button onclick="navTo('pricing')">Pricing</button>
+      <button onclick="navTo('faq')">FAQ</button>
     </nav>
     <div class="header-right">
       <a href="tel:9165550000" class="header-phone">
@@ -507,14 +494,6 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
 </header>
 
 <!-- PHONE BANNER -->
-<div class="phone-banner">
-  <p>Sacramento's yard cleanup crew — fast quotes, honest prices</p>
-  <a href="tel:9165550000">
-    <svg width="20" height="20"><use href="#ic-phone"/></svg>
-    (916) 555-0000
-  </a>
-</div>
-
 <!-- HERO -->
 <section class="hero">
   <div class="container">
@@ -790,10 +769,10 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
       </a>
     </div>
     <div class="footer-links">
-      <button onclick="scrollTo('services')">Services</button>
-      <button onclick="scrollTo('how')">How It Works</button>
-      <button onclick="scrollTo('pricing')">Pricing</button>
-      <button onclick="scrollTo('faq')">FAQ</button>
+      <button onclick="navTo('services')">Services</button>
+      <button onclick="navTo('how')">How It Works</button>
+      <button onclick="navTo('pricing')">Pricing</button>
+      <button onclick="navTo('faq')">FAQ</button>
     </div>
   </div>
   <div class="footer-bottom">
@@ -804,7 +783,7 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
 
 <script>
 // Clean scroll — no hashtag in URL
-function scrollTo(id) {
+function navTo(id) {
   const el = document.getElementById(id);
   if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
