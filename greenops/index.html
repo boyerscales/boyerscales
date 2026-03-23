@@ -118,6 +118,18 @@ nav button:hover { color: var(--text); }
   background: radial-gradient(circle, rgba(76,175,80,0.07) 0%, transparent 70%);
   pointer-events: none;
 }
+.hero-bg-img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background:
+    linear-gradient(180deg, rgba(20,26,19,0.35) 0%, rgba(20,26,19,0.72) 50%, rgba(20,26,19,1) 85%),
+    url('https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=1400&h=700&fit=crop');
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.38;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero > .container { position: relative; z-index: 1; }
 .hero-eyebrow {
   display: inline-flex; align-items: center; gap: 0.55rem;
   background: var(--green-soft); border: 1px solid var(--green-border);
@@ -497,6 +509,7 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px
 <!-- PHONE BANNER -->
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-bg-img"></div>
   <div class="container">
     <div class="hero-eyebrow"><div class="dot"></div> Serving Sacramento &amp; Surrounding Areas</div>
     <h1>Overgrown Yard?<br>We'll <span class="green">Clean It Up Fast.</span></h1>
