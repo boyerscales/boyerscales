@@ -504,6 +504,35 @@
             background:rgba(255,255,255,0.04);
         }
         .form-box input::placeholder{color:var(--text-tertiary)}
+
+        .sms-consent{
+            display:none;
+            align-items:flex-start;gap:0.75rem;
+            background:rgba(37,99,235,0.04);
+            border:1.5px solid rgba(59,130,246,0.15);
+            border-radius:var(--radius-sm);
+            padding:0.875rem 1rem;
+            margin-bottom:0.875rem;
+            animation:fadeSlideIn 0.3s ease-out;
+        }
+        .sms-consent.visible{display:flex}
+        @keyframes fadeSlideIn{
+            from{opacity:0;transform:translateY(-6px)}
+            to{opacity:1;transform:translateY(0)}
+        }
+        .sms-consent input[type="checkbox"]{
+            width:18px!important;height:18px!important;
+            min-width:18px;min-height:18px;
+            margin:2px 0 0!important;padding:0!important;
+            accent-color:var(--primary);cursor:pointer;
+            background:none!important;border:none!important;
+            flex-shrink:0;
+        }
+        .sms-consent label{
+            font-size:0.8rem;color:var(--text-secondary);
+            line-height:1.55;cursor:pointer;
+        }
+        .sms-consent label span{color:var(--text-tertiary);font-size:0.75rem}
         .form-box select option{background:#141C36}
 
         .next-steps{
@@ -980,7 +1009,14 @@
             <form id="contactForm">
                 <input type="text" name="name" placeholder="Your Name" required>
                 <input type="email" name="email" placeholder="Email Address" required>
-                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <input type="tel" name="phone" placeholder="Phone Number" required id="phoneInput">
+                <div class="sms-consent" id="smsConsent">
+                    <input type="checkbox" id="smsOptIn" name="smsOptIn">
+                    <label for="smsOptIn">
+                        I agree to receive SMS messages from BoyerScales regarding my request, including follow-up and scheduling information.<br>
+                        <span>Message and data rates may apply. Reply STOP to opt out at any time.</span>
+                    </label>
+                </div>
                 <input type="text" name="business" placeholder="Business Name" required>
                 <select name="callsPerMonth" required>
                     <option value="">Monthly call volume?</option>
@@ -1075,11 +1111,34 @@
         });
     });
 
+    const phoneInput = document.getElementById('phoneInput');
+    const smsConsent = document.getElementById('smsConsent');
+    phoneInput.addEventListener('input', function() {
+        if (this.value.trim().length > 0) {
+            smsConsent.classList.add('visible');
+        } else {
+            smsConsent.classList.remove('visible');
+            document.getElementById('smsOptIn').checked = false;
+        }
+    });
+    document.getElementById('smsOptIn').addEventListener('change', function() {
+        smsConsent.style.borderColor = '';
+        smsConsent.style.background = '';
+    });
+
     document.getElementById('contactForm').addEventListener('submit', function(e) {
         e.preventDefault();
+        const phone = document.querySelector('[name="phone"]').value;
+        const smsOptIn = document.getElementById('smsOptIn');
+        if (phone && !smsOptIn.checked) {
+            smsOptIn.closest('.sms-consent').style.borderColor = 'rgba(239,68,68,0.5)';
+            smsOptIn.closest('.sms-consent').style.background = 'rgba(239,68,68,0.04)';
+            smsOptIn.focus();
+            return;
+        }
         const name = document.querySelector('[name="name"]').value;
         const email = document.querySelector('[name="email"]').value;
-        const phone = document.querySelector('[name="phone"]').value;
+
         const business = document.querySelector('[name="business"]').value;
         const callsPerMonth = document.querySelector('[name="callsPerMonth"]').value;
         const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzNht1GMQ6PPJq7uTieMP06SIJEAixtpcBQAuHX7FqA9Zje8ZhJTRZMfrg0P3H7DEPS0w/exec';
