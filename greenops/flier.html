@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -9,312 +8,298 @@
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-width: 8.5in;
-height: 11in;
-background: #0a1a0a;
-font-family: ‘Barlow’, sans-serif;
-}
+  body {
+    background: #0a1a0a;
+    font-family: 'Barlow', sans-serif;
+    width: 8.5in;
+    margin: 0 auto;
+  }
 
-.flier {
-width: 8.5in;
-height: 11in;
-background: #0a1a0a;
-position: relative;
-overflow: hidden;
-display: flex;
-flex-direction: column;
-}
+  .flier {
+    width: 8.5in;
+    background: #0a1a0a;
+    position: relative;
+  }
 
-.flier::before {
-content: ‘’;
-position: absolute;
-inset: 0;
-background: repeating-linear-gradient(
--55deg,
-transparent,
-transparent 22px,
-rgba(60,160,60,0.035) 22px,
-rgba(60,160,60,0.035) 24px
-);
-pointer-events: none;
-z-index: 0;
-}
+  .flier::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -55deg,
+      transparent 0px,
+      transparent 22px,
+      rgba(60,160,60,0.035) 22px,
+      rgba(60,160,60,0.035) 24px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
 
-.flier > * { position: relative; z-index: 1; }
+  .flier > * { position: relative; z-index: 1; }
 
-.top-bar {
-height: 10px;
-background: linear-gradient(90deg, #1a7a1a, #5ccc3a, #1a7a1a);
-flex-shrink: 0;
-}
+  .top-bar {
+    height: 12px;
+    background: linear-gradient(90deg, #1a7a1a, #5ccc3a, #1a7a1a);
+  }
 
-.header {
-padding: 0.4in 0.6in 0.18in;
-flex-shrink: 0;
-}
+  .header {
+    padding: 0.55in 0.65in 0.25in;
+  }
 
-.badge {
-display: inline-block;
-background: #1a7a1a;
-color: #b8ffb8;
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 9pt;
-font-weight: 700;
-letter-spacing: 0.22em;
-text-transform: uppercase;
-padding: 4px 14px 4px 12px;
-margin-bottom: 0.13in;
-clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
-}
+  .badge {
+    display: inline-block;
+    background: #1a7a1a;
+    color: #b8ffb8;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 5px 16px 5px 12px;
+    margin-bottom: 0.15in;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 50%, calc(100% - 10px) 100%, 0 100%);
+  }
 
-.logo-row {
-display: flex;
-align-items: flex-end;
-gap: 0.12in;
-}
+  .logo-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.12in;
+  }
 
-.leaf-icon {
-font-size: 64pt;
-line-height: 1;
-filter: drop-shadow(0 0 14px rgba(100,220,60,0.55));
-}
+  .leaf-icon {
+    font-size: 72pt;
+    line-height: 1;
+    filter: drop-shadow(0 0 14px rgba(100,220,60,0.55));
+  }
 
-.brand-name {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 90pt;
-line-height: 0.88;
-color: #f0fff0;
-letter-spacing: 0.02em;
-text-shadow: 0 0 50px rgba(100,220,60,0.25);
-}
+  .brand-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100pt;
+    line-height: 0.88;
+    color: #f0fff0;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 50px rgba(100,220,60,0.25);
+  }
 
-.brand-name span { color: #5ccc3a; }
+  .brand-name span { color: #5ccc3a; }
 
-.tagline {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 13pt;
-font-weight: 600;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: #7abf7a;
-margin-top: 0.08in;
-}
+  .tagline {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14pt;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #7abf7a;
+    margin-top: 0.1in;
+  }
 
-.hero-band {
-height: 9px;
-background: linear-gradient(90deg, #5ccc3a 0%, #1a7a1a 50%, #0a3a0a 100%);
-flex-shrink: 0;
-}
+  .hero-band {
+    height: 10px;
+    background: linear-gradient(90deg, #5ccc3a 0%, #1a7a1a 50%, #0a3a0a 100%);
+  }
 
-.intro {
-padding: 0.18in 0.6in;
-flex-shrink: 0;
-border-bottom: 1px solid rgba(92,204,58,0.12);
-}
+  .intro {
+    padding: 0.28in 0.65in;
+    border-bottom: 1px solid rgba(92,204,58,0.12);
+  }
 
-.intro p {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 13pt;
-color: #7aaa7a;
-letter-spacing: 0.03em;
-line-height: 1.5;
-}
+  .intro p {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14pt;
+    color: #7aaa7a;
+    letter-spacing: 0.03em;
+    line-height: 1.55;
+  }
 
-.intro p strong {
-color: #a8e8a8;
-font-weight: 600;
-}
+  .intro p strong {
+    color: #a8e8a8;
+    font-weight: 600;
+  }
 
-.services {
-padding: 0.2in 0.6in;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-gap: 0.15in;
-flex-shrink: 0;
-}
+  .services {
+    padding: 0.3in 0.65in;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.18in;
+  }
 
-.service-card {
-background: rgba(255,255,255,0.03);
-border: 1px solid rgba(92,204,58,0.18);
-padding: 0.17in 0.16in;
-position: relative;
-}
+  .service-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(92,204,58,0.18);
+    padding: 0.2in 0.17in;
+    position: relative;
+  }
 
-.service-card::before {
-content: ‘’;
-position: absolute;
-top: 0; left: 0;
-width: 4px;
-height: 100%;
-background: #5ccc3a;
-}
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 100%;
+    background: #5ccc3a;
+  }
 
-.service-icon {
-font-size: 20pt;
-display: block;
-margin-bottom: 5px;
-}
+  .service-icon {
+    font-size: 22pt;
+    display: block;
+    margin-bottom: 6px;
+  }
 
-.service-title {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-weight: 700;
-font-size: 11.5pt;
-letter-spacing: 0.06em;
-text-transform: uppercase;
-color: #d0ffd0;
-margin-bottom: 4px;
-}
+  .service-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12pt;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #d0ffd0;
+    margin-bottom: 5px;
+  }
 
-.service-desc {
-font-size: 8.5pt;
-color: #5a8a5a;
-line-height: 1.55;
-}
+  .service-desc {
+    font-size: 9pt;
+    color: #5a8a5a;
+    line-height: 1.55;
+  }
 
-.why-strip {
-margin: 0 0.6in;
-padding: 0.16in 0.22in;
-background: rgba(92,204,58,0.06);
-border: 1px solid rgba(92,204,58,0.2);
-display: flex;
-justify-content: space-between;
-align-items: center;
-flex-shrink: 0;
-}
+  .why-strip {
+    margin: 0 0.65in 0.3in;
+    padding: 0.2in 0.25in;
+    background: rgba(92,204,58,0.06);
+    border: 1px solid rgba(92,204,58,0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-.why-item {
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 3px;
-flex: 1;
-}
+  .why-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+  }
 
-.why-item + .why-item {
-border-left: 1px solid rgba(92,204,58,0.15);
-}
+  .why-item + .why-item {
+    border-left: 1px solid rgba(92,204,58,0.15);
+  }
 
-.why-num {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 26pt;
-color: #5ccc3a;
-line-height: 1;
-}
+  .why-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28pt;
+    color: #5ccc3a;
+    line-height: 1;
+  }
 
-.why-label {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 8pt;
-font-weight: 600;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: #5a8a5a;
-text-align: center;
-line-height: 1.3;
-}
+  .why-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #5a8a5a;
+    text-align: center;
+    line-height: 1.3;
+  }
 
-.spacer { flex: 1; }
+  .cta-section {
+    padding: 0.3in 0.65in 0.35in;
+    display: flex;
+    align-items: center;
+    gap: 0.45in;
+    border-top: 1px solid rgba(92,204,58,0.15);
+  }
 
-.cta-section {
-padding: 0.22in 0.6in 0.25in;
-display: flex;
-align-items: center;
-gap: 0.4in;
-border-top: 1px solid rgba(92,204,58,0.15);
-flex-shrink: 0;
-}
+  .cta-text { flex: 1; }
 
-.cta-text { flex: 1; }
+  .cta-headline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 50pt;
+    color: #f0fff0;
+    line-height: 0.92;
+    margin-bottom: 0.1in;
+  }
 
-.cta-headline {
-font-family: ‘Bebas Neue’, sans-serif;
-font-size: 44pt;
-color: #f0fff0;
-line-height: 0.92;
-margin-bottom: 0.09in;
-}
+  .cta-headline em {
+    color: #5ccc3a;
+    font-style: normal;
+  }
 
-.cta-headline em {
-color: #5ccc3a;
-font-style: normal;
-}
+  .cta-sub {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10.5pt;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #5a8f5a;
+    margin-bottom: 0.12in;
+  }
 
-.cta-sub {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 10pt;
-letter-spacing: 0.15em;
-text-transform: uppercase;
-color: #5a8f5a;
-margin-bottom: 0.1in;
-}
+  .cta-url {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14pt;
+    font-weight: 600;
+    color: #5ccc3a;
+    letter-spacing: 0.04em;
+    border-bottom: 1px solid rgba(92,204,58,0.35);
+    padding-bottom: 2px;
+    display: inline-block;
+  }
 
-.cta-url {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 13pt;
-font-weight: 600;
-color: #5ccc3a;
-letter-spacing: 0.04em;
-border-bottom: 1px solid rgba(92,204,58,0.35);
-padding-bottom: 2px;
-display: inline-block;
-}
+  .qr-wrap {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
 
-.qr-wrap {
-flex-shrink: 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 6px;
-}
+  .qr-box {
+    background: #fff;
+    padding: 10px;
+    width: 1.5in;
+    height: 1.5in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(92,204,58,0.2);
+  }
 
-.qr-box {
-background: #fff;
-padding: 10px;
-width: 1.35in;
-height: 1.35in;
-display: flex;
-align-items: center;
-justify-content: center;
-box-shadow: 0 0 20px rgba(92,204,58,0.2);
-}
+  #qrcode canvas, #qrcode img { display: block; }
 
-#qrcode canvas, #qrcode img { display: block; }
+  .qr-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #4a7a4a;
+    text-align: center;
+  }
 
-.qr-label {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-size: 7.5pt;
-font-weight: 600;
-letter-spacing: 0.18em;
-text-transform: uppercase;
-color: #4a7a4a;
-text-align: center;
-}
+  .bottom-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #5ccc3a;
+    padding: 0.14in 0.65in;
+  }
 
-.bottom-bar {
-display: flex;
-align-items: center;
-justify-content: center;
-background: #5ccc3a;
-padding: 0.11in 0.6in;
-flex-shrink: 0;
-}
+  .bottom-bar span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 11pt;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #0a1a0a;
+  }
 
-.bottom-bar span {
-font-family: ‘Barlow Condensed’, sans-serif;
-font-weight: 700;
-font-size: 10.5pt;
-letter-spacing: 0.2em;
-text-transform: uppercase;
-color: #0a1a0a;
-}
+  @page { size: letter; margin: 0; }
 
-@page { size: letter; margin: 0; }
-@media print {
-html, body { width: 8.5in; height: 11in; }
-.flier { width: 8.5in; height: 11in; }
-}
+  @media print {
+    body { width: 8.5in; }
+    .flier { width: 8.5in; }
+  }
 </style>
-
 </head>
 <body>
 <div class="flier">
@@ -387,8 +372,6 @@ html, body { width: 8.5in; height: 11in; }
     </div>
   </div>
 
-  <div class="spacer"></div>
-
   <div class="cta-section">
     <div class="cta-text">
       <div class="cta-headline">GET YOUR<br><em>FREE</em> QUOTE<br>TODAY</div>
@@ -411,13 +394,12 @@ html, body { width: 8.5in; height: 11in; }
 <script>
   new QRCode(document.getElementById("qrcode"), {
     text: "https://boyerscales.com/greenops",
-    width: 116,
-    height: 116,
+    width: 124,
+    height: 124,
     colorDark: "#000000",
     colorLight: "#ffffff",
     correctLevel: QRCode.CorrectLevel.H
   });
 </script>
-
 </body>
 </html>
