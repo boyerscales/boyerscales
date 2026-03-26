@@ -89,6 +89,802 @@ header {
   max-width: 1060px; margin: 0 auto; padding: 0 24px;
   height: 100%; display: flex; align-items: center; justify-content: space-between;
 }
+.logo {
+  display: flex; align-items: center; gap: 0.55rem;
+  font-size: 1.25rem; font-weight: 800; color: var(--green);
+  letter-spacing: -0.5px; text-decoration: none; cursor: pointer;
+}
+.logo img { height: 34px; width: 34px; object-fit: contain; border-radius: 8px; }
+.logo span { color: var(--text); }
+nav { display: flex; align-items: center; gap: 2rem; }
+nav button {
+  background: none; border: none; cursor: pointer; font-family: inherit;
+  font-size: 0.92rem; font-weight: 600; color: var(--text-muted); transition: color 0.15s; padding: 0;
+}
+nav button:hover { color: var(--text); }
+.header-phone {
+  display: flex; align-items: center; gap: 0.45rem;
+  font-size: 0.88rem; font-weight: 700; color: var(--green);
+  text-decoration: none; transition: opacity 0.15s;
+}
+.header-phone:hover { opacity: 0.8; }
+.header-right { display: flex; align-items: center; gap: 1.25rem; }
+
+/* HERO */
+.hero {
+  padding: 120px 0 80px;
+  background: var(--bg);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; top: -100px; right: -100px;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(76,175,80,0.07) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-bg-img {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background:
+    linear-gradient(180deg, rgba(20,26,19,0.35) 0%, rgba(20,26,19,0.72) 50%, rgba(20,26,19,1) 85%),
+    url('https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg?auto=compress&cs=tinysrgb&w=1400&h=700&fit=crop');
+  background-size: cover;
+  background-position: center top;
+  opacity: 0.38;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero > .container { position: relative; z-index: 1; }
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 0.55rem;
+  background: var(--green-soft); border: 1px solid var(--green-border);
+  color: var(--green); font-size: 0.85rem; font-weight: 700;
+  padding: 0.4rem 1rem; border-radius: 100px; margin-bottom: 1.75rem;
+}
+.dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero h1 {
+  font-size: clamp(2.6rem, 5.5vw, 4.6rem);
+  font-weight: 800; letter-spacing: -2px; line-height: 1.08;
+  color: var(--text); margin-bottom: 1.4rem; max-width: 740px;
+}
+.hero h1 .green { color: var(--green); }
+.hero-sub {
+  font-size: clamp(1.05rem, 1.8vw, 1.2rem); color: var(--text-muted);
+  max-width: 500px; margin-bottom: 2.5rem; line-height: 1.7;
+}
+.hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+/* TRUST STRIP */
+.trust-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  max-width: 700px;
+  overflow: hidden;
+}
+.trust-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  padding: 0.95rem 1.2rem;
+  font-size: 0.88rem; font-weight: 600; color: var(--text-muted);
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.trust-item:nth-child(3), .trust-item:nth-child(6) { border-right: none; }
+.trust-item:nth-child(4), .trust-item:nth-child(5), .trust-item:nth-child(6) { border-bottom: none; }
+.trust-item svg { color: var(--green); flex-shrink: 0; }
+
+/* BEFORE/AFTER */
+.ba-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.ba-card {
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card);
+  box-shadow: var(--shadow);
+  transition: box-shadow 0.25s, transform 0.25s;
+  display: flex; flex-direction: column;
+}
+.ba-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); border-color: var(--green-border); }
+.ba-photos { display: grid; grid-template-columns: 1fr 1fr; position: relative; flex-shrink: 0; }
+.ba-photo { aspect-ratio: 1/1; position: relative; overflow: hidden; }
+.ba-photo-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.ba-photo-inner img { width: 100%; height: 100%; object-fit: cover; }
+.before-bg { background: linear-gradient(145deg, #3d2b1f, #5d4037); }
+.after-bg  { background: linear-gradient(145deg, #1b4d1e, #2e7d32); }
+.ba-photo-inner svg { opacity: 0.45; }
+.ba-tag {
+  position: absolute; bottom: 8px; font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #fff;
+  background: rgba(0,0,0,0.6); padding: 0.22rem 0.6rem; border-radius: 5px;
+}
+.ba-tag.left { left: 8px; } .ba-tag.right { right: 8px; }
+.ba-divider-line {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+  background: rgba(255,255,255,0.7); z-index: 2; transform: translateX(-50%);
+}
+.ba-info { padding: 1.1rem 1.2rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 0.5rem; }
+.ba-title { font-size: 0.92rem; font-weight: 700; color: var(--text); }
+.ba-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+.ba-time {
+  display: inline-flex; align-items: center; gap: 0.38rem;
+  font-size: 0.78rem; font-weight: 700; color: var(--green);
+  background: var(--green-soft); border: 1px solid var(--green-border);
+  padding: 0.22rem 0.65rem; border-radius: 100px; width: fit-content;
+}
+
+/* SERVICES */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+}
+.svc-card {
+  padding: 1.6rem; border-radius: var(--radius);
+  background: var(--bg-card); border: 1px solid var(--border);
+  transition: border-color 0.2s, transform 0.2s, background 0.2s;
+  display: flex; flex-direction: column; gap: 0.65rem;
+}
+.svc-card:hover { border-color: var(--green-border); transform: translateY(-2px); background: var(--bg-elevated); }
+.svc-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--green-soft); border: 1px solid var(--green-border);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.svc-icon svg { color: var(--green); }
+.svc-card h3 { font-size: 0.98rem; font-weight: 700; color: var(--text); }
+.svc-card p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.55; }
+
+/* HOW IT WORKS */
+.how-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.how-visual {
+  background: var(--bg-card); border: 1px solid var(--border-strong);
+  border-radius: 20px; aspect-ratio: 4/3;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 1.25rem; position: relative; overflow: hidden;
+}
+.how-visual::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, var(--green-glow) 0%, transparent 70%);
+}
+.how-visual svg { color: var(--green); opacity: 0.6; position: relative; z-index: 1; }
+.how-visual p { font-size: 0.88rem; font-weight: 600; color: var(--text-muted); position: relative; z-index: 1; }
+.steps-list { display: flex; flex-direction: column; }
+.step-row { display: flex; gap: 1.25rem; padding-bottom: 2.25rem; }
+.step-row:last-child { padding-bottom: 0; }
+.step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+.step-circle {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--green); color: #0d1a0d;
+  font-size: 1rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+}
+.step-connector { width: 2px; flex: 1; background: var(--border-strong); margin-top: 5px; min-height: 30px; }
+.step-row:last-child .step-connector { display: none; }
+.step-body { padding-top: 0.45rem; }
+.step-body h3 { font-size: 1.02rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text); }
+.step-body p { font-size: 0.89rem; color: var(--text-muted); line-height: 1.6; }
+.step-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.65rem; }
+.step-tag {
+  font-size: 0.76rem; font-weight: 600; color: var(--green);
+  background: var(--green-soft); border: 1px solid var(--green-border);
+  padding: 0.22rem 0.65rem; border-radius: 100px;
+}
+
+/* WHY */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem; margin-bottom: 3rem;
+}
+.why-card {
+  padding: 1.5rem; background: var(--bg-card); border: 1px solid var(--border);
+  border-radius: var(--radius); transition: border-color 0.2s, background 0.2s;
+}
+.why-card:hover { border-color: var(--green-border); background: var(--bg-elevated); }
+.why-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--green-soft); border: 1px solid var(--green-border);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 0.9rem;
+}
+.why-icon svg { color: var(--green); }
+.why-card h3 { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.35rem; color: var(--text); }
+.why-card p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.55; }
+
+/* REVIEWS */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1rem;
+}
+.review-card {
+  background: var(--bg-elevated); border: 1px solid var(--border-strong);
+  border-radius: var(--radius); padding: 1.5rem;
+  display: flex; flex-direction: column;
+  transition: border-color 0.2s;
+}
+.review-card:hover { border-color: var(--green-border); }
+.stars { display: flex; gap: 3px; margin-bottom: 0.75rem; }
+.stars svg { color: #fbbf24; }
+.review-body { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; margin-bottom: 1.1rem; font-style: italic; flex: 1; }
+.reviewer { display: flex; align-items: center; gap: 0.65rem; }
+.reviewer-av {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: var(--green-soft); border: 1px solid var(--green-border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.75rem; font-weight: 800; color: var(--green); flex-shrink: 0;
+}
+.reviewer-name { font-size: 0.86rem; font-weight: 700; color: var(--text); }
+.reviewer-city { font-size: 0.75rem; color: var(--text-light); }
+
+/* TRUST BADGES */
+.badge-row {
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+  margin-top: 2.5rem;
+}
+.badge {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: var(--bg-card); border: 1px solid var(--border-strong);
+  border-radius: 100px; padding: 0.6rem 1.2rem;
+  font-size: 0.85rem; font-weight: 600; color: var(--text-muted);
+}
+.badge svg { color: var(--green); flex-shrink: 0; }
+
+/* PRICING */
+.pricing-card {
+  background: var(--bg-card); border: 1px solid var(--border-strong);
+  border-radius: 20px; padding: 2.75rem;
+  display: grid; grid-template-columns: auto 1px 1fr auto;
+  gap: 2.75rem; align-items: center; box-shadow: var(--shadow);
+}
+.price-num { font-size: 3.2rem; font-weight: 800; color: var(--green); line-height: 1; }
+.price-unit { font-size: 0.87rem; color: var(--text-muted); margin-top: 0.35rem; }
+.price-divider { background: var(--border-strong); align-self: stretch; }
+.price-list { display: flex; flex-direction: column; gap: 0.6rem; }
+.price-row { display: flex; align-items: center; gap: 0.55rem; font-size: 0.9rem; color: var(--text-muted); }
+.price-row svg { color: var(--green); flex-shrink: 0; }
+.pricing-note {
+  margin-top: 1.5rem; padding: 1.1rem 1.4rem;
+  background: var(--green-soft); border: 1px solid var(--green-border);
+  border-radius: 12px; font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;
+}
+.pricing-note strong { color: var(--green); }
+
+/* LOCAL */
+.local-section { background: var(--bg-elevated); padding: 56px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.local-inner { text-align: center; }
+.local-inner p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.25rem; }
+.local-inner strong { color: var(--text); }
+.local-chips { display: flex; flex-wrap: wrap; gap: 0.65rem; justify-content: center; }
+.local-chip {
+  background: var(--bg-card); color: var(--text-muted);
+  padding: 0.4rem 1.1rem; border-radius: 100px;
+  font-size: 0.86rem; font-weight: 600; border: 1px solid var(--border-strong);
+  transition: border-color 0.2s, color 0.2s;
+}
+.local-chip:hover { border-color: var(--green-border); color: var(--green); }
+
+/* FAQ */
+.faq-wrap { max-width: 680px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-btn {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 0; gap: 1rem; text-align: left;
+  font-family: inherit; font-size: 1rem; font-weight: 600; color: var(--text);
+  transition: color 0.15s;
+}
+.faq-btn:hover { color: var(--green); }
+.faq-icon { color: var(--green); flex-shrink: 0; transition: transform 0.22s; }
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-ans { font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; padding-bottom: 1.1rem; display: none; }
+.faq-item.open .faq-ans { display: block; }
+
+/* CTA BANNER */
+.cta-banner {
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border-strong);
+  border-bottom: 1px solid var(--border-strong);
+  padding: 88px 0; text-align: center; position: relative; overflow: hidden;
+}
+.cta-banner::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 70% at 50% 50%, rgba(76,175,80,0.09) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-banner h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800;
+  color: var(--text); letter-spacing: -0.5px; margin-bottom: 0.7rem; position: relative;
+}
+.cta-banner .cta-sub { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2.25rem; position: relative; }
+.cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+.urgency-note {
+  margin-top: 1.4rem; font-size: 0.85rem; color: var(--text-light);
+  position: relative; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+}
+.urgency-note svg { color: var(--green); }
+
+/* FOOTER */
+footer { background: #0e1310; border-top: 1px solid var(--border); padding: 48px 0 28px; }
+.footer-inner {
+  max-width: 1060px; margin: 0 auto; padding: 0 24px 2rem;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 2rem; flex-wrap: wrap;
+  border-bottom: 1px solid var(--border);
+}
+.footer-logo { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.4rem; }
+.footer-logo img { height: 32px; width: 32px; object-fit: contain; border-radius: 7px; }
+.footer-logo-text { font-size: 1.15rem; font-weight: 800; color: var(--green); }
+.footer-tagline { font-size: 0.84rem; color: var(--text-light); margin-bottom: 0.75rem; }
+.footer-phone { display: flex; align-items: center; gap: 0.4rem; font-size: 1rem; font-weight: 700; color: var(--green); text-decoration: none; }
+.footer-phone:hover { opacity: 0.8; }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+.footer-links button {
+  background: none; border: none; cursor: pointer; font-family: inherit;
+  color: var(--text-light); font-size: 0.88rem; transition: color 0.15s; padding: 0;
+}
+.footer-links button:hover { color: var(--text); }
+.footer-bottom {
+  max-width: 1060px; margin: 0 auto; padding: 1.4rem 24px 0;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;
+}
+.footer-bottom p { font-size: 0.8rem; color: var(--text-light); }
+
+/* SCROLL REVEAL */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.07s; } .d2 { transition-delay: 0.14s; }
+.d3 { transition-delay: 0.21s; } .d4 { transition-delay: 0.28s; }
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .ba-grid, .services-grid, .why-grid, .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+  .trust-strip { grid-template-columns: repeat(2, 1fr); }
+  .trust-item:nth-child(2), .trust-item:nth-child(4), .trust-item:nth-child(6) { border-right: none; }
+  .trust-item:nth-child(3) { border-right: 1px solid var(--border); }
+  .trust-item:nth-child(5), .trust-item:nth-child(6) { border-bottom: none; }
+  .trust-item:nth-child(3), .trust-item:nth-child(4) { border-bottom: 1px solid var(--border); }
+}
+@media (max-width: 640px) {
+  nav { display: none; }
+  .ba-grid, .services-grid, .why-grid, .reviews-grid { grid-template-columns: 1fr; }
+  .trust-strip { grid-template-columns: 1fr; }
+  .trust-item { border-right: none !important; }
+  .trust-item:last-child { border-bottom: none; }
+  .how-layout { grid-template-columns: 1fr; }
+  .how-visual { display: none; }
+  .pricing-card { grid-template-columns: 1fr; gap: 1.75rem; }
+  .price-divider { height: 1px; width: 100%; }
+  .header-phone { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- SVG ICON DEFS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="ic-check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 10 8 14 16 6"/></symbol>
+  <symbol id="ic-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></symbol>
+  <symbol id="ic-scissors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></symbol>
+  <symbol id="ic-truck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v3h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></symbol>
+  <symbol id="ic-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+  <symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></symbol>
+  <symbol id="ic-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="ic-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+  <symbol id="ic-dollar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+  <symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></symbol>
+  <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12 19.79 19.79 0 0 1 1.79 3.41 2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.15a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="ic-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="ic-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="ic-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="ic-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 1 3.9 7.1c-2.1-.1-3.7-.6-4.7-1.7-1-1-1.6-2.7-1.3-5.3 1-.1 1.7.2 2.1 1z"/></symbol>
+  <symbol id="ic-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="ic-award" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></symbol>
+  <symbol id="ic-img" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></symbol>
+</svg>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <span class="logo" onclick="scrollToTop()">
+      <img src="https://i.imgur.com/Bhex0Ko.png" alt="GreenOps logo">
+      Green<span>Ops</span>
+    </span>
+    <nav>
+      <button onclick="navTo('services')">Services</button>
+      <button onclick="navTo('how')">How It Works</button>
+      <button onclick="navTo('pricing')">Pricing</button>
+      <button onclick="navTo('faq')">FAQ</button>
+    </nav>
+    <div class="header-right">
+      <a href="tel:9167537822" class="header-phone">
+        <svg width="15" height="15"><use href="#ic-phone"/></svg>
+        (916) 753-7822
+      </a>
+      <a href="sms:9167537822" class="btn btn-green">
+        <svg width="15" height="15"><use href="#ic-msg"/></svg>
+        Text Us
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-img"></div>
+  <div class="container">
+    <div class="hero-eyebrow"><div class="dot"></div> Serving Sacramento &amp; Surrounding Areas</div>
+    <h1>Overgrown Yard?<br>We'll <span class="green">Clean It Up Fast.</span></h1>
+    <p class="hero-sub">GreenOps is a local yard cleanup crew serving homeowners in the Sacramento area. Fast quotes, flat-rate pricing, no hassle. Text us a photo and we'll price your job today.</p>
+    <div class="hero-ctas">
+      <a href="sms:9167537822" class="btn btn-green btn-xl">
+        <svg width="18" height="18"><use href="#ic-msg"/></svg>
+        Text Us a Photo
+      </a>
+      <a href="tel:9167537822" class="btn btn-outline btn-xl">
+        <svg width="18" height="18"><use href="#ic-phone"/></svg>
+        Call (916) 753-7822
+      </a>
+    </div>
+    <div class="trust-strip">
+      <div class="trust-item"><svg width="14" height="14"><use href="#ic-check"/></svg> Free quotes</div>
+      <div class="trust-item"><svg width="14" height="14"><use href="#ic-check"/></svg> 24–48 hr turnaround</div>
+      <div class="trust-item"><svg width="14" height="14"><use href="#ic-check"/></svg> Flat-rate pricing</div>
+      <div class="trust-item"><svg width="14" height="14"><use href="#ic-check"/></svg> Waste hauling included</div>
+      <div class="trust-item"><svg width="14" height="14"><use href="#ic-check"/></svg> No need to be home</div>
+      <div class="trust-item"><svg width="14" height="14"><use href="#ic-check"/></svg> Local Sacramento crew</div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER -->
+<section class="section section-alt" id="results">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="label">Real Jobs</div>
+      <h2 class="section-title">Before &amp; After Transformations</h2>
+      <p class="section-sub">Real yards we've cleaned up right here in Sacramento and surrounding areas.</p>
+    </div>
+    <div class="ba-grid">
+      <div class="ba-card reveal d1">
+        <div class="ba-photos">
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://i.imgur.com/Z60LuTU.png" alt="Overgrown backyard before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5502221/pexels-photo-5502221.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Clean lawn after cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
+          <div class="ba-divider-line"></div>
+        </div>
+        <div class="ba-info">
+          <div><div class="ba-title">Rancho Cordova Backyard</div><div class="ba-desc">Knee-high weeds, overgrown fence line, full waste removal.</div></div>
+          <div class="ba-time"><svg width="12" height="12"><use href="#ic-clock"/></svg> Done in 2.5 hours</div>
+        </div>
+      </div>
+      <div class="ba-card reveal d2">
+        <div class="ba-photos">
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://i.imgur.com/7fypFCV.png" alt="Overgrown front yard before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5178034/pexels-photo-5178034.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Clean yard after cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
+          <div class="ba-divider-line"></div>
+        </div>
+        <div class="ba-info">
+          <div><div class="ba-title">Elk Grove Front Yard</div><div class="ba-desc">Dead branches, overgrowth along driveway, edges cleaned up.</div></div>
+          <div class="ba-time"><svg width="12" height="12"><use href="#ic-clock"/></svg> Done in 3 hours</div>
+        </div>
+      </div>
+      <div class="ba-card reveal d3">
+        <div class="ba-photos">
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://i.imgur.com/6je6j5E.png" alt="Overgrown side yard before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/7546775/pexels-photo-7546775.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Clean backyard after cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
+          <div class="ba-divider-line"></div>
+        </div>
+        <div class="ba-info">
+          <div><div class="ba-title">Sacramento Side Yard</div><div class="ba-desc">Neglected for months, full cleanup, weeds and debris hauled out.</div></div>
+          <div class="ba-time"><svg width="12" height="12"><use href="#ic-clock"/></svg> Same-day, done in 2 hours</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="label">What We Do</div>
+      <h2 class="section-title">Yard Cleanup, Start to Finish</h2>
+      <p class="section-sub">We're not full landscapers. We do one thing really well — clean up yards fast and haul everything away.</p>
+    </div>
+    <div class="services-grid">
+      <div class="svc-card reveal d1"><div class="svc-icon"><svg width="21" height="21"><use href="#ic-leaf"/></svg></div><h3>Full Yard Cleanup</h3><p>We clear everything out and leave your yard clean and manageable again.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon"><svg width="21" height="21"><use href="#ic-sprout"/></svg></div><h3>Weed Removal</h3><p>Pulled from the root, not just cut down, so they actually stay gone longer.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon"><svg width="21" height="21"><use href="#ic-scissors"/></svg></div><h3>Trimming &amp; Edging</h3><p>Overgrown shrubs, unruly hedges, messy edges — we shape it all up clean.</p></div>
+      <div class="svc-card reveal d1"><div class="svc-icon"><svg width="21" height="21"><use href="#ic-truck"/></svg></div><h3>Yard Waste Hauling</h3><p>We take it all with us. No bags left in your driveway, no second trip needed.</p></div>
+      <div class="svc-card reveal d2"><div class="svc-icon"><svg width="21" height="21"><use href="#ic-home"/></svg></div><h3>Light Yard Refresh</h3><p>Not a full overhaul? We do quick touch-ups too. Great for regular maintenance.</p></div>
+      <div class="svc-card reveal d3"><div class="svc-icon"><svg width="21" height="21"><use href="#ic-calendar"/></svg></div><h3>Same or Next-Day</h3><p>Need it done quick? We can often schedule same or next-day depending on the week.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section-alt" id="how">
+  <div class="container">
+    <div class="how-layout">
+      <div>
+        <div class="section-head reveal">
+          <div class="label">The Process</div>
+          <h2 class="section-title">Simple. Fast. Done.</h2>
+          <p class="section-sub">No complicated setup. Just send a photo, get a price, and we'll handle the rest.</p>
+        </div>
+        <div class="steps-list reveal d2">
+          <div class="step-row">
+            <div class="step-left"><div class="step-circle">1</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <h3>Text us a photo of your yard</h3>
+              <p>Send a few photos to our number and we'll price it fast — usually within the hour. No in-person inspection needed for most jobs.</p>
+              <div class="step-tags"><span class="step-tag">No inspection needed</span><span class="step-tag">Response within the hour</span></div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-left"><div class="step-circle">2</div><div class="step-connector"></div></div>
+            <div class="step-body">
+              <h3>Get a flat price and pick a time</h3>
+              <p>We give you a clear price upfront. No hourly surprises. Pick a day that works and we'll lock it in.</p>
+              <div class="step-tags"><span class="step-tag">Flat-rate pricing</span><span class="step-tag">Flexible scheduling</span></div>
+            </div>
+          </div>
+          <div class="step-row">
+            <div class="step-left"><div class="step-circle">3</div></div>
+            <div class="step-body">
+              <h3>We show up and handle everything</h3>
+              <p>We bring all our own equipment, clean up the yard, haul away the waste, and send you an after photo. You don't even need to be home.</p>
+              <div class="step-tags"><span class="step-tag">All equipment included</span><span class="step-tag">Waste hauling included</span><span class="step-tag">No need to be home</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="how-visual reveal d3">
+        <svg width="80" height="80"><use href="#ic-msg"/></svg>
+        <p>Text a photo → get a quote → done</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY GREENOPS -->
+<section class="section" id="trust">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="label">Why GreenOps</div>
+      <h2 class="section-title">Why Sacramento Homeowners Choose Us</h2>
+      <p class="section-sub">We're a local crew. We respond fast, show up when we say we will, and charge what we quote.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal d1"><div class="why-icon"><svg width="21" height="21"><use href="#ic-pin"/></svg></div><h3>We're Local</h3><p>Based right here in the Sacramento area. We know the neighborhoods and we actually show up.</p></div>
+      <div class="why-card reveal d2"><div class="why-icon"><svg width="21" height="21"><use href="#ic-zap"/></svg></div><h3>Fast Response</h3><p>Text us a photo and you'll usually have a price back within the hour. No waiting days for a callback.</p></div>
+      <div class="why-card reveal d3"><div class="why-icon"><svg width="21" height="21"><use href="#ic-dollar"/></svg></div><h3>Flat-Rate, No Surprises</h3><p>We quote you a price before we start. What we say is what you pay — no hidden fees, no hourly billing.</p></div>
+      <div class="why-card reveal d1"><div class="why-icon"><svg width="21" height="21"><use href="#ic-truck"/></svg></div><h3>Waste Hauling Included</h3><p>We take the debris with us. You won't be left with bags piled up waiting for trash day.</p></div>
+      <div class="why-card reveal d2"><div class="why-icon"><svg width="21" height="21"><use href="#ic-home"/></svg></div><h3>No Need to Be Home</h3><p>As long as we can access the yard, you don't need to rearrange your day. We'll send photos when done.</p></div>
+      <div class="why-card reveal d3"><div class="why-icon"><svg width="21" height="21"><use href="#ic-shield"/></svg></div><h3>Satisfaction Guarantee</h3><p>Not happy with how it looks? Tell us and we'll make it right. We don't leave jobs half done.</p></div>
+    </div>
+
+    <!-- TRUST BADGES -->
+    <div class="badge-row reveal">
+      <div class="badge"><svg width="16" height="16"><use href="#ic-pin"/></svg> Locally Operated — Sacramento, CA</div>
+      <div class="badge"><svg width="16" height="16"><use href="#ic-users"/></svg> Real People, Real Work</div>
+      <div class="badge"><svg width="16" height="16"><use href="#ic-award"/></svg> Satisfaction Guaranteed</div>
+      <div class="badge"><svg width="16" height="16"><use href="#ic-shield"/></svg> No Hidden Fees — Ever</div>
+    </div>
+
+    <!-- REVIEWS -->
+    <div style="margin-top: 3.5rem;">
+      <h3 class="reveal" style="font-size:1.1rem; font-weight:700; margin-bottom:1.5rem; color:var(--text);">What customers are saying</h3>
+      <div class="reviews-grid">
+        <div class="review-card reveal d1">
+          <div class="stars"><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg></div>
+          <p class="review-body">"Texted a photo in the morning, had a price by noon, and they finished the next day. My backyard was embarrassing before. It actually looks good now."</p>
+          <div class="reviewer"><div class="reviewer-av">MR</div><div><div class="reviewer-name">Marcus R.</div><div class="reviewer-city">Sacramento, CA</div></div></div>
+        </div>
+        <div class="review-card reveal d2">
+          <div class="stars"><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg></div>
+          <p class="review-body">"Didn't have to be home, didn't have to deal with anything. They came, cleaned it up, hauled everything out. That's exactly what I needed."</p>
+          <div class="reviewer"><div class="reviewer-av">JT</div><div><div class="reviewer-name">Jamie T.</div><div class="reviewer-city">Elk Grove, CA</div></div></div>
+        </div>
+        <div class="review-card reveal d3">
+          <div class="stars"><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg><svg width="15" height="15"><use href="#ic-star"/></svg></div>
+          <p class="review-body">"Quoted me a flat price, showed up when they said, and did a clean job. No upselling, no games. Will definitely use them again."</p>
+          <div class="reviewer"><div class="reviewer-av">DL</div><div><div class="reviewer-name">Denise L.</div><div class="reviewer-city">Rancho Cordova, CA</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section section-alt" id="pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="label">Pricing</div>
+      <h2 class="section-title">Clear Pricing. No Surprises.</h2>
+      <p class="section-sub">We quote every job flat-rate so you know exactly what you're paying before we start. No hourly billing.</p>
+    </div>
+    <div class="pricing-card reveal d2">
+      <div><div class="price-num">$40–$250</div><div class="price-unit">most yard cleanups</div></div>
+      <div class="price-divider"></div>
+      <div class="price-list">
+        <div class="price-row"><svg width="15" height="15"><use href="#ic-check"/></svg> Flat rate — you know the price upfront</div>
+        <div class="price-row"><svg width="15" height="15"><use href="#ic-check"/></svg> All equipment and labor included</div>
+        <div class="price-row"><svg width="15" height="15"><use href="#ic-check"/></svg> Yard waste hauling included</div>
+        <div class="price-row"><svg width="15" height="15"><use href="#ic-check"/></svg> Free quote — just text us a photo</div>
+        <div class="price-row"><svg width="15" height="15"><use href="#ic-check"/></svg> No hidden fees, no hourly billing</div>
+      </div>
+      <a href="sms:9167537822" class="btn btn-green btn-lg"><svg width="16" height="16"><use href="#ic-msg"/></svg> Text for a Quote</a>
+    </div>
+    <div class="pricing-note reveal d3">
+      <strong>How pricing works:</strong> Smaller yards usually start around $40–$120. Larger or heavily overgrown yards run higher. The fastest way to get an exact price is to <strong>text us a few photos</strong> — we can usually turn around a quote within the hour.
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL -->
+<section class="local-section">
+  <div class="container">
+    <div class="local-inner reveal">
+      <p><strong>Serving the Sacramento area</strong> — we come to you, no travel fees.</p>
+      <div class="local-chips">
+        <span class="local-chip">Sacramento</span>
+        <span class="local-chip">Elk Grove</span>
+        <span class="local-chip">Rancho Cordova</span>
+        <span class="local-chip">Citrus Heights</span>
+        <span class="local-chip">Folsom</span>
+        <span class="local-chip">North Highlands</span>
+        <span class="local-chip">+ surrounding areas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <div class="label reveal" style="display:inline-block;">FAQ</div>
+      <h2 class="section-title reveal d1">Common Questions</h2>
+      <p class="section-sub reveal d2" style="margin: 0 auto;">Everything you might want to know before booking.</p>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item reveal"><button class="faq-btn">Do I need to be home when you come?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-ans">No — as long as we can access the yard, you don't need to be there. We'll send you photos when the job is done.</div></div>
+      <div class="faq-item reveal d1"><button class="faq-btn">How fast can you come out?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-ans">Most jobs get scheduled within 24–48 hours of confirming your quote. Same-day is sometimes possible depending on availability that week.</div></div>
+      <div class="faq-item reveal d2"><button class="faq-btn">Can I get a quote by texting a photo?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-ans">Yes — that's actually the easiest way. Text us a few photos and we'll send you a flat-rate price, usually within the hour. No in-person inspection needed for most jobs.</div></div>
+      <div class="faq-item reveal d3"><button class="faq-btn">Do you bring your own equipment?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-ans">100%. We show up with everything — mowers, trimmers, blowers, bags. You don't need to have anything on your end.</div></div>
+      <div class="faq-item reveal d4"><button class="faq-btn">What happens to the yard waste?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-ans">We haul it all away. You won't be left with piles sitting in your driveway. Waste removal is included in every job.</div></div>
+      <div class="faq-item reveal"><button class="faq-btn">Do you handle really overgrown yards?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-ans">Yes — we deal with heavily neglected yards all the time. Just text us some photos and we'll let you know what we can do and what it'll cost.</div></div>
+      <div class="faq-item reveal d1"><button class="faq-btn">Is this one-time only or can I book recurring cleanups?<svg class="faq-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button><div class="faq-ans">Both. Plenty of customers do a one-time cleanup, and plenty set up regular visits to keep things maintained. Just let us know what you're looking for.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready to Stop Looking at That Yard?</h2>
+    <p class="cta-sub">Text us a photo and get a quote today. Same-day response — limited availability this week.</p>
+    <div class="cta-btns">
+      <a href="sms:9167537822" class="btn btn-green btn-xl"><svg width="18" height="18"><use href="#ic-msg"/></svg> Text Us a Photo</a>
+      <a href="tel:9167537822" class="btn btn-ghost-white btn-xl"><svg width="18" height="18"><use href="#ic-phone"/></svg> Call (916) 753-7822</a>
+    </div>
+    <div class="urgency-note"><svg width="14" height="14"><use href="#ic-zap"/></svg> Limited spots available this week — the sooner you reach out, the faster we can get you scheduled.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">
+        <img src="https://i.imgur.com/Bhex0Ko.png" alt="GreenOps logo">
+        <span class="footer-logo-text">GreenOps</span>
+      </div>
+      <p class="footer-tagline">Yard cleanup done right. Sacramento, CA.</p>
+      <a href="tel:9167537822" class="footer-phone">
+        <svg width="15" height="15"><use href="#ic-phone"/></svg>
+        (916) 753-7822
+      </a>
+    </div>
+    <div class="footer-links">
+      <button onclick="navTo('services')">Services</button>
+      <button onclick="navTo('how')">How It Works</button>
+      <button onclick="navTo('pricing')">Pricing</button>
+      <button onclick="navTo('faq')">FAQ</button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 GreenOps — Sacramento, CA</p>
+    <p>Fast. Fair. Done right.</p>
+  </div>
+</footer>
+
+<script>
+function navTo(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.querySelector('.faq-btn').addEventListener('click', () => {
+    const open = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!open) item.classList.add('open');
+  });
+});
+
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>  --shadow: 0 4px 24px rgba(0,0,0,0.35);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.45);
+}
+
+/* UTILITIES */
+.container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 96px 0; }
+.section-alt { background: var(--bg-section); }
+
+.label {
+  display: inline-block;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase;
+  color: var(--green); background: var(--green-soft); border: 1px solid var(--green-border);
+  padding: 0.3rem 0.9rem; border-radius: 100px; margin-bottom: 1.1rem;
+}
+.section-head { margin-bottom: 3.5rem; }
+.section-title {
+  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+  font-weight: 800; color: var(--text);
+  letter-spacing: -0.5px; line-height: 1.15; margin-bottom: 0.75rem;
+}
+.section-sub { font-size: 1.05rem; color: var(--text-muted); max-width: 520px; line-height: 1.65; }
+
+/* BUTTONS */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+  font-family: inherit; font-weight: 700; font-size: 1rem;
+  padding: 0.9rem 1.8rem; border-radius: 100px; border: none;
+  cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap;
+  letter-spacing: 0.1px;
+}
+.btn-green {
+  background: var(--green); color: #0d1a0d;
+}
+.btn-green:hover { background: #66bb6a; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(76,175,80,0.35); }
+.btn-outline {
+  background: transparent; color: var(--text);
+  border: 2px solid var(--border-strong);
+}
+.btn-outline:hover { border-color: var(--green); color: var(--green); background: var(--green-soft); }
+.btn-lg { padding: 1.05rem 2.2rem; font-size: 1.08rem; }
+.btn-xl { padding: 1.15rem 2.5rem; font-size: 1.12rem; }
+.btn-ghost-white { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.2); }
+.btn-ghost-white:hover { background: rgba(255,255,255,0.18); transform: translateY(-1px); }
+
+/* HEADER */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: rgba(20,26,19,0.96); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border); height: 66px;
+}
+.header-inner {
+  max-width: 1060px; margin: 0 auto; padding: 0 24px;
+  height: 100%; display: flex; align-items: center; justify-content: space-between;
+}
 .logo { font-size: 1.25rem; font-weight: 800; color: var(--green); letter-spacing: -0.5px; text-decoration: none; cursor: pointer; }
 .logo span { color: var(--text); }
 nav { display: flex; align-items: center; gap: 2rem; }
