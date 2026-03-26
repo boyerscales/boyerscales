@@ -1,4 +1,4 @@
-\<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -176,26 +176,38 @@ nav button:hover { color: var(--text); }
 .how-step h3 { font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
 .how-step p { font-size: 0.84rem; color: var(--text-muted); line-height: 1.55; }
 
-/* REVIEWS */
-.reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
-.review-card {
-  background: var(--bg-card); border: 1px solid var(--border-strong);
-  border-radius: var(--radius); padding: 1.3rem;
-  display: flex; flex-direction: column; transition: border-color 0.2s;
+/* BEFORE/AFTER */
+.ba-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+.ba-card {
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-card); box-shadow: var(--shadow);
+  transition: box-shadow 0.25s, transform 0.25s;
+  display: flex; flex-direction: column;
 }
-.review-card:hover { border-color: var(--green-border); }
-.stars { display: flex; gap: 2px; margin-bottom: 0.6rem; }
-.stars svg { color: #fbbf24; }
-.review-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.9rem; font-style: italic; flex: 1; }
-.reviewer { display: flex; align-items: center; gap: 0.55rem; }
-.reviewer-av {
-  width: 34px; height: 34px; border-radius: 50%;
+.ba-card:hover { box-shadow: 0 8px 40px rgba(0,0,0,0.45); transform: translateY(-3px); border-color: var(--green-border); }
+.ba-photos { display: grid; grid-template-columns: 1fr 1fr; position: relative; flex-shrink: 0; }
+.ba-photo { aspect-ratio: 1/1; position: relative; overflow: hidden; }
+.ba-photo-inner { width: 100%; height: 100%; }
+.ba-photo-inner img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ba-tag {
+  position: absolute; bottom: 8px; font-size: 0.68rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #fff;
+  background: rgba(0,0,0,0.6); padding: 0.22rem 0.6rem; border-radius: 5px;
+}
+.ba-tag.left { left: 8px; } .ba-tag.right { right: 8px; }
+.ba-divider-line {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+  background: rgba(255,255,255,0.7); z-index: 2; transform: translateX(-50%);
+}
+.ba-info { padding: 1rem 1.1rem; display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; }
+.ba-title { font-size: 0.88rem; font-weight: 700; color: var(--text); }
+.ba-time {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.75rem; font-weight: 700; color: var(--green);
   background: var(--green-soft); border: 1px solid var(--green-border);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.72rem; font-weight: 800; color: var(--green); flex-shrink: 0;
+  padding: 0.2rem 0.6rem; border-radius: 100px; white-space: nowrap; flex-shrink: 0;
 }
-.reviewer-name { font-size: 0.84rem; font-weight: 700; color: var(--text); }
-.reviewer-city { font-size: 0.73rem; color: var(--text-light); }
 
 /* PRICING */
 .pricing-card {
@@ -271,7 +283,7 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 36px
   .how-row { grid-template-columns: 1fr; gap: 1.5rem; }
   .how-step { text-align: left; display: flex; gap: 1rem; align-items: flex-start; }
   .step-num { margin: 0; flex-shrink: 0; }
-  .reviews-grid { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   nav { display: none; }
@@ -301,7 +313,7 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 36px
   <symbol id="ic-sprout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 1 3.9 7.1c-2.1-.1-3.7-.6-4.7-1.7-1-1-1.6-2.7-1.3-5.3 1-.1 1.7.2 2.1 1z"/></symbol>
   <symbol id="ic-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.89 12 19.79 19.79 0 0 1 1.79 3.41 2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.15a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
   <symbol id="ic-msg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
-  <symbol id="ic-star" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+
 </svg>
 
 <!-- HEADER -->
@@ -396,28 +408,46 @@ footer { background: #0e1310; border-top: 1px solid var(--border); padding: 36px
   </div>
 </section>
 
-<!-- REVIEWS -->
+<!-- BEFORE & AFTER -->
 <section class="section section-alt">
   <div class="container">
     <div style="text-align:center; margin-bottom: 2rem;" class="reveal">
-      <div class="label">Reviews</div>
-      <h2 class="section-title">What Customers Say</h2>
+      <div class="label">Real Jobs</div>
+      <h2 class="section-title">Before &amp; After</h2>
     </div>
-    <div class="reviews-grid">
-      <div class="review-card reveal d1">
-        <div class="stars"><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg></div>
-        <p class="review-body">"Texted a photo in the morning, had a price by noon, and they finished the next day. My backyard actually looks good now."</p>
-        <div class="reviewer"><div class="reviewer-av">MR</div><div><div class="reviewer-name">Marcus R.</div><div class="reviewer-city">Sacramento, CA</div></div></div>
+    <div class="ba-grid">
+      <div class="ba-card reveal d1">
+        <div class="ba-photos">
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/17804865/pexels-photo-17804865.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5502221/pexels-photo-5502221.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="After cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
+          <div class="ba-divider-line"></div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-title">Rancho Cordova Backyard</div>
+          <div class="ba-time"><svg width="12" height="12"><use href="#ic-check"/></svg> 2.5 hours</div>
+        </div>
       </div>
-      <div class="review-card reveal d2">
-        <div class="stars"><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg></div>
-        <p class="review-body">"Didn't have to be home. They came, cleaned it up, hauled everything out. Exactly what I needed."</p>
-        <div class="reviewer"><div class="reviewer-av">JT</div><div><div class="reviewer-name">Jamie T.</div><div class="reviewer-city">Elk Grove, CA</div></div></div>
+      <div class="ba-card reveal d2">
+        <div class="ba-photos">
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/18671993/pexels-photo-18671993.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5178034/pexels-photo-5178034.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="After cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
+          <div class="ba-divider-line"></div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-title">Elk Grove Front Yard</div>
+          <div class="ba-time"><svg width="12" height="12"><use href="#ic-check"/></svg> 3 hours</div>
+        </div>
       </div>
-      <div class="review-card reveal d3">
-        <div class="stars"><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg><svg width="14" height="14"><use href="#ic-star"/></svg></div>
-        <p class="review-body">"Flat price, showed up when they said, clean job. No upselling, no games. Will use again."</p>
-        <div class="reviewer"><div class="reviewer-av">DL</div><div><div class="reviewer-name">Denise L.</div><div class="reviewer-city">Rancho Cordova, CA</div></div></div>
+      <div class="ba-card reveal d3">
+        <div class="ba-photos">
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/5712887/pexels-photo-5712887.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="Before cleanup" loading="lazy"/></div><span class="ba-tag left">Before</span></div>
+          <div class="ba-photo"><div class="ba-photo-inner"><img src="https://images.pexels.com/photos/7546775/pexels-photo-7546775.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop" alt="After cleanup" loading="lazy"/></div><span class="ba-tag right">After</span></div>
+          <div class="ba-divider-line"></div>
+        </div>
+        <div class="ba-info">
+          <div class="ba-title">Sacramento Side Yard</div>
+          <div class="ba-time"><svg width="12" height="12"><use href="#ic-check"/></svg> 2 hours</div>
+        </div>
       </div>
     </div>
   </div>
