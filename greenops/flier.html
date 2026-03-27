@@ -45,6 +45,36 @@
 
   .header {
     padding: 0.55in 0.65in 0.25in;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .header-left {}
+
+  .logo-lockup {
+    /* BoyerScales logo placed top-right */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  .bs-logo {
+    height: 48px;
+    width: auto;
+    opacity: 0.88;
+    filter: drop-shadow(0 0 8px rgba(92,204,58,0.2));
+  }
+
+  .bs-logo-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #3a6a3a;
+    text-align: right;
   }
 
   .badge {
@@ -68,9 +98,7 @@
   }
 
   .leaf-icon {
-    font-size: 72pt;
-    line-height: 1;
-    filter: drop-shadow(0 0 14px rgba(100,220,60,0.55));
+    display: none;
   }
 
   .brand-name {
@@ -141,9 +169,11 @@
   }
 
   .service-icon {
-    font-size: 22pt;
+    width: 28px;
+    height: 28px;
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    color: #5ccc3a;
   }
 
   .service-title {
@@ -280,6 +310,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
     background: #5ccc3a;
     padding: 0.14in 0.65in;
   }
@@ -291,6 +322,13 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #0a1a0a;
+  }
+
+  .bottom-bar svg {
+    width: 18px;
+    height: 18px;
+    color: #0a1a0a;
+    flex-shrink: 0;
   }
 
   @page { size: letter; margin: 0; }
@@ -306,12 +344,43 @@
   <div class="top-bar"></div>
 
   <div class="header">
-    <div class="badge">Professional Lawn Care</div>
-    <div class="logo-row">
-      <div class="leaf-icon">🌿</div>
-      <div class="brand-name">GREEN<br><span>OPS</span></div>
+    <div class="header-left">
+      <div class="badge">Professional Lawn Care</div>
+      <div class="logo-row">
+        <!-- Leaf / brand icon: SVG lawn/nature icon -->
+        <svg class="leaf-icon" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <filter id="glow">
+              <feGaussianBlur stdDeviation="3" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+          </defs>
+          <!-- Grass blades -->
+          <path d="M18 62 C18 62 14 42 22 28 C22 28 18 44 30 54" stroke="#5ccc3a" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+          <path d="M40 62 C40 62 40 36 40 18 C40 18 32 36 36 54" stroke="#4abb30" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+          <path d="M40 62 C40 62 40 36 40 18 C40 18 48 36 44 54" stroke="#5ccc3a" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+          <path d="M62 62 C62 62 66 42 58 28 C58 28 62 44 50 54" stroke="#5ccc3a" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#glow)"/>
+          <!-- Leaf -->
+          <path d="M26 38 C26 38 36 18 58 20 C58 20 44 42 26 38Z" fill="#3aaa20" opacity="0.85" filter="url(#glow)"/>
+          <path d="M26 38 C36 30 48 24 58 20" stroke="#5ccc3a" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          <!-- Ground line -->
+          <line x1="10" y1="63" x2="70" y2="63" stroke="#2a7a2a" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div class="brand-name">GREEN<br><span>OPS</span></div>
+      </div>
+      <div class="tagline">Precision. Pride. Property.</div>
     </div>
-    <div class="tagline">Precision. Pride. Property.</div>
+
+    <!-- BoyerScales Logo: replace src with your actual logo URL -->
+    <div class="logo-lockup">
+      <img
+        class="bs-logo"
+        src="https://i.imgur.com/Bhex0Ko.png"
+        alt="BoyerScales"
+        onerror="this.style.opacity='0.3';"
+      />
+      <div class="bs-logo-label">Powered by BoyerScales</div>
+    </div>
   </div>
 
   <div class="hero-band"></div>
@@ -321,36 +390,106 @@
   </div>
 
   <div class="services">
+
+    <!-- Lawn Mowing -->
     <div class="service-card">
-      <span class="service-icon">✂️</span>
+      <svg class="service-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Scissors / mower blades -->
+        <circle cx="8" cy="8" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/>
+        <circle cx="20" cy="20" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/>
+        <line x1="11.2" y1="11.2" x2="24" y2="4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="11.2" y1="16.8" x2="4" y2="24" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="16.8" y1="11.2" x2="24" y2="4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
       <div class="service-title">Lawn Mowing</div>
       <div class="service-desc">Consistent weekly or bi-weekly cuts with clean edges and a sharp finish every time.</div>
     </div>
+
+    <!-- Fertilizing -->
     <div class="service-card">
-      <span class="service-icon">🌱</span>
+      <svg class="service-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Seedling sprout -->
+        <path d="M14 24 L14 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M14 16 C14 16 8 14 8 8 C8 8 14 10 14 16Z" fill="currentColor" opacity="0.85"/>
+        <path d="M14 14 C14 14 20 12 20 6 C20 6 14 8 14 14Z" fill="currentColor" opacity="0.65"/>
+        <!-- Dots (nutrients) -->
+        <circle cx="6" cy="22" r="1.2" fill="currentColor" opacity="0.5"/>
+        <circle cx="22" cy="22" r="1.2" fill="currentColor" opacity="0.5"/>
+        <circle cx="14" cy="25" r="1.2" fill="currentColor" opacity="0.5"/>
+      </svg>
       <div class="service-title">Fertilizing</div>
       <div class="service-desc">Seasonal treatments that feed your lawn from the roots up for thick, lasting green.</div>
     </div>
+
+    <!-- Yard Cleanup -->
     <div class="service-card">
-      <span class="service-icon">🍂</span>
+      <svg class="service-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Rake -->
+        <line x1="14" y1="4" x2="14" y2="22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M7 22 Q14 18 21 22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <!-- Rake tines -->
+        <line x1="9" y1="22" x2="8" y2="26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="12" y1="22" x2="12" y2="26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="16" y1="22" x2="16" y2="26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <line x1="19" y1="22" x2="20" y2="26" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+        <!-- Leaf -->
+        <path d="M6 10 C8 6 13 7 12 11 C12 11 8 12 6 10Z" fill="currentColor" opacity="0.6"/>
+      </svg>
       <div class="service-title">Yard Cleanup</div>
       <div class="service-desc">Leaf removal, debris hauling, and full seasonal cleanups to keep things tidy year-round.</div>
     </div>
+
+    <!-- Edging & Trim -->
     <div class="service-card">
-      <span class="service-icon">🌿</span>
+      <svg class="service-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Edger blade -->
+        <rect x="3" y="12" width="22" height="3" rx="1.5" stroke="currentColor" stroke-width="1.8" fill="none"/>
+        <!-- Handle -->
+        <line x1="14" y1="12" x2="14" y2="4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M10 4 Q14 2 18 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <!-- Ground -->
+        <line x1="3" y1="20" x2="25" y2="20" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+        <!-- Grass above -->
+        <path d="M6 20 C6 17 8 14 8 14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <path d="M12 20 C12 16 14 13 14 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/>
+        <path d="M18 20 C18 17 20 14 20 14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/>
+      </svg>
       <div class="service-title">Edging & Trim</div>
       <div class="service-desc">Crisp borders along driveways, walkways, and beds that give your yard a polished look.</div>
     </div>
+
+    <!-- Weed Control -->
     <div class="service-card">
-      <span class="service-icon">💧</span>
+      <svg class="service-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Water droplet / spray -->
+        <path d="M14 6 C14 6 8 14 8 18 C8 22 10.7 24 14 24 C17.3 24 20 22 20 18 C20 14 14 6 14 6Z" stroke="currentColor" stroke-width="1.8" fill="none"/>
+        <!-- X inside -->
+        <line x1="11" y1="17" x2="17" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+        <line x1="17" y1="17" x2="11" y2="21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+        <!-- Spray dots -->
+        <circle cx="22" cy="8" r="1.2" fill="currentColor" opacity="0.6"/>
+        <circle cx="19" cy="5" r="1" fill="currentColor" opacity="0.5"/>
+        <circle cx="24" cy="5" r="0.9" fill="currentColor" opacity="0.4"/>
+      </svg>
       <div class="service-title">Weed Control</div>
       <div class="service-desc">Pre- and post-emergent treatments that stop weeds before they take over your lawn.</div>
     </div>
+
+    <!-- One-Time Cuts -->
     <div class="service-card">
-      <span class="service-icon">🏡</span>
+      <svg class="service-icon" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- House outline -->
+        <path d="M4 14 L14 5 L24 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M6 13 L6 24 L22 24 L22 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <!-- Door -->
+        <rect x="11" y="17" width="6" height="7" rx="0.5" stroke="currentColor" stroke-width="1.4" fill="none"/>
+        <!-- Single checkmark -->
+        <path d="M10 10 L12.5 12.5 L18 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
       <div class="service-title">One-Time Cuts</div>
       <div class="service-desc">No commitment needed. Get a single visit to get your yard back under control fast.</div>
     </div>
+
   </div>
 
   <div class="why-strip">
@@ -387,7 +526,18 @@
   </div>
 
   <div class="bottom-bar">
-    <span>🌿 &nbsp; Reliable. Local. Professional. — Green Ops Lawn Care &nbsp; 🌿</span>
+    <!-- Leaf SVG icon -->
+    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 16 L9 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M9 10 C9 10 5 8 5 4 C5 4 9 6 9 10Z" fill="currentColor"/>
+      <path d="M9 8 C9 8 13 6 13 2 C13 2 9 4 9 8Z" fill="currentColor" opacity="0.7"/>
+    </svg>
+    <span>Reliable. Local. Professional. — Green Ops Lawn Care</span>
+    <svg viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M9 16 L9 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+      <path d="M9 10 C9 10 5 8 5 4 C5 4 9 6 9 10Z" fill="currentColor"/>
+      <path d="M9 8 C9 8 13 6 13 2 C13 2 9 4 9 8Z" fill="currentColor" opacity="0.7"/>
+    </svg>
   </div>
 </div>
 
