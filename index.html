@@ -533,6 +533,8 @@
             line-height:1.55;cursor:pointer;
         }
         .sms-consent label span{color:var(--text-tertiary);font-size:0.75rem}
+        .sms-consent label a{color:var(--accent);text-decoration:underline;transition:color 0.2s}
+        .sms-consent label a:hover{color:var(--primary-light)}
         .form-box select option{background:#141C36}
 
         .next-steps{
@@ -562,6 +564,10 @@
         }
         .footer-social a:hover{color:var(--text-primary)}
         footer p{color:var(--text-tertiary);font-size:0.85rem}
+        .footer-links{display:flex;justify-content:center;gap:0.25rem;flex-wrap:wrap;margin-top:0.5rem}
+        .footer-links a{color:var(--text-tertiary);text-decoration:none;font-size:0.85rem;transition:color 0.2s}
+        .footer-links a:hover{color:var(--text-secondary)}
+        .footer-links .dot{color:var(--text-tertiary);font-size:0.85rem}
 
         /* ── SECTION DIVIDERS ── */
         .section-divider{
@@ -752,7 +758,7 @@
             </div>
             <div class="feature-card magnetic-card">
                 <div class="step-num">4</div>
-                <h3>Monitor & Optimize</h3>
+                <h3>Monitor &amp; Optimize</h3>
                 <p>Real-time notifications, full transcripts, and the ability to adjust responses anytime.</p>
             </div>
         </div>
@@ -1015,6 +1021,7 @@
                     <label for="smsOptIn">
                         I agree to receive SMS messages from BoyerScales regarding my request, including follow-up and scheduling information.<br>
                         <span>Message and data rates may apply. Reply STOP to opt out at any time.</span>
+                        <span style="display:block;margin-top:0.35rem"><a href="https://boyerscales.com/privacypolicy/" target="_blank">Privacy Policy</a> &amp; <a href="https://boyerscales.com/termsconditions/" target="_blank">Terms &amp; Conditions</a></span>
                     </label>
                 </div>
                 <input type="text" name="business" placeholder="Business Name" required>
@@ -1059,10 +1066,14 @@
             <a href="https://tiktok.com/@boyerscales" target="_blank">TikTok</a>
             <a href="https://linkedin.com/company/boyerscales" target="_blank">LinkedIn</a>
         </div>
-        <p>© 2025 BoyerScales. Sacramento-based. Locally trusted.</p>
-        <p style="margin-top:0.5rem">
-            <a href="https://boyerscales.com/marketing" target="_blank" style="color:var(--text-tertiary);text-decoration:none">Marketing Services</a>
-        </p>
+        <p>&copy; 2025 BoyerScales. Sacramento-based. Locally trusted.</p>
+        <div class="footer-links">
+            <a href="https://boyerscales.com/marketing" target="_blank">Marketing Services</a>
+            <span class="dot">&middot;</span>
+            <a href="https://boyerscales.com/privacypolicy/" target="_blank">Privacy Policy</a>
+            <span class="dot">&middot;</span>
+            <a href="https://boyerscales.com/termsconditions/" target="_blank">Terms &amp; Conditions</a>
+        </div>
     </div>
 </footer>
 
