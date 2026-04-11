@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoyerScales Client Onboarding</title>
+    <title>BoyerScales — Client Setup</title>
     <link rel="icon" type="image/png" href="logo.png">
     <script>
     (function() {
@@ -12,13 +12,13 @@
       if (isNakedDomain) {
         document.addEventListener('DOMContentLoaded', function() {
           document.body.innerHTML = `
-            <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#060d1a;font-family:'Outfit',-apple-system,sans-serif;color:#e2e8f0;padding:20px;">
+            <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:#060A16;font-family:'DM Sans',-apple-system,sans-serif;color:#e2e8f0;padding:20px;">
               <div style="text-align:center;max-width:500px;">
-                <div style="font-size:120px;font-weight:700;color:#3b82f6;margin-bottom:24px;background:linear-gradient(135deg,#ffffff 0%,#60a5fa 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">404</div>
-                <h1 style="font-size:32px;font-weight:600;margin-bottom:16px;color:#f1f5f9;">Page Not Found</h1>
-                <p style="font-size:18px;color:#94a3b8;margin-bottom:32px;line-height:1.6;">This onboarding form is only accessible via your personalized client portal.</p>
-                <p style="font-size:14px;color:#64748b;margin-bottom:24px;">If you're a BoyerScales client, please check your email for your unique onboarding link.</p>
-                <a href="/" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#3b82f6 0%,#60a5fa 100%);color:white;text-decoration:none;border-radius:10px;font-weight:600;box-shadow:0 4px 12px rgba(59,130,246,0.4);">← Back to Home</a>
+                <div style="font-size:100px;font-weight:800;color:#0EA5E9;margin-bottom:24px;font-family:'Bricolage Grotesque',sans-serif;">404</div>
+                <h1 style="font-size:28px;font-weight:700;margin-bottom:16px;color:#f1f5f9;font-family:'Bricolage Grotesque',sans-serif;">Page Not Found</h1>
+                <p style="font-size:16px;color:#94a3b8;margin-bottom:32px;line-height:1.6;">This setup page is only accessible via your personalized client link.</p>
+                <p style="font-size:14px;color:#64748b;margin-bottom:24px;">Check your email for your unique onboarding link.</p>
+                <a href="/" style="display:inline-block;padding:14px 32px;background:linear-gradient(135deg,#2563EB,#0EA5E9);color:white;text-decoration:none;border-radius:10px;font-weight:600;box-shadow:0 4px 20px rgba(37,99,235,0.3);">← Back to Home</a>
               </div>
             </div>
           `;
@@ -27,513 +27,459 @@
     })();
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg: #060d1a;
-            --surface: rgba(15, 23, 41, 0.92);
-            --surface-card: rgba(255,255,255,0.025);
-            --surface-input: rgba(10,18,40,0.7);
-            --surface-input-focus: rgba(14,22,45,0.9);
-            --border: rgba(30,41,59,0.9);
-            --border-subtle: rgba(59,130,246,0.08);
-            --border-hover: rgba(59,130,246,0.3);
-            --border-active: #3b82f6;
-            --blue: #3b82f6;
-            --blue-light: #60a5fa;
-            --blue-lighter: #93c5fd;
-            --blue-glow: rgba(59,130,246,0.12);
-            --blue-glow-strong: rgba(59,130,246,0.35);
-            --text: #e2e8f0;
-            --text-muted: #94a3b8;
-            --text-dim: #64748b;
-            --text-label: #cbd5e1;
-            --text-heading: #f1f5f9;
-            --green: #10b981;
-            --red: #ef4444;
-            --yellow: #f59e0b;
-            --pink: #ec4899;
-            --purple: #8b5cf6;
-            --font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        *{margin:0;padding:0;box-sizing:border-box}
+
+        :root{
+            --primary:#2563EB;
+            --primary-light:#3B82F6;
+            --accent:#0EA5E9;
+            --success:#10B981;
+            --dark:#060A16;
+            --dark-800:#0B1022;
+            --dark-700:#141C36;
+            --dark-600:#1E2A4A;
+            --text-primary:#F1F5F9;
+            --text-secondary:#94A3B8;
+            --text-tertiary:#64748B;
+            --bg-card:rgba(255,255,255,0.025);
+            --bg-card-hover:rgba(255,255,255,0.05);
+            --border:rgba(255,255,255,0.06);
+            --border-hover:rgba(59,130,246,0.3);
+            --radius-lg:20px;
+            --radius-md:14px;
+            --radius-sm:10px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html{scroll-behavior:smooth}
 
-        body {
-            font-family: var(--font);
-            background: var(--bg);
-            padding: 20px;
-            line-height: 1.6;
-            color: var(--text);
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: -200px; left: -200px;
-            width: 600px; height: 600px;
-            background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: floatOrb 18s ease-in-out infinite;
-            pointer-events: none; z-index: 0;
-        }
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: -150px; right: -150px;
-            width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(96,165,250,0.07) 0%, transparent 70%);
-            border-radius: 50%;
-            animation: floatOrb 22s ease-in-out infinite reverse;
-            pointer-events: none; z-index: 0;
-        }
-        @keyframes floatOrb {
-            0%, 100% { transform: translate(0,0) scale(1); }
-            33% { transform: translate(60px, -40px) scale(1.08); }
-            66% { transform: translate(-30px, 50px) scale(0.95); }
+        body{
+            font-family:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+            background:var(--dark);
+            color:var(--text-primary);
+            line-height:1.6;
+            min-height:100vh;
+            -webkit-font-smoothing:antialiased;
+            -moz-osx-font-smoothing:grayscale;
+            overflow-x:hidden;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: var(--surface);
-            border-radius: 24px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(59,130,246,0.08);
-            overflow: hidden;
-            backdrop-filter: blur(20px);
-            position: relative; z-index: 1;
+        /* ── AMBIENT ── */
+        .ambient{
+            position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;
+        }
+        .ambient-orb{
+            position:absolute;border-radius:50%;
+            will-change:transform;
+        }
+        .ambient-orb-1{
+            width:800px;height:800px;
+            top:-300px;right:-200px;
+            background:radial-gradient(circle,rgba(37,99,235,0.09) 0%,transparent 60%);
+            animation:drift 20s ease-in-out infinite;
+        }
+        .ambient-orb-2{
+            width:600px;height:600px;
+            bottom:-200px;left:-150px;
+            background:radial-gradient(circle,rgba(14,165,233,0.06) 0%,transparent 60%);
+            animation:drift 25s ease-in-out infinite reverse;
+        }
+        @keyframes drift{
+            0%,100%{transform:translate(0,0) scale(1)}
+            33%{transform:translate(40px,-30px) scale(1.05)}
+            66%{transform:translate(-20px,40px) scale(0.96)}
         }
 
-        .header {
-            background: linear-gradient(160deg, #080f20 0%, #0a1628 60%, #0d1f3c 100%);
-            color: white;
-            padding: 80px 48px;
-            text-align: center;
-            border-bottom: 1px solid rgba(59,130,246,0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        .header::before {
-            content: '';
-            position: absolute;
-            top: -80px; left: 50%;
-            transform: translateX(-50%);
-            width: 700px; height: 400px;
-            background: radial-gradient(ellipse, rgba(59,130,246,0.15) 0%, transparent 65%);
-            pointer-events: none;
-            animation: headerGlow 8s ease-in-out infinite alternate;
-        }
-        @keyframes headerGlow {
-            from { opacity: 0.6; transform: translateX(-50%) scale(1); }
-            to { opacity: 1; transform: translateX(-50%) scale(1.1); }
-        }
-        .header > * { position: relative; z-index: 1; }
-
-        .header-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 5px 16px 5px 6px;
-            border-radius: 50px;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            letter-spacing: 0.01em;
-            margin-bottom: 32px;
-        }
-        .header-badge .dot, .header-badge .badge-svg { display: none; }
-        .header-badge-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 28px; height: 28px;
-            background: rgba(59,130,246,0.12);
-            border: 1px solid rgba(59,130,246,0.2);
-            border-radius: 8px;
-        }
-        .header-badge-icon svg {
-            width: 14px; height: 14px;
-            fill: none; stroke: var(--blue-light);
-            stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+        /* ── LAYOUT ── */
+        .page{
+            position:relative;z-index:1;
+            max-width:680px;
+            margin:0 auto;
+            padding:3rem 1.5rem 4rem;
         }
 
-        .header h1 {
-            font-size: clamp(32px, 5vw, 48px);
-            font-weight: 800;
-            margin-bottom: 16px;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #ffffff 0%, #e0eaff 40%, var(--blue-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* ── HEADER ── */
+        .header{
+            text-align:center;
+            margin-bottom:3rem;
+            padding-top:1rem;
         }
-        .header p {
-            font-size: 1rem;
-            max-width: 560px;
-            margin: 0 auto;
-            color: var(--text-muted);
-            line-height: 1.7;
+        .logo{
+            display:inline-flex;align-items:center;gap:0;
+            font-family:'Bricolage Grotesque',sans-serif;
+            font-weight:800;font-size:1.3rem;
+            color:var(--text-primary);text-decoration:none;
+            margin-bottom:1.75rem;
+            letter-spacing:-0.02em;
+        }
+        .logo-row{display:block;text-align:center;margin-bottom:0.5rem}
+        .logo img{width:30px;height:30px;margin-right:0.6rem}
+        .logo .logo-text{color:var(--text-primary)}
+        .logo .logo-text span{color:var(--accent)}
+
+        .badge{
+            display:inline-flex;align-items:center;gap:0.55rem;
+            background:rgba(14,165,233,0.06);
+            border:1px solid rgba(14,165,233,0.15);
+            padding:0.4rem 1rem 0.4rem 0.55rem;
+            border-radius:50px;
+            font-size:0.78rem;color:var(--text-secondary);font-weight:600;
+            letter-spacing:0.03em;
+            margin-bottom:1.5rem;
+        }
+        .badge-dot{
+            width:20px;height:20px;border-radius:50%;
+            background:linear-gradient(135deg,var(--primary),var(--accent));
+            display:flex;align-items:center;justify-content:center;flex-shrink:0;
+        }
+        .badge-dot svg{width:10px;height:10px}
+
+        .header h1{
+            font-family:'Bricolage Grotesque',sans-serif;
+            font-size:clamp(2rem,5vw,2.75rem);
+            font-weight:800;line-height:1.1;
+            letter-spacing:-0.035em;
+            margin-bottom:0.75rem;
+        }
+        .header h1 .highlight{
+            background:linear-gradient(135deg,var(--primary-light),var(--accent));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+        }
+        .header p{
+            font-size:1rem;color:var(--text-secondary);
+            max-width:460px;margin:0 auto;line-height:1.7;
+        }
+        .header .time-hint{
+            display:inline-flex;align-items:center;gap:0.45rem;
+            margin-top:1rem;
+            font-size:0.82rem;color:var(--text-tertiary);font-weight:500;
+        }
+        .header .time-hint svg{width:14px;height:14px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+        /* ── FORM CARD ── */
+        .form-card{
+            background:linear-gradient(160deg,rgba(255,255,255,0.03) 0%,rgba(255,255,255,0.01) 100%);
+            border:1px solid rgba(255,255,255,0.06);
+            border-radius:24px;
+            padding:2.5rem 2.25rem;
+            position:relative;
+            overflow:hidden;
+            backdrop-filter:blur(20px);
+            -webkit-backdrop-filter:blur(20px);
+        }
+        .form-card::before{
+            content:'';position:absolute;inset:-1px;
+            border-radius:24px;padding:1px;
+            background:conic-gradient(from 220deg,transparent 55%,rgba(59,130,246,0.2) 70%,rgba(14,165,233,0.15) 85%,transparent 100%);
+            -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+            mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+            -webkit-mask-composite:xor;mask-composite:exclude;
+            pointer-events:none;
+        }
+        .form-card::after{
+            content:'';position:absolute;
+            top:-120px;left:50%;transform:translateX(-50%);
+            width:500px;height:300px;
+            background:radial-gradient(ellipse,rgba(37,99,235,0.06) 0%,transparent 65%);
+            pointer-events:none;
         }
 
-        .header-stats {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            margin-top: 36px;
-            flex-wrap: wrap;
+        /* ── SECTION LABELS ── */
+        .section-label{
+            display:flex;align-items:center;gap:0.75rem;
+            margin-bottom:1.5rem;
+            padding-bottom:0.75rem;
+            border-bottom:1px solid rgba(255,255,255,0.04);
+            position:relative;z-index:1;
         }
-        .header-stat {
-            text-align: center;
-            padding: 0 28px;
-            position: relative;
+        .section-label:not(:first-child){margin-top:2.5rem}
+        .section-label-num{
+            width:32px;height:32px;border-radius:50%;
+            border:1.5px solid rgba(14,165,233,0.35);
+            display:flex;align-items:center;justify-content:center;
+            font-family:'Bricolage Grotesque',sans-serif;
+            font-weight:800;font-size:0.82rem;color:var(--accent);
+            flex-shrink:0;
         }
-        .header-stat:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0; top: 4px; bottom: 4px;
-            width: 1px;
-            background: rgba(59,130,246,0.15);
-        }
-        .header-stat .stat-value {
-            font-size: 1.3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--blue-light), var(--blue-lighter));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .header-stat .stat-label {
-            font-size: 0.7rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-top: 2px;
+        .section-label-text{
+            font-family:'Bricolage Grotesque',sans-serif;
+            font-size:1.05rem;font-weight:700;color:var(--text-primary);
+            letter-spacing:-0.01em;
         }
 
-        .progress-bar { height: 3px; background: rgba(30,41,59,0.8); }
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #2563eb, var(--blue), var(--blue-light), var(--blue-lighter));
-            background-size: 200% 100%;
-            width: 0%;
-            transition: width 0.15s linear;
-            box-shadow: 0 0 14px rgba(59,130,246,0.6);
-            animation: shimmer 3s linear infinite;
-        }
-        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        /* ── FIELDS ── */
+        .field{margin-bottom:1.125rem;position:relative;z-index:1}
+        .field-row{display:grid;grid-template-columns:1fr 1fr;gap:0.875rem}
 
-        .form-body { padding: 48px 44px; }
+        .field label{
+            display:block;
+            font-size:0.82rem;font-weight:600;
+            color:var(--text-secondary);
+            margin-bottom:0.4rem;
+            letter-spacing:0.01em;
+        }
+        .field label .req{color:#EF4444;margin-left:3px}
 
-        .section {
-            margin-bottom: 40px;
-            padding: 36px;
-            background: var(--surface-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 18px;
-            backdrop-filter: blur(8px);
-            transition: border-color 0.35s ease, box-shadow 0.35s ease;
+        .field input,.field select,.field textarea{
+            width:100%;
+            padding:0.8rem 1rem;
+            background:rgba(255,255,255,0.03);
+            border:1.5px solid rgba(255,255,255,0.07);
+            border-radius:var(--radius-sm);
+            color:var(--text-primary);
+            font-size:0.9rem;
+            font-family:'DM Sans',sans-serif;
+            transition:border-color 0.25s,background 0.25s,box-shadow 0.25s;
         }
-        .section:hover {
-            border-color: rgba(59,130,246,0.15);
-            box-shadow: 0 12px 40px rgba(59,130,246,0.05);
+        .field input:focus,.field select:focus,.field textarea:focus{
+            outline:none;
+            border-color:rgba(37,99,235,0.5);
+            background:rgba(255,255,255,0.04);
+            box-shadow:0 0 0 3px rgba(37,99,235,0.08);
         }
-        .section:last-child { margin-bottom: 0; }
+        .field input:hover:not(:focus),.field select:hover:not(:focus),.field textarea:hover:not(:focus){
+            border-color:rgba(255,255,255,0.12);
+        }
+        .field input::placeholder,.field textarea::placeholder{color:var(--text-tertiary);font-size:0.85rem}
+        .field select{cursor:pointer}
+        .field select option{background:#141C36}
+        .field textarea{min-height:80px;resize:vertical;line-height:1.6}
+        .field-hint{font-size:0.75rem;color:var(--text-tertiary);margin-top:0.35rem}
 
-        .section-header { display: flex; align-items: center; margin-bottom: 8px; }
-        .section-number {
-            width: 44px; height: 44px;
-            border-radius: 13px;
-            background: linear-gradient(135deg, #1d4ed8 0%, var(--blue) 100%);
-            color: white;
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 800; font-size: 1rem;
-            margin-right: 16px; flex-shrink: 0;
-            box-shadow: 0 4px 16px var(--blue-glow-strong), inset 0 1px 0 rgba(255,255,255,0.12);
+        /* ── RADIO GROUP ── */
+        .radio-row{display:flex;gap:0.625rem;flex-wrap:wrap}
+        .radio-pill{
+            flex:1;min-width:0;
+            position:relative;
         }
-        .section-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--text-heading);
-            letter-spacing: -0.02em;
+        .radio-pill input{
+            position:absolute;opacity:0;width:0;height:0;
         }
-        .section-subtitle {
-            font-size: 0.85rem;
-            color: var(--text-dim);
-            margin-top: 6px;
-            padding-left: 60px;
-            margin-bottom: 28px;
+        .radio-pill label.pill{
+            display:flex;align-items:center;justify-content:center;
+            padding:0.7rem 0.875rem;
+            background:rgba(255,255,255,0.03);
+            border:1.5px solid rgba(255,255,255,0.07);
+            border-radius:var(--radius-sm);
+            cursor:pointer;
+            font-size:0.82rem;font-weight:500;
+            color:var(--text-secondary);
+            text-align:center;
+            transition:all 0.25s;
+            margin-bottom:0;
+            white-space:nowrap;
+        }
+        .radio-pill input:checked + label.pill{
+            border-color:rgba(14,165,233,0.5);
+            background:rgba(14,165,233,0.08);
+            color:var(--accent);
+            box-shadow:0 0 0 3px rgba(14,165,233,0.06);
+        }
+        .radio-pill label.pill:hover{
+            border-color:rgba(255,255,255,0.14);
+            background:rgba(255,255,255,0.04);
         }
 
-        .field-group { margin-bottom: 24px; }
+        /* ── CONDITIONAL FIELDS ── */
+        .conditional{
+            display:none;
+            animation:slideIn 0.3s ease-out;
+        }
+        .conditional.visible{display:block}
+        @keyframes slideIn{
+            from{opacity:0;transform:translateY(-6px)}
+            to{opacity:1;transform:translateY(0)}
+        }
 
-        .field-label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-label);
-            margin-bottom: 8px;
-            letter-spacing: 0.01em;
+        /* ── DIVIDER ── */
+        .form-divider{
+            height:1px;
+            background:linear-gradient(90deg,transparent,rgba(59,130,246,0.12),transparent);
+            margin:0;border:none;
         }
-        .required { color: var(--red); margin-left: 4px; font-weight: 700; }
-        .field-help { font-size: 0.75rem; color: #475569; margin-top: 6px; line-height: 1.5; }
 
-        input[type="text"], input[type="email"], input[type="tel"], input[type="url"],
-        input[type="number"], textarea, select {
-            width: 100%;
-            padding: 13px 16px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-family: var(--font);
-            transition: all 0.25s ease;
-            background: var(--surface-input);
-            color: var(--text);
-            backdrop-filter: blur(4px);
+        /* ── CONSENT ── */
+        .consent{
+            display:flex;align-items:flex-start;gap:0.75rem;
+            background:rgba(37,99,235,0.03);
+            border:1px solid rgba(59,130,246,0.1);
+            border-radius:var(--radius-sm);
+            padding:1rem;
+            margin-top:2rem;
+            position:relative;z-index:1;
         }
-        input:focus, textarea:focus, select:focus {
-            outline: none;
-            border-color: var(--blue);
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.1), 0 0 20px rgba(59,130,246,0.06);
-            background: var(--surface-input-focus);
+        .consent input[type="checkbox"]{
+            width:18px;height:18px;min-width:18px;
+            margin-top:2px;
+            accent-color:var(--primary);cursor:pointer;flex-shrink:0;
         }
-        input:hover:not(:focus), textarea:hover:not(:focus), select:hover:not(:focus) {
-            border-color: var(--border-hover);
+        .consent label{
+            font-size:0.8rem;color:var(--text-secondary);
+            line-height:1.6;cursor:pointer;margin-bottom:0;
         }
-        input::placeholder, textarea::placeholder {
-            color: #334155;
-            font-size: 0.85rem;
-        }
-        textarea { min-height: 100px; resize: vertical; }
-        select { cursor: pointer; }
+        .consent label a{color:var(--accent);text-decoration:underline;transition:color 0.2s}
+        .consent label a:hover{color:var(--primary-light)}
 
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        /* ── SUBMIT ── */
+        .submit-area{
+            margin-top:2rem;
+            position:relative;z-index:1;
+        }
+        .submit-btn{
+            display:flex;align-items:center;justify-content:center;gap:0.5rem;
+            width:100%;
+            padding:1rem 2rem;
+            background:linear-gradient(135deg,var(--primary),var(--accent));
+            color:white;border:none;
+            border-radius:var(--radius-md);
+            font-size:1rem;font-weight:700;
+            font-family:'DM Sans',sans-serif;
+            cursor:pointer;
+            position:relative;overflow:hidden;
+            box-shadow:0 4px 24px rgba(37,99,235,0.3),inset 0 1px 0 rgba(255,255,255,0.1);
+            transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
+            letter-spacing:0.01em;
+        }
+        .submit-btn:hover{
+            transform:translateY(-2px);
+            box-shadow:0 12px 40px rgba(37,99,235,0.4),inset 0 1px 0 rgba(255,255,255,0.15);
+        }
+        .submit-btn::after{
+            content:'';position:absolute;top:0;left:-100%;
+            width:100%;height:100%;
+            background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+        }
+        .submit-btn:hover::after{animation:shimmer 0.6s ease-out}
+        @keyframes shimmer{0%{left:-100%}100%{left:100%}}
+        .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+        .submit-btn svg{width:16px;height:16px;flex-shrink:0}
 
-        .radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+        /* ── WHAT HAPPENS NEXT ── */
+        .next-steps{
+            margin-top:1.5rem;
+            text-align:center;
+        }
+        .next-steps p{
+            font-size:0.82rem;color:var(--text-tertiary);line-height:1.7;
+        }
+        .next-steps strong{color:var(--text-secondary);font-weight:600}
 
-        .radio-option, .checkbox-option {
-            display: flex; align-items: flex-start;
-            padding: 15px 18px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            background: var(--surface-input);
-            position: relative; overflow: hidden;
+        /* ── FOOTER ── */
+        .footer{
+            text-align:center;
+            margin-top:3rem;
+            padding-top:1.5rem;
+            border-top:1px solid rgba(255,255,255,0.04);
         }
-        .radio-option:hover, .checkbox-option:hover {
-            border-color: var(--border-hover);
-            background: rgba(59,130,246,0.03);
-        }
-        .radio-option input[type="radio"], .checkbox-option input[type="checkbox"] {
-            margin-right: 12px; margin-top: 3px;
-            width: 18px; height: 18px;
-            accent-color: var(--blue);
-            cursor: pointer; flex-shrink: 0;
-        }
-        .option-label { flex: 1; }
-        .option-title { font-weight: 600; color: var(--text-heading); display: block; margin-bottom: 3px; font-size: 0.9rem; }
-        .option-description { font-size: 0.78rem; color: var(--text-dim); line-height: 1.6; }
+        .footer p{font-size:0.78rem;color:var(--text-tertiary)}
+        .footer a{color:var(--text-tertiary);text-decoration:none;transition:color 0.2s}
+        .footer a:hover{color:var(--text-secondary)}
 
-        .tier-badge {
-            display: inline-flex; align-items: center;
-            padding: 3px 10px;
-            border-radius: 50px;
-            font-size: 0.6rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.08em;
-            margin-left: 10px; vertical-align: middle;
+        /* ── ERROR TOAST ── */
+        .toast{
+            position:fixed;top:1.25rem;left:50%;transform:translateX(-50%);
+            background:#EF4444;color:white;
+            padding:0.85rem 1.75rem;border-radius:12px;
+            box-shadow:0 8px 30px rgba(239,68,68,0.3);
+            font-weight:600;font-size:0.88rem;
+            font-family:'DM Sans',sans-serif;
+            z-index:9999;
+            animation:toastIn 0.3s ease-out;
         }
-        .badge-founding { background: rgba(59,130,246,0.12); color: var(--blue-lighter); border: 1px solid rgba(59,130,246,0.25); }
+        @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
-        .info-box {
-            background: rgba(59,130,246,0.05);
-            border: 1px solid rgba(59,130,246,0.12);
-            border-left: 3px solid var(--blue);
-            padding: 16px 18px;
-            border-radius: 12px;
-            margin-bottom: 24px;
+        /* ── VALID GLOW ── */
+        .field input.valid,.field select.valid,.field textarea.valid{
+            border-color:rgba(16,185,129,0.35);
         }
-        .info-box-title { font-weight: 700; color: var(--blue-light); margin-bottom: 5px; font-size: 0.82rem; display: flex; align-items: center; gap: 8px; }
-        .info-box-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
 
-        .box-icon {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 22px; height: 22px; border-radius: 6px;
-            flex-shrink: 0;
+        /* ── RESPONSIVE ── */
+        @media(max-width:640px){
+            .page{padding:2rem 1rem 3rem}
+            .form-card{padding:1.75rem 1.25rem}
+            .field-row{grid-template-columns:1fr}
+            .radio-row{flex-direction:column}
+            .header h1{font-size:1.85rem}
         }
-        .box-icon svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-        .box-icon-blue { background: rgba(59,130,246,0.15); color: var(--blue-light); }
 
-        .ck { display: inline-flex; align-items: center; gap: 5px; margin-bottom: 3px; }
-        .ck svg { width: 13px; height: 13px; fill: none; stroke: var(--blue-light); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
-
-        .consent-box {
-            background: var(--surface-input);
-            border: 1px solid var(--border);
-            padding: 24px;
-            border-radius: 14px;
-            margin-bottom: 16px;
-        }
-        .consent-item { display: flex; align-items: flex-start; margin-bottom: 18px; }
-        .consent-item:last-child { margin-bottom: 0; }
-        .consent-item input[type="checkbox"] { margin-right: 12px; margin-top: 3px; width: 18px; height: 18px; accent-color: var(--blue); flex-shrink: 0; }
-        .consent-text { font-size: 0.82rem; color: var(--text-muted); line-height: 1.65; }
-        .consent-text strong { color: var(--text-label); }
-
-        .submit-section {
-            background: linear-gradient(160deg, #080f20 0%, #0a1628 100%);
-            padding: 48px 44px;
-            text-align: center;
-            border-top: 1px solid rgba(59,130,246,0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        .submit-section::before {
-            content: '';
-            position: absolute;
-            top: -60px; left: 50%;
-            transform: translateX(-50%);
-            width: 500px; height: 200px;
-            background: radial-gradient(ellipse, rgba(59,130,246,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .submit-btn {
-            background: linear-gradient(135deg, #1d4ed8 0%, var(--blue) 50%, var(--blue-light) 100%);
-            color: white; border: none;
-            padding: 18px 56px;
-            font-size: 1rem;
-            font-family: var(--font);
-            font-weight: 700;
-            border-radius: 14px;
-            cursor: pointer;
-            transition: all 0.35s ease;
-            box-shadow: 0 8px 24px var(--blue-glow-strong);
-            position: relative; overflow: hidden;
-            letter-spacing: 0.01em;
-        }
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 16px 40px rgba(59,130,246,0.4);
-        }
-        .submit-btn::before {
-            content: '';
-            position: absolute; top: 50%; left: 50%;
-            width: 0; height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.15);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        .submit-btn:hover::before { width: 400px; height: 400px; }
-        .submit-btn span { position: relative; z-index: 1; }
-
-        .submit-note {
-            font-size: 0.82rem;
-            color: var(--text-dim);
-            margin-top: 24px;
-            position: relative; z-index: 1;
-            line-height: 1.7;
-        }
-        .submit-note strong { color: var(--text-muted); }
-
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .section { animation: fadeInUp 0.6s ease-out both; }
-
-        @media (max-width: 768px) {
-            .grid-2 { grid-template-columns: 1fr; }
-            .form-body { padding: 24px 18px; }
-            .section { padding: 24px 20px; }
-            .header { padding: 56px 24px; }
-            .header-stats { gap: 0; }
-            .header-stat { padding: 0 16px; }
-            .section-header { flex-direction: column; align-items: flex-start; }
-            .section-number { margin-bottom: 12px; }
-            .section-subtitle { padding-left: 0; }
-            .submit-section { padding: 36px 24px; }
+        @media(prefers-reduced-motion:reduce){
+            *,*::before,*::after{
+                animation-duration:0.01ms!important;
+                transition-duration:0.01ms!important;
+            }
         }
     </style>
 </head>
 <body>
-<div class="container">
+
+<div class="ambient">
+    <div class="ambient-orb ambient-orb-1"></div>
+    <div class="ambient-orb ambient-orb-2"></div>
+</div>
+
+<div class="page">
+
+    <!-- HEADER -->
     <div class="header">
-        <div class="header-badge">
-            <span class="header-badge-icon"><svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-            AI Revenue System — Setup in 30 Minutes
+        <div class="logo-row">
+            <a href="/" class="logo"><img src="logo.png" alt="BoyerScales"><span class="logo-text">Boyer<span>Scales</span></span></a>
         </div>
-        <h1>Welcome to BoyerScales</h1>
-        <p>Let's get your AI revenue system configured and ready to go. This takes about 10–15 minutes and sets up everything automatically.</p>
-        <div class="header-stats">
-            <div class="header-stat">
-                <div class="stat-value">30 min</div>
-                <div class="stat-label">Setup Time</div>
-            </div>
-            <div class="header-stat">
-                <div class="stat-value">10–20%</div>
-                <div class="stat-label">Revenue Recovered</div>
-            </div>
-            <div class="header-stat">
-                <div class="stat-value">24/7</div>
-                <div class="stat-label">Always On</div>
-            </div>
-            <div class="header-stat">
-                <div class="stat-value">$0</div>
-                <div class="stat-label">Extra Staff Needed</div>
-            </div>
+
+        <div class="badge">
+            <div class="badge-dot"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            Client Setup
+        </div>
+
+        <h1>Let's Get You <span class="highlight">Live</span></h1>
+        <p>A few details and we'll build out your system. Everything else gets finalized on your onboarding call.</p>
+        <div class="time-hint">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Takes about 2–3 minutes
         </div>
     </div>
-    <div class="progress-bar"><div class="progress-fill"></div></div>
 
-    <form name="client-onboarding" method="POST" data-netlify="true" action="/onboarding/success">
-        <input type="hidden" name="form-name" value="client-onboarding" />
+    <!-- FORM -->
+    <div class="form-card">
+        <form name="client-onboarding" method="POST" data-netlify="true" action="/onboarding/success" id="onboardingForm">
+            <input type="hidden" name="form-name" value="client-onboarding" />
 
-    <div class="form-body">
-
-        <!-- SECTION 1 -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">1</div>
-                <div class="section-title">Business Fundamentals</div>
-            </div>
-            <div class="section-subtitle">Basic information to get your account set up correctly</div>
-
-            <div class="field-group">
-                <label class="field-label">Business Legal Name<span class="required">*</span></label>
-                <input type="text" name="business_legal_name" required placeholder="Your business name as registered">
-                <div class="field-help">This will appear on invoices and legal documents</div>
+            <!-- SECTION 1: BUSINESS -->
+            <div class="section-label">
+                <div class="section-label-num">1</div>
+                <div class="section-label-text">Your Business</div>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">Brand Name / DBA<span class="required">*</span></label>
-                <input type="text" name="brand_name" required placeholder="The name customers know you by">
-                <div class="field-help">How should the AI answer calls? "Thank you for calling [Brand Name]..."</div>
+            <div class="field">
+                <label>Business Name <span class="req">*</span></label>
+                <input type="text" name="business_name" required placeholder="The name customers know you by">
             </div>
 
-            <div class="grid-2">
-                <div class="field-group">
-                    <label class="field-label">Primary Contact Name<span class="required">*</span></label>
-                    <input type="text" name="contact_name" required placeholder="Your full name">
+            <div class="field-row">
+                <div class="field">
+                    <label>Your Name <span class="req">*</span></label>
+                    <input type="text" name="contact_name" required placeholder="First and last">
                 </div>
-                <div class="field-group">
-                    <label class="field-label">Job Title<span class="required">*</span></label>
-                    <input type="text" name="job_title" required placeholder="Owner, General Manager, etc.">
+                <div class="field">
+                    <label>Email <span class="req">*</span></label>
+                    <input type="email" name="email" required placeholder="you@business.com">
                 </div>
             </div>
 
-            <div class="grid-2">
-                <div class="field-group">
-                    <label class="field-label">Email Address<span class="required">*</span></label>
-                    <input type="email" name="email" required placeholder="yourname@yourbusiness.com">
+            <div class="field-row">
+                <div class="field">
+                    <label>Mobile Phone <span class="req">*</span></label>
+                    <input type="tel" name="mobile_phone" required placeholder="Your direct number">
                 </div>
-                <div class="field-group">
-                    <label class="field-label">Mobile Phone<span class="required">*</span></label>
-                    <input type="tel" name="mobile_phone" required placeholder="Your direct cell number">
-                    <div class="field-help">For urgent notifications and verification</div>
+                <div class="field">
+                    <label>Website</label>
+                    <input type="url" name="website" placeholder="https://...">
                 </div>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">Industry / Business Type<span class="required">*</span></label>
+            <div class="field">
+                <label>Industry <span class="req">*</span></label>
                 <select name="industry" required>
                     <option value="">Select your industry</option>
                     <option value="plumbing">Plumbing</option>
@@ -544,759 +490,218 @@
                     <option value="cleaning">Cleaning Services</option>
                     <option value="handyman">Handyman</option>
                     <option value="pest-control">Pest Control</option>
-                    <option value="locksmith">Locksmith</option>
                     <option value="garage-door">Garage Door</option>
                     <option value="painting">Painting</option>
-                    <option value="flooring">Flooring</option>
                     <option value="pool-service">Pool Service</option>
-                    <option value="appliance-repair">Appliance Repair</option>
-                    <option value="moving">Moving Services</option>
-                    <option value="junk-removal">Junk Removal</option>
-                    <option value="legal">Legal Services</option>
-                    <option value="medical">Medical / Healthcare</option>
-                    <option value="dental">Dental</option>
-                    <option value="veterinary">Veterinary</option>
                     <option value="auto-repair">Auto Repair</option>
                     <option value="salon-spa">Salon / Spa</option>
+                    <option value="medical">Medical / Healthcare</option>
+                    <option value="dental">Dental</option>
+                    <option value="legal">Legal Services</option>
                     <option value="real-estate">Real Estate</option>
-                    <option value="insurance">Insurance</option>
                     <option value="other">Other</option>
                 </select>
             </div>
 
-            <div class="grid-2">
-                <div class="field-group">
-                    <label class="field-label">Business Address<span class="required">*</span></label>
-                    <input type="text" name="business_address" required placeholder="Street address">
-                </div>
-                <div class="field-group">
-                    <label class="field-label">City<span class="required">*</span></label>
-                    <input type="text" name="city" required placeholder="City">
-                </div>
+            <!-- SECTION 2: PHONE & OPS -->
+            <div class="section-label">
+                <div class="section-label-num">2</div>
+                <div class="section-label-text">Phone & Operations</div>
             </div>
 
-            <div class="grid-2">
-                <div class="field-group">
-                    <label class="field-label">State<span class="required">*</span></label>
-                    <select name="state" required>
-                        <option value="">Select state</option>
-                        <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option><option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option><option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option><option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option><option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option><option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option><option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option><option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option><option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option><option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option><option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option><option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option><option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option><option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option><option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option><option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option><option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
-                    </select>
-                </div>
-                <div class="field-group">
-                    <label class="field-label">ZIP Code<span class="required">*</span></label>
-                    <input type="text" name="zip_code" required placeholder="5-digit ZIP code">
-                </div>
+            <div class="field">
+                <label>Current Business Phone <span class="req">*</span></label>
+                <input type="tel" name="business_phone" required placeholder="The number customers call today">
             </div>
 
-            <div class="field-group">
-                <label class="field-label">Time Zone<span class="required">*</span></label>
-                <select name="timezone" required>
-                    <option value="">Select time zone</option>
-                    <option value="America/New_York">Eastern Time (ET)</option>
-                    <option value="America/Chicago">Central Time (CT)</option>
-                    <option value="America/Denver">Mountain Time (MT)</option>
-                    <option value="America/Phoenix">Mountain Time – Arizona (no DST)</option>
-                    <option value="America/Los_Angeles">Pacific Time (PT)</option>
-                    <option value="America/Anchorage">Alaska Time (AKT)</option>
-                    <option value="Pacific/Honolulu">Hawaii Time (HST)</option>
-                </select>
-                <div class="field-help">Critical for accurate scheduling and after-hours rules</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Website (if applicable)</label>
-                <input type="url" name="website" placeholder="https://www.yourbusiness.com">
-            </div>
-        </div>
-
-        <!-- SECTION 2: PLAN SELECTION -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">2</div>
-                <div class="section-title">Your Plan</div>
-            </div>
-            <div class="section-subtitle">One straightforward offer — built for serious service businesses</div>
-
-            <div class="field-group">
-                <label class="field-label">Select Your Plan<span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option" style="border-color: rgba(59,130,246,0.28); background: rgba(59,130,246,0.04);">
-                        <input type="radio" name="plan" value="founding_597" required>
-                        <div class="option-label">
-                            <span class="option-title" style="font-size: 1rem;">
-                                Founding Client — $597/month
-                                <span class="tier-badge badge-founding">Limited Availability</span>
-                            </span>
-                            <span style="display: block; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 10px; margin-top: 3px;">
-                                Standard rate: $997/month — locked in for founding clients at setup
-                            </span>
-                            <span class="option-description">
-                                The complete AI revenue system — missed call recovery, automated follow-up, review generation, calendar integration, and full onboarding support. Configured and live within 30 minutes.<br><br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Missed call save — AI texts back instantly<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Automated lead follow-up sequences<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Review request automation<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Google Calendar integration<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>AI 2-way SMS conversations<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Monthly performance reports<br>
-                                <span class="ck"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span>Priority support & guided setup
-                            </span>
-                        </div>
-                    </label>
+            <div class="field">
+                <label>What should we do with your number? <span class="req">*</span></label>
+                <div class="radio-row">
+                    <div class="radio-pill">
+                        <input type="radio" name="number_strategy" id="ns_port" value="port" required>
+                        <label for="ns_port" class="pill">Port to us</label>
+                    </div>
+                    <div class="radio-pill">
+                        <input type="radio" name="number_strategy" id="ns_forward" value="forward">
+                        <label for="ns_forward" class="pill">Forward to us</label>
+                    </div>
+                    <div class="radio-pill">
+                        <input type="radio" name="number_strategy" id="ns_new" value="new">
+                        <label for="ns_new" class="pill">New number</label>
+                    </div>
                 </div>
             </div>
 
-            <div style="border-top: 1px solid var(--border-subtle); padding-top: 22px; margin-top: 8px;">
-                <p style="font-size: 0.78rem; color: var(--text-dim); margin-bottom: 12px;">Need something more tailored?</p>
-                <div class="radio-group">
-                    <label class="radio-option" style="background: transparent; border-color: var(--border);">
-                        <input type="radio" name="plan" value="custom">
-                        <div class="option-label">
-                            <span class="option-title" style="font-size: 0.87rem; color: var(--text-muted); font-weight: 500;">Custom setup</span>
-                            <span class="option-description">For multi-location businesses, advanced routing, or special integrations. We'll scope it together.</span>
-                        </div>
-                    </label>
+            <div class="conditional" id="areaCodeField">
+                <div class="field">
+                    <label>Preferred Area Code</label>
+                    <input type="text" name="preferred_area_code" placeholder="e.g. 916" maxlength="3">
                 </div>
             </div>
 
-            <div class="field-group" id="custom_requirements_field" style="margin-top: 20px; display: none;">
-                <label class="field-label">Describe your setup requirements</label>
-                <textarea name="custom_requirements_plan" placeholder="Tell us what makes your situation unique — multiple locations, custom routing logic, specific integrations, or anything else we should know before scoping."></textarea>
-            </div>
-        </div>
-
-        <!-- SECTION 3: PHONE SETUP -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">3</div>
-                <div class="section-title">Phone & Number Setup</div>
-            </div>
-            <div class="section-subtitle">Configure how customers reach you and how calls are handled</div>
-
-            <div class="field-group">
-                <label class="field-label">Current Business Phone Number<span class="required">*</span></label>
-                <input type="tel" name="business_phone" required placeholder="The number customers call you on today">
-                <div class="field-help">The main number your customers currently use</div>
+            <div class="field">
+                <label>Backup Phone</label>
+                <input type="tel" name="backup_phone" placeholder="For emergency escalations">
             </div>
 
-            <div class="field-group">
-                <label class="field-label">What would you like to do with your number?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="number_strategy" value="port" required><div class="option-label"><span class="option-title">Port my existing number to BoyerScales</span><span class="option-description">Keep your current number and move it to our system — recommended if customers already know this number</span></div></label>
-                    <label class="radio-option"><input type="radio" name="number_strategy" value="new"><div class="option-label"><span class="option-title">Get a new number from BoyerScales</span><span class="option-description">We'll provision a new local number for your business</span></div></label>
-                    <label class="radio-option"><input type="radio" name="number_strategy" value="forward"><div class="option-label"><span class="option-title">Forward my existing number to BoyerScales</span><span class="option-description">Keep your current provider, forward calls to our AI system</span></div></label>
+            <div class="field">
+                <label>Service Area <span class="req">*</span></label>
+                <input type="text" name="service_area" required placeholder="e.g. Sacramento County, within 30 miles of downtown">
+            </div>
+
+            <div class="field">
+                <label>Business Hours <span class="req">*</span></label>
+                <textarea name="business_hours" required placeholder="Mon–Fri: 8 AM – 6 PM&#10;Sat: 9 AM – 3 PM&#10;Sun: Closed"></textarea>
+            </div>
+
+            <div class="field">
+                <label>Do you offer 24/7 emergency service?</label>
+                <div class="radio-row">
+                    <div class="radio-pill">
+                        <input type="radio" name="emergency_service" id="em_yes" value="yes">
+                        <label for="em_yes" class="pill">Yes</label>
+                    </div>
+                    <div class="radio-pill">
+                        <input type="radio" name="emergency_service" id="em_no" value="no">
+                        <label for="em_no" class="pill">No</label>
+                    </div>
                 </div>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">Preferred area code (if getting a new number)</label>
-                <input type="text" name="preferred_area_code" placeholder="Your local area code, e.g. 916" maxlength="3">
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Owner / Backup Mobile Number<span class="required">*</span></label>
-                <input type="tel" name="backup_phone" required placeholder="Best number to reach you directly">
-                <div class="field-help">For emergency escalations and call transfers</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Additional Team Member Numbers</label>
-                <textarea name="team_numbers" placeholder="List any team members for call routing (one per line):&#10;Sarah — Service Manager&#10;Mike — Lead Technician"></textarea>
-                <div class="field-help">Used for intelligent call routing and transfers on advanced setups</div>
-            </div>
-        </div>
-
-        <!-- SECTION 4: BUSINESS HOURS -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">4</div>
-                <div class="section-title">Operating Hours & Availability</div>
-            </div>
-            <div class="section-subtitle">Define when you're open and how after-hours calls should be handled</div>
-
-            <div class="info-box">
-                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> Why this matters</div>
-                <div class="info-box-text">Your AI behaves differently during business hours vs. after-hours. During business hours it can transfer or book — after hours it captures leads and sets expectations.</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Regular Business Hours<span class="required">*</span></label>
-                <textarea name="business_hours" required placeholder="Monday – Friday: 8:00 AM – 6:00 PM&#10;Saturday: 9:00 AM – 3:00 PM&#10;Sunday: Closed"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Do you offer 24/7 emergency service?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="emergency_service" value="yes" required><div class="option-label"><span class="option-title">Yes — we handle emergencies 24/7</span><span class="option-description">AI will ask if it's an emergency and route accordingly</span></div></label>
-                    <label class="radio-option"><input type="radio" name="emergency_service" value="no"><div class="option-label"><span class="option-title">No — regular hours only</span><span class="option-description">After-hours calls will be captured for next-day follow-up</span></div></label>
+            <div class="conditional" id="oncallField">
+                <div class="field">
+                    <label>On-Call Phone</label>
+                    <input type="tel" name="oncall_phone" placeholder="After-hours emergency line">
                 </div>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">What counts as an emergency for your business?</label>
-                <textarea name="emergency_definition" placeholder="Describe what situations qualify as true emergencies:&#10;— No heat when temps drop below 40°F&#10;— Burst pipe or active flooding&#10;— Gas smell (instruct to call 911 first)"></textarea>
-                <div class="field-help">The AI uses this to determine when to escalate vs. schedule for next day</div>
+            <!-- SECTION 3: LAUNCH -->
+            <div class="section-label">
+                <div class="section-label-num">3</div>
+                <div class="section-label-text">Launch</div>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">After-Hours Behavior<span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="after_hours_behavior" value="message_only" required><div class="option-label"><span class="option-title">Take message only</span><span class="option-description">Capture details, send SMS confirmation, follow up next business day</span></div></label>
-                    <label class="radio-option"><input type="radio" name="after_hours_behavior" value="message_and_transfer"><div class="option-label"><span class="option-title">Take message, transfer emergencies</span><span class="option-description">Regular calls get scheduled, emergencies get transferred to on-call</span></div></label>
-                    <label class="radio-option"><input type="radio" name="after_hours_behavior" value="always_transfer"><div class="option-label"><span class="option-title">Always attempt transfer after-hours</span><span class="option-description">Try to reach owner/on-call for all after-hours calls</span></div></label>
-                </div>
+            <div class="field">
+                <label>Google Calendar Email <span class="req">*</span></label>
+                <input type="email" name="google_calendar_email" required placeholder="Gmail connected to your calendar">
+                <div class="field-hint">We'll sync appointments here automatically</div>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">On-Call Phone (for after-hours emergencies)</label>
-                <input type="tel" name="oncall_phone" placeholder="After-hours direct line or on-call number">
+            <div class="field">
+                <label>Biggest pain point right now <span class="req">*</span></label>
+                <textarea name="pain_point" required placeholder="What's costing you the most time or money?"></textarea>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">Holidays / Planned Closures</label>
-                <textarea name="holidays" placeholder="List holidays or dates you're typically closed:&#10;— New Year's Day&#10;— Thanksgiving & day after&#10;— Christmas Eve & Christmas Day"></textarea>
-            </div>
-        </div>
-
-        <!-- SECTION 5: SERVICES & BOOKING -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">5</div>
-                <div class="section-title">Services & Appointment Configuration</div>
-            </div>
-            <div class="section-subtitle">Define your services and booking rules so the AI can schedule accurately</div>
-
-            <div class="field-group">
-                <label class="field-label">Services You Offer<span class="required">*</span></label>
-                <textarea name="services_offered" required placeholder="List your services with typical duration and pricing if you'd like the AI to share estimates:&#10;— Diagnostic visit — 30 min — $95 flat&#10;— Drain cleaning — 1 hr — Starting at $150&#10;— Water heater replacement — 2–3 hrs — Starting at $800&#10;— Emergency call — 1–2 hrs — $350 minimum"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Should the AI share pricing estimates?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="pricing_behavior" value="starting_at" required><div class="option-label"><span class="option-title">Yes — share starting prices</span><span class="option-description">AI mentions "starting at $X" based on your services list</span></div></label>
-                    <label class="radio-option"><input type="radio" name="pricing_behavior" value="ranges"><div class="option-label"><span class="option-title">Share price ranges only</span><span class="option-description">AI says "typically ranges from $X to $Y depending on the job"</span></div></label>
-                    <label class="radio-option"><input type="radio" name="pricing_behavior" value="no_pricing"><div class="option-label"><span class="option-title">No pricing — free quote only</span><span class="option-description">AI says "We provide free quotes — let me schedule an appointment"</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Appointment Time Slots<span class="required">*</span></label>
-                <textarea name="appointment_slots" required placeholder="What windows do you offer? Examples:&#10;— Morning: 8:00 AM – 12:00 PM&#10;— Afternoon: 12:00 PM – 4:00 PM&#10;— Evening: 4:00 PM – 7:00 PM"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Minimum Booking Lead Time<span class="required">*</span></label>
-                <select name="booking_lead_time" required>
-                    <option value="">How far in advance do jobs need to be booked?</option>
-                    <option value="same_day">Same day (if available)</option>
-                    <option value="next_day">Next business day minimum</option>
-                    <option value="2_days">2 business days minimum</option>
-                    <option value="1_week">1 week minimum</option>
-                </select>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Service Area<span class="required">*</span></label>
-                <textarea name="service_area" required placeholder="Where do you serve? Be specific so the AI can confirm coverage:&#10;— All of Sacramento County&#10;— Within 30 miles of downtown&#10;— Cities: Elk Grove, Roseville, Folsom, Rancho Cordova"></textarea>
-            </div>
-        </div>
-
-        <!-- SECTION 6: AI PERSONA -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">6</div>
-                <div class="section-title">AI Voice Persona & Personality</div>
-            </div>
-            <div class="section-subtitle">Customize how your AI receptionist sounds and speaks</div>
-
-            <div class="info-box">
-                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg></span> Voice Persona Configuration</div>
-                <div class="info-box-text">Custom voice training is included in the founding setup and expandable for custom builds. Fill in as much or as little as you'd like — we'll handle the rest.</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Preferred Voice Gender</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="voice_gender" value="female"><div class="option-label"><span class="option-title">Female voice</span></div></label>
-                    <label class="radio-option"><input type="radio" name="voice_gender" value="male"><div class="option-label"><span class="option-title">Male voice</span></div></label>
-                    <label class="radio-option"><input type="radio" name="voice_gender" value="no_preference"><div class="option-label"><span class="option-title">No preference — choose best for my industry</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Voice Energy & Pace</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="voice_energy" value="calm"><div class="option-label"><span class="option-title">Calm & Measured</span><span class="option-description">Slower, soothing — good for medical, legal, senior services</span></div></label>
-                    <label class="radio-option"><input type="radio" name="voice_energy" value="professional"><div class="option-label"><span class="option-title">Professional & Balanced</span><span class="option-description">Standard pace, clear — works well across all industries</span></div></label>
-                    <label class="radio-option"><input type="radio" name="voice_energy" value="upbeat"><div class="option-label"><span class="option-title">Upbeat & Energetic</span><span class="option-description">Faster, enthusiastic — good for sales-forward businesses</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Brand Tone</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="brand_tone" value="luxury"><div class="option-label"><span class="option-title">Luxury / Premium</span><span class="option-description">Sophisticated, polished, high-end</span></div></label>
-                    <label class="radio-option"><input type="radio" name="brand_tone" value="professional"><div class="option-label"><span class="option-title">Corporate / Professional</span><span class="option-description">Formal, respectful, business-like</span></div></label>
-                    <label class="radio-option"><input type="radio" name="brand_tone" value="friendly"><div class="option-label"><span class="option-title">Friendly / Approachable</span><span class="option-description">Warm, conversational, down-to-earth</span></div></label>
-                    <label class="radio-option"><input type="radio" name="brand_tone" value="casual"><div class="option-label"><span class="option-title">Casual / Relaxed</span><span class="option-description">Easy-going, straightforward, no-nonsense</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Call Opening / Greeting Script</label>
-                <textarea name="greeting_script" placeholder="How should the AI open every call? Examples:&#10;— 'Thank you for calling [Business], this is Jordan — how can I help you today?'&#10;&#10;Leave blank to use our industry best-practice greeting."></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Key Phrases to Include</label>
-                <textarea name="key_phrases" placeholder="What should the AI emphasize about your business? Examples:&#10;— Family-owned and operated since 2010&#10;— Licensed, bonded, and insured&#10;— Same-day service available"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Things the AI Should Never Say</label>
-                <textarea name="avoid_phrases" placeholder="Any phrases or topics to avoid? Examples:&#10;— Never mention competitors by name&#10;— Don't promise specific arrival times, only windows&#10;— Don't quote exact prices without seeing the job"></textarea>
-            </div>
-        </div>
-
-        <!-- SECTION 7: CALL TRANSFER -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">7</div>
-                <div class="section-title">Call Transfer & Escalation Logic</div>
-            </div>
-            <div class="section-subtitle">Define when and how the AI should hand off to a human</div>
-
-            <div class="info-box">
-                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span> Call Transfer & Routing</div>
-                <div class="info-box-text">Live transfer and custom routing logic is included in the founding setup. Advanced multi-destination routing and complex escalation trees can be configured for custom builds.</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">When should the AI transfer to you?</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-option"><input type="checkbox" name="transfer_triggers" value="emergency"><div class="option-label"><span class="option-title">Emergency situations</span></div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="transfer_triggers" value="vip"><div class="option-label"><span class="option-title">VIP / known customers</span></div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="transfer_triggers" value="high_value"><div class="option-label"><span class="option-title">High-value jobs over a set threshold</span></div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="transfer_triggers" value="complaint"><div class="option-label"><span class="option-title">Complaints or service issues</span></div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="transfer_triggers" value="ai_confused"><div class="option-label"><span class="option-title">AI can't understand or help</span></div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="transfer_triggers" value="customer_request"><div class="option-label"><span class="option-title">Customer asks to speak to owner/manager</span></div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="transfer_triggers" value="never"><div class="option-label"><span class="option-title">Never transfer — AI handles everything</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">High-value job transfer threshold ($)</label>
-                <input type="number" name="high_value_threshold" placeholder="Job value that triggers a transfer, e.g. 1500">
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Transfer Priority Order</label>
-                <textarea name="transfer_priority" placeholder="Who should the AI try to reach first? Examples:&#10;1. Owner — direct cell&#10;2. Service Manager — direct cell&#10;3. After-hours answering service"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">If transfer fails (no answer), what should AI do?</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="transfer_fallback" value="take_message"><div class="option-label"><span class="option-title">Take detailed message and promise callback</span></div></label>
-                    <label class="radio-option"><input type="radio" name="transfer_fallback" value="voicemail"><div class="option-label"><span class="option-title">Send to voicemail</span></div></label>
-                    <label class="radio-option"><input type="radio" name="transfer_fallback" value="try_next"><div class="option-label"><span class="option-title">Try next person in rotation</span></div></label>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 8: INTEGRATIONS -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">8</div>
-                <div class="section-title">Calendar & CRM Integrations</div>
-            </div>
-            <div class="section-subtitle">Connect your existing tools for seamless automation</div>
-
-            <div class="field-group">
-                <label class="field-label">Google Calendar Email<span class="required">*</span></label>
-                <input type="email" name="google_calendar_email" required placeholder="The Gmail connected to your Google Calendar">
-                <div class="field-help">We'll send integration instructions here. Google Calendar sync is included in all setups.</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Do you use a CRM or field service software?</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="uses_crm" value="yes"><div class="option-label"><span class="option-title">Yes</span></div></label>
-                    <label class="radio-option"><input type="radio" name="uses_crm" value="no"><div class="option-label"><span class="option-title">No</span></div></label>
-                    <label class="radio-option"><input type="radio" name="uses_crm" value="planning"><div class="option-label"><span class="option-title">Not yet — planning to add one</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Which CRM / Software?</label>
-                <select name="crm_platform">
-                    <option value="">Select your platform</option>
-                    <option value="jobber">Jobber</option><option value="housecall_pro">Housecall Pro</option><option value="servicetitan">ServiceTitan</option><option value="fieldedge">FieldEdge</option><option value="service_fusion">Service Fusion</option><option value="workiz">Workiz</option><option value="salesforce">Salesforce</option><option value="hubspot">HubSpot</option><option value="zoho">Zoho CRM</option><option value="pipedrive">Pipedrive</option><option value="sheets">Excel / Google Sheets</option><option value="other">Other</option>
-                </select>
-                <div class="field-help">CRM integration is included in the founding setup and expandable for advanced workflows</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">If "Other", please specify</label>
-                <input type="text" name="crm_other" placeholder="Name of your CRM or system">
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Google Business Profile URL</label>
-                <input type="url" name="google_business_url" placeholder="Paste your Google Maps business link here">
-                <div class="field-help">Used for automated review requests</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Other review platforms to target</label>
-                <div class="checkbox-group">
-                    <label class="checkbox-option"><input type="checkbox" name="review_platforms" value="yelp"><div class="option-label">Yelp</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="review_platforms" value="facebook"><div class="option-label">Facebook</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="review_platforms" value="bbb"><div class="option-label">Better Business Bureau</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="review_platforms" value="angi"><div class="option-label">Angi (Angie's List)</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="review_platforms" value="homeadvisor"><div class="option-label">HomeAdvisor</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="review_platforms" value="thumbtack"><div class="option-label">Thumbtack</div></label>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 9: LEAD NURTURE -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">9</div>
-                <div class="section-title">Lead Follow Up & Nurture Automation</div>
-            </div>
-            <div class="section-subtitle">Configure your automated follow-up sequences</div>
-
-            <div class="info-box">
-                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> Lead Follow-Up Automation</div>
-                <div class="info-box-text">AI lead follow-up and nurture sequences are included in your founding setup. Extended cadences and custom sequence logic are available for advanced setups.</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">How quickly should we follow up on new leads?</label>
-                <select name="lead_followup_speed">
-                    <option value="">Select response time</option>
-                    <option value="immediate">Immediately — within 60 seconds</option>
-                    <option value="5_min">Within 5 minutes</option>
-                    <option value="15_min">Within 15 minutes</option>
-                    <option value="30_min">Within 30 minutes</option>
-                    <option value="1_hour">Within 1 hour</option>
-                    <option value="next_day">Next business day</option>
-                </select>
-                <div class="field-help">Faster response = higher conversion rates. Immediate is recommended.</div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Follow-up cadence for leads that don't book immediately</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="nurture_cadence" value="aggressive"><div class="option-label"><span class="option-title">Aggressive — High-Ticket Services</span><span class="option-description">Day 1 → Day 2 → Day 4 → Day 7 → Day 14</span></div></label>
-                    <label class="radio-option"><input type="radio" name="nurture_cadence" value="moderate"><div class="option-label"><span class="option-title">Moderate — Standard Services</span><span class="option-description">Day 1 → Day 3 → Day 7 → Day 14</span></div></label>
-                    <label class="radio-option"><input type="radio" name="nurture_cadence" value="light"><div class="option-label"><span class="option-title">Light Touch — Low Pressure</span><span class="option-description">Day 1 → Day 7 → Day 30</span></div></label>
-                    <label class="radio-option"><input type="radio" name="nurture_cadence" value="custom"><div class="option-label"><span class="option-title">Custom — I'll define my own</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Custom nurture sequence (if selected above)</label>
-                <textarea name="custom_nurture" placeholder="Define your own follow-up sequence:&#10;Day 1: SMS with booking link&#10;Day 3: Call attempt&#10;Day 5: Text with a customer testimonial"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">When should we request a review after job completion?</label>
-                <select name="review_timing">
-                    <option value="">Select timing</option>
-                    <option value="same_day">Same day — 2 hours after job marked complete</option>
-                    <option value="next_day">Next day</option>
-                    <option value="2_days">2 days later</option>
-                    <option value="3_days">3 days later</option>
-                    <option value="1_week">1 week later</option>
-                </select>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Review request tone</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="review_tone" value="direct"><div class="option-label"><span class="option-title">Direct & Brief</span><span class="option-description">"Thanks for choosing us — mind leaving a quick review?"</span></div></label>
-                    <label class="radio-option"><input type="radio" name="review_tone" value="grateful"><div class="option-label"><span class="option-title">Grateful & Personal</span><span class="option-description">"We really appreciate your business. If you were happy, we'd love if you shared your experience..."</span></div></label>
-                    <label class="radio-option"><input type="radio" name="review_tone" value="incentivized"><div class="option-label"><span class="option-title">Incentivized</span><span class="option-description">"Leave us a review and get 10% off your next service!"</span></div></label>
-                </div>
-            </div>
-        </div>
-
-        <!-- SECTION 10: LANGUAGE -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">10</div>
-                <div class="section-title">Language & Localization</div>
-            </div>
-            <div class="section-subtitle">Configure language support and regional preferences</div>
-
-            <div class="field-group">
-                <label class="field-label">Primary Language<span class="required">*</span></label>
-                <select name="primary_language" required>
-                    <option value="english">English</option>
-                    <option value="spanish">Spanish</option>
-                    <option value="bilingual">Bilingual (English & Spanish)</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">If bilingual, when should AI switch to Spanish?</label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="language_trigger" value="auto_detect"><div class="option-label"><span class="option-title">Auto-detect and respond accordingly</span></div></label>
-                    <label class="radio-option"><input type="radio" name="language_trigger" value="ask"><div class="option-label"><span class="option-title">Ask customer preference — "For English press 1, para Español oprima 2"</span></div></label>
-                    <label class="radio-option"><input type="radio" name="language_trigger" value="greeting"><div class="option-label"><span class="option-title">Mention both in the greeting</span></div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Other language (if applicable)</label>
-                <input type="text" name="other_language" placeholder="e.g. Mandarin, Vietnamese, French">
-                <div class="field-help">Additional languages may require custom configuration</div>
-            </div>
-        </div>
-
-        <!-- SECTION 11: COMPLIANCE -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">11</div>
-                <div class="section-title">Legal Compliance & Permissions</div>
-            </div>
-            <div class="section-subtitle">Required consents for SMS, call recording, and automated communications</div>
-
-            <div class="info-box">
-                <div class="info-box-title"><span class="box-icon box-icon-blue"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span> Important Legal Notice</div>
-                <div class="info-box-text">Federal and state laws require explicit consent for automated communications. Please review and accept all applicable consents below.</div>
-            </div>
-
-            <div class="consent-box">
-                <div class="consent-item"><input type="checkbox" id="consent_sms" name="consent_sms" required><label for="consent_sms" class="consent-text"><strong>SMS/Text Messaging Consent:</strong> I authorize BoyerScales to send automated SMS messages on behalf of my business only to customers who have explicitly opted in. I agree to comply with TCPA regulations.</label></div>
-                <div class="consent-item"><input type="checkbox" id="consent_recording" name="consent_recording" required><label for="consent_recording" class="consent-text"><strong>Call Recording Consent:</strong> I authorize BoyerScales to record calls for quality assurance and AI improvement. I understand state laws may require two-party consent and will notify callers accordingly.</label></div>
-                <div class="consent-item"><input type="checkbox" id="consent_auto_dial" name="consent_auto_dial" required><label for="consent_auto_dial" class="consent-text"><strong>Automated Calling Consent:</strong> I authorize BoyerScales to place automated calls and voicemails for appointment confirmations, reminders, and follow-ups to consenting customers.</label></div>
-                <div class="consent-item"><input type="checkbox" id="consent_data" name="consent_data" required><label for="consent_data" class="consent-text"><strong>Data Usage & Storage:</strong> I authorize BoyerScales to collect, store, and process customer data necessary to provide services, in accordance with its Privacy Policy.</label></div>
-                <div class="consent-item"><input type="checkbox" id="consent_review" name="consent_review" required><label for="consent_review" class="consent-text"><strong>Review Request Authorization:</strong> I authorize BoyerScales to send automated review requests after service completion via SMS or email.</label></div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Should the AI disclose it's an AI?<span class="required">*</span></label>
-                <div class="radio-group">
-                    <label class="radio-option"><input type="radio" name="ai_disclosure" value="upfront" required><div class="option-label"><span class="option-title">Yes — disclose upfront</span><span class="option-description">"Hi, this is Jordan, your AI assistant. How can I help?"</span></div></label>
-                    <label class="radio-option"><input type="radio" name="ai_disclosure" value="if_asked"><div class="option-label"><span class="option-title">Only if asked</span><span class="option-description">Don't volunteer it, but confirm honestly if customer asks</span></div></label>
-                    <label class="radio-option"><input type="radio" name="ai_disclosure" value="natural"><div class="option-label"><span class="option-title">Natural transparency</span><span class="option-description">"I'm here to help schedule your appointment — let me ask a few quick questions"</span></div></label>
-                </div>
-                <div class="field-help">Recommended: Be transparent to build trust and stay compliant</div>
-            </div>
-        </div>
-
-        <!-- SECTION 12: GOALS -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">12</div>
-                <div class="section-title">Goals & Launch Timeline</div>
-            </div>
-            <div class="section-subtitle">Help us understand what success looks like for you</div>
-
-            <div class="field-group">
-                <label class="field-label">What are your top goals with BoyerScales?<span class="required">*</span></label>
-                <div class="checkbox-group">
-                    <label class="checkbox-option"><input type="checkbox" name="goals" value="capture_leads"><div class="option-label">Never miss a lead — capture every call</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="goals" value="save_time"><div class="option-label">Save time on phone calls and admin</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="goals" value="automate_booking"><div class="option-label">Automate appointment booking</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="goals" value="more_reviews"><div class="option-label">Get more 5-star reviews</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="goals" value="availability"><div class="option-label">Provide 24/7 availability</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="goals" value="scale"><div class="option-label">Scale without hiring more staff</div></label>
-                    <label class="checkbox-option"><input type="checkbox" name="goals" value="customer_service"><div class="option-label">Improve response time and customer experience</div></label>
-                </div>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">What's your biggest pain point right now?<span class="required">*</span></label>
-                <textarea name="pain_point" required placeholder="Tell us what's costing you the most time or money"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Monthly call/text volume (estimate)</label>
-                <select name="call_volume">
-                    <option value="">Rough estimate is fine</option>
-                    <option value="0_50">Under 50/month</option>
-                    <option value="51_100">51–100/month</option>
-                    <option value="101_250">101–250/month</option>
-                    <option value="251_500">251–500/month</option>
-                    <option value="501_1000">501–1,000/month</option>
-                    <option value="1000_plus">1,000+/month</option>
-                </select>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">When do you want to go live?<span class="required">*</span></label>
+            <div class="field">
+                <label>When do you want to go live? <span class="req">*</span></label>
                 <select name="go_live_timeline" required>
-                    <option value="">Select your target timeline</option>
+                    <option value="">Select timeline</option>
                     <option value="asap">ASAP — this week</option>
                     <option value="1_week">Within 1 week</option>
                     <option value="2_weeks">Within 2 weeks</option>
                     <option value="1_month">Within 1 month</option>
-                    <option value="flexible">Flexible — no rush</option>
+                    <option value="flexible">Flexible</option>
                 </select>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">Best times for an onboarding call</label>
-                <textarea name="onboarding_availability" placeholder="What days and times work best for a 30-minute setup call?&#10;Example: Weekdays after 5 PM, or Saturday mornings"></textarea>
+            <div class="field">
+                <label>Anything else we should know?</label>
+                <textarea name="additional_notes" placeholder="Optional — unique situations, questions, preferences"></textarea>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">How did you hear about BoyerScales?</label>
-                <select name="referral_source">
-                    <option value="">Select source</option>
-                    <option value="google">Google Search</option><option value="facebook">Facebook</option><option value="instagram">Instagram</option><option value="linkedin">LinkedIn</option><option value="youtube">YouTube</option><option value="referral">Referral from friend or colleague</option><option value="cold_call">Phone call from BoyerScales</option><option value="email">Email</option><option value="other">Other</option>
-                </select>
+            <!-- CONSENT -->
+            <div class="consent">
+                <input type="checkbox" id="consent_terms" name="consent_terms" required>
+                <label for="consent_terms">I agree to the <a href="https://boyerscales.com/termsconditions/" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a> and <a href="https://boyerscales.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</label>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">If referral, who referred you?</label>
-                <input type="text" name="referred_by" placeholder="Name or business that sent you our way">
-            </div>
-        </div>
-
-        <!-- SECTION 13: ADDITIONAL NOTES -->
-        <div class="section">
-            <div class="section-header">
-                <div class="section-number">13</div>
-                <div class="section-title">Anything Else?</div>
-            </div>
-            <div class="section-subtitle">Help us configure your system perfectly from day one</div>
-
-            <div class="field-group">
-                <label class="field-label">Special requirements or unique situations</label>
-                <textarea name="special_requirements" placeholder="Anything unique about your business we should know:&#10;— Unusual service offerings or booking rules&#10;— Industry-specific terminology&#10;— Concerns about the AI or past experiences with automation"></textarea>
+            <!-- SUBMIT -->
+            <div class="submit-area">
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span>Complete Setup</span>
+                    <svg viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                </button>
+                <div class="next-steps">
+                    <p><strong>What happens next:</strong> We review your details and reach out within 24 hours to finalize setup. Most clients are live within 48 hours.</p>
+                </div>
             </div>
 
-            <div class="field-group">
-                <label class="field-label">Top customer questions we should train the AI on</label>
-                <textarea name="common_questions" placeholder="What are the 5–10 questions customers ask most often?&#10;— How much does it cost to fix a leaky faucet?&#10;— Are you licensed and insured?&#10;— How soon can you come out?&#10;— Do you offer free estimates?"></textarea>
-            </div>
-
-            <div class="field-group">
-                <label class="field-label">Any questions for us?</label>
-                <textarea name="client_questions" placeholder="Anything you want to know about how the system works or what to expect?"></textarea>
-            </div>
-        </div>
-
+        </form>
     </div>
 
-    <div class="submit-section">
-        <button type="submit" class="submit-btn"><span>Complete Onboarding →</span></button>
-        <div class="submit-note">
-            <strong>What happens next:</strong> We'll review your submission and reach out within 24 hours to begin setup. Founding clients get a dedicated onboarding call within 2 hours.
-        </div>
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>&copy; 2025 BoyerScales &middot; <a href="https://boyerscales.com/privacypolicy/" target="_blank">Privacy</a> &middot; <a href="https://boyerscales.com/termsconditions/" target="_blank">Terms</a></p>
     </div>
 
-    </form>
 </div>
 
 <script>
-    // Progress bar
-    window.addEventListener('scroll', function() {
-        const pct = (window.pageYOffset / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        document.querySelector('.progress-fill').style.width = pct + '%';
-    }, { passive: true });
+(function(){
+    'use strict';
 
-    // Section reveal
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+    // Conditional: area code
+    document.querySelectorAll('input[name="number_strategy"]').forEach(r => {
+        r.addEventListener('change', function(){
+            document.getElementById('areaCodeField').classList.toggle('visible', this.value === 'new');
         });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.section').forEach(s => observer.observe(s));
+    });
 
-    // Field validation glow
-    document.querySelectorAll('input[required], textarea[required], select[required]').forEach(input => {
-        input.addEventListener('blur', function() {
-            if (this.value.trim() !== '') {
-                this.style.borderColor = 'rgba(16,185,129,0.5)';
-                this.style.boxShadow = '0 0 0 3px rgba(16,185,129,0.08)';
-            }
+    // Conditional: on-call phone
+    document.querySelectorAll('input[name="emergency_service"]').forEach(r => {
+        r.addEventListener('change', function(){
+            document.getElementById('oncallField').classList.toggle('visible', this.value === 'yes');
         });
-        input.addEventListener('focus', function() {
+    });
+
+    // Valid glow on blur
+    document.querySelectorAll('#onboardingForm input[required], #onboardingForm select[required], #onboardingForm textarea[required]').forEach(el => {
+        el.addEventListener('blur', function(){
+            if(this.value.trim()) this.classList.add('valid');
+            else this.classList.remove('valid');
+        });
+        el.addEventListener('focus', function(){
+            this.classList.remove('valid');
             this.style.borderColor = '';
-            this.style.boxShadow = '';
         });
     });
 
-    // Radio/checkbox selection styling
-    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(input => {
-        input.addEventListener('change', function() {
-            const parent = this.closest('.radio-option, .checkbox-option');
-            if (this.type === 'radio') {
-                document.querySelectorAll(`input[type="radio"][name="${this.name}"]`).forEach(r => {
-                    const p = r.closest('.radio-option');
-                    if (p) { p.style.borderColor = ''; p.style.background = ''; }
-                });
-            }
-            if (this.checked) {
-                parent.style.borderColor = 'rgba(59,130,246,0.4)';
-                parent.style.background = 'rgba(59,130,246,0.06)';
-                parent.style.transform = 'scale(1.01)';
-                setTimeout(() => { parent.style.transform = ''; }, 200);
-            } else {
-                parent.style.borderColor = '';
-                parent.style.background = '';
-            }
-        });
-    });
+    // Submit
+    document.getElementById('onboardingForm').addEventListener('submit', function(e){
+        const required = this.querySelectorAll('[required]');
+        let valid = true;
+        let firstBad = null;
 
-    // Custom plan toggle
-    document.querySelectorAll('input[name="plan"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const customField = document.getElementById('custom_requirements_field');
-            if (this.value === 'custom') {
-                customField.style.display = 'block';
-            } else {
-                customField.style.display = 'none';
-            }
-        });
-    });
+        required.forEach(f => {
+            const isRadio = f.type === 'radio';
+            const isCheckbox = f.type === 'checkbox';
+            let ok;
+            if(isRadio) ok = !!document.querySelector(`input[name="${f.name}"]:checked`);
+            else if(isCheckbox) ok = f.checked;
+            else ok = f.value.trim() !== '';
 
-    // Form submission
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-        const requiredFields = form.querySelectorAll('[required]');
-        let allValid = true;
-        let firstInvalid = null;
-        requiredFields.forEach(field => {
-            const isRadio = field.type === 'radio';
-            let isValid = isRadio
-                ? document.querySelector(`input[name="${field.name}"]:checked`) !== null
-                : field.value.trim() !== '';
-            if (!isValid) {
-                allValid = false;
-                field.style.borderColor = '#ef4444';
-                if (!firstInvalid) firstInvalid = field;
-            } else {
-                field.style.borderColor = 'rgba(16,185,129,0.5)';
+            if(!ok){
+                valid = false;
+                if(!isRadio && !isCheckbox) f.style.borderColor = 'rgba(239,68,68,0.5)';
+                if(!firstBad) firstBad = f;
             }
         });
-        if (!allValid) {
+
+        if(!valid){
             e.preventDefault();
-            if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            const err = document.createElement('div');
-            err.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#ef4444;color:white;padding:16px 28px;border-radius:12px;box-shadow:0 8px 24px rgba(239,68,68,0.3);z-index:1000;font-family:var(--font);font-weight:600;font-size:0.9rem;';
-            err.textContent = 'Please fill out all required fields';
-            document.body.appendChild(err);
-            setTimeout(() => { err.style.opacity = '0'; err.style.transition = 'opacity 0.3s'; setTimeout(() => err.remove(), 300); }, 3000);
+            if(firstBad) firstBad.scrollIntoView({behavior:'smooth',block:'center'});
+            const t = document.createElement('div');
+            t.className = 'toast';
+            t.textContent = 'Please fill out all required fields';
+            document.body.appendChild(t);
+            setTimeout(() => {t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300)},3000);
         } else {
-            const btn = form.querySelector('.submit-btn');
+            const btn = document.getElementById('submitBtn');
             btn.innerHTML = '<span>Submitting...</span>';
             btn.disabled = true;
-            btn.style.opacity = '0.7';
         }
     });
+})();
 </script>
 </body>
 </html>
