@@ -342,7 +342,7 @@
             transition:all 0.3s cubic-bezier(0.4,0,0.2,1);
             letter-spacing:0.01em;
         }
-        .submit-btn:hover{
+        .submit-btn:hover:not(:disabled){
             transform:translateY(-2px);
             box-shadow:0 12px 40px rgba(37,99,235,0.4),inset 0 1px 0 rgba(255,255,255,0.15);
         }
@@ -351,10 +351,21 @@
             width:100%;height:100%;
             background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
         }
-        .submit-btn:hover::after{animation:shimmer 0.6s ease-out}
+        .submit-btn:hover:not(:disabled)::after{animation:shimmer 0.6s ease-out}
         @keyframes shimmer{0%{left:-100%}100%{left:100%}}
-        .submit-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+        .submit-btn:disabled{opacity:0.7;cursor:not-allowed;transform:none}
         .submit-btn svg{width:16px;height:16px;flex-shrink:0}
+
+        /* ── SPINNER ── */
+        .spinner{
+            width:16px;height:16px;
+            border:2px solid rgba(255,255,255,0.3);
+            border-top-color:#fff;
+            border-radius:50%;
+            animation:spin 0.7s linear infinite;
+            flex-shrink:0;
+        }
+        @keyframes spin{to{transform:rotate(360deg)}}
 
         /* ── WHAT HAPPENS NEXT ── */
         .next-steps{
@@ -365,6 +376,107 @@
             font-size:0.82rem;color:var(--text-tertiary);line-height:1.7;
         }
         .next-steps strong{color:var(--text-secondary);font-weight:600}
+
+        /* ── SUCCESS STATE ── */
+        .success-state{
+            display:none;
+            text-align:center;
+            padding:2rem 1rem;
+            animation:successIn 0.5s cubic-bezier(0.34,1.56,0.64,1);
+        }
+        .success-state.visible{display:block}
+        @keyframes successIn{
+            from{opacity:0;transform:translateY(12px) scale(0.96)}
+            to{opacity:1;transform:translateY(0) scale(1)}
+        }
+        .success-icon-wrap{
+            width:84px;height:84px;
+            margin:0 auto 1.75rem;
+            border-radius:50%;
+            background:radial-gradient(circle,rgba(16,185,129,0.2) 0%,rgba(16,185,129,0.05) 60%,transparent 100%);
+            display:flex;align-items:center;justify-content:center;
+            position:relative;
+        }
+        .success-icon-wrap::before{
+            content:'';position:absolute;inset:0;
+            border-radius:50%;
+            background:radial-gradient(circle,rgba(16,185,129,0.15) 0%,transparent 70%);
+            animation:pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse{
+            0%,100%{transform:scale(1);opacity:1}
+            50%{transform:scale(1.15);opacity:0.5}
+        }
+        .success-icon{
+            width:56px;height:56px;
+            border-radius:50%;
+            background:linear-gradient(135deg,var(--success),#059669);
+            display:flex;align-items:center;justify-content:center;
+            box-shadow:0 8px 30px rgba(16,185,129,0.3);
+            position:relative;z-index:1;
+        }
+        .success-icon svg{width:28px;height:28px;stroke:white;fill:none;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+        .success-state h2{
+            font-family:'Bricolage Grotesque',sans-serif;
+            font-size:1.75rem;font-weight:800;
+            letter-spacing:-0.025em;
+            margin-bottom:0.75rem;
+            color:var(--text-primary);
+        }
+        .success-state h2 .highlight{
+            background:linear-gradient(135deg,var(--primary-light),var(--accent));
+            -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+        }
+        .success-state > p{
+            font-size:0.95rem;color:var(--text-secondary);
+            max-width:420px;margin:0 auto 2rem;
+            line-height:1.7;
+        }
+        .success-steps{
+            max-width:420px;margin:0 auto 2rem;
+            text-align:left;
+            background:rgba(14,165,233,0.04);
+            border:1px solid rgba(14,165,233,0.1);
+            border-radius:var(--radius-md);
+            padding:1.25rem 1.25rem 1.25rem 1.5rem;
+        }
+        .success-steps-title{
+            font-size:0.78rem;font-weight:700;
+            color:var(--accent);
+            letter-spacing:0.05em;
+            text-transform:uppercase;
+            margin-bottom:0.85rem;
+        }
+        .success-steps ul{list-style:none;padding:0;margin:0}
+        .success-steps li{
+            display:flex;align-items:flex-start;gap:0.65rem;
+            padding:0.45rem 0;
+            font-size:0.88rem;color:var(--text-secondary);
+            line-height:1.55;
+        }
+        .success-steps li::before{
+            content:'';
+            width:5px;height:5px;min-width:5px;
+            margin-top:0.55rem;
+            border-radius:50%;
+            background:var(--accent);
+        }
+        .success-state .back-link{
+            display:inline-block;
+            padding:0.7rem 1.5rem;
+            color:var(--text-secondary);
+            text-decoration:none;
+            font-size:0.88rem;font-weight:500;
+            border-radius:var(--radius-sm);
+            border:1px solid rgba(255,255,255,0.08);
+            background:rgba(255,255,255,0.02);
+            transition:all 0.25s;
+        }
+        .success-state .back-link:hover{
+            color:var(--text-primary);
+            background:rgba(255,255,255,0.05);
+            border-color:rgba(255,255,255,0.15);
+        }
 
         /* ── FOOTER ── */
         .footer{
@@ -387,6 +499,8 @@
             font-family:'DM Sans',sans-serif;
             z-index:9999;
             animation:toastIn 0.3s ease-out;
+            max-width:90vw;
+            text-align:center;
         }
         @keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(-12px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
 
@@ -402,6 +516,7 @@
             .field-row{grid-template-columns:1fr}
             .radio-row{flex-direction:column}
             .header h1{font-size:1.85rem}
+            .success-state h2{font-size:1.5rem}
         }
 
         @media(prefers-reduced-motion:reduce){
@@ -422,7 +537,7 @@
 <div class="page">
 
     <!-- HEADER -->
-    <div class="header">
+    <div class="header" id="pageHeader">
         <div class="logo-row">
             <a href="/" class="logo"><img src="logo.png" alt="BoyerScales"><span class="logo-text">Boyer<span>Scales</span></span></a>
         </div>
@@ -442,8 +557,29 @@
 
     <!-- FORM -->
     <div class="form-card">
-        <form name="client-onboarding" method="POST" data-netlify="true" action="/onboarding/success" id="onboardingForm">
-            <input type="hidden" name="form-name" value="client-onboarding" />
+
+        <!-- SUCCESS STATE (hidden until submit) -->
+        <div class="success-state" id="successState">
+            <div class="success-icon-wrap">
+                <div class="success-icon">
+                    <svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg>
+                </div>
+            </div>
+            <h2>You're <span class="highlight">All Set</span></h2>
+            <p>We got your info. Our team is already reviewing it and we'll be in touch shortly.</p>
+            <div class="success-steps">
+                <div class="success-steps-title">What happens next</div>
+                <ul>
+                    <li>We review your setup and reach out within 24 hours</li>
+                    <li>Quick onboarding call to finalize everything</li>
+                    <li>Most clients are live within 48 hours</li>
+                </ul>
+            </div>
+            <a href="/" class="back-link">← Back to Home</a>
+        </div>
+
+        <!-- FORM (hides on success) -->
+        <form id="onboardingForm" novalidate>
 
             <!-- SECTION 1: BUSINESS -->
             <div class="section-label">
@@ -618,8 +754,8 @@
             <!-- SUBMIT -->
             <div class="submit-area">
                 <button type="submit" class="submit-btn" id="submitBtn">
-                    <span>Complete Setup</span>
-                    <svg viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
+                    <span id="submitText">Complete Setup</span>
+                    <svg id="submitArrow" viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </button>
                 <div class="next-steps">
                     <p><strong>What happens next:</strong> We review your details and reach out within 24 hours to finalize setup. Most clients are live within 48 hours.</p>
@@ -639,6 +775,12 @@
 <script>
 (function(){
     'use strict';
+
+    // ════════════════════════════════════════════════════════════════
+    // CONFIG — paste your Google Apps Script Web App URL here
+    // (The one ending in /exec from "Deploy → New deployment → Web app")
+    // ════════════════════════════════════════════════════════════════
+    const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbz469xRYPrfvG8o42Of3w-jTjwfTs1g6JG91bucmzKb9yeShQWn5YQZO7SS8G7sqwzT/exec';
 
     // Conditional: area code
     document.querySelectorAll('input[name="number_strategy"]').forEach(r => {
@@ -666,9 +808,56 @@
         });
     });
 
-    // Submit
-    document.getElementById('onboardingForm').addEventListener('submit', function(e){
-        const required = this.querySelectorAll('[required]');
+    // Toast helper
+    function showToast(msg){
+        const existing = document.querySelector('.toast');
+        if(existing) existing.remove();
+        const t = document.createElement('div');
+        t.className = 'toast';
+        t.textContent = msg;
+        document.body.appendChild(t);
+        setTimeout(() => {
+            t.style.opacity = '0';
+            t.style.transition = 'opacity 0.3s';
+            setTimeout(() => t.remove(), 300);
+        }, 3500);
+    }
+
+    // Loading / idle button state
+    function setLoading(isLoading){
+        const btn = document.getElementById('submitBtn');
+        const txt = document.getElementById('submitText');
+        const arrow = document.getElementById('submitArrow');
+        btn.disabled = isLoading;
+        if(isLoading){
+            txt.textContent = 'Submitting...';
+            arrow.outerHTML = '<div class="spinner" id="submitArrow"></div>';
+        } else {
+            txt.textContent = 'Complete Setup';
+            const current = document.getElementById('submitArrow');
+            if(current && current.classList.contains('spinner')){
+                current.outerHTML = '<svg id="submitArrow" viewBox="0 0 24 24" fill="none"><path stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>';
+            }
+        }
+    }
+
+    // Show success screen
+    function showSuccess(){
+        document.getElementById('onboardingForm').style.display = 'none';
+        document.getElementById('successState').classList.add('visible');
+        // Hide intro header for a cleaner success view
+        const h = document.getElementById('pageHeader');
+        if(h) h.style.display = 'none';
+        // Scroll to top so success is immediately visible
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+
+    // Submit handler
+    document.getElementById('onboardingForm').addEventListener('submit', async function(e){
+        e.preventDefault();
+
+        const form = this;
+        const required = form.querySelectorAll('[required]');
         let valid = true;
         let firstBad = null;
 
@@ -676,7 +865,7 @@
             const isRadio = f.type === 'radio';
             const isCheckbox = f.type === 'checkbox';
             let ok;
-            if(isRadio) ok = !!document.querySelector(`input[name="${f.name}"]:checked`);
+            if(isRadio) ok = !!form.querySelector(`input[name="${f.name}"]:checked`);
             else if(isCheckbox) ok = f.checked;
             else ok = f.value.trim() !== '';
 
@@ -688,17 +877,40 @@
         });
 
         if(!valid){
-            e.preventDefault();
-            if(firstBad) firstBad.scrollIntoView({behavior:'smooth',block:'center'});
-            const t = document.createElement('div');
-            t.className = 'toast';
-            t.textContent = 'Please fill out all required fields';
-            document.body.appendChild(t);
-            setTimeout(() => {t.style.opacity='0';t.style.transition='opacity 0.3s';setTimeout(()=>t.remove(),300)},3000);
-        } else {
-            const btn = document.getElementById('submitBtn');
-            btn.innerHTML = '<span>Submitting...</span>';
-            btn.disabled = true;
+            if(firstBad) firstBad.scrollIntoView({behavior:'smooth', block:'center'});
+            showToast('Please fill out all required fields');
+            return;
+        }
+
+        // Build payload
+        const formData = new FormData(form);
+        const payload = {};
+        formData.forEach((value, key) => { payload[key] = value; });
+        payload.consent_terms = form.querySelector('#consent_terms').checked ? 'yes' : 'no';
+        payload.submitted_at = new Date().toISOString();
+        payload.page_url = window.location.href;
+        payload.user_agent = navigator.userAgent;
+
+        setLoading(true);
+
+        try {
+            // Google Apps Script requires text/plain to avoid CORS preflight.
+            // Apps Script reads the body via e.postData.contents and parses JSON.
+            const res = await fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Apps Script doesn't return CORS headers; no-cors = fire-and-forget
+                headers: {'Content-Type': 'text/plain;charset=utf-8'},
+                body: JSON.stringify(payload),
+                redirect: 'follow'
+            });
+
+            // With mode:'no-cors' the response is opaque — we can't read status,
+            // but the request DOES go through. Treat reaching this point as success.
+            showSuccess();
+        } catch (err) {
+            console.error('Submit error:', err);
+            setLoading(false);
+            showToast('Something went wrong. Please try again or email hello@boyerscales.com');
         }
     });
 })();
