@@ -246,6 +246,9 @@
   @media (max-width: 1000px) {
     .hero-grid { grid-template-columns: 1fr; gap: 60px; }
   }
+  @media (max-width: 700px) {
+    .hero { padding: 110px 0 80px; }
+  }
 
   .hero-text { min-width: 0; }
 
@@ -616,7 +619,25 @@
   }
   .live-ticker .close-x:hover { color: var(--text); }
   @media (max-width: 640px) {
-    .live-ticker { left: 16px; right: 16px; max-width: none; }
+    .live-ticker {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      max-width: none;
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    .live-ticker .text {
+      flex: 1;
+      min-width: 0;
+    }
+    .live-ticker .text strong,
+    .live-ticker .text small {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
   }
 
   /* SECTIONS */
