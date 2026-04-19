@@ -6,6 +6,7 @@
 <title>BoyerScales Growth. More booked jobs. Automatically.</title>
 <meta name="description" content="Paid lead generation, instant follow-up, and database reactivation built to fill the calendars of local service businesses." />
 
+<link rel="icon" type="image/png" href="/growthlogo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -115,6 +116,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 20px;
   }
 
   /* LOGO */
@@ -123,9 +125,28 @@
     font-weight: 700;
     font-size: 22px;
     letter-spacing: -0.025em;
-    display: flex;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+  .logo-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-link-main {
+    display: inline-flex;
     align-items: baseline;
     gap: 12px;
+  }
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
   }
   .logo-boyer { color: var(--text); }
   .logo-scales {
@@ -1248,7 +1269,12 @@
 <nav id="nav">
   <div class="container nav-inner">
     <div class="logo">
-      <span><span class="logo-boyer">Boyer</span><span class="logo-scales">Scales</span></span>
+      <a href="https://boyerscales.com" class="logo-link" aria-label="Go to BoyerScales home">
+        <img src="/growthlogo.png" alt="BoyerScales Growth logo" class="logo-mark" />
+      </a>
+      <a href="https://boyerscales.com" class="logo-link-main" aria-label="Go to BoyerScales home">
+        <span><span class="logo-boyer">Boyer</span><span class="logo-scales">Scales</span></span>
+      </a>
       <span class="logo-growth">Growth</span>
     </div>
     <div class="nav-links">
