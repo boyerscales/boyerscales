@@ -200,6 +200,19 @@
             letter-spacing:0.01em;
         }
         .field label .req{color:#EF4444;margin-left:3px}
+        .field label .suggested{
+            display:inline-flex;align-items:center;
+            margin-left:0.5rem;
+            padding:2px 7px;
+            background:rgba(14,165,233,0.1);
+            border:1px solid rgba(14,165,233,0.25);
+            border-radius:20px;
+            font-size:0.65rem;font-weight:700;
+            color:var(--accent);
+            letter-spacing:0.04em;
+            text-transform:uppercase;
+            vertical-align:middle;
+        }
 
         .field input,.field select,.field textarea{
             width:100%;
@@ -237,7 +250,7 @@
             position:absolute;opacity:0;width:0;height:0;
         }
         .radio-pill label.pill{
-            display:flex;align-items:center;justify-content:center;
+            display:flex;align-items:center;justify-content:center;gap:0.4rem;
             padding:0.7rem 0.875rem;
             background:rgba(255,255,255,0.03);
             border:1.5px solid rgba(255,255,255,0.07);
@@ -249,6 +262,7 @@
             transition:all 0.25s;
             margin-bottom:0;
             white-space:nowrap;
+            position:relative;
         }
         .radio-pill input:checked + label.pill{
             border-color:rgba(14,165,233,0.5);
@@ -259,6 +273,19 @@
         .radio-pill label.pill:hover{
             border-color:rgba(255,255,255,0.14);
             background:rgba(255,255,255,0.04);
+        }
+        .radio-pill .rec-tag{
+            position:absolute;
+            top:-8px;right:10px;
+            padding:2px 7px;
+            background:linear-gradient(135deg,var(--primary),var(--accent));
+            color:white;
+            font-size:0.6rem;font-weight:700;
+            border-radius:20px;
+            letter-spacing:0.04em;
+            text-transform:uppercase;
+            box-shadow:0 2px 8px rgba(37,99,235,0.3);
+            pointer-events:none;
         }
 
         /* ── CONDITIONAL FIELDS ── */
@@ -496,6 +523,7 @@
             .radio-row{flex-direction:column}
             .header h1{font-size:1.85rem}
             .success-state h2{font-size:1.5rem}
+            .radio-pill .rec-tag{top:-7px;right:8px}
         }
 
         @media(prefers-reduced-motion:reduce){
@@ -530,7 +558,7 @@
         <p>A few details and we'll build out your system. Everything else gets finalized on your onboarding call.</p>
         <div class="time-hint">
             <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Takes about 2–3 minutes
+            Takes about 2 minutes
         </div>
     </div>
 
@@ -633,18 +661,22 @@
                 <label>What should we do with your number? <span class="req">*</span></label>
                 <div class="radio-row">
                     <div class="radio-pill">
-                        <input type="radio" name="number_strategy" id="ns_port" value="port" required>
-                        <label for="ns_port" class="pill">Port to us</label>
+                        <input type="radio" name="number_strategy" id="ns_forward" value="forward" required checked>
+                        <label for="ns_forward" class="pill">
+                            Forward to us
+                            <span class="rec-tag">Recommended</span>
+                        </label>
                     </div>
                     <div class="radio-pill">
-                        <input type="radio" name="number_strategy" id="ns_forward" value="forward">
-                        <label for="ns_forward" class="pill">Forward to us</label>
+                        <input type="radio" name="number_strategy" id="ns_port" value="port">
+                        <label for="ns_port" class="pill">Port to us</label>
                     </div>
                     <div class="radio-pill">
                         <input type="radio" name="number_strategy" id="ns_new" value="new">
                         <label for="ns_new" class="pill">New number</label>
                     </div>
                 </div>
+                <div class="field-hint">Forwarding is the fastest — no downtime, no carrier paperwork.</div>
             </div>
 
             <div class="conditional" id="areaCodeField">
@@ -655,8 +687,9 @@
             </div>
 
             <div class="field">
-                <label>Backup Phone</label>
-                <input type="tel" name="backup_phone" placeholder="For emergency escalations">
+                <label>Human Fallback Number <span class="suggested">Suggested</span></label>
+                <input type="tel" name="human_fallback_phone" placeholder="Where to route calls when a human is needed">
+                <div class="field-hint">If the AI can't handle a call (emergency, complex issue, specific request), we'll route it here instead of dropping it.</div>
             </div>
 
             <div class="field">
@@ -690,38 +723,31 @@
                 </div>
             </div>
 
-            <!-- SECTION 3: LAUNCH -->
+            <!-- SECTION 3: BOOKING -->
             <div class="section-label">
                 <div class="section-label-num">3</div>
-                <div class="section-label-text">Launch</div>
+                <div class="section-label-text">Booking & Scheduling</div>
             </div>
 
             <div class="field">
-                <label>Google Calendar Email <span class="req">*</span></label>
-                <input type="email" name="google_calendar_email" required placeholder="Gmail connected to your calendar">
-                <div class="field-hint">We'll sync appointments here automatically</div>
-            </div>
-
-            <div class="field">
-                <label>Biggest pain point right now <span class="req">*</span></label>
-                <textarea name="pain_point" required placeholder="What's costing you the most time or money?"></textarea>
-            </div>
-
-            <div class="field">
-                <label>When do you want to go live? <span class="req">*</span></label>
-                <select name="go_live_timeline" required>
-                    <option value="">Select timeline</option>
-                    <option value="asap">ASAP — this week</option>
-                    <option value="1_week">Within 1 week</option>
-                    <option value="2_weeks">Within 2 weeks</option>
-                    <option value="1_month">Within 1 month</option>
-                    <option value="flexible">Flexible</option>
+                <label>What do you use to book jobs? <span class="req">*</span></label>
+                <select name="booking_system" required>
+                    <option value="">Select your tool</option>
+                    <option value="google_calendar">Google Calendar</option>
+                    <option value="calendly">Calendly</option>
+                    <option value="jobber">Jobber</option>
+                    <option value="housecall_pro">Housecall Pro</option>
+                    <option value="servicetitan">ServiceTitan</option>
+                    <option value="acuity">Acuity Scheduling</option>
+                    <option value="other">Other software</option>
+                    <option value="none">No system yet</option>
                 </select>
+                <div class="field-hint">So we can sync new appointments straight into your workflow.</div>
             </div>
 
             <div class="field">
                 <label>Anything else we should know?</label>
-                <textarea name="additional_notes" placeholder="Optional — unique situations, questions, preferences"></textarea>
+                <textarea name="additional_notes" placeholder="Optional — unique situations, booking tool details, questions, preferences"></textarea>
             </div>
 
             <!-- CONSENT -->
@@ -824,10 +850,8 @@
     function showSuccess(){
         document.getElementById('onboardingForm').style.display = 'none';
         document.getElementById('successState').classList.add('visible');
-        // Hide intro header for a cleaner success view
         const h = document.getElementById('pageHeader');
         if(h) h.style.display = 'none';
-        // Scroll to top so success is immediately visible
         window.scrollTo({top: 0, behavior: 'smooth'});
     }
 
@@ -875,9 +899,9 @@
         try {
             // Google Apps Script requires text/plain to avoid CORS preflight.
             // Apps Script reads the body via e.postData.contents and parses JSON.
-            const res = await fetch(WEB_APP_URL, {
+            await fetch(WEB_APP_URL, {
                 method: 'POST',
-                mode: 'no-cors', // Apps Script doesn't return CORS headers; no-cors = fire-and-forget
+                mode: 'no-cors',
                 headers: {'Content-Type': 'text/plain;charset=utf-8'},
                 body: JSON.stringify(payload),
                 redirect: 'follow'
