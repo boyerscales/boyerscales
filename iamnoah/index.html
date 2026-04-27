@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#08080a" />
+    <title>Noah is hiring — field sales</title>
+    <meta
+      name="description"
+      content="60-second qualifier to interview with Noah's field sales team on a TOP Vivint home security campaign."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-bg" aria-hidden="true">
+          <canvas id="signalCanvas" class="signal-canvas"></canvas>
+          <div class="hero-spotlight"></div>
+          <div class="hero-noise"></div>
+          <div class="hero-scrim"></div>
+        </div>
+
+        <div class="hero-tag" aria-hidden="true">
+          <span class="hero-tag-dot"></span>
+          Hiring now · TOP × Vivint
+        </div>
+
+        <div class="hero-inner">
+          <p class="eyebrow"><span>Performance-based field sales</span></p>
+          <h1 id="hero-title">
+            <span class="line">
+              <span class="word" style="--i:0">Field</span>
+              <span class="word" style="--i:1">sales</span>
+              <span class="word" style="--i:2">is</span>
+            </span>
+            <span class="line">
+              <span class="word red" style="--i:3">not</span>
+              <span class="word" style="--i:4">for</span>
+              <span class="word" style="--i:5">everyone.</span>
+            </span>
+          </h1>
+          <p class="hero-copy">
+            Noah is building a team of competitive, coachable people who can handle real conversations,
+            real rejection, and a performance-based environment selling Vivint home security with TOP.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#apply">
+              <span>Start the 60-second qualifier</span>
+              <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="button secondary" href="#details">What to know first</a>
+          </div>
+        </div>
+
+        <a class="hero-scroll-cue" href="#apply" aria-label="Scroll to qualifier">
+          <span class="scroll-cue-track">
+            <span class="scroll-cue-dot"></span>
+          </span>
+          <span class="scroll-cue-label">Scroll</span>
+        </a>
+      </section>
+
+      <section id="apply" class="qualifier-section" aria-labelledby="apply-title">
+        <div class="qualifier-shell">
+          <div class="qualifier-intro">
+            <p class="eyebrow dark">60-second qualifier</p>
+            <h2 id="apply-title">Five questions, then drop your number.</h2>
+            <p>
+              Quick screen so Noah knows you're serious before he calls. Pay, schedule, territory,
+              and training all get walked through on the interview — not on a landing page.
+            </p>
+          </div>
+
+          <form
+            class="qualifier-form"
+            id="qualifierForm"
+            data-endpoint="PASTE_AI_RECEPTIONIST_WEBHOOK_HERE"
+            data-booking-url="PASTE_BOOKING_LINK_HERE"
+            novalidate
+          >
+            <div class="qualifier-progress" aria-hidden="true">
+              <div class="qualifier-progress-bar">
+                <div class="qualifier-progress-fill" data-progress-fill></div>
+              </div>
+              <p class="qualifier-progress-label">
+                Step <span data-current-step>1</span> of <span data-total-steps>6</span>
+              </p>
+            </div>
+
+            <div class="qualifier-stage" data-stage>
+              <fieldset class="qualifier-step active" data-step="1" data-question="age">
+                <legend class="step-label">Question 1 of 5</legend>
+                <h3>How old are you?</h3>
+                <p class="step-hint">D2D field sales requires you to be 18 or older.</p>
+                <div class="choice-list">
+                  <button type="button" class="choice" data-value="18+">
+                    <span class="choice-letter">A</span>
+                    <span class="choice-label">18 or older</span>
+                  </button>
+                  <button type="button" class="choice" data-value="under_18">
+                    <span class="choice-letter">B</span>
+                    <span class="choice-label">Under 18</span>
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="qualifier-step" data-step="2" data-question="experience">
+                <legend class="step-label">Question 2 of 5</legend>
+                <h3>What's your sales background?</h3>
+                <p class="step-hint">No experience is fine — be honest.</p>
+                <div class="choice-list">
+                  <button type="button" class="choice" data-value="none">
+                    <span class="choice-letter">A</span>
+                    <span class="choice-label">No formal sales — but I'm hungry</span>
+                  </button>
+                  <button type="button" class="choice" data-value="customer_facing">
+                    <span class="choice-letter">B</span>
+                    <span class="choice-label">Customer-facing work (retail, service, hospitality)</span>
+                  </button>
+                  <button type="button" class="choice" data-value="sales">
+                    <span class="choice-letter">C</span>
+                    <span class="choice-label">Some sales experience</span>
+                  </button>
+                  <button type="button" class="choice" data-value="d2d_commission">
+                    <span class="choice-letter">D</span>
+                    <span class="choice-label">Door-to-door or commission sales experience</span>
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="qualifier-step" data-step="3" data-question="start_timeline">
+                <legend class="step-label">Question 3 of 5</legend>
+                <h3>When could you start?</h3>
+                <div class="choice-list">
+                  <button type="button" class="choice" data-value="this_week">
+                    <span class="choice-letter">A</span>
+                    <span class="choice-label">This week</span>
+                  </button>
+                  <button type="button" class="choice" data-value="two_weeks">
+                    <span class="choice-letter">B</span>
+                    <span class="choice-label">Within 2 weeks</span>
+                  </button>
+                  <button type="button" class="choice" data-value="month">
+                    <span class="choice-letter">C</span>
+                    <span class="choice-label">2 to 4 weeks</span>
+                  </button>
+                  <button type="button" class="choice" data-value="later">
+                    <span class="choice-letter">D</span>
+                    <span class="choice-label">More than a month out</span>
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="qualifier-step" data-step="4" data-question="hours">
+                <legend class="step-label">Question 4 of 5</legend>
+                <h3>How many hours a week could you commit?</h3>
+                <div class="choice-list">
+                  <button type="button" class="choice" data-value="full_time">
+                    <span class="choice-letter">A</span>
+                    <span class="choice-label">Full-time (40+ hours)</span>
+                  </button>
+                  <button type="button" class="choice" data-value="part_time">
+                    <span class="choice-letter">B</span>
+                    <span class="choice-label">Part-time (20–39 hours)</span>
+                  </button>
+                  <button type="button" class="choice" data-value="under_20">
+                    <span class="choice-letter">C</span>
+                    <span class="choice-label">Less than 20 hours</span>
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="qualifier-step" data-step="5" data-question="fit">
+                <legend class="step-label">Question 5 of 5</legend>
+                <h3>This role is door-to-door, commission-based.</h3>
+                <p class="step-hint">How does that hit you?</p>
+                <div class="choice-list">
+                  <button type="button" class="choice" data-value="built_for_it">
+                    <span class="choice-letter">A</span>
+                    <span class="choice-label">I'm built for it — let's go</span>
+                  </button>
+                  <button type="button" class="choice" data-value="open">
+                    <span class="choice-letter">B</span>
+                    <span class="choice-label">Open to it and willing to learn</span>
+                  </button>
+                  <button type="button" class="choice" data-value="unsure">
+                    <span class="choice-letter">C</span>
+                    <span class="choice-label">Honestly, not sure yet</span>
+                  </button>
+                  <button type="button" class="choice" data-value="not_for_me">
+                    <span class="choice-letter">D</span>
+                    <span class="choice-label">Probably not for me</span>
+                  </button>
+                </div>
+              </fieldset>
+
+              <fieldset class="qualifier-step contact-step" data-step="6">
+                <legend class="step-label">One last step</legend>
+                <h3>Drop your number — Noah follows up.</h3>
+                <p class="step-hint">Call or text. No spam, no list selling.</p>
+
+                <div class="contact-fields">
+                  <label>
+                    <span>Full name</span>
+                    <input
+                      name="name"
+                      autocomplete="name"
+                      required
+                      placeholder="Your name"
+                      data-required-field
+                    />
+                  </label>
+                  <label>
+                    <span>Phone</span>
+                    <input
+                      name="phone"
+                      type="tel"
+                      autocomplete="tel"
+                      required
+                      placeholder="(555) 123-4567"
+                      inputmode="tel"
+                      data-phone-input
+                      data-required-field
+                    />
+                  </label>
+                  <label>
+                    <span>City, state</span>
+                    <input
+                      name="location"
+                      autocomplete="address-level2"
+                      required
+                      placeholder="Phoenix, AZ"
+                      data-required-field
+                    />
+                  </label>
+                </div>
+
+                <label class="consent">
+                  <input name="consent" type="checkbox" required data-required-field />
+                  <span>
+                    I agree to be contacted by call and text about this opportunity.
+                    Message and data rates may apply.
+                  </span>
+                </label>
+
+                <button class="button primary form-submit" type="submit" data-submit>
+                  Send to Noah
+                </button>
+
+                <p class="form-error" data-form-error hidden></p>
+
+                <p class="fine-print">
+                  Commission-based sales opportunity with TOP on a Vivint campaign.
+                  Eligibility, territory, and earnings vary and are confirmed at the interview.
+                </p>
+              </fieldset>
+
+              <div class="qualifier-step success-step" data-step="success">
+                <div class="success-mark" aria-hidden="true">
+                  <svg viewBox="0 0 32 32" width="32" height="32">
+                    <path
+                      d="M7 16.5l5.5 5.5L25 9.5"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+                <p class="step-label">You're in</p>
+                <h3>Got it — Noah will reach out.</h3>
+                <p class="step-hint" data-success-message>
+                  Expect a call or text shortly. Save the number when it comes through.
+                </p>
+              </div>
+            </div>
+
+            <div class="qualifier-nav">
+              <button type="button" class="qualifier-back" data-back hidden>
+                ← Back
+              </button>
+              <p class="qualifier-foot">No résumé needed. Two minutes max.</p>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <section id="details" class="details-section" aria-labelledby="details-title">
+        <div class="details-inner">
+          <div>
+            <p class="eyebrow dark">Only the essentials</p>
+            <h2 id="details-title">What applicants need to know.</h2>
+          </div>
+          <div class="detail-list">
+            <article>
+              <span>01</span>
+              <p>
+                Door-to-door field sales selling <strong>Vivint home security</strong>
+                through TOP — Noah's team partners with the Vivint contract directly.
+              </p>
+            </article>
+            <article>
+              <span>02</span>
+              <p>
+                Best fit: competitive, coachable, direct, consistent, and comfortable
+                talking to strangers on their porch.
+              </p>
+            </article>
+            <article>
+              <span>03</span>
+              <p>
+                Performance-based pay. Top reps make real money — but you have to put
+                the doors in. Pay structure walked through on the interview.
+              </p>
+            </article>
+            <article>
+              <span>04</span>
+              <p>
+                Noah has been in the field almost three years. Training, ride-alongs,
+                and a clear path up if you can produce.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" role="status" aria-live="polite" data-toast hidden>
+      <strong>Application received.</strong>
+      <span>Noah's team can call or text with the next step.</span>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
