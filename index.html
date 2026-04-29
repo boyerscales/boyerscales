@@ -835,6 +835,17 @@
         .dash-bar-dot:nth-child(3){background:#28C840}
         .dash-bar-url{margin-left:0.85rem;padding:0.3rem 0.85rem;border-radius:6px;background:rgba(255,255,255,0.04);font-size:0.72rem;color:var(--text-tertiary);font-family:'JetBrains Mono',monospace}
         .dash-bar-url .dot{color:var(--growth);margin-right:0.4rem}
+        .dash-login-link{
+            margin-left:auto;min-height:34px;display:inline-flex;align-items:center;justify-content:center;gap:0.42rem;
+            padding:0.45rem 0.82rem;border-radius:8px;
+            background:linear-gradient(135deg,rgba(37,99,235,0.72),rgba(16,185,129,0.62));
+            border:1px solid rgba(255,255,255,0.16);
+            color:white;text-decoration:none;font-size:0.72rem;font-weight:800;letter-spacing:0.01em;white-space:nowrap;
+            box-shadow:0 10px 28px rgba(37,99,235,0.22),0 0 0 1px rgba(255,255,255,0.06) inset;
+            transition:transform 0.2s,box-shadow 0.25s,border-color 0.25s;
+        }
+        .dash-login-link:hover{transform:translateY(-1px);border-color:rgba(255,255,255,0.26);box-shadow:0 14px 34px rgba(37,99,235,0.3),0 0 0 1px rgba(255,255,255,0.1) inset}
+        .dash-login-link svg{width:13px;height:13px;flex:0 0 auto}
 
         .dash-body{padding:1.5rem;display:grid;grid-template-columns:200px 1fr;gap:1.5rem;min-height:520px}
         .dash-side{display:flex;flex-direction:column;gap:0.35rem}
@@ -1153,6 +1164,7 @@
             .dash-side{flex-direction:row;overflow-x:auto;padding-bottom:0.5rem}
             .dash-side hr{display:none}
             .dash-side-item{white-space:nowrap}
+            .dash-login-link{margin-left:0}
             .flow-track{grid-template-columns:1fr 1fr;gap:0.75rem}
             .arcade-grid{grid-template-columns:1fr}
             .arcade-side{display:grid;grid-template-columns:1fr 1fr}
@@ -1276,6 +1288,9 @@
             .chooser-proof strong{font-size:1rem}
             .chooser-actions{display:grid;grid-template-columns:1fr}
             .chooser-actions a{width:100%}
+            .dash-bar{flex-wrap:wrap}
+            .dash-bar-url{order:2;width:100%;margin-left:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+            .dash-login-link{order:1;margin-left:auto}
             .flow-track{grid-template-columns:1fr;gap:0.65rem}
             .dash-body{padding:1rem}
             .dash-row{grid-template-columns:1fr 1fr}
@@ -1885,6 +1900,10 @@
                     <span class="dash-bar-dot"></span>
                     <span class="dash-bar-dot"></span>
                     <span class="dash-bar-url"><span class="dot">●</span>dashboard.boyerscales.com</span>
+                    <a class="dash-login-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener">
+                        Client login
+                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
+                    </a>
                 </div>
                 <div class="dash-body">
                     <aside class="dash-side">
@@ -2786,7 +2805,9 @@
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            const phone = document.querySelector('[name="phone"]').value;
+            const submitButton = form.querySelector('.contact-submit');
+            const originalSubmitHtml = submitButton ? submitButton.innerHTML : '';
+            const phone = document.querySelector('[name="phone"]').value.trim();
             const smsOptIn = document.getElementById('smsOptIn');
             if (phone && !smsOptIn.checked) {
                 smsOptIn.closest('.sms-consent').style.borderColor = 'rgba(239,68,68,0.5)';
@@ -2795,17 +2816,30 @@
                 return;
             }
             const data = {
-                name: document.querySelector('[name="name"]').value,
-                email: document.querySelector('[name="email"]').value,
+                name: document.querySelector('[name="name"]').value.trim(),
+                email: document.querySelector('[name="email"]').value.trim(),
                 phone: phone,
-                business: document.querySelector('[name="business"]').value,
-                notes: document.querySelector('[name="notes"]').value,
+                business: document.querySelector('[name="business"]').value.trim(),
+                notes: document.querySelector('[name="notes"]').value.trim(),
+                smsOptIn: smsOptIn.checked,
+                submittedAt: new Date().toISOString(),
+                pageUrl: window.location.href,
+                userAgent: navigator.userAgent,
                 source: 'homepage-revenue-recovery-os'
             };
-            const GOOGLE_SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzNht1GMQ6PPJq7uTieMP06SIJEAixtpcBQAuHX7FqA9Zje8ZhJTRZMfrg0P3H7DEPS0w/exec';
+            // Replace this after deploying google-apps-script/Code.gs as a Google Apps Script web app.
+            const GOOGLE_SHEETS_URL = 'PASTE_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+            if (!GOOGLE_SHEETS_URL.startsWith('https://script.google.com/macros/s/')) {
+                alert('This form is not connected yet. Add your Google Apps Script Web app URL in index.html.');
+                return;
+            }
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.innerHTML = 'Sending...';
+            }
             fetch(GOOGLE_SHEETS_URL, {
                 method: 'POST', mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify(data)
             }).then(() => {
                 alert(`Thanks ${data.name}! We'll be in touch within 24 hours to get your free setup started.`);
@@ -2815,6 +2849,11 @@
                 alert(`Thanks ${data.name}! We'll be in touch within 24 hours to get your free setup started.`);
                 e.target.reset();
                 smsConsent.classList.remove('visible');
+            }).finally(() => {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.innerHTML = originalSubmitHtml;
+                }
             });
         });
     }
@@ -3452,7 +3491,13 @@
             else fireShot(false);
         });
         document.addEventListener('keydown', e => {
-            if (document.activeElement === tagInput) return;
+            const active = document.activeElement;
+            const isTyping = active && (
+                active === tagInput ||
+                active.isContentEditable ||
+                ['INPUT','TEXTAREA','SELECT'].includes(active.tagName)
+            );
+            if (isTyping) return;
             if (['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(e.code)) keys.add(e.code);
             if (e.code === 'Space') { e.preventDefault(); fireShot(false); }
             if (e.code === 'Enter' && (!run || !run.active)) startRun();
