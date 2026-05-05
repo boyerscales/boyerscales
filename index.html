@@ -225,8 +225,12 @@
 
         /* ── HERO ── */
         .hero{
-            min-height:100vh;display:flex;align-items:center;
-            padding:140px 0 100px;position:relative;overflow:hidden;
+            min-height:min(100vh,900px);display:flex;align-items:center;
+            padding:132px 0 118px;position:relative;overflow:hidden;
+        }
+        .hero::after{
+            content:'';position:absolute;left:0;right:0;bottom:-1px;height:210px;z-index:1;pointer-events:none;
+            background:linear-gradient(180deg,rgba(4,6,15,0),rgba(4,6,15,0.55) 54%,var(--dark) 100%);
         }
         .hero-grid{
             position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -238,7 +242,8 @@
         .hero-glow-a{position:absolute;top:-20%;left:-15%;width:780px;height:780px;background:radial-gradient(circle,var(--ai-glow) 0%,transparent 60%);border-radius:50%;filter:blur(20px);will-change:transform;z-index:1}
         .hero-glow-b{position:absolute;bottom:-30%;right:-12%;width:720px;height:720px;background:radial-gradient(circle,var(--growth-glow) 0%,transparent 60%);border-radius:50%;filter:blur(20px);will-change:transform;z-index:1}
 
-        .hero-inner{display:grid;grid-template-columns:1.05fr 0.95fr;gap:3rem;align-items:center;position:relative;z-index:2}
+        .hero-inner{display:grid;grid-template-columns:minmax(0,0.95fr) minmax(560px,1fr);gap:1.4rem;align-items:center;position:relative;z-index:2}
+        .hero-copy{position:relative;z-index:3;max-width:620px}
 
         .hero-badge{
             display:inline-flex;align-items:center;gap:0.55rem;
@@ -301,7 +306,7 @@
 
         /* ── HERO VISUAL (right side) ── */
         .hero-visual{
-            position:relative;height:540px;
+            position:relative;height:560px;width:100%;max-width:660px;justify-self:end;z-index:2;
             perspective:1400px;
             transform-style:preserve-3d;
             opacity:0;
@@ -314,9 +319,9 @@
 
         /* Phone */
         .phone{
-            position:absolute;top:50%;left:50%;
-            width:260px;height:520px;
-            margin:-260px 0 0 -130px;
+            position:absolute;top:50%;left:47%;
+            width:230px;height:460px;
+            margin:-230px 0 0 -115px;
             background:linear-gradient(160deg,#1A2244,#0A0F22);
             border-radius:42px;
             border:1px solid rgba(255,255,255,0.1);
@@ -410,8 +415,8 @@
 
         /* Floating dashboard mock */
         .dash-mock{
-            position:absolute;top:8%;right:-10%;
-            width:300px;
+            position:absolute;top:5%;right:0;
+            width:270px;
             background:rgba(10,15,34,0.85);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
             border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:1.1rem 1.1rem 0.9rem;
             box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.04) inset;
@@ -447,8 +452,8 @@
 
         /* SMS bubble */
         .sms-bubble{
-            position:absolute;bottom:6%;left:-8%;
-            width:230px;
+            position:absolute;bottom:2%;left:0;
+            width:212px;
             background:rgba(10,15,34,0.85);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
             border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:0.95rem;
             box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.04) inset;
@@ -487,16 +492,20 @@
         .section-header p{font-size:1.06rem;color:var(--text-secondary);line-height:1.65;opacity:0;max-width:560px;margin:0 auto}
 
         /* ── REVENUE CALCULATOR ── */
-        .calc{padding:5.5rem 0;position:relative;overflow:hidden}
+        .calc{margin-top:-3.5rem;padding:8rem 0 5.5rem;position:relative;overflow:hidden;isolation:isolate}
+        .calc::before{
+            content:'';position:absolute;left:0;right:0;top:0;height:220px;z-index:0;pointer-events:none;
+            background:linear-gradient(180deg,var(--dark),rgba(4,6,15,0.86) 45%,rgba(4,6,15,0));
+        }
         .calc-glow{position:absolute;top:42%;left:50%;width:1000px;height:520px;transform:translate(-50%,-50%);background:radial-gradient(ellipse,var(--danger-glow) 0%,transparent 60%);filter:blur(40px);pointer-events:none;z-index:1}
         .calc-shell{
             max-width:980px;margin:0 auto;position:relative;
-            background:linear-gradient(135deg,rgba(15,22,50,0.85),rgba(10,15,34,0.85));
-            border:1px solid rgba(255,255,255,0.07);
+            background:linear-gradient(135deg,rgba(15,22,50,0.72),rgba(10,15,34,0.74));
+            border:1px solid rgba(255,255,255,0.055);
             border-radius:24px;
             padding:2rem;
             backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
-            box-shadow:0 60px 140px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.03) inset;
+            box-shadow:0 42px 110px rgba(0,0,0,0.46),0 0 0 1px rgba(255,255,255,0.026) inset;
             overflow:hidden;
         }
         .calc-shell::before{
@@ -505,6 +514,7 @@
             -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
             mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
             -webkit-mask-composite:xor;mask-composite:exclude;
+            opacity:0.5;
             animation:rotateBorder 14s linear infinite;
             pointer-events:none;
         }
@@ -549,7 +559,10 @@
             background:radial-gradient(ellipse at center,rgba(239,68,68,0.08),transparent 70%);
             border-radius:18px;
             position:relative;
+            overflow:hidden;
+            isolation:isolate;
         }
+        .calc-result > *{position:relative;z-index:1}
         .calc-result-label{font-size:0.7rem;color:var(--text-tertiary);font-weight:700;letter-spacing:0.18em;text-transform:uppercase;margin-bottom:0.65rem}
         .calc-result-amount{
             font-family:'Bricolage Grotesque',sans-serif;
@@ -560,9 +573,9 @@
             text-shadow:0 0 60px rgba(239,68,68,0.4);
             font-variant-numeric:tabular-nums;
             margin-bottom:0.4rem;
-            display:flex;align-items:flex-start;justify-content:center;
+            display:flex;align-items:baseline;justify-content:center;
         }
-        .calc-result-amount .dollar{font-size:0.55em;margin-top:0.25em;margin-right:0.05em;opacity:0.85}
+        .calc-result-amount .dollar{font-size:0.92em;margin:0 0.08em 0 0;opacity:1}
         .calc-result-period{font-size:0.9rem;color:var(--text-secondary);font-weight:500;margin-bottom:0.95rem}
         .calc-result-period strong{color:var(--danger);font-weight:700}
         .calc-recovery{
@@ -853,6 +866,7 @@
             display:flex;align-items:center;gap:0.65rem;
             padding:0.65rem 0.85rem;border-radius:9px;
             font-size:0.83rem;color:var(--text-secondary);font-weight:500;
+            text-decoration:none;
             cursor:pointer;transition:background 0.2s,color 0.2s;
         }
         .dash-side-item svg{width:15px;height:15px}
@@ -929,20 +943,36 @@
         .qualifier-options{display:grid;gap:0.6rem}
         .qualifier-option{
             width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:0.75rem;
-            min-height:58px;padding:0.78rem 0.9rem;border-radius:15px;
-            background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);color:var(--text-primary);
-            text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.22s,border-color 0.22s,transform 0.22s;
+            min-height:66px;padding:0.82rem 0.9rem;border-radius:16px;
+            background:linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.022));
+            border:1px solid rgba(255,255,255,0.1);color:var(--text-primary);
+            text-align:left;cursor:pointer;font-family:'DM Sans',sans-serif;
+            box-shadow:0 10px 28px rgba(0,0,0,0.12),0 0 0 1px rgba(255,255,255,0.02) inset;
+            transition:background 0.22s,border-color 0.22s,transform 0.22s,box-shadow 0.22s;
         }
-        .qualifier-option:hover,.qualifier-option.active{transform:translateY(-1px);background:rgba(255,255,255,0.055);border-color:rgba(14,165,233,0.28)}
-        .qualifier-option.active{box-shadow:0 0 0 1px rgba(14,165,233,0.18) inset,0 12px 32px rgba(14,165,233,0.09)}
-        .qualifier-icon{
-            width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;
-            background:linear-gradient(135deg,rgba(14,165,233,0.14),rgba(236,72,153,0.1));border:1px solid rgba(255,255,255,0.08);
+        .qualifier-option:hover,.qualifier-option.active{transform:translateY(-1px);background:linear-gradient(180deg,rgba(14,165,233,0.095),rgba(255,255,255,0.035));border-color:rgba(14,165,233,0.34)}
+        .qualifier-option.active{box-shadow:0 0 0 1px rgba(14,165,233,0.24) inset,0 14px 36px rgba(14,165,233,0.13)}
+        .qualifier-option .qualifier-icon{
+            width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+            background:linear-gradient(135deg,rgba(14,165,233,0.18),rgba(236,72,153,0.12));
+            border:1px solid rgba(255,255,255,0.12);color:var(--ai-accent);
+            box-shadow:0 0 0 1px rgba(14,165,233,0.08) inset;
+            margin:0;
         }
-        .qualifier-icon svg{width:18px;height:18px}
+        .qualifier-option.active .qualifier-icon{background:linear-gradient(135deg,rgba(14,165,233,0.28),rgba(37,99,235,0.16));border-color:rgba(14,165,233,0.28);color:#7DD3FC}
+        .qualifier-icon svg{width:19px;height:19px}
         .qualifier-option strong{display:block;font-size:0.92rem;line-height:1.15}
-        .qualifier-option span{display:block;color:var(--text-tertiary);font-size:0.74rem;margin-top:0.18rem;line-height:1.25}
-        .qualifier-arrow{color:var(--text-tertiary);font-weight:900}
+        .qualifier-option > span:not(.qualifier-icon):not(.qualifier-arrow){display:block;color:var(--text-tertiary);font-size:0.74rem;margin-top:0;line-height:1.25}
+        .qualifier-option > span:not(.qualifier-icon):not(.qualifier-arrow) span{display:block;color:var(--text-tertiary);font-size:0.74rem;margin-top:0.18rem;line-height:1.25}
+        .qualifier-option .qualifier-arrow{
+            min-width:78px;min-height:32px;display:inline-flex;align-items:center;justify-content:center;
+            border-radius:999px;background:rgba(255,255,255,0.045);border:1px solid rgba(255,255,255,0.1);
+            color:var(--text-secondary);font-size:0;font-weight:900;letter-spacing:0.06em;text-transform:uppercase;
+            margin:0;line-height:1;
+        }
+        .qualifier-arrow::before{content:'Choose';font-size:0.66rem}
+        .qualifier-option.active .qualifier-arrow{background:linear-gradient(135deg,var(--ai),var(--ai-accent));border-color:rgba(255,255,255,0.18);color:white}
+        .qualifier-option.active .qualifier-arrow::before{content:'Selected'}
         .chooser-result{
             position:relative;border-radius:20px;padding:1.6rem;
             background:linear-gradient(135deg,rgba(15,22,50,0.86),rgba(7,11,25,0.9));
@@ -1051,7 +1081,7 @@
         .sms-consent label a:hover{color:var(--ai-light)}
 
         /* ── DIVIDERS ── */
-        .section-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);margin:0;border:none;transform-origin:center}
+        .section-divider{height:0;background:transparent;margin:0;border:none;transform-origin:center}
 
         /* ── FOOTER ── */
         footer{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,0.04);padding:4rem 0 2rem;text-align:center;overflow:hidden}
@@ -1089,8 +1119,9 @@
             position:relative;min-height:460px;border-radius:20px;overflow:hidden;
             background:radial-gradient(circle at 50% 15%,rgba(236,72,153,0.14),transparent 34%),radial-gradient(circle at 18% 85%,rgba(14,165,233,0.13),transparent 35%),linear-gradient(180deg,#070B19,#04060F);
             border:1px solid rgba(255,255,255,0.07);
+            overscroll-behavior:contain;
         }
-        #arcadeCanvas{display:block;width:100%;height:460px}
+        #arcadeCanvas{display:block;width:100%;height:460px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:crosshair}
         .arcade-hud{
             position:absolute;top:0.85rem;left:0.85rem;right:0.85rem;display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;pointer-events:none;
         }
@@ -1129,6 +1160,7 @@
         .arcade-panel-title{display:flex;align-items:center;justify-content:space-between;gap:0.75rem;margin-bottom:0.75rem;font-size:0.78rem;font-weight:800;color:var(--text-primary);letter-spacing:0.1em;text-transform:uppercase}
         .arcade-bank{font-family:'JetBrains Mono',monospace;color:var(--gold-light);font-size:0.72rem}
         .arcade-run-row{display:grid;grid-template-columns:1fr 1fr;gap:0.55rem}
+        .arcade-counter-row{display:grid;grid-template-columns:1fr 1fr;gap:0.55rem;margin-top:0.55rem}
         .arcade-name{width:100%;min-height:40px;border-radius:12px;background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.08);color:var(--text-primary);font-family:'JetBrains Mono',monospace;text-transform:uppercase;text-align:center;font-weight:800;letter-spacing:0.16em}
         .arcade-upgrade,.arcade-mission,.arcade-leader-row{
             display:grid;grid-template-columns:auto 1fr auto;gap:0.65rem;align-items:center;padding:0.7rem;border-radius:12px;
@@ -1153,6 +1185,16 @@
         .footer-links .dot{color:var(--text-tertiary);font-size:0.85rem;padding:0 0.35rem}
 
         /* ── RESPONSIVE ── */
+        @media(max-width:1200px) and (min-width:1081px){
+            nav .container{max-width:calc(100% - 2rem)}
+            .hero-inner{grid-template-columns:minmax(0,1fr) minmax(430px,0.82fr);gap:1.15rem}
+            .hero h1{font-size:clamp(2.75rem,5vw,4.35rem)}
+            .hero .sub{max-width:510px}
+            .hero-visual{max-width:500px;height:520px;transform:scale(0.9);transform-origin:center right}
+            .phone{left:48%;width:218px;height:436px;margin:-218px 0 0 -109px}
+            .dash-mock{right:0;width:250px}
+            .sms-bubble{left:0;width:204px}
+        }
         @media(max-width:1080px){
             .hero-inner{grid-template-columns:1fr;gap:3rem}
             .hero-visual{height:480px;max-width:520px;margin:0 auto}
@@ -1191,19 +1233,24 @@
             .nav-link{background:rgba(255,255,255,0.025)}
             .nav-login{display:inline-flex}
             .nav-cta span{display:inline}
-            .hero{min-height:auto;padding:108px 0 60px}
+            .hero{min-height:auto;padding:108px 0 72px}
             .hero h1{font-size:clamp(2.35rem,12vw,3.1rem)}
             .hero .sub{font-size:0.98rem}
-            .hero-cta{flex-direction:column;width:100%;gap:0.7rem}
-            .hero-cta .btn-primary,.hero-cta .btn-ghost{width:100%;justify-content:center}
+            .hero-cta{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:0.55rem;margin-bottom:1.1rem}
+            .hero-cta .btn-primary,.hero-cta .btn-ghost{
+                width:100%;min-height:50px;justify-content:center;padding:0.78rem 0.58rem;
+                border-radius:12px;font-size:0.78rem;line-height:1.15;text-align:center;white-space:normal;
+            }
+            .hero-cta .btn-primary svg{display:none}
             .hero-trust{display:grid;grid-template-columns:1fr;gap:0.55rem;margin-bottom:0}
             .hero-trust .sep{display:none}
             .mobile-hero-proof{
-                display:grid;gap:0.72rem;margin-top:1rem;padding:0.9rem;border-radius:18px;position:relative;overflow:hidden;
+                display:grid;gap:0.56rem;margin:0.85rem auto 0;padding:0.78rem;border-radius:16px;position:relative;overflow:hidden;max-width:420px;
                 background:
-                    linear-gradient(135deg,rgba(10,15,34,0.9),rgba(15,22,50,0.82));
-                border:1px solid rgba(255,255,255,0.1);
-                box-shadow:0 22px 58px rgba(0,0,0,0.36),0 0 0 1px rgba(255,255,255,0.03) inset;
+                    radial-gradient(circle at 20% 0%,rgba(59,130,246,0.12),transparent 46%),
+                    linear-gradient(135deg,rgba(10,15,34,0.82),rgba(15,22,50,0.72));
+                border:1px solid rgba(255,255,255,0.08);
+                box-shadow:0 16px 42px rgba(0,0,0,0.3),0 0 0 1px rgba(255,255,255,0.026) inset;
                 backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
             }
             .mobile-hero-proof::before{
@@ -1218,7 +1265,7 @@
             .mobile-proof-eyebrow{font-size:0.58rem;letter-spacing:0.14em;color:var(--text-tertiary)}
             .mobile-proof-number{font-size:1.08rem}
             .mobile-proof-line{font-size:0.76rem;letter-spacing:0.05em}
-            .mobile-proof-flow{gap:0.38rem}
+            .mobile-proof-flow{display:none}
             .mobile-proof-flow span{min-height:34px;padding:0.34rem 0.28rem;border-radius:10px;font-size:0.62rem}
             .mobile-proof-actions{gap:0.45rem}
             .mobile-proof-actions a{min-height:40px;border-radius:11px;font-size:0.74rem}
@@ -1281,8 +1328,9 @@
             .paths{padding:4.5rem 0}
             .chooser-shell{padding:0.75rem;border-radius:20px}
             .chooser-copy,.chooser-result{padding:1.1rem;border-radius:16px}
-            .qualifier-option{grid-template-columns:auto 1fr;min-height:64px}
-            .qualifier-arrow{display:none}
+            .qualifier-option{grid-template-columns:auto minmax(0,1fr) auto;min-height:64px;gap:0.62rem}
+            .qualifier-option .qualifier-icon{width:36px;height:36px}
+            .qualifier-arrow{min-width:72px;min-height:30px}
             .chooser-mini-proof{grid-template-columns:1fr 1fr 1fr;gap:0.4rem}
             .chooser-proof{padding:0.6rem}
             .chooser-proof strong{font-size:1rem}
@@ -1294,8 +1342,9 @@
             .flow-track{grid-template-columns:1fr;gap:0.65rem}
             .dash-body{padding:1rem}
             .dash-row{grid-template-columns:1fr 1fr}
-            section{padding:4.8rem 0 !important}
-            .calc,.paths{padding:3.4rem 0 !important}
+            section:not(.hero){padding:4.8rem 0 !important}
+            .calc{margin-top:-1.4rem;padding:4.4rem 0 3.4rem !important}
+            .paths{padding:3.4rem 0 !important}
             .contact-box .field-row{grid-template-columns:1fr;gap:0;margin-bottom:0}
             .field-row input{margin-bottom:0.8rem}
             .trial-shell{padding:3rem 1.75rem}
@@ -1305,8 +1354,8 @@
             .arcade-title{font-size:1.5rem;line-height:1.06}
             .arcade-season{font-size:0.64rem}
             .arcade-grid{padding:0.55rem;gap:0.55rem}
-            .arcade-stage{min-height:330px;border-radius:16px}
-            #arcadeCanvas{height:330px}
+            .arcade-stage{min-height:380px;border-radius:16px}
+            #arcadeCanvas{height:380px}
             .arcade-hud{grid-template-columns:repeat(4,1fr);gap:0.32rem;left:0.48rem;right:0.48rem;top:0.48rem}
             .arcade-stat{padding:0.45rem 0.2rem;border-radius:10px}
             .arcade-stat span{font-size:0.46rem;letter-spacing:0.08em}
@@ -1316,17 +1365,19 @@
             .arcade-start p{font-size:0.78rem;max-width:280px}
             .arcade-side{display:grid;grid-template-columns:1fr;gap:0.55rem}
             .arcade-panel{padding:0.72rem;border-radius:15px}
-            .arcade-side .arcade-panel:nth-child(n+3){display:none}
             .arcade-run-row{grid-template-columns:1fr}
+            .arcade-counter-row{grid-template-columns:1fr 1fr}
             .arcade-upgrade,.arcade-mission,.arcade-leader-row{grid-template-columns:28px 1fr}
-            .arcade-upgrade:nth-child(n+3){display:none}
+            .arcade-leader-row{grid-template-columns:28px 1fr auto}
             .arcade-upgrade .arcade-mini-btn{grid-column:1 / -1;width:100%}
         }
         @media(max-width:480px){
-            .hero{padding-top:102px}
+            .hero{padding:102px 0 64px}
             .hero-badge{font-size:0.68rem;padding:0.42rem 0.75rem;white-space:normal;border-radius:16px}
             .hero h1{font-size:2.28rem}
-            .mobile-hero-proof{padding:0.8rem}
+            .hero-cta{gap:0.45rem}
+            .hero-cta .btn-primary,.hero-cta .btn-ghost{min-height:48px;font-size:0.72rem;padding:0.7rem 0.45rem}
+            .mobile-hero-proof{padding:0.72rem}
             .mobile-proof-number{font-size:1.02rem}
             .mobile-proof-line{font-size:0.72rem}
             .mobile-proof-flow{grid-template-columns:1fr 1fr 1fr}
@@ -1350,8 +1401,10 @@
             .calc-recovery{width:100%;padding:0.52rem 0.65rem}
             .calc-recovery-label{font-size:0.5rem}
             .calc-recovery-value{font-size:0.9rem}
-            .arcade-stage{min-height:300px}
-            #arcadeCanvas{height:300px}
+            .qualifier-option{grid-template-columns:auto minmax(0,1fr);align-items:flex-start}
+            .qualifier-arrow{grid-column:1 / -1;width:100%;margin-top:0.15rem}
+            .arcade-stage{min-height:360px}
+            #arcadeCanvas{height:360px}
             .arcade-btn{width:100%;justify-content:center}
         }
         @media(max-width:900px) and (min-width:721px){
@@ -1517,7 +1570,7 @@
                             </div>
                             <div class="phone-call">
                                 <div class="phone-call-label">Incoming Call · Forwarded</div>
-                                <div class="phone-call-name">Sarah Mitchell</div>
+                                <div class="phone-call-name">Marisol Vega</div>
                                 <div class="phone-call-number">(916) 659-8131</div>
                                 <div class="phone-call-status">
                                     <span class="ring"></span>
@@ -1546,7 +1599,7 @@
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.5 0 10 3.6 10 8.1 0 4.5-4.5 8.1-10 8.1-1 0-2-.1-2.9-.3-2 1.4-3.7 1.7-5.5 1.6.7-.7 1.3-1.6 1.6-2.6C2.4 15.4 2 13.4 2 11.4 2 7.6 6.5 4 12 4z"/></svg>
                             iMessage · Auto follow-up
                         </div>
-                        <div class="imsg">Hey Sarah! This is Riley from Acme Plumbing. We have you booked Tue at 2pm. Reply Y to confirm 👍</div>
+                        <div class="imsg">Hey Marisol! This is Riley from Acme Plumbing. We have you booked Tue at 2pm. Reply Y to confirm 👍</div>
                         <div class="imsg from-them delay-1">Yes confirmed!</div>
                         <div class="imsg delay-2">Perfect — see you then.</div>
                     </div>
@@ -1659,7 +1712,7 @@
                     <div class="demo-sms-card">
                         <div class="demo-card-title"><span>Blue SMS</span><span id="demoSmsState">Queued</span></div>
                         <div class="demo-bubbles" id="demoBubbles">
-                            <div class="demo-bubble ai">Hey Sarah, you're booked for Tuesday at 2:00.</div>
+                            <div class="demo-bubble ai">Hey Marisol, you're booked for Tuesday at 2:00.</div>
                             <div class="demo-bubble customer">Perfect, thank you.</div>
                             <div class="demo-bubble ai">We'll text a reminder before the visit.</div>
                         </div>
@@ -1900,7 +1953,7 @@
                     <span class="dash-bar-dot"></span>
                     <span class="dash-bar-dot"></span>
                     <span class="dash-bar-url"><span class="dot">●</span>dashboard.boyerscales.com</span>
-                    <a class="dash-login-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener">
+                    <a class="dash-login-link" href="https://dashboard.boyerscales.com/demo/" target="_blank" rel="noopener">
                         Client login
                         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></svg>
                     </a>
@@ -1975,7 +2028,7 @@
                                 <span style="font-size:0.7rem;font-weight:600;color:var(--text-tertiary);letter-spacing:0.06em;text-transform:uppercase">Live feed</span>
                             </div>
                             <div class="dash-list-row">
-                                <span class="name">Sarah Mitchell</span>
+                                <span class="name">Marisol Vega</span>
                                 <span class="ph">(916) 555-0142</span>
                                 <span class="tag tag-booked">Booked</span>
                                 <span class="amt">+$450</span>
@@ -2040,9 +2093,9 @@
                 <h3 id="chooserTitle">Start with AI Receptionist.</h3>
                 <p id="chooserText">If the phone already rings, the fastest win is answering every call, qualifying the lead, booking the job, and sending the blue SMS follow-up automatically.</p>
                 <div class="chooser-mini-proof">
-                    <div class="chooser-proof"><strong id="chooserMetricA">24/7</strong><span>answering</span></div>
-                    <div class="chooser-proof"><strong id="chooserMetricB">0.5s</strong><span>speed</span></div>
-                    <div class="chooser-proof"><strong id="chooserMetricC">+75%</strong><span>recovery</span></div>
+                    <div class="chooser-proof"><strong id="chooserMetricA">24/7</strong><span id="chooserMetricLabelA">call coverage</span></div>
+                    <div class="chooser-proof"><strong id="chooserMetricB">Booked</strong><span id="chooserMetricLabelB">calendar handoff</span></div>
+                    <div class="chooser-proof"><strong id="chooserMetricC">Blue SMS</strong><span id="chooserMetricLabelC">auto follow-up</span></div>
                 </div>
                 <div class="chooser-actions">
                     <a class="chooser-primary" id="chooserPrimary" href="/ai">Explore AI Receptionist →</a>
@@ -2158,6 +2211,16 @@
                             <button class="arcade-btn" type="button" id="arcadePulseBtn">
                                 <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7z" fill="currentColor"/></svg>
                                 Pulse
+                            </button>
+                        </div>
+                        <div class="arcade-counter-row">
+                            <button class="arcade-btn ghost" type="button" id="arcadeBlastBtn">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                Blast
+                            </button>
+                            <button class="arcade-btn ghost" type="button" id="arcadeFreezeBtn">
+                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                                Freeze
                             </button>
                         </div>
                         <button class="arcade-btn ghost" type="button" id="arcadeResetBtn" style="width:100%;margin-top:0.55rem">
@@ -2440,7 +2503,7 @@
         'Hi! Acme Plumbing — what can I help with?',
         'Got it. Tuesday at 2pm works — I\'ve got you booked.',
         'Sending a confirmation text now.',
-        'You\'re all set, Sarah. Thanks!'
+            'You\'re all set, Marisol. Thanks!'
     ];
     if (transcript) {
         let li = 0, ci = 0, deleting = false;
@@ -2590,6 +2653,9 @@
     const chooserMetricA = document.getElementById('chooserMetricA');
     const chooserMetricB = document.getElementById('chooserMetricB');
     const chooserMetricC = document.getElementById('chooserMetricC');
+    const chooserMetricLabelA = document.getElementById('chooserMetricLabelA');
+    const chooserMetricLabelB = document.getElementById('chooserMetricLabelB');
+    const chooserMetricLabelC = document.getElementById('chooserMetricLabelC');
     const chooserPrimary = document.getElementById('chooserPrimary');
     const chooserSecondary = document.getElementById('chooserSecondary');
     const chooserData = {
@@ -2597,7 +2663,8 @@
             label:'Recommended path',
             title:'Start with AI Receptionist.',
             text:'If the phone already rings, the fastest win is answering every call, qualifying the lead, booking the job, and sending the blue SMS follow-up automatically.',
-            metrics:['24/7','0.5s','+75%'],
+            metrics:['24/7','Booked','Blue SMS'],
+            metricLabels:['call coverage','calendar handoff','auto follow-up'],
             colors:['#0EA5E9','#3B82F6','rgba(14,165,233,0.18)'],
             primary:'Explore AI Receptionist →',
             primaryHref:'/ai',
@@ -2608,7 +2675,8 @@
             label:'Demand path',
             title:'Start with Growth.',
             text:'If the problem is not enough quality opportunities, route them toward local lead generation, reactivation, review lift, and campaigns that create more booked jobs.',
-            metrics:['+38%','Local','Booked'],
+            metrics:['Local SEO','Reviews','Campaigns'],
+            metricLabels:['visibility lift','trust builder','new demand'],
             colors:['#34D399','#059669','rgba(16,185,129,0.18)'],
             primary:'Explore Growth →',
             primaryHref:'/growth',
@@ -2619,7 +2687,8 @@
             label:'Full system',
             title:'Use the whole Revenue OS.',
             text:'If they want calls answered, leads revived, reviews collected, and revenue tracked in one place, send them into the full setup path.',
-            metrics:['6','Live','$48k'],
+            metrics:['Calls + SMS','Dashboard','Reviews'],
+            metricLabels:['front desk','revenue tracking','growth loop'],
             colors:['#EC4899','#3B82F6','rgba(236,72,153,0.2)'],
             primary:'Start full setup →',
             primaryHref:'#trial',
@@ -2640,6 +2709,11 @@
         chooserMetricA.textContent = data.metrics[0];
         chooserMetricB.textContent = data.metrics[1];
         chooserMetricC.textContent = data.metrics[2];
+        if (data.metricLabels) {
+            chooserMetricLabelA.textContent = data.metricLabels[0];
+            chooserMetricLabelB.textContent = data.metricLabels[1];
+            chooserMetricLabelC.textContent = data.metricLabels[2];
+        }
         chooserPrimary.textContent = data.primary;
         chooserPrimary.href = data.primaryHref;
         chooserSecondary.textContent = data.secondary;
@@ -2789,6 +2863,19 @@
     }
     buildChart();
 
+    const dashboardDemoUrl = 'https://dashboard.boyerscales.com/demo/';
+    document.querySelectorAll('.dash-side-item, .dash-chart-period span').forEach(control => {
+        control.setAttribute('role', 'link');
+        control.setAttribute('tabindex', '0');
+        control.addEventListener('click', () => window.open(dashboardDemoUrl, '_blank', 'noopener'));
+        control.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                window.open(dashboardDemoUrl, '_blank', 'noopener');
+            }
+        });
+    });
+
     /* ──────────────── FORM ──────────────── */
     const phoneInput = document.getElementById('phoneInput');
     const smsConsent = document.getElementById('smsConsent');
@@ -2875,6 +2962,8 @@
         const startOverlay = document.getElementById('arcadeStart');
         const startBtn = document.getElementById('arcadeStartBtn');
         const pulseBtn = document.getElementById('arcadePulseBtn');
+        const blastBtn = document.getElementById('arcadeBlastBtn');
+        const freezeBtn = document.getElementById('arcadeFreezeBtn');
         const resetBtn = document.getElementById('arcadeResetBtn');
         const upgradesEl = document.getElementById('arcadeUpgrades');
         const missionsEl = document.getElementById('arcadeMissions');
@@ -2885,7 +2974,9 @@
             { id:'magnet', icon:'M', name:'Lead Magnet', desc:'Wider pickup field', base:70, max:5 },
             { id:'turret', icon:'T', name:'Auto Text', desc:'Adds smart follow-up shots', base:90, max:5 },
             { id:'shield', icon:'S', name:'Trust Shield', desc:'Extra mistake buffer', base:110, max:4 },
-            { id:'combo', icon:'X', name:'Combo Engine', desc:'Bigger streak payouts', base:130, max:5 }
+            { id:'combo', icon:'X', name:'Combo Engine', desc:'Bigger streak payouts', base:130, max:5 },
+            { id:'reload', icon:'R', name:'Quick Hands', desc:'Faster manual shots', base:120, max:5 },
+            { id:'battery', icon:'B', name:'Counter Battery', desc:'Cheaper Blast and Freeze', base:145, max:4 }
         ];
         const missionDefs = [
             { id:'recover', icon:'$', name:'Recover 12 leads', target:12, reward:45 },
@@ -2899,7 +2990,7 @@
                 credits:180,
                 best:0,
                 tag:'CEO',
-                upgrades:{ magnet:0, turret:0, shield:0, combo:0 },
+                upgrades:{ magnet:0, turret:0, shield:0, combo:0, reload:0, battery:0 },
                 leaderboard:[
                     { tag:'BS', score:42000, level:6 },
                     { tag:'AI', score:31800, level:5 },
@@ -2936,6 +3027,7 @@
         let run = null;
         const keys = new Set();
         let pointerX = null;
+        let pointerId = null;
 
         function upgradeLevel(id) { return save.upgrades[id] || 0; }
         function upgradeCost(def) { return Math.round(def.base * Math.pow(1.55, upgradeLevel(def.id))); }
@@ -2969,13 +3061,14 @@
                 maxCombo:1,
                 lives:3 + shieldLevel,
                 shield:shieldLevel,
-                pulse:100,
+                pulse:90,
                 slow:0,
-                spawnTimer:0,
+                chaos:0,
+                spawnTimer:0.15,
                 fireCd:0,
                 autoCd:0,
-                bossCd:12,
-                player:{ x:W / 2, y:H - 54, w:58, h:18 },
+                bossCd:9.5,
+                player:{ x:W / 2, y:H - 54, w:56, h:18 },
                 shots:[],
                 things:[],
                 particles:[],
@@ -3038,18 +3131,23 @@
                 life:1.25,
                 auto:!!auto
             });
-            run.fireCd = Math.max(0.12, 0.28 - upgradeLevel('turret') * 0.025);
+            run.fireCd = Math.max(0.08, 0.26 - upgradeLevel('turret') * 0.018 - upgradeLevel('reload') * 0.024);
             addParticles(run.player.x, run.player.y - 18, auto ? '#34D399' : '#0EA5E9', 5);
+        }
+
+        function counterCost(base, discount) {
+            return Math.max(22, base - upgradeLevel('battery') * discount);
         }
 
         function usePulse() {
             if (!run || !run.active) { startRun(); return; }
-            if (run.pulse < 35) return;
-            run.pulse -= 35;
-            run.slow = Math.max(run.slow, 3.2);
+            const cost = counterCost(34, 2);
+            if (run.pulse < cost) return;
+            run.pulse -= cost;
+            run.slow = Math.max(run.slow, 2.8);
             run.comboMeter = Math.min(100, run.comboMeter + 12);
             run.things.forEach(thing => {
-                if (thing.type === 'hazard') {
+                if (thing.type === 'hazard' || thing.type === 'rush') {
                     thing.marked = true;
                     addParticles(thing.x, thing.y, '#F472B6', 12);
                 }
@@ -3058,11 +3156,41 @@
             addParticles(run.player.x, run.player.y - 40, '#EC4899', 28);
         }
 
+        function useBlast() {
+            if (!run || !run.active) { startRun(); return; }
+            const cost = counterCost(58, 4);
+            if (run.pulse < cost) return;
+            run.pulse -= cost;
+            const radius = 190 + upgradeLevel('magnet') * 12;
+            run.things.forEach(thing => {
+                const d = Math.hypot(thing.x - run.player.x, thing.y - run.player.y);
+                if (d <= radius) {
+                    thing.hp -= thing.type === 'boss' ? 2 : 3;
+                    addParticles(thing.x, thing.y, '#0EA5E9', thing.type === 'boss' ? 18 : 12);
+                    if (thing.hp <= 0) {
+                        thing.hit = true;
+                        if (thing.type === 'lead' || thing.type === 'vip' || thing.type === 'boss') scoreThing(thing);
+                    }
+                }
+            });
+            addParticles(run.player.x, run.player.y - 30, '#38BDF8', 36);
+        }
+
+        function useFreeze() {
+            if (!run || !run.active) { startRun(); return; }
+            const cost = counterCost(46, 3);
+            if (run.pulse < cost) return;
+            run.pulse -= cost;
+            run.slow = Math.max(run.slow, 5.8);
+            run.comboMeter = Math.min(100, run.comboMeter + 8);
+            addParticles(run.player.x, run.player.y - 55, '#A5F3FC', 30);
+        }
+
         function nearestTarget() {
             if (!run) return null;
             let best = null, bestDist = Infinity;
             run.things.forEach(thing => {
-                if (thing.type === 'hazard') return;
+                if (thing.type === 'hazard' || thing.type === 'rush') return;
                 const d = Math.hypot(thing.x - run.player.x, thing.y - run.player.y);
                 if (d < bestDist) { best = thing; bestDist = d; }
             });
@@ -3071,38 +3199,46 @@
 
         function spawnThing() {
             if (!run) return;
-            const hazardChance = Math.min(0.18, 0.07 + run.level * 0.01);
-            const vipChance = Math.min(0.18, 0.07 + run.level * 0.012);
+            const hazardChance = Math.min(0.34, 0.12 + run.level * 0.018);
+            const drainChance = Math.min(0.12, 0.035 + run.level * 0.008);
+            const vipChance = Math.min(0.2, 0.07 + run.level * 0.012);
             const roll = Math.random();
             let type = 'lead';
-            if (roll < hazardChance) type = 'hazard';
+            if (roll < hazardChance * 0.58) type = 'hazard';
+            else if (roll < hazardChance) type = 'rush';
+            else if (roll < hazardChance + drainChance) type = 'drain';
             else if (roll > 1 - vipChance) type = 'vip';
-            const speed = (80 + run.level * 10) * (run.slow > 0 ? 0.58 : 1);
-            const radius = type === 'vip' ? 18 : (type === 'hazard' ? 15 : 14);
+            const slowMod = run.slow > 0 ? 0.52 : 1;
+            const speed = (108 + run.level * 17) * slowMod;
+            const radius = type === 'vip' ? 18 : (type === 'boss' ? 28 : (type === 'rush' ? 13 : (type === 'drain' ? 17 : (type === 'hazard' ? 15 : 14))));
             run.things.push({
                 type,
                 x:40 + Math.random() * (W - 80),
                 y:-30,
                 r:radius,
-                vy:speed + Math.random() * 45,
-                vx:(Math.random() - 0.5) * 28,
-                value:type === 'vip' ? 1200 : 450,
-                hp:type === 'vip' ? 2 : 1,
+                vy:(type === 'rush' ? speed * 1.32 : speed) + Math.random() * 52,
+                vx:(Math.random() - 0.5) * (38 + run.level * 3),
+                drift:(type === 'rush' ? 30 : 18) + Math.random() * (20 + run.level * 4),
+                phase:Math.random() * Math.PI * 2,
+                value:type === 'vip' ? 1200 : (type === 'drain' ? 0 : 450),
+                hp:type === 'vip' ? 2 : (type === 'drain' ? 2 : 1),
                 spin:Math.random() * Math.PI * 2
             });
         }
 
         function spawnBoss() {
-            if (!run || run.level < 3) return;
+            if (!run || run.level < 2) return;
             run.things.push({
                 type:'boss',
                 x:70 + Math.random() * (W - 140),
                 y:-54,
                 r:28,
-                vy:60 + run.level * 7,
-                vx:(Math.random() - 0.5) * 40,
+                vy:78 + run.level * 10,
+                vx:(Math.random() - 0.5) * 54,
+                drift:28 + run.level * 4,
+                phase:Math.random() * Math.PI * 2,
                 value:2400 + run.level * 280,
-                hp:4 + Math.floor(run.level / 3),
+                hp:5 + Math.floor(run.level / 2),
                 spin:0
             });
         }
@@ -3186,22 +3322,25 @@
             run.autoCd -= dt;
             run.bossCd -= dt;
             run.slow = Math.max(0, run.slow - dt);
-            run.pulse = Math.min(100, run.pulse + dt * 5);
-            run.comboMeter = Math.max(0, run.comboMeter - dt * 5);
-            if (run.comboMeter <= 0) run.combo = Math.max(1, run.combo - dt * 0.8);
+            run.chaos = Math.min(1, run.chaos + dt * 0.01);
+            run.pulse = Math.min(100, run.pulse + dt * (3.8 + upgradeLevel('battery') * 0.75));
+            run.comboMeter = Math.max(0, run.comboMeter - dt * 8.5);
+            if (run.comboMeter <= 0) run.combo = Math.max(1, run.combo - dt * 1.05);
 
             const dir = (keys.has('ArrowRight') || keys.has('KeyD') ? 1 : 0) - (keys.has('ArrowLeft') || keys.has('KeyA') ? 1 : 0);
-            run.player.x += dir * (360 + upgradeLevel('magnet') * 18) * dt;
+            run.player.x += dir * (420 + upgradeLevel('magnet') * 18) * dt;
             if (pointerX !== null) run.player.x += (pointerX - run.player.x) * Math.min(1, dt * 10);
             run.player.x = clamp(run.player.x, 36, W - 36);
 
             if (run.spawnTimer <= 0) {
-                spawnThing();
-                run.spawnTimer = Math.max(0.26, 0.72 - run.level * 0.035);
+                const wave = 1 + (run.level >= 3 ? 1 : 0) + (run.level >= 6 ? 1 : 0) + (run.chaos > 0.7 ? 1 : 0);
+                for (let i = 0; i < wave; i++) spawnThing();
+                if (run.level > 4 && Math.random() < 0.18 + run.chaos * 0.14) spawnThing();
+                run.spawnTimer = Math.max(0.18, 0.58 - run.level * 0.034 - run.chaos * 0.05);
             }
             if (run.bossCd <= 0) {
                 spawnBoss();
-                run.bossCd = Math.max(9, 18 - run.level * 0.75);
+                run.bossCd = Math.max(6.5, 13 - run.level * 0.5 - run.chaos * 1.1);
             }
             if (upgradeLevel('turret') > 0 && run.autoCd <= 0) {
                 fireShot(true);
@@ -3211,7 +3350,7 @@
             const magnet = 70 + upgradeLevel('magnet') * 26;
             run.things.forEach(thing => {
                 thing.spin += dt * 3;
-                if (thing.type !== 'hazard') {
+                if (thing.type === 'lead' || thing.type === 'vip' || thing.type === 'boss') {
                     const dx = run.player.x - thing.x;
                     const dy = run.player.y - thing.y;
                     const dist = Math.hypot(dx, dy);
@@ -3220,7 +3359,7 @@
                         thing.vy += dy / Math.max(1, dist) * dt * 160;
                     }
                 }
-                thing.x += thing.vx * dt;
+                thing.x += (thing.vx + Math.sin(thing.phase + thing.y * 0.025) * (thing.drift || 0)) * dt;
                 thing.y += thing.vy * dt;
                 if (thing.x < thing.r || thing.x > W - thing.r) thing.vx *= -0.9;
             });
@@ -3237,7 +3376,7 @@
                     if (thing.hit) return;
                     if (Math.hypot(shot.x - thing.x, shot.y - thing.y) < thing.r + shot.r) {
                         shot.life = 0;
-                        if (thing.type === 'hazard') {
+                        if (thing.type === 'hazard' || thing.type === 'rush') {
                             thing.hit = true;
                             addParticles(thing.x, thing.y, '#F472B6', 12);
                             return;
@@ -3246,7 +3385,12 @@
                         addParticles(thing.x, thing.y, '#0EA5E9', 8);
                         if (thing.hp <= 0) {
                             thing.hit = true;
-                            scoreThing(thing);
+                            if (thing.type === 'drain') {
+                                run.pulse = Math.min(100, run.pulse + 8);
+                                run.comboMeter = Math.min(100, run.comboMeter + 8);
+                            } else {
+                                scoreThing(thing);
+                            }
                         }
                     }
                 });
@@ -3257,13 +3401,18 @@
                 const caught = Math.abs(thing.x - run.player.x) < run.player.w * 0.56 + thing.r && Math.abs(thing.y - run.player.y) < run.player.h + thing.r;
                 if (caught) {
                     thing.hit = true;
-                    if (thing.type === 'hazard') takeHit();
+                    if (thing.type === 'hazard' || thing.type === 'rush' || thing.type === 'drain') takeHit();
                     else scoreThing(thing);
                 } else if (thing.y > H + 44) {
                     thing.hit = true;
-                    if (thing.type !== 'hazard') {
+                    if (thing.type === 'drain') {
+                        run.score = Math.max(0, run.score - 700);
+                        run.pulse = Math.max(0, run.pulse - 18);
                         breakCombo();
-                        if (thing.type === 'vip' || thing.type === 'boss' || run.level > 4) takeHit();
+                    } else if (thing.type !== 'hazard' && thing.type !== 'rush') {
+                        breakCombo();
+                        run.pulse = Math.max(0, run.pulse - 10);
+                        if (thing.type === 'vip' || thing.type === 'boss' || run.level > 3) takeHit();
                     }
                 }
             });
@@ -3287,7 +3436,9 @@
             livesEl.textContent = run ? Math.max(0, run.lives) : '3';
             xpBar.style.width = run ? Math.min(100, (run.xp / run.xpNext) * 100).toFixed(1) + '%' : '0%';
             bankEl.textContent = save.credits.toLocaleString() + ' credits';
-            pulseBtn.disabled = !!(active && run.pulse < 35);
+            pulseBtn.disabled = !!(active && run.pulse < counterCost(34, 2));
+            if (blastBtn) blastBtn.disabled = !!(active && run.pulse < counterCost(58, 4));
+            if (freezeBtn) freezeBtn.disabled = !!(active && run.pulse < counterCost(46, 3));
         }
 
         function renderPanels() {
@@ -3378,7 +3529,9 @@
                 lead:['#34D399', 'rgba(52,211,153,0.25)', '$450'],
                 vip:['#EC4899', 'rgba(236,72,153,0.28)', 'VIP'],
                 boss:['#A855F7', 'rgba(168,85,247,0.3)', 'BOSS'],
-                hazard:['#EF4444', 'rgba(239,68,68,0.22)', 'MISS']
+                hazard:['#EF4444', 'rgba(239,68,68,0.22)', 'MISS'],
+                rush:['#F97316', 'rgba(249,115,22,0.24)', 'RUSH'],
+                drain:['#F59E0B', 'rgba(245,158,11,0.23)', 'NO-SHOW']
             }[thing.type];
             ctx.save();
             ctx.translate(thing.x, thing.y);
@@ -3481,14 +3634,36 @@
             requestAnimationFrame(loop);
         }
 
-        canvas.addEventListener('pointermove', e => {
+        function setPointerTarget(e) {
             const rect = canvas.getBoundingClientRect();
             pointerX = clamp(e.clientX - rect.left, 30, W - 30);
+        }
+        canvas.addEventListener('pointermove', e => {
+            if (e.pointerType === 'touch') e.preventDefault();
+            setPointerTarget(e);
         });
-        canvas.addEventListener('pointerleave', () => { pointerX = null; });
-        canvas.addEventListener('pointerdown', () => {
+        canvas.addEventListener('pointerleave', () => {
+            if (pointerId === null) pointerX = null;
+        });
+        canvas.addEventListener('pointerdown', e => {
+            if (e.pointerType === 'touch') e.preventDefault();
+            pointerId = e.pointerId;
+            if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId);
+            setPointerTarget(e);
             if (!run || !run.active) startRun();
             else fireShot(false);
+        });
+        canvas.addEventListener('pointerup', e => {
+            if (pointerId !== e.pointerId) return;
+            if (canvas.releasePointerCapture) {
+                try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+            }
+            pointerId = null;
+            if (e.pointerType === 'touch') pointerX = null;
+        });
+        canvas.addEventListener('pointercancel', () => {
+            pointerId = null;
+            pointerX = null;
         });
         document.addEventListener('keydown', e => {
             const active = document.activeElement;
@@ -3500,12 +3675,17 @@
             if (isTyping) return;
             if (['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(e.code)) keys.add(e.code);
             if (e.code === 'Space') { e.preventDefault(); fireShot(false); }
+            if (e.code === 'KeyQ') { e.preventDefault(); usePulse(); }
+            if (e.code === 'KeyW') { e.preventDefault(); useBlast(); }
+            if (e.code === 'KeyE') { e.preventDefault(); useFreeze(); }
             if (e.code === 'Enter' && (!run || !run.active)) startRun();
         });
         document.addEventListener('keyup', e => keys.delete(e.code));
         startBtn.addEventListener('click', startRun);
         resetBtn.addEventListener('click', startRun);
         pulseBtn.addEventListener('click', usePulse);
+        if (blastBtn) blastBtn.addEventListener('click', useBlast);
+        if (freezeBtn) freezeBtn.addEventListener('click', useFreeze);
         tagInput.addEventListener('input', () => {
             tagInput.value = cleanTag(tagInput.value);
             save.tag = tagInput.value;
