@@ -607,9 +607,26 @@
             background:rgba(255,255,255,0.045);color:var(--text-primary);font-weight:800;font-size:0.82rem;
             text-decoration:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:transform 0.2s,border-color 0.2s,background 0.2s;
         }
+        .demo-action:disabled{opacity:0.58;cursor:not-allowed;transform:none}
         .demo-action:hover{transform:translateY(-1px);background:rgba(255,255,255,0.07);border-color:rgba(255,255,255,0.16)}
         .demo-action.primary{background:linear-gradient(135deg,var(--ai),var(--gold));border-color:rgba(255,255,255,0.12);color:white}
         .demo-action svg{width:15px;height:15px}
+        .demo-sms-form{display:grid;gap:0.55rem;margin-top:1rem;max-width:430px}
+        .demo-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.55rem}
+        .demo-sms-form input[type="text"],.demo-sms-form input[type="tel"]{
+            width:100%;min-height:42px;padding:0.72rem 0.8rem;border-radius:12px;
+            border:1px solid rgba(255,255,255,0.09);background:rgba(255,255,255,0.035);
+            color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:0.84rem;
+            transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;
+        }
+        .demo-sms-form input:focus{border-color:rgba(10,132,255,0.52);background:rgba(255,255,255,0.055);box-shadow:0 0 0 4px rgba(10,132,255,0.1)}
+        .demo-sms-form input::placeholder{color:var(--text-tertiary)}
+        .demo-consent{display:flex;align-items:flex-start;gap:0.55rem;padding:0.62rem 0.7rem;border-radius:12px;background:rgba(10,132,255,0.055);border:1px solid rgba(10,132,255,0.16);color:var(--text-secondary);font-size:0.72rem;line-height:1.42}
+        .demo-consent input{width:16px;height:16px;min-width:16px;margin-top:0.08rem;accent-color:var(--imessage)}
+        .demo-form-status{min-height:1.25rem;color:var(--text-tertiary);font-size:0.76rem;line-height:1.35}
+        .demo-form-status.ok{color:var(--growth-light)}
+        .demo-form-status.error{color:#FCA5A5}
+        .demo-hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
         .demo-phone{
             position:relative;min-height:230px;border-radius:18px;background:linear-gradient(180deg,#111936,#070B19);
             border:1px solid rgba(255,255,255,0.08);overflow:hidden;padding:1rem;
@@ -1325,6 +1342,7 @@
             .demo-phone{min-height:auto}
             .demo-actions{display:grid;grid-template-columns:1fr}
             .demo-action{width:100%}
+            .demo-form-grid{grid-template-columns:1fr}
             .paths{padding:4.5rem 0}
             .chooser-shell{padding:0.75rem;border-radius:20px}
             .chooser-copy,.chooser-result{padding:1.1rem;border-radius:16px}
@@ -1679,8 +1697,25 @@
         <div class="demo-lab" id="demo-lab">
             <div class="demo-lab-copy">
                 <div class="demo-lab-kicker">Test Drive</div>
-                <h3>Try the call flow before the form.</h3>
-                <p>Let the page run a quick AI receptionist demo, then flip into the blue SMS follow-up so visitors can feel the product instead of just reading about it.</p>
+                <h3>Send yourself the real blue text.</h3>
+                <p>Enter your phone and Blue SMS will push a live demo through the same queue. The text invites a reply that opens the 7-day leak test path.</p>
+                <form class="demo-sms-form" id="blueSmsDemoForm">
+                    <div class="demo-form-grid">
+                        <input type="text" name="demoName" placeholder="First name" autocomplete="given-name" required>
+                        <input type="tel" name="demoPhone" placeholder="Phone number" autocomplete="tel" required>
+                    </div>
+                    <input type="text" name="demoBusiness" placeholder="Business name" autocomplete="organization">
+                    <input class="demo-hp" type="text" name="demoWebsite" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <label class="demo-consent" for="demoSmsConsent">
+                        <input type="checkbox" id="demoSmsConsent" name="demoSmsConsent" required>
+                        <span>I agree to receive this one-time BoyerScales demo text. Reply STOP to opt out.</span>
+                    </label>
+                    <button class="demo-action primary" type="submit" id="sendBlueSmsDemo">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.5 0 10 3.6 10 8.1 0 4.5-4.5 8.1-10 8.1-1 0-2-.1-2.9-.3-2 1.4-3.7 1.7-5.5 1.6.7-.7 1.3-1.6 1.6-2.6C2.4 15.4 2 13.4 2 11.4 2 7.6 6.5 4 12 4z"/></svg>
+                        Text Me The Demo
+                    </button>
+                    <p class="demo-form-status" id="demoFormStatus" aria-live="polite"></p>
+                </form>
                 <div class="demo-actions">
                     <button class="demo-action primary" type="button" id="runCallDemo">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1688,7 +1723,7 @@
                     </button>
                     <button class="demo-action" type="button" id="runSmsDemo">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.5 0 10 3.6 10 8.1 0 4.5-4.5 8.1-10 8.1-1 0-2-.1-2.9-.3-2 1.4-3.7 1.7-5.5 1.6.7-.7 1.3-1.6 1.6-2.6C2.4 15.4 2 13.4 2 11.4 2 7.6 6.5 4 12 4z"/></svg>
-                        Blue SMS
+                        Preview SMS
                     </button>
                     <a class="demo-action" id="demoCallLink" href="tel:+19166598131" data-demo-phone="+19166598131">
                         <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -1710,11 +1745,11 @@
                         </div>
                     </div>
                     <div class="demo-sms-card">
-                        <div class="demo-card-title"><span>Blue SMS</span><span id="demoSmsState">Queued</span></div>
+                        <div class="demo-card-title"><span>Blue SMS</span><span id="demoSmsState">Ready</span></div>
                         <div class="demo-bubbles" id="demoBubbles">
-                            <div class="demo-bubble ai">Hey Marisol, you're booked for Tuesday at 2:00.</div>
-                            <div class="demo-bubble customer">Perfect, thank you.</div>
-                            <div class="demo-bubble ai">We'll text a reminder before the visit.</div>
+                            <div class="demo-bubble ai">Hey Marisol, this is Elijah from BoyerScales. Blue SMS is live. Want a free 7-day leak test?</div>
+                            <div class="demo-bubble customer">YES</div>
+                            <div class="demo-bubble ai">Absolutely. Here is the 7-day leak test setup link.</div>
                         </div>
                     </div>
                 </div>
@@ -2607,11 +2642,43 @@
     const demoSmsState = document.getElementById('demoSmsState');
     const demoBubbles = document.getElementById('demoBubbles');
     const demoCallLink = document.getElementById('demoCallLink');
+    const blueSmsDemoForm = document.getElementById('blueSmsDemoForm');
+    const demoFormStatus = document.getElementById('demoFormStatus');
+    const sendBlueSmsDemo = document.getElementById('sendBlueSmsDemo');
+    const BLUE_SMS_DEMO_URL = ['localhost','127.0.0.1'].includes(window.location.hostname)
+        ? 'http://localhost:8080/demo-blue-sms'
+        : 'https://boyerscales-iphone-sms-queue.fly.dev/demo-blue-sms';
     if (demoCallLink && demoCallLink.dataset.demoPhone) {
         demoCallLink.href = 'tel:' + demoCallLink.dataset.demoPhone;
     }
-    function showDemoSms() {
+
+    function firstName(value) {
+        return (value || '').trim().split(/\s+/)[0] || 'there';
+    }
+
+    function buildDemoPreviewMessage(name, business) {
+        const businessLabel = (business || '').trim() || 'your business';
+        return `Hey ${firstName(name)}, this is Elijah from BoyerScales. Blue SMS is live. Want a free 7-day leak test for ${businessLabel}? Reply YES and I'll send the setup link. Reply STOP to opt out.`;
+    }
+
+    function setDemoStatus(message, type) {
+        if (!demoFormStatus) return;
+        demoFormStatus.textContent = message || '';
+        demoFormStatus.classList.remove('ok','error');
+        if (type) demoFormStatus.classList.add(type);
+    }
+
+    function setDemoBubbleCopy(message) {
         if (!demoBubbles) return;
+        const bubbles = demoBubbles.querySelectorAll('.demo-bubble');
+        if (bubbles[0]) bubbles[0].textContent = message || buildDemoPreviewMessage('Marisol', 'Acme Plumbing');
+        if (bubbles[1]) bubbles[1].textContent = 'YES';
+        if (bubbles[2]) bubbles[2].textContent = 'Absolutely. Here is the 7-day leak test setup link.';
+    }
+
+    function showDemoSms(message) {
+        if (!demoBubbles) return;
+        setDemoBubbleCopy(message);
         demoSmsState.textContent = 'Sending';
         demoBubbles.querySelectorAll('.demo-bubble').forEach((bubble, i) => {
             bubble.classList.remove('on');
@@ -2621,7 +2688,69 @@
             }, 260 + i * 420);
         });
     }
-    if (runSmsDemo) runSmsDemo.addEventListener('click', showDemoSms);
+    if (runSmsDemo) {
+        runSmsDemo.addEventListener('click', () => {
+            showDemoSms();
+            setDemoStatus('Preview only. Add your phone above to send the live text.', '');
+        });
+    }
+    if (blueSmsDemoForm) {
+        blueSmsDemoForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const name = blueSmsDemoForm.querySelector('[name="demoName"]').value.trim();
+            const phone = blueSmsDemoForm.querySelector('[name="demoPhone"]').value.trim();
+            const business = blueSmsDemoForm.querySelector('[name="demoBusiness"]').value.trim();
+            const consent = document.getElementById('demoSmsConsent');
+            const honeypot = blueSmsDemoForm.querySelector('[name="demoWebsite"]').value.trim();
+
+            if (!consent.checked) {
+                setDemoStatus('Check the consent box so we can send the demo text.', 'error');
+                consent.focus();
+                return;
+            }
+
+            const previewMessage = buildDemoPreviewMessage(name, business);
+            showDemoSms(previewMessage);
+            setDemoStatus('Sending the live Blue SMS now...', '');
+
+            if (sendBlueSmsDemo) {
+                sendBlueSmsDemo.disabled = true;
+                sendBlueSmsDemo.lastChild.textContent = ' Sending...';
+            }
+
+            try {
+                const response = await fetch(BLUE_SMS_DEMO_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        phone,
+                        business,
+                        consent: true,
+                        demoWebsite: honeypot,
+                        pageUrl: window.location.href,
+                        source: 'homepage-blue-sms-demo'
+                    })
+                });
+                const result = await response.json().catch(() => ({}));
+                if (!response.ok || !result.ok) {
+                    throw new Error(result.error || 'The demo text could not be sent.');
+                }
+
+                showDemoSms(result.messagePreview || previewMessage);
+                setDemoStatus(`Sent to the number ending in ${result.phoneLast4}. Reply YES when it lands to get the 7-day leak test link.`, 'ok');
+            } catch (error) {
+                demoSmsState.textContent = 'Needs retry';
+                setDemoStatus(error.message || 'The demo text could not be sent. Try again in a minute.', 'error');
+            } finally {
+                if (sendBlueSmsDemo) {
+                    sendBlueSmsDemo.disabled = false;
+                    sendBlueSmsDemo.lastChild.textContent = ' Text Me The Demo';
+                }
+            }
+        });
+    }
     if (runCallDemo && demoTranscript) {
         const callLines = [
             '<strong>AI:</strong> Thanks for calling BoyerScales demo. What service do you need?',
