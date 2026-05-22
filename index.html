@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BoyerScales | The Revenue Recovery OS for Local Service Businesses</title>
-    <meta name="description" content="BoyerScales is the Revenue Recovery OS that answers every call, follows up in blue iMessage, revives dead leads, boosts reviews, and grows local visibility — automatically.">
+    <title>BoyerScales | The AI front desk for local service businesses</title>
+    <meta name="description" content="BoyerScales is like a front desk that never sleeps for local service businesses. It answers the calls you miss, texts customers back, follows up on old leads, and gets you more 5-star reviews.">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,18 +91,20 @@
 
         /* ── LIVE SIGNAL ── */
         .live-ticker{
-            display:inline-flex;align-items:center;gap:0.45rem;justify-content:center;
+            display:inline-flex;align-items:center;gap:0.5rem;justify-content:center;
             margin-left:auto;
-            background:linear-gradient(90deg,rgba(16,185,129,0.09),rgba(37,99,235,0.08));
-            border:1px solid rgba(16,185,129,0.18);
-            padding:0.42rem 0.72rem;border-radius:999px;
-            font-size:0.72rem;text-align:center;
+            background:rgba(255,255,255,0.04);
+            border:1px solid rgba(255,255,255,0.1);
+            padding:0.46rem 0.8rem;border-radius:11px;
+            font-size:0.74rem;text-align:center;
             color:var(--text-secondary);letter-spacing:0.01em;white-space:nowrap;
-            opacity:0;transform:translateY(-4px);transition:opacity 0.35s,transform 0.35s,background 0.35s,border-color 0.35s;
+            opacity:0;transform:translateY(-4px);transition:opacity 0.35s,transform 0.35s,background 0.35s,border-color 0.35s,color 0.35s;
         }
+        .live-ticker:hover{border-color:rgba(255,255,255,0.22);color:var(--text-primary)}
         .live-ticker.visible{opacity:1;transform:translateY(0)}
         .live-ticker .pulse-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--growth);box-shadow:0 0 10px var(--growth);animation:pulseDot 1.4s infinite;vertical-align:middle;flex:0 0 auto}
         .live-ticker strong{color:var(--growth-light);font-weight:700;font-variant-numeric:tabular-nums}
+        .live-ticker .ticker-phone{width:14px;height:14px;color:var(--growth-light);flex:0 0 auto}
         @keyframes pulseDot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:0.65}}
 
         /* ── NAV ── */
@@ -246,24 +248,21 @@
         .hero-copy{position:relative;z-index:3;max-width:620px}
 
         .hero-badge{
-            display:inline-flex;align-items:center;gap:0.55rem;
-            background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.09);
-            padding:0.45rem 1.05rem;border-radius:50px;
-            font-size:0.78rem;color:var(--text-secondary);font-weight:600;
-            margin-bottom:1.6rem;letter-spacing:0.02em;opacity:0;
-            backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+            display:inline-flex;align-items:center;gap:0.65rem;
+            font-size:0.82rem;color:var(--text-secondary);font-weight:600;
+            margin-bottom:1.4rem;letter-spacing:0.01em;opacity:0;
         }
-        .hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--growth);box-shadow:0 0 10px var(--growth);animation:pulseDot 1.4s infinite}
+        .hero-badge-bar{width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--ai-light),var(--growth-light));flex:0 0 auto}
         .hero-badge .b-divider{color:var(--text-muted);margin:0 0.15rem}
         .hero-badge .b-os{background:linear-gradient(135deg,var(--ai-light),var(--growth-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
 
-        .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2.6rem,5.6vw,4.8rem);font-weight:800;line-height:1.02;margin-bottom:1.5rem;letter-spacing:-0.038em}
+        .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2.6rem,5.6vw,4.8rem);font-weight:800;line-height:1.06;margin-bottom:1.4rem;letter-spacing:-0.038em}
         .hero-line{display:block;overflow:hidden}
         .hero-line-inner{display:block;transform:translateY(110%);will-change:transform}
         .hero h1 .grad{background:linear-gradient(135deg,var(--ai-light) 0%,#22D3EE 45%,var(--growth-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradShift 8s ease-in-out infinite}
         @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
-        .hero .sub{font-size:1.1rem;color:var(--text-secondary);margin-bottom:2rem;line-height:1.65;max-width:540px;font-weight:400;opacity:0}
+        .hero .sub{font-size:1.1rem;color:var(--text-secondary);margin-bottom:1.15rem;line-height:1.62;max-width:528px;font-weight:400;opacity:0}
         .hero .sub strong{color:var(--text-primary);font-weight:600}
         .hero .sub .recover{background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
 
@@ -1251,9 +1250,9 @@
             .nav-login{display:inline-flex}
             .nav-cta span{display:inline}
             .hero{min-height:auto;padding:108px 0 72px}
-            .hero h1{font-size:clamp(2.35rem,12vw,3.1rem)}
-            .hero .sub{font-size:0.98rem}
-            .hero-cta{display:grid;grid-template-columns:1fr 1fr;width:100%;gap:0.55rem;margin-bottom:1.1rem}
+            .hero h1{font-size:clamp(2.05rem,7.6vw,2.7rem);line-height:1.1}
+            .hero .sub{font-size:0.98rem;line-height:1.6}
+            .hero-cta{display:grid;grid-template-columns:1fr;width:100%;gap:0.6rem;margin-bottom:1.3rem}
             .hero-cta .btn-primary,.hero-cta .btn-ghost{
                 width:100%;min-height:50px;justify-content:center;padding:0.78rem 0.58rem;
                 border-radius:12px;font-size:0.78rem;line-height:1.15;text-align:center;white-space:normal;
@@ -1456,19 +1455,19 @@
             </div>
             <span>Boyer<span class="logo-split">Scales</span></span>
         </a>
-        <div class="live-ticker" id="liveTicker">
-            <span class="pulse-dot"></span>
-            <span>Recovered today: <strong id="tickerNum">$0</strong></span>
-        </div>
+        <a class="live-ticker" id="liveTicker" href="tel:+19166598131" style="text-decoration:none">
+            <svg class="ticker-phone" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Try the AI demo: <strong>(916) 659-8131</strong></span>
+        </a>
         <div class="nav-right">
-            <a href="#modules" class="nav-link">The OS</a>
+            <a href="#modules" class="nav-link">What it does</a>
             <a href="#calc" class="nav-link">Calculator</a>
             <a href="#dash" class="nav-link">Dashboard</a>
             <a href="#demo-lab" class="nav-link">Demo</a>
             <a href="https://dashboard.boyerscales.com" class="nav-login" target="_blank">
                 Log In
             </a>
-            <a href="#trial" class="nav-cta">
+            <a href="#contact" class="nav-cta">
                 <span>Start Free</span>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
                     <path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/>
@@ -1490,10 +1489,8 @@
         <div class="hero-inner">
             <div class="hero-copy">
                 <div class="hero-badge">
-                    <span class="hero-badge-dot"></span>
-                    The <span class="b-os">Revenue Recovery OS</span>
-                    <span class="b-divider">·</span>
-                    <span>For Local Service Businesses</span>
+                    <span class="hero-badge-bar"></span>
+                    <span>For plumbers, HVAC, roofers, and local service pros</span>
                 </div>
                 <h1>
                     <span class="hero-line"><span class="hero-line-inner">Stop losing money</span></span>
@@ -1501,15 +1498,18 @@
                     <span class="hero-line"><span class="hero-line-inner"><span class="grad">slow follow-up</span> &amp; dead leads.</span></span>
                 </h1>
                 <p class="sub">
-                    BoyerScales is the operating system that <strong>answers every call</strong>, follows up in <strong>blue iMessage</strong>, revives dead leads, boosts reviews, and grows your local visibility — automatically. <span class="recover">You're already losing the money. We just bring it back.</span>
+                    BoyerScales is like a <strong>front desk that never sleeps</strong>. It picks up the calls you miss, texts people back in seconds, follows up on old leads, and brings in more 5-star reviews. <span class="recover">You keep working. It books the jobs.</span>
+                </p>
+                <p class="hero-proof-line" style="margin:0 0 1.4rem;font-size:0.95rem;color:var(--text-secondary);line-height:1.55">
+                    Don't take our word for it. <a href="tel:+19166598131" style="color:var(--ai-light,#38bdf8);font-weight:600;text-decoration:none;border-bottom:1px solid currentColor">Call the AI right now</a> and hear it answer.
                 </p>
                 <div class="hero-cta">
-                    <a href="#trial" class="btn-primary magnetic">
-                        Start Free → No Card
+                    <a href="tel:+19166598131" class="btn-primary magnetic">
+                        Call the AI demo
                         <svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                     </a>
-                    <a href="#calc" class="btn-ghost magnetic">
-                        See What You're Losing
+                    <a href="#demo-lab" class="btn-ghost magnetic">
+                        Or text yourself a demo
                     </a>
                 </div>
                 <div class="hero-trust">
@@ -1535,9 +1535,9 @@
                             <img src="logo.png" alt="" onerror="this.style.display='none'">
                         </span>
                         <div>
-                            <span class="mobile-proof-eyebrow">AI demo line</span>
-                            <span class="mobile-proof-number">Test the receptionist</span>
-                            <span class="mobile-proof-line">(916) 659-8131</span>
+                            <span class="mobile-proof-eyebrow">Live AI demo line</span>
+                            <span class="mobile-proof-number">(916) 659-8131</span>
+                            <span class="mobile-proof-line">Tap to hear the AI answer a call</span>
                         </div>
                     </div>
                     <div class="mobile-proof-flow">
@@ -1559,11 +1559,11 @@
                     <!-- Floating dashboard card -->
                     <div class="dash-mock">
                         <div class="dash-mock-head">
-                            <span class="dash-mock-title">Recovered Today</span>
-                            <span class="dash-mock-live"><span class="dot"></span>Live</span>
+                            <span class="dash-mock-title">Your Dashboard</span>
+                            <span class="dash-mock-live">Sample</span>
                         </div>
-                        <div class="dash-mock-amount">$<span id="heroAmount">3,847</span></div>
-                        <div class="dash-mock-label">↑ from <strong style="color:var(--text-primary)">7 calls</strong> we answered</div>
+                        <div class="dash-mock-amount">$<span>3,847</span></div>
+                        <div class="dash-mock-label">Example. Every dollar your AI books, tracked</div>
                         <div class="dash-mock-bars">
                             <span style="height:35%"></span>
                             <span style="height:60%"></span>
@@ -1619,7 +1619,7 @@
                         </div>
                         <div class="imsg">Hey Marisol! This is Riley from Acme Plumbing. We have you booked Tue at 2pm. Reply Y to confirm 👍</div>
                         <div class="imsg from-them delay-1">Yes confirmed!</div>
-                        <div class="imsg delay-2">Perfect — see you then.</div>
+                        <div class="imsg delay-2">Perfect, see you then.</div>
                     </div>
 
                 </div>
@@ -1683,11 +1683,11 @@
                         per <strong>year</strong> · <span id="lostPerDay">$787</span>/day
                     </div>
                     <div class="calc-recovery">
-                        <span class="calc-recovery-label">BoyerScales recovers ≈</span>
+                        <span class="calc-recovery-label">You could win back ≈</span>
                         <span class="calc-recovery-value">$<span id="recoveredAmount">215,578</span> / yr</span>
                     </div>
-                    <a href="#trial" class="btn-primary calc-cta magnetic">
-                        Recover This Now → Free Trial
+                    <a href="#contact" class="btn-primary calc-cta magnetic">
+                        Plug the leak → Get set up free
                         <svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                     </a>
                 </div>
@@ -1696,9 +1696,9 @@
 
         <div class="demo-lab" id="demo-lab">
             <div class="demo-lab-copy">
-                <div class="demo-lab-kicker">Test Drive</div>
-                <h3>Send yourself the real blue text.</h3>
-                <p>Enter your phone and Blue SMS will push a live demo through the same queue. The text invites a reply that opens the 7-day leak test path.</p>
+                <div class="demo-lab-kicker">Try it yourself</div>
+                <h3>See it work in 30 seconds.</h3>
+                <p>Call the demo line to hear the AI answer like a real receptionist. Or drop your number below and we'll text you a live blue-bubble demo.</p>
                 <form class="demo-sms-form" id="blueSmsDemoForm">
                     <div class="demo-form-grid">
                         <input type="text" name="demoName" placeholder="First name" autocomplete="given-name" required>
@@ -1766,10 +1766,10 @@
         <div class="section-header">
             <div class="section-eyebrow">
                 <span class="pulse-dot"></span>
-                The Revenue Recovery OS
+                Everything it does for you
             </div>
             <h2>Six systems. <span class="grad">One result.</span></h2>
-            <p>Every module is built to recover the money you're already losing. Use one — or stack them all.</p>
+            <p>Each piece is built to win back work you're already losing. Use one, or run all six together.</p>
         </div>
 
         <div class="modules-grid">
@@ -1780,7 +1780,7 @@
                     <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="module-title">AI Voice Receptionist</div>
-                <p class="module-desc">Answers every missed or forwarded call — 24/7. Qualifies the lead, books the job, and texts the customer back. While you're on a roof, in a truck, or asleep.</p>
+                <p class="module-desc">Answers every missed or forwarded call, 24/7. It qualifies the lead, books the job, and texts the customer back, whether you're on a roof, in a truck, or asleep.</p>
                 <div class="module-vis">
                     <div class="vis-voice-row">
                         <strong>● LIVE CALL</strong>
@@ -1801,7 +1801,7 @@
                     <svg viewBox="0 0 24 24" fill="#0A84FF"><path d="M12 2c5.5 0 10 3.6 10 8.1 0 4.5-4.5 8.1-10 8.1-1 0-2-.1-2.9-.3-2 1.4-3.7 1.7-5.5 1.6.7-.7 1.3-1.6 1.6-2.6C2.4 15.4 2 13.4 2 11.4 2 7.6 6.5 4 12 4z"/></svg>
                 </div>
                 <div class="module-title">Blue SMS Follow-Up</div>
-                <p class="module-desc">iMessage-style blue bubbles for missed-call recovery, appointment reminders, and quote follow-ups. Feels personal — not like another spammy business text.</p>
+                <p class="module-desc">iMessage-style blue bubbles for missed-call recovery, appointment reminders, and quote follow-ups. Feels personal, not like another spammy business text.</p>
                 <div class="module-vis vis-sms">
                     <div class="b from-them">Hey! Got your missed call. Want me to send a free estimate?</div>
                     <div class="b from-cust">Yes please 🙏</div>
@@ -1816,7 +1816,7 @@
                     <svg viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.7 1 6.4 2.6L21 8m0-5v5h-5" stroke="#A855F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="module-title">Lead Reactivation</div>
-                <p class="module-desc">Old leads. Dead estimates. Cold customers. We re-engage them automatically and push the warm ones back into your booking flow — turning your database into pipeline.</p>
+                <p class="module-desc">Old leads. Dead estimates. Cold customers. We reach back out to them for you and push the warm ones back into your booking flow, turning old contacts into booked jobs.</p>
                 <div class="module-vis vis-react">
                     <div class="vis-react-grid" id="reactGrid">
                         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -1845,7 +1845,7 @@
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                     </div>
                     <div class="vis-review-count"><strong>4.2 → 4.9</strong></div>
-                    <div class="vis-review-label">on Google · in 60 days</div>
+                    <div class="vis-review-label">more 5★ reviews on Google</div>
                 </div>
             </div>
 
@@ -1871,7 +1871,7 @@
                     <svg viewBox="0 0 24 24" fill="none"><path d="M3 3v18h18M7 14l4-4 4 4 6-6" stroke="#F472B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="module-title">Revenue Dashboard</div>
-                <p class="module-desc">One screen. Every dollar. Missed calls recovered, bookings made, reviews posted, leads reactivated — and the revenue tied to each. The whole OS, in one view.</p>
+                <p class="module-desc">One screen. Every dollar. Missed calls recovered, jobs booked, reviews posted, old leads woken back up, with the revenue tied to each. Everything in one view.</p>
                 <div class="module-vis vis-os">
                     <div class="vis-os-grid">
                         <div class="vis-os-tile"><strong>$48k</strong><span>Recovered</span></div>
@@ -1975,10 +1975,10 @@
         <div class="section-header">
             <div class="section-eyebrow">
                 <span class="pulse-dot" style="background:#F472B6;box-shadow:0 0 8px #F472B6"></span>
-                The OS
+                Your dashboard
             </div>
             <h2>One screen. <span class="grad">Every dollar tracked.</span></h2>
-            <p>Calls answered. Leads recovered. Reviews collected. Money in. The whole funnel — live.</p>
+            <p>Every call answered, lead recovered, and review collected, with the revenue tied to each. This is what your dashboard looks like.</p>
         </div>
 
         <div class="dash-shell">
@@ -1995,7 +1995,7 @@
                 </div>
                 <div class="dash-body">
                     <aside class="dash-side">
-                        <div class="dash-side-item active"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="5" stroke="currentColor" stroke-width="2"/><rect x="14" y="12" width="7" height="9" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="7" height="5" stroke="currentColor" stroke-width="2"/></svg>Revenue OS</div>
+                        <div class="dash-side-item active"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="7" height="9" stroke="currentColor" stroke-width="2"/><rect x="14" y="3" width="7" height="5" stroke="currentColor" stroke-width="2"/><rect x="14" y="12" width="7" height="9" stroke="currentColor" stroke-width="2"/><rect x="3" y="16" width="7" height="5" stroke="currentColor" stroke-width="2"/></svg>Overview</div>
                         <div class="dash-side-item"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="currentColor" stroke-width="2"/></svg>Calls</div>
                         <div class="dash-side-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.5 0 10 3.6 10 8.1 0 4.5-4.5 8.1-10 8.1-1 0-2-.1-2.9-.3-2 1.4-3.7 1.7-5.5 1.6.7-.7 1.3-1.6 1.6-2.6C2.4 15.4 2 13.4 2 11.4 2 7.6 6.5 4 12 4z"/></svg>SMS</div>
                         <div class="dash-side-item"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2"/></svg>Bookings</div>
@@ -2028,14 +2028,14 @@
                             <div class="dash-stat">
                                 <div class="dash-stat-label">Avg Rating</div>
                                 <div class="dash-stat-value pink">4.<span class="counter" data-to="9">0</span>★</div>
-                                <span class="dash-stat-delta"><svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6-6 6 6"/></svg>+0.7 since launch</span>
+                                <span class="dash-stat-delta"><svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6-6 6 6"/></svg>+0.7 ★</span>
                                 <div class="dash-stat-spark"><span style="height:60%"></span><span style="height:65%"></span><span style="height:72%"></span><span style="height:78%"></span><span style="height:85%"></span><span style="height:92%"></span><span style="height:100%"></span></div>
                             </div>
                         </div>
 
                         <div class="dash-chart">
                             <div class="dash-chart-head">
-                                <div class="dash-chart-title">Revenue recovered · last 30 days</div>
+                                <div class="dash-chart-title">Revenue recovered · last 30 days (sample)</div>
                                 <div class="dash-chart-period"><span>7D</span><span class="on">30D</span><span>90D</span></div>
                             </div>
                             <svg class="dash-chart-svg" viewBox="0 0 600 160" preserveAspectRatio="none">
@@ -2060,7 +2060,7 @@
                         <div class="dash-list">
                             <div class="dash-list-head">
                                 Recent activity
-                                <span style="font-size:0.7rem;font-weight:600;color:var(--text-tertiary);letter-spacing:0.06em;text-transform:uppercase">Live feed</span>
+                                <span style="font-size:0.7rem;font-weight:600;color:var(--text-tertiary);letter-spacing:0.06em;text-transform:uppercase">Sample feed</span>
                             </div>
                             <div class="dash-list-row">
                                 <span class="name">Marisol Vega</span>
@@ -2084,6 +2084,7 @@
                     </div>
                 </div>
             </div>
+            <p class="dash-caption" style="text-align:center;color:var(--text-tertiary);font-size:0.82rem;margin-top:1.1rem;line-height:1.5">Example dashboard with sample data. Your real numbers show up here once you're set up.</p>
         </div>
     </div>
 </section>
@@ -2098,13 +2099,13 @@
                 <span class="pulse-dot"></span>
                 Best next step
             </div>
-            <h2>Not everyone needs the whole OS.</h2>
-            <p>Let the site route visitors toward the simplest version of the offer that matches what hurts today.</p>
+            <h2>Not sure where to start?</h2>
+            <p>Tell us what hurts most right now, and we'll point you to the simplest fix first.</p>
         </div>
         <div class="chooser-shell">
             <div class="chooser-copy">
                 <h3>Choose what sounds most like your business.</h3>
-                <p>The recommendation changes instantly, so buyers can self-sort without feeling like they are being pushed into the biggest package.</p>
+                <p>Pick the one that sounds most like you. We'll show you the fastest win, no pressure.</p>
                 <div class="qualifier-options">
                     <button class="qualifier-option active" type="button" data-choice="ai">
                         <span class="qualifier-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
@@ -2133,7 +2134,7 @@
                     <div class="chooser-proof"><strong id="chooserMetricC">Blue SMS</strong><span id="chooserMetricLabelC">auto follow-up</span></div>
                 </div>
                 <div class="chooser-actions">
-                    <a class="chooser-primary" id="chooserPrimary" href="/ai">Explore AI Receptionist →</a>
+                    <a class="chooser-primary" id="chooserPrimary" href="#contact">Get set up free →</a>
                     <a class="chooser-secondary" id="chooserSecondary" href="#demo-lab">Test the demo</a>
                 </div>
             </div>
@@ -2149,14 +2150,14 @@
         <div class="trial-shell">
             <div class="trial-eyebrow">⚡ Free trial · No card · Setup in 24h</div>
             <h2>Start <span class="grad">recovering revenue</span><br>by this time tomorrow.</h2>
-            <p>We set you up. We train your AI on your business. We hand you a dashboard with your money in it. You don't lift a finger — and you don't pay until it's working.</p>
+            <p>We set you up. We train your AI on your business. We hand you a dashboard with your money in it. You don't lift a finger, and you don't pay until it's working.</p>
             <div class="trial-cta-row">
                 <a href="#contact" class="btn-primary magnetic">
                     Start Free → Get Setup in 24h
                     <svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7 7 7-7 7"/></svg>
                 </a>
-                <a href="#calc" class="btn-ghost magnetic">
-                    Re-run the calculator
+                <a href="#demo-lab" class="btn-ghost magnetic">
+                    Or hear the AI live
                 </a>
             </div>
             <div class="trial-perks">
@@ -2177,7 +2178,7 @@
         <div class="section-header">
             <div class="section-eyebrow">Tell us about your business</div>
             <h2>We'll set you up. <span class="grad">Within 24 hours.</span></h2>
-            <p>Plumbers, HVAC, roofers, towing, restoration, garage doors, locksmiths — if speed-to-lead matters, this works.</p>
+            <p>Plumbers, HVAC, roofers, towing, restoration, garage doors, locksmiths. If getting to leads fast matters, this works.</p>
         </div>
         <div class="contact-box">
             <form id="contactForm">
@@ -2208,79 +2209,6 @@
 
 <footer>
     <div class="container">
-        <div class="footer-arcade" id="footerArcade">
-            <div class="arcade-head">
-                <div>
-                    <div class="arcade-kicker"><span></span>Footer Arcade</div>
-                    <div class="arcade-title">Revenue Rush <strong>After-Hours League</strong></div>
-                </div>
-                <div class="arcade-season" id="arcadeSeason">Season 01 · Local Board</div>
-            </div>
-            <div class="arcade-grid">
-                <div class="arcade-stage">
-                    <canvas id="arcadeCanvas" width="900" height="460" aria-label="Revenue Rush arcade"></canvas>
-                    <div class="arcade-hud">
-                        <div class="arcade-stat"><span>Recovered</span><strong id="arcadeScore">$0</strong></div>
-                        <div class="arcade-stat"><span>Combo</span><strong id="arcadeCombo">x1.0</strong></div>
-                        <div class="arcade-stat"><span>League</span><strong id="arcadeLevel">1</strong></div>
-                        <div class="arcade-stat"><span>Trust</span><strong id="arcadeLives">3</strong></div>
-                    </div>
-                    <div class="arcade-meter"><span id="arcadeXpBar"></span></div>
-                    <div class="arcade-start" id="arcadeStart">
-                        <div class="arcade-title" style="font-size:1.5rem">After-hours run ready</div>
-                        <p>Recover the calls, chain the follow-ups, and climb the board.</p>
-                        <button class="arcade-btn" type="button" id="arcadeStartBtn">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
-                            Start Run
-                        </button>
-                    </div>
-                </div>
-                <aside class="arcade-side">
-                    <div class="arcade-panel">
-                        <div class="arcade-panel-title">
-                            Run Console
-                            <span class="arcade-bank" id="arcadeBank">0 credits</span>
-                        </div>
-                        <div class="arcade-run-row">
-                            <input class="arcade-name" id="arcadeTag" maxlength="3" value="CEO" aria-label="Arcade initials">
-                            <button class="arcade-btn" type="button" id="arcadePulseBtn">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M13 2 4 14h7l-1 8 10-13h-7l0-7z" fill="currentColor"/></svg>
-                                Pulse
-                            </button>
-                        </div>
-                        <div class="arcade-counter-row">
-                            <button class="arcade-btn ghost" type="button" id="arcadeBlastBtn">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                                Blast
-                            </button>
-                            <button class="arcade-btn ghost" type="button" id="arcadeFreezeBtn">
-                                <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                                Freeze
-                            </button>
-                        </div>
-                        <button class="arcade-btn ghost" type="button" id="arcadeResetBtn" style="width:100%;margin-top:0.55rem">
-                            <svg viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 3v6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                            New Run
-                        </button>
-                    </div>
-                    <div class="arcade-panel">
-                        <div class="arcade-panel-title">
-                            Upgrades
-                            <span class="arcade-bank" id="arcadeUpgradeHint">Permanent</span>
-                        </div>
-                        <div id="arcadeUpgrades"></div>
-                    </div>
-                    <div class="arcade-panel">
-                        <div class="arcade-panel-title">Missions</div>
-                        <div id="arcadeMissions"></div>
-                    </div>
-                    <div class="arcade-panel">
-                        <div class="arcade-panel-title">Leaderboard</div>
-                        <div id="arcadeLeaderboard"></div>
-                    </div>
-                </aside>
-            </div>
-        </div>
         <div class="footer-social">
             <a href="https://instagram.com/boyerscales" target="_blank">Instagram</a>
             <a href="https://x.com/boyerscales" target="_blank">X / Twitter</a>
@@ -2459,16 +2387,7 @@
         });
     }
 
-    /* ──────────────── LIVE TICKER COUNTER ──────────────── */
-    const tickerNum = document.getElementById('tickerNum');
-    let tickerVal = 17842;
-    function bumpTicker() {
-        tickerVal += Math.floor(Math.random() * 280) + 60;
-        tickerNum.textContent = '$' + tickerVal.toLocaleString();
-        setTimeout(bumpTicker, 2200 + Math.random() * 2800);
-    }
-    setTimeout(bumpTicker, 1800);
-    tickerNum.textContent = '$' + tickerVal.toLocaleString();
+    /* ──────────────── LIVE TICKER (demo line, no fake counter) ──────────────── */
 
     /* ──────────────── SMOOTH SCROLL ──────────────── */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -2535,8 +2454,8 @@
     /* ──────────────── HERO TYPING TRANSCRIPT ──────────────── */
     const transcript = document.getElementById('heroTranscript');
     const lines = [
-        'Hi! Acme Plumbing — what can I help with?',
-        'Got it. Tuesday at 2pm works — I\'ve got you booked.',
+        'Hi, this is Acme Plumbing. What can I help with?',
+        'Got it. Tuesday at 2pm works. You\'re booked.',
         'Sending a confirmation text now.',
             'You\'re all set, Marisol. Thanks!'
     ];
@@ -2558,15 +2477,7 @@
         setTimeout(type, 1100);
     }
 
-    /* ──────────────── HERO AMOUNT TICKER ──────────────── */
-    const heroAmount = document.getElementById('heroAmount');
-    let heroVal = 3847;
-    if (heroAmount) {
-        setInterval(() => {
-            heroVal += Math.floor(Math.random() * 80) + 20;
-            heroAmount.textContent = heroVal.toLocaleString();
-        }, 3200);
-    }
+    /* ──────────────── HERO DASHBOARD CARD (static sample, no fake counter) ──────────────── */
 
     /* ──────────────── REVENUE CALCULATOR ──────────────── */
     const callsSlider = document.getElementById('callsSlider');
@@ -2789,40 +2700,40 @@
     const chooserSecondary = document.getElementById('chooserSecondary');
     const chooserData = {
         ai:{
-            label:'Recommended path',
-            title:'Start with AI Receptionist.',
-            text:'If the phone already rings, the fastest win is answering every call, qualifying the lead, booking the job, and sending the blue SMS follow-up automatically.',
+            label:'Fastest win',
+            title:'Start by never missing a call.',
+            text:'If your phone already rings, the quickest win is answering every call, qualifying the lead, booking the job, and texting the customer back, all on its own.',
             metrics:['24/7','Booked','Blue SMS'],
             metricLabels:['call coverage','calendar handoff','auto follow-up'],
             colors:['#0EA5E9','#3B82F6','rgba(14,165,233,0.18)'],
-            primary:'Explore AI Receptionist →',
-            primaryHref:'/ai',
-            secondary:'Test the demo',
+            primary:'Get set up free →',
+            primaryHref:'#contact',
+            secondary:'Hear the AI first',
             secondaryHref:'#demo-lab'
         },
         growth:{
-            label:'Demand path',
-            title:'Start with Growth.',
-            text:'If the problem is not enough quality opportunities, route them toward local lead generation, reactivation, review lift, and campaigns that create more booked jobs.',
-            metrics:['Local SEO','Reviews','Campaigns'],
-            metricLabels:['visibility lift','trust builder','new demand'],
+            label:'More demand',
+            title:'Start by getting more customers.',
+            text:'If the problem is not enough quality leads, we focus on local visibility, reviving your old leads, lifting your reviews, and bringing in more booked jobs.',
+            metrics:['Local SEO','Reviews','Reactivation'],
+            metricLabels:['get found','build trust','wake old leads'],
             colors:['#34D399','#059669','rgba(16,185,129,0.18)'],
-            primary:'Explore Growth →',
-            primaryHref:'/growth',
-            secondary:'Run calculator',
+            primary:'Get set up free →',
+            primaryHref:'#contact',
+            secondary:'See what you\'re losing',
             secondaryHref:'#calc'
         },
         os:{
-            label:'Full system',
-            title:'Use the whole Revenue OS.',
-            text:'If they want calls answered, leads revived, reviews collected, and revenue tracked in one place, send them into the full setup path.',
+            label:'The whole thing',
+            title:'Run the whole system.',
+            text:'Want every call answered, old leads revived, reviews collected, and the revenue tracked in one place? We set the whole thing up for you.',
             metrics:['Calls + SMS','Dashboard','Reviews'],
-            metricLabels:['front desk','revenue tracking','growth loop'],
+            metricLabels:['your front desk','revenue tracking','growth loop'],
             colors:['#EC4899','#3B82F6','rgba(236,72,153,0.2)'],
-            primary:'Start full setup →',
-            primaryHref:'#trial',
-            secondary:'See dashboard',
-            secondaryHref:'#dash'
+            primary:'Get set up free →',
+            primaryHref:'#contact',
+            secondary:'Hear the AI first',
+            secondaryHref:'#demo-lab'
         }
     };
     function setChooser(choice) {
@@ -3074,760 +2985,6 @@
         });
     }
 
-    /* ──────────────── FOOTER ARCADE: REVENUE RUSH ──────────────── */
-    function initFooterArcade() {
-        const root = document.getElementById('footerArcade');
-        const canvas = document.getElementById('arcadeCanvas');
-        if (!root || !canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        const scoreEl = document.getElementById('arcadeScore');
-        const comboEl = document.getElementById('arcadeCombo');
-        const levelEl = document.getElementById('arcadeLevel');
-        const livesEl = document.getElementById('arcadeLives');
-        const xpBar = document.getElementById('arcadeXpBar');
-        const bankEl = document.getElementById('arcadeBank');
-        const tagInput = document.getElementById('arcadeTag');
-        const startOverlay = document.getElementById('arcadeStart');
-        const startBtn = document.getElementById('arcadeStartBtn');
-        const pulseBtn = document.getElementById('arcadePulseBtn');
-        const blastBtn = document.getElementById('arcadeBlastBtn');
-        const freezeBtn = document.getElementById('arcadeFreezeBtn');
-        const resetBtn = document.getElementById('arcadeResetBtn');
-        const upgradesEl = document.getElementById('arcadeUpgrades');
-        const missionsEl = document.getElementById('arcadeMissions');
-        const leaderboardEl = document.getElementById('arcadeLeaderboard');
-        const storageKey = 'boyerscales-revenue-rush-v1';
-
-        const upgradeDefs = [
-            { id:'magnet', icon:'M', name:'Lead Magnet', desc:'Wider pickup field', base:70, max:5 },
-            { id:'turret', icon:'T', name:'Auto Text', desc:'Adds smart follow-up shots', base:90, max:5 },
-            { id:'shield', icon:'S', name:'Trust Shield', desc:'Extra mistake buffer', base:110, max:4 },
-            { id:'combo', icon:'X', name:'Combo Engine', desc:'Bigger streak payouts', base:130, max:5 },
-            { id:'reload', icon:'R', name:'Quick Hands', desc:'Faster manual shots', base:120, max:5 },
-            { id:'battery', icon:'B', name:'Counter Battery', desc:'Cheaper Blast and Freeze', base:145, max:4 }
-        ];
-        const missionDefs = [
-            { id:'recover', icon:'$', name:'Recover 12 leads', target:12, reward:45 },
-            { id:'vip', icon:'V', name:'Close 3 VIP jobs', target:3, reward:70 },
-            { id:'combo', icon:'x', name:'Hit x7 combo', target:7, reward:65 },
-            { id:'league', icon:'L', name:'Reach league 4', target:4, reward:90 }
-        ];
-
-        function defaultSave() {
-            return {
-                credits:180,
-                best:0,
-                tag:'CEO',
-                upgrades:{ magnet:0, turret:0, shield:0, combo:0, reload:0, battery:0 },
-                leaderboard:[
-                    { tag:'BS', score:42000, level:6 },
-                    { tag:'AI', score:31800, level:5 },
-                    { tag:'REV', score:24500, level:4 }
-                ]
-            };
-        }
-        function loadSave() {
-            try {
-                const loaded = JSON.parse(localStorage.getItem(storageKey));
-                return Object.assign(defaultSave(), loaded || {}, {
-                    upgrades:Object.assign(defaultSave().upgrades, (loaded && loaded.upgrades) || {})
-                });
-            } catch (err) {
-                return defaultSave();
-            }
-        }
-        function saveGame() {
-            try { localStorage.setItem(storageKey, JSON.stringify(save)); } catch (err) {}
-        }
-        function cleanTag(value) {
-            return (value || 'CEO').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 3) || 'CEO';
-        }
-        function esc(value) {
-            return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-        }
-        function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
-        function money(v) { return '$' + Math.floor(v).toLocaleString(); }
-
-        let save = loadSave();
-        tagInput.value = cleanTag(save.tag);
-
-        let W = 900, H = 460, dpr = 1, last = 0;
-        let run = null;
-        const keys = new Set();
-        let pointerX = null;
-        let pointerId = null;
-
-        function upgradeLevel(id) { return save.upgrades[id] || 0; }
-        function upgradeCost(def) { return Math.round(def.base * Math.pow(1.55, upgradeLevel(def.id))); }
-
-        function resizeArcade() {
-            const rect = canvas.getBoundingClientRect();
-            dpr = Math.min(window.devicePixelRatio || 1, 2);
-            W = Math.max(320, rect.width || 900);
-            H = Math.max(360, rect.height || 460);
-            canvas.width = Math.floor(W * dpr);
-            canvas.height = Math.floor(H * dpr);
-            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-            if (run) {
-                run.player.x = clamp(run.player.x, 42, W - 42);
-                run.player.y = H - 54;
-            }
-        }
-
-        function newRun() {
-            const shieldLevel = upgradeLevel('shield');
-            return {
-                active:true,
-                over:false,
-                score:0,
-                level:1,
-                xp:0,
-                xpNext:140,
-                combo:1,
-                comboMeter:0,
-                streak:0,
-                maxCombo:1,
-                lives:3 + shieldLevel,
-                shield:shieldLevel,
-                pulse:90,
-                slow:0,
-                chaos:0,
-                spawnTimer:0.15,
-                fireCd:0,
-                autoCd:0,
-                bossCd:9.5,
-                player:{ x:W / 2, y:H - 54, w:56, h:18 },
-                shots:[],
-                things:[],
-                particles:[],
-                stats:{ recover:0, vip:0, combo:1, league:1 },
-                missions:{}
-            };
-        }
-
-        function setOverlay(show, title, text, buttonText) {
-            const titleEl = startOverlay.querySelector('.arcade-title');
-            const textEl = startOverlay.querySelector('p');
-            titleEl.textContent = title;
-            textEl.textContent = text;
-            startBtn.lastChild.textContent = buttonText;
-            startOverlay.classList.toggle('hidden', !show);
-        }
-
-        function startRun() {
-            save.tag = cleanTag(tagInput.value);
-            tagInput.value = save.tag;
-            run = newRun();
-            setOverlay(false, '', '', 'Start Run');
-            updateHud();
-            renderPanels();
-        }
-
-        function endRun() {
-            if (!run || run.over) return;
-            run.active = false;
-            run.over = true;
-            const earned = Math.floor(run.score / 240) + run.level * 12;
-            save.credits += earned;
-            if (run.score > save.best) save.best = Math.floor(run.score);
-            save.leaderboard.push({ tag:cleanTag(tagInput.value), score:Math.floor(run.score), level:run.level });
-            save.leaderboard.sort((a, b) => b.score - a.score);
-            save.leaderboard = save.leaderboard.slice(0, 6);
-            saveGame();
-            setOverlay(true, 'Run banked ' + money(run.score), '+' + earned + ' credits · league ' + run.level + ' · best combo x' + run.maxCombo.toFixed(1), 'Run It Back');
-            updateHud();
-            renderPanels();
-        }
-
-        function fireShot(auto) {
-            if (!run || !run.active || (run.fireCd > 0 && !auto)) return;
-            const target = auto ? nearestTarget() : null;
-            let vx = 0, vy = -580;
-            if (target) {
-                const dx = target.x - run.player.x;
-                const dy = target.y - run.player.y;
-                const len = Math.max(1, Math.hypot(dx, dy));
-                vx = dx / len * 520;
-                vy = dy / len * 520;
-            }
-            run.shots.push({
-                x:run.player.x,
-                y:run.player.y - 16,
-                vx,
-                vy,
-                r:auto ? 4 : 5,
-                life:1.25,
-                auto:!!auto
-            });
-            run.fireCd = Math.max(0.08, 0.26 - upgradeLevel('turret') * 0.018 - upgradeLevel('reload') * 0.024);
-            addParticles(run.player.x, run.player.y - 18, auto ? '#34D399' : '#0EA5E9', 5);
-        }
-
-        function counterCost(base, discount) {
-            return Math.max(22, base - upgradeLevel('battery') * discount);
-        }
-
-        function usePulse() {
-            if (!run || !run.active) { startRun(); return; }
-            const cost = counterCost(34, 2);
-            if (run.pulse < cost) return;
-            run.pulse -= cost;
-            run.slow = Math.max(run.slow, 2.8);
-            run.comboMeter = Math.min(100, run.comboMeter + 12);
-            run.things.forEach(thing => {
-                if (thing.type === 'hazard' || thing.type === 'rush') {
-                    thing.marked = true;
-                    addParticles(thing.x, thing.y, '#F472B6', 12);
-                }
-            });
-            run.things = run.things.filter(thing => !thing.marked);
-            addParticles(run.player.x, run.player.y - 40, '#EC4899', 28);
-        }
-
-        function useBlast() {
-            if (!run || !run.active) { startRun(); return; }
-            const cost = counterCost(58, 4);
-            if (run.pulse < cost) return;
-            run.pulse -= cost;
-            const radius = 190 + upgradeLevel('magnet') * 12;
-            run.things.forEach(thing => {
-                const d = Math.hypot(thing.x - run.player.x, thing.y - run.player.y);
-                if (d <= radius) {
-                    thing.hp -= thing.type === 'boss' ? 2 : 3;
-                    addParticles(thing.x, thing.y, '#0EA5E9', thing.type === 'boss' ? 18 : 12);
-                    if (thing.hp <= 0) {
-                        thing.hit = true;
-                        if (thing.type === 'lead' || thing.type === 'vip' || thing.type === 'boss') scoreThing(thing);
-                    }
-                }
-            });
-            addParticles(run.player.x, run.player.y - 30, '#38BDF8', 36);
-        }
-
-        function useFreeze() {
-            if (!run || !run.active) { startRun(); return; }
-            const cost = counterCost(46, 3);
-            if (run.pulse < cost) return;
-            run.pulse -= cost;
-            run.slow = Math.max(run.slow, 5.8);
-            run.comboMeter = Math.min(100, run.comboMeter + 8);
-            addParticles(run.player.x, run.player.y - 55, '#A5F3FC', 30);
-        }
-
-        function nearestTarget() {
-            if (!run) return null;
-            let best = null, bestDist = Infinity;
-            run.things.forEach(thing => {
-                if (thing.type === 'hazard' || thing.type === 'rush') return;
-                const d = Math.hypot(thing.x - run.player.x, thing.y - run.player.y);
-                if (d < bestDist) { best = thing; bestDist = d; }
-            });
-            return best;
-        }
-
-        function spawnThing() {
-            if (!run) return;
-            const hazardChance = Math.min(0.34, 0.12 + run.level * 0.018);
-            const drainChance = Math.min(0.12, 0.035 + run.level * 0.008);
-            const vipChance = Math.min(0.2, 0.07 + run.level * 0.012);
-            const roll = Math.random();
-            let type = 'lead';
-            if (roll < hazardChance * 0.58) type = 'hazard';
-            else if (roll < hazardChance) type = 'rush';
-            else if (roll < hazardChance + drainChance) type = 'drain';
-            else if (roll > 1 - vipChance) type = 'vip';
-            const slowMod = run.slow > 0 ? 0.52 : 1;
-            const speed = (108 + run.level * 17) * slowMod;
-            const radius = type === 'vip' ? 18 : (type === 'boss' ? 28 : (type === 'rush' ? 13 : (type === 'drain' ? 17 : (type === 'hazard' ? 15 : 14))));
-            run.things.push({
-                type,
-                x:40 + Math.random() * (W - 80),
-                y:-30,
-                r:radius,
-                vy:(type === 'rush' ? speed * 1.32 : speed) + Math.random() * 52,
-                vx:(Math.random() - 0.5) * (38 + run.level * 3),
-                drift:(type === 'rush' ? 30 : 18) + Math.random() * (20 + run.level * 4),
-                phase:Math.random() * Math.PI * 2,
-                value:type === 'vip' ? 1200 : (type === 'drain' ? 0 : 450),
-                hp:type === 'vip' ? 2 : (type === 'drain' ? 2 : 1),
-                spin:Math.random() * Math.PI * 2
-            });
-        }
-
-        function spawnBoss() {
-            if (!run || run.level < 2) return;
-            run.things.push({
-                type:'boss',
-                x:70 + Math.random() * (W - 140),
-                y:-54,
-                r:28,
-                vy:78 + run.level * 10,
-                vx:(Math.random() - 0.5) * 54,
-                drift:28 + run.level * 4,
-                phase:Math.random() * Math.PI * 2,
-                value:2400 + run.level * 280,
-                hp:5 + Math.floor(run.level / 2),
-                spin:0
-            });
-        }
-
-        function scoreThing(thing) {
-            if (!run) return;
-            const comboBoost = 1 + upgradeLevel('combo') * 0.08;
-            const gained = thing.value * run.combo;
-            run.score += gained;
-            run.xp += thing.type === 'boss' ? 75 : (thing.type === 'vip' ? 42 : 24);
-            run.streak += 1;
-            run.combo = Math.min(12, 1 + run.streak * 0.16 * comboBoost);
-            run.comboMeter = Math.min(100, run.comboMeter + (thing.type === 'boss' ? 30 : 14));
-            run.maxCombo = Math.max(run.maxCombo, run.combo);
-            run.stats.recover += 1;
-            if (thing.type === 'vip' || thing.type === 'boss') run.stats.vip += 1;
-            run.stats.combo = Math.max(run.stats.combo, Math.floor(run.combo));
-            addParticles(thing.x, thing.y, thing.type === 'vip' ? '#EC4899' : (thing.type === 'boss' ? '#A855F7' : '#34D399'), thing.type === 'boss' ? 32 : 16);
-            while (run.xp >= run.xpNext) levelUp();
-            checkMissions();
-        }
-
-        function levelUp() {
-            run.xp -= run.xpNext;
-            run.level += 1;
-            run.stats.league = run.level;
-            run.xpNext = Math.round(run.xpNext * 1.24 + 45);
-            run.pulse = Math.min(100, run.pulse + 45);
-            run.lives = Math.min(8, run.lives + (run.level % 3 === 0 ? 1 : 0));
-            addParticles(run.player.x, run.player.y - 90, '#F9A8D4', 40);
-        }
-
-        function breakCombo() {
-            if (!run) return;
-            run.streak = 0;
-            run.combo = 1;
-            run.comboMeter = Math.max(0, run.comboMeter - 35);
-        }
-
-        function takeHit() {
-            if (!run) return;
-            if (run.shield > 0) {
-                run.shield -= 1;
-                addParticles(run.player.x, run.player.y, '#0EA5E9', 22);
-            } else {
-                run.lives -= 1;
-                addParticles(run.player.x, run.player.y, '#EF4444', 24);
-            }
-            breakCombo();
-            if (run.lives <= 0) endRun();
-        }
-
-        function checkMissions() {
-            if (!run) return;
-            missionDefs.forEach(mission => {
-                if (run.missions[mission.id]) return;
-                const value = run.stats[mission.id] || 0;
-                if (value >= mission.target) {
-                    run.missions[mission.id] = true;
-                    save.credits += mission.reward;
-                    addParticles(run.player.x, run.player.y - 70, '#34D399', 26);
-                    saveGame();
-                    renderPanels();
-                }
-            });
-        }
-
-        function addParticles(x, y, color, count) {
-            if (!run) return;
-            for (let i = 0; i < count; i++) {
-                const a = Math.random() * Math.PI * 2;
-                const s = 40 + Math.random() * 180;
-                run.particles.push({ x, y, vx:Math.cos(a) * s, vy:Math.sin(a) * s, life:0.45 + Math.random() * 0.5, max:0.95, color, r:2 + Math.random() * 3 });
-            }
-        }
-
-        function updateGame(dt) {
-            if (!run || !run.active) return;
-            run.spawnTimer -= dt;
-            run.fireCd = Math.max(0, run.fireCd - dt);
-            run.autoCd -= dt;
-            run.bossCd -= dt;
-            run.slow = Math.max(0, run.slow - dt);
-            run.chaos = Math.min(1, run.chaos + dt * 0.01);
-            run.pulse = Math.min(100, run.pulse + dt * (3.8 + upgradeLevel('battery') * 0.75));
-            run.comboMeter = Math.max(0, run.comboMeter - dt * 8.5);
-            if (run.comboMeter <= 0) run.combo = Math.max(1, run.combo - dt * 1.05);
-
-            const dir = (keys.has('ArrowRight') || keys.has('KeyD') ? 1 : 0) - (keys.has('ArrowLeft') || keys.has('KeyA') ? 1 : 0);
-            run.player.x += dir * (420 + upgradeLevel('magnet') * 18) * dt;
-            if (pointerX !== null) run.player.x += (pointerX - run.player.x) * Math.min(1, dt * 10);
-            run.player.x = clamp(run.player.x, 36, W - 36);
-
-            if (run.spawnTimer <= 0) {
-                const wave = 1 + (run.level >= 3 ? 1 : 0) + (run.level >= 6 ? 1 : 0) + (run.chaos > 0.7 ? 1 : 0);
-                for (let i = 0; i < wave; i++) spawnThing();
-                if (run.level > 4 && Math.random() < 0.18 + run.chaos * 0.14) spawnThing();
-                run.spawnTimer = Math.max(0.18, 0.58 - run.level * 0.034 - run.chaos * 0.05);
-            }
-            if (run.bossCd <= 0) {
-                spawnBoss();
-                run.bossCd = Math.max(6.5, 13 - run.level * 0.5 - run.chaos * 1.1);
-            }
-            if (upgradeLevel('turret') > 0 && run.autoCd <= 0) {
-                fireShot(true);
-                run.autoCd = Math.max(0.85, 2.2 - upgradeLevel('turret') * 0.24);
-            }
-
-            const magnet = 70 + upgradeLevel('magnet') * 26;
-            run.things.forEach(thing => {
-                thing.spin += dt * 3;
-                if (thing.type === 'lead' || thing.type === 'vip' || thing.type === 'boss') {
-                    const dx = run.player.x - thing.x;
-                    const dy = run.player.y - thing.y;
-                    const dist = Math.hypot(dx, dy);
-                    if (dist < magnet) {
-                        thing.vx += dx / Math.max(1, dist) * dt * 240;
-                        thing.vy += dy / Math.max(1, dist) * dt * 160;
-                    }
-                }
-                thing.x += (thing.vx + Math.sin(thing.phase + thing.y * 0.025) * (thing.drift || 0)) * dt;
-                thing.y += thing.vy * dt;
-                if (thing.x < thing.r || thing.x > W - thing.r) thing.vx *= -0.9;
-            });
-
-            run.shots.forEach(shot => {
-                shot.x += shot.vx * dt;
-                shot.y += shot.vy * dt;
-                shot.life -= dt;
-            });
-            run.shots = run.shots.filter(shot => shot.life > 0 && shot.y > -40 && shot.x > -40 && shot.x < W + 40);
-
-            run.shots.forEach(shot => {
-                run.things.forEach(thing => {
-                    if (thing.hit) return;
-                    if (Math.hypot(shot.x - thing.x, shot.y - thing.y) < thing.r + shot.r) {
-                        shot.life = 0;
-                        if (thing.type === 'hazard' || thing.type === 'rush') {
-                            thing.hit = true;
-                            addParticles(thing.x, thing.y, '#F472B6', 12);
-                            return;
-                        }
-                        thing.hp -= 1;
-                        addParticles(thing.x, thing.y, '#0EA5E9', 8);
-                        if (thing.hp <= 0) {
-                            thing.hit = true;
-                            if (thing.type === 'drain') {
-                                run.pulse = Math.min(100, run.pulse + 8);
-                                run.comboMeter = Math.min(100, run.comboMeter + 8);
-                            } else {
-                                scoreThing(thing);
-                            }
-                        }
-                    }
-                });
-            });
-
-            run.things.forEach(thing => {
-                if (thing.hit) return;
-                const caught = Math.abs(thing.x - run.player.x) < run.player.w * 0.56 + thing.r && Math.abs(thing.y - run.player.y) < run.player.h + thing.r;
-                if (caught) {
-                    thing.hit = true;
-                    if (thing.type === 'hazard' || thing.type === 'rush' || thing.type === 'drain') takeHit();
-                    else scoreThing(thing);
-                } else if (thing.y > H + 44) {
-                    thing.hit = true;
-                    if (thing.type === 'drain') {
-                        run.score = Math.max(0, run.score - 700);
-                        run.pulse = Math.max(0, run.pulse - 18);
-                        breakCombo();
-                    } else if (thing.type !== 'hazard' && thing.type !== 'rush') {
-                        breakCombo();
-                        run.pulse = Math.max(0, run.pulse - 10);
-                        if (thing.type === 'vip' || thing.type === 'boss' || run.level > 3) takeHit();
-                    }
-                }
-            });
-            run.things = run.things.filter(thing => !thing.hit);
-
-            run.particles.forEach(p => {
-                p.x += p.vx * dt;
-                p.y += p.vy * dt;
-                p.vy += 190 * dt;
-                p.life -= dt;
-            });
-            run.particles = run.particles.filter(p => p.life > 0);
-            updateHud();
-        }
-
-        function updateHud() {
-            const active = run && run.active;
-            scoreEl.textContent = money(run ? run.score : 0);
-            comboEl.textContent = 'x' + (run ? run.combo.toFixed(1) : '1.0');
-            levelEl.textContent = run ? run.level : '1';
-            livesEl.textContent = run ? Math.max(0, run.lives) : '3';
-            xpBar.style.width = run ? Math.min(100, (run.xp / run.xpNext) * 100).toFixed(1) + '%' : '0%';
-            bankEl.textContent = save.credits.toLocaleString() + ' credits';
-            pulseBtn.disabled = !!(active && run.pulse < counterCost(34, 2));
-            if (blastBtn) blastBtn.disabled = !!(active && run.pulse < counterCost(58, 4));
-            if (freezeBtn) freezeBtn.disabled = !!(active && run.pulse < counterCost(46, 3));
-        }
-
-        function renderPanels() {
-            bankEl.textContent = save.credits.toLocaleString() + ' credits';
-            upgradesEl.innerHTML = upgradeDefs.map(def => {
-                const lvl = upgradeLevel(def.id);
-                const maxed = lvl >= def.max;
-                const cost = upgradeCost(def);
-                const disabled = maxed || save.credits < cost;
-                return `<div class="arcade-upgrade">
-                    <div class="arcade-upgrade-icon">${esc(def.icon)}</div>
-                    <div><strong>${esc(def.name)} · ${lvl}/${def.max}</strong><span>${esc(def.desc)}</span></div>
-                    <button class="arcade-mini-btn" type="button" data-upgrade="${esc(def.id)}" ${disabled ? 'disabled' : ''}>${maxed ? 'Max' : cost}</button>
-                </div>`;
-            }).join('');
-            upgradesEl.querySelectorAll('[data-upgrade]').forEach(btn => {
-                btn.addEventListener('click', () => {
-                    const def = upgradeDefs.find(item => item.id === btn.dataset.upgrade);
-                    if (!def) return;
-                    const lvl = upgradeLevel(def.id);
-                    const cost = upgradeCost(def);
-                    if (lvl >= def.max || save.credits < cost) return;
-                    save.credits -= cost;
-                    save.upgrades[def.id] = lvl + 1;
-                    saveGame();
-                    renderPanels();
-                    updateHud();
-                });
-            });
-
-            missionsEl.innerHTML = missionDefs.map(mission => {
-                const current = run ? Math.min(mission.target, run.stats[mission.id] || 0) : 0;
-                const done = !!(run && run.missions[mission.id]);
-                return `<div class="arcade-mission ${done ? 'done' : ''}">
-                    <div class="arcade-mission-icon">${esc(mission.icon)}</div>
-                    <div><strong>${esc(mission.name)}</strong><span>${done ? 'Claimed +' + mission.reward : current + '/' + mission.target + ' · +' + mission.reward + ' credits'}</span></div>
-                </div>`;
-            }).join('');
-
-            leaderboardEl.innerHTML = save.leaderboard.slice(0, 5).map((entry, i) => `<div class="arcade-leader-row">
-                <div class="arcade-rank">${i + 1}</div>
-                <div><strong>${esc(cleanTag(entry.tag))}</strong><span>League ${entry.level || 1}</span></div>
-                <span class="arcade-bank">${money(entry.score || 0)}</span>
-            </div>`).join('');
-        }
-
-        function drawRoundRect(x, y, w, h, r) {
-            const rr = Math.min(r, w / 2, h / 2);
-            ctx.beginPath();
-            ctx.moveTo(x + rr, y);
-            ctx.arcTo(x + w, y, x + w, y + h, rr);
-            ctx.arcTo(x + w, y + h, x, y + h, rr);
-            ctx.arcTo(x, y + h, x, y, rr);
-            ctx.arcTo(x, y, x + w, y, rr);
-            ctx.closePath();
-        }
-
-        function drawBackground(now) {
-            ctx.clearRect(0, 0, W, H);
-            const g = ctx.createLinearGradient(0, 0, 0, H);
-            g.addColorStop(0, '#071027');
-            g.addColorStop(1, '#03050C');
-            ctx.fillStyle = g;
-            ctx.fillRect(0, 0, W, H);
-            ctx.save();
-            ctx.globalAlpha = 0.22;
-            for (let i = 0; i < 70; i++) {
-                const x = (i * 97 + now * 0.018) % W;
-                const y = (i * 53 + Math.sin(now * 0.001 + i) * 18) % H;
-                ctx.fillStyle = i % 4 === 0 ? '#EC4899' : (i % 3 === 0 ? '#34D399' : '#3B82F6');
-                ctx.beginPath();
-                ctx.arc(x, y, i % 5 === 0 ? 1.8 : 1, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            ctx.strokeStyle = 'rgba(255,255,255,0.04)';
-            ctx.lineWidth = 1;
-            for (let x = 0; x < W; x += 56) {
-                ctx.beginPath();
-                ctx.moveTo(x, 0);
-                ctx.lineTo(x - 80, H);
-                ctx.stroke();
-            }
-            ctx.restore();
-        }
-
-        function drawThing(thing) {
-            const colors = {
-                lead:['#34D399', 'rgba(52,211,153,0.25)', '$450'],
-                vip:['#EC4899', 'rgba(236,72,153,0.28)', 'VIP'],
-                boss:['#A855F7', 'rgba(168,85,247,0.3)', 'BOSS'],
-                hazard:['#EF4444', 'rgba(239,68,68,0.22)', 'MISS'],
-                rush:['#F97316', 'rgba(249,115,22,0.24)', 'RUSH'],
-                drain:['#F59E0B', 'rgba(245,158,11,0.23)', 'NO-SHOW']
-            }[thing.type];
-            ctx.save();
-            ctx.translate(thing.x, thing.y);
-            ctx.rotate(thing.spin);
-            const glow = ctx.createRadialGradient(0, 0, 0, 0, 0, thing.r * 2.4);
-            glow.addColorStop(0, colors[1]);
-            glow.addColorStop(1, 'transparent');
-            ctx.fillStyle = glow;
-            ctx.beginPath();
-            ctx.arc(0, 0, thing.r * 2.35, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.fillStyle = 'rgba(4,6,15,0.82)';
-            ctx.strokeStyle = colors[0];
-            ctx.lineWidth = 2;
-            drawRoundRect(-thing.r * 1.35, -thing.r, thing.r * 2.7, thing.r * 2, 9);
-            ctx.fill();
-            ctx.stroke();
-            ctx.rotate(-thing.spin);
-            ctx.fillStyle = colors[0];
-            ctx.font = '800 10px JetBrains Mono, monospace';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText(colors[2], 0, 0);
-            if (thing.hp > 1) {
-                ctx.fillStyle = 'rgba(255,255,255,0.18)';
-                ctx.fillRect(-thing.r, thing.r + 6, thing.r * 2, 4);
-                ctx.fillStyle = colors[0];
-                ctx.fillRect(-thing.r, thing.r + 6, thing.r * 2 * Math.min(1, thing.hp / 6), 4);
-            }
-            ctx.restore();
-        }
-
-        function draw(now) {
-            drawBackground(now);
-            if (!run) {
-                ctx.save();
-                ctx.globalAlpha = 0.45;
-                ctx.fillStyle = '#F9A8D4';
-                ctx.font = '800 22px Bricolage Grotesque, sans-serif';
-                ctx.textAlign = 'center';
-                ctx.fillText('REVENUE RUSH', W / 2, H / 2 - 74);
-                ctx.restore();
-                return;
-            }
-            run.things.forEach(drawThing);
-            ctx.save();
-            run.shots.forEach(shot => {
-                ctx.strokeStyle = shot.auto ? '#34D399' : '#0EA5E9';
-                ctx.shadowColor = ctx.strokeStyle;
-                ctx.shadowBlur = 14;
-                ctx.lineWidth = shot.auto ? 3 : 4;
-                ctx.beginPath();
-                ctx.moveTo(shot.x, shot.y + 12);
-                ctx.lineTo(shot.x, shot.y - 12);
-                ctx.stroke();
-            });
-            ctx.restore();
-
-            run.particles.forEach(p => {
-                ctx.globalAlpha = Math.max(0, p.life / p.max);
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fill();
-            });
-            ctx.globalAlpha = 1;
-
-            const player = run.player;
-            ctx.save();
-            ctx.shadowColor = '#0EA5E9';
-            ctx.shadowBlur = 24;
-            const pg = ctx.createLinearGradient(player.x - 34, player.y - 18, player.x + 34, player.y + 18);
-            pg.addColorStop(0, '#2563EB');
-            pg.addColorStop(0.55, '#0EA5E9');
-            pg.addColorStop(1, '#EC4899');
-            ctx.fillStyle = pg;
-            drawRoundRect(player.x - player.w / 2, player.y - player.h / 2, player.w, player.h, 9);
-            ctx.fill();
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = 'white';
-            ctx.font = '900 10px JetBrains Mono, monospace';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.fillText('BS', player.x, player.y + 0.5);
-            if (run.shield > 0) {
-                ctx.strokeStyle = 'rgba(14,165,233,0.55)';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.arc(player.x, player.y, 42, 0, Math.PI * 2);
-                ctx.stroke();
-            }
-            ctx.restore();
-        }
-
-        function loop(now) {
-            const dt = last ? Math.min(0.033, (now - last) / 1000) : 0;
-            last = now;
-            updateGame(dt);
-            draw(now);
-            requestAnimationFrame(loop);
-        }
-
-        function setPointerTarget(e) {
-            const rect = canvas.getBoundingClientRect();
-            pointerX = clamp(e.clientX - rect.left, 30, W - 30);
-        }
-        canvas.addEventListener('pointermove', e => {
-            if (e.pointerType === 'touch') e.preventDefault();
-            setPointerTarget(e);
-        });
-        canvas.addEventListener('pointerleave', () => {
-            if (pointerId === null) pointerX = null;
-        });
-        canvas.addEventListener('pointerdown', e => {
-            if (e.pointerType === 'touch') e.preventDefault();
-            pointerId = e.pointerId;
-            if (canvas.setPointerCapture) canvas.setPointerCapture(e.pointerId);
-            setPointerTarget(e);
-            if (!run || !run.active) startRun();
-            else fireShot(false);
-        });
-        canvas.addEventListener('pointerup', e => {
-            if (pointerId !== e.pointerId) return;
-            if (canvas.releasePointerCapture) {
-                try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
-            }
-            pointerId = null;
-            if (e.pointerType === 'touch') pointerX = null;
-        });
-        canvas.addEventListener('pointercancel', () => {
-            pointerId = null;
-            pointerX = null;
-        });
-        document.addEventListener('keydown', e => {
-            const active = document.activeElement;
-            const isTyping = active && (
-                active === tagInput ||
-                active.isContentEditable ||
-                ['INPUT','TEXTAREA','SELECT'].includes(active.tagName)
-            );
-            if (isTyping) return;
-            if (['ArrowLeft','ArrowRight','KeyA','KeyD'].includes(e.code)) keys.add(e.code);
-            if (e.code === 'Space') { e.preventDefault(); fireShot(false); }
-            if (e.code === 'KeyQ') { e.preventDefault(); usePulse(); }
-            if (e.code === 'KeyW') { e.preventDefault(); useBlast(); }
-            if (e.code === 'KeyE') { e.preventDefault(); useFreeze(); }
-            if (e.code === 'Enter' && (!run || !run.active)) startRun();
-        });
-        document.addEventListener('keyup', e => keys.delete(e.code));
-        startBtn.addEventListener('click', startRun);
-        resetBtn.addEventListener('click', startRun);
-        pulseBtn.addEventListener('click', usePulse);
-        if (blastBtn) blastBtn.addEventListener('click', useBlast);
-        if (freezeBtn) freezeBtn.addEventListener('click', useFreeze);
-        tagInput.addEventListener('input', () => {
-            tagInput.value = cleanTag(tagInput.value);
-            save.tag = tagInput.value;
-            saveGame();
-        });
-        window.addEventListener('resize', resizeArcade, { passive:true });
-
-        resizeArcade();
-        updateHud();
-        renderPanels();
-        requestAnimationFrame(loop);
-    }
-    initFooterArcade();
 
     if (prefersReduced) {
         document.querySelectorAll('.hero-line-inner, .hero-badge, .hero .sub, .hero-cta, .hero-trust, .mobile-hero-proof, .hero-visual, .module, .section-eyebrow, .section-header h2, .section-header p, .flow-step, .dash-frame').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
