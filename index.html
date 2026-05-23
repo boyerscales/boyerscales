@@ -63,7 +63,7 @@
         /* ── PERSISTENT BACKGROUND LAYERS ── */
         #threeCanvas{
             position:fixed;top:0;left:0;width:100%;height:100%;
-            z-index:0;pointer-events:none;opacity:0.85;
+            z-index:0;pointer-events:none;opacity:0.7;
         }
         .noise{
             position:fixed;inset:0;pointer-events:none;z-index:1;
@@ -228,7 +228,7 @@
         /* ── HERO ── */
         .hero{
             min-height:min(100vh,900px);display:flex;align-items:center;
-            padding:132px 0 118px;position:relative;overflow:hidden;
+            padding:104px 0 64px;position:relative;overflow:hidden;
         }
         .hero::after{
             content:'';position:absolute;left:0;right:0;bottom:-1px;height:210px;z-index:1;pointer-events:none;
@@ -305,13 +305,22 @@
 
         /* ── HERO VISUAL (right side) ── */
         .hero-visual{
-            position:relative;height:560px;width:100%;max-width:660px;justify-self:end;z-index:2;
+            position:relative;height:570px;width:100%;max-width:660px;justify-self:end;z-index:2;
             perspective:1400px;
             transform-style:preserve-3d;
             opacity:0;
         }
+        .hero-visual::before{
+            content:'';position:absolute;top:48%;left:50%;width:116%;height:92%;
+            transform:translate(-50%,-50%);
+            background:
+                radial-gradient(ellipse at 34% 42%, rgba(14,165,233,0.24), transparent 60%),
+                radial-gradient(ellipse at 72% 66%, rgba(236,72,153,0.18), transparent 55%),
+                radial-gradient(ellipse at 62% 28%, rgba(16,185,129,0.16), transparent 55%);
+            filter:blur(34px);z-index:0;pointer-events:none;
+        }
         .hero-stage{
-            position:absolute;inset:0;
+            position:absolute;inset:0;z-index:1;
             transform-style:preserve-3d;
             transition:transform 0.6s cubic-bezier(0.2,0.9,0.3,1);
         }
@@ -323,14 +332,18 @@
             margin:-230px 0 0 -115px;
             background:linear-gradient(160deg,#1A2244,#0A0F22);
             border-radius:42px;
-            border:1px solid rgba(255,255,255,0.1);
+            border:1px solid rgba(255,255,255,0.12);
             box-shadow:
                 0 60px 120px rgba(0,0,0,0.65),
-                0 0 0 1px rgba(255,255,255,0.04) inset,
-                0 0 60px rgba(37,99,235,0.18);
+                0 0 0 1px rgba(255,255,255,0.05) inset,
+                0 0 80px rgba(37,99,235,0.4),
+                0 0 150px rgba(14,165,233,0.18);
             transform:translateZ(60px) rotateY(-12deg) rotateX(6deg);
             overflow:hidden;
+            cursor:pointer;
+            animation:floatPhone 7s ease-in-out infinite;
         }
+        @keyframes floatPhone{0%,100%{transform:translateZ(60px) rotateY(-12deg) rotateX(6deg) translateY(0)}50%{transform:translateZ(60px) rotateY(-12deg) rotateX(6deg) translateY(-11px)}}
         .phone::before{
             content:'';position:absolute;top:14px;left:50%;transform:translateX(-50%);
             width:90px;height:24px;border-radius:14px;
@@ -411,14 +424,17 @@
             font-size:0.7rem;text-align:center;color:var(--text-secondary);font-weight:600;
         }
         .phone-actions div.book{background:rgba(16,185,129,0.12);color:var(--growth-light);border:1px solid rgba(16,185,129,0.3)}
+        .phone-tap-hint{margin:0.45rem 0.85rem 0.55rem;padding:0.46rem;border-radius:11px;text-align:center;font-size:0.7rem;font-weight:800;letter-spacing:0.02em;color:var(--text-primary);background:linear-gradient(135deg,rgba(14,165,233,0.2),rgba(16,185,129,0.16));border:1px solid rgba(14,165,233,0.34)}
+        .phone{transition:box-shadow 0.35s ease}
+        .phone:hover{box-shadow:0 60px 120px rgba(0,0,0,0.65),0 0 0 1px rgba(255,255,255,0.09) inset,0 0 110px rgba(37,99,235,0.55),0 0 185px rgba(14,165,233,0.3)}
 
         /* Floating dashboard mock */
         .dash-mock{
-            position:absolute;top:5%;right:0;
-            width:270px;
+            position:absolute;top:-9%;right:-8px;
+            width:256px;
             background:rgba(10,15,34,0.85);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-            border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:1.1rem 1.1rem 0.9rem;
-            box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.04) inset;
+            border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:1.1rem 1.1rem 0.9rem;
+            box-shadow:0 34px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.06) inset,0 0 48px rgba(16,185,129,0.18);
             transform:translateZ(120px) rotateY(-6deg) rotateX(2deg);
             animation:floatA 8s ease-in-out infinite;
         }
@@ -427,16 +443,16 @@
         .dash-mock-title{font-size:0.7rem;color:var(--text-tertiary);font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
         .dash-mock-live{display:inline-flex;align-items:center;gap:0.35rem;font-size:0.65rem;color:var(--growth-light);font-weight:700}
         .dash-mock-live .dot{width:6px;height:6px;border-radius:50%;background:var(--growth);box-shadow:0 0 6px var(--growth);animation:pulseDot 1.4s infinite}
-        .dash-mock-amount{font-family:'Bricolage Grotesque',sans-serif;font-size:1.85rem;font-weight:800;letter-spacing:-0.025em;background:linear-gradient(135deg,var(--gold-light),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.3rem;font-variant-numeric:tabular-nums}
+        .dash-mock-amount{font-family:'Bricolage Grotesque',sans-serif;font-size:1.95rem;font-weight:800;letter-spacing:-0.025em;background:linear-gradient(135deg,#F472B6,#EC4899);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:0.3rem;font-variant-numeric:tabular-nums;filter:drop-shadow(0 0 16px rgba(236,72,153,0.55))}
         .dash-mock-label{font-size:0.7rem;color:var(--text-secondary);margin-bottom:0.85rem}
         .dash-mock-bars{display:flex;align-items:flex-end;gap:5px;height:54px;margin-bottom:0.65rem}
         .dash-mock-bars span{
             flex:1;border-radius:3px 3px 0 0;
-            background:linear-gradient(180deg,var(--ai-light),rgba(37,99,235,0.4));
-            opacity:0.85;transform-origin:bottom;
+            background:linear-gradient(180deg,#38BDF8,rgba(56,189,248,0.5));
+            opacity:1;transform-origin:bottom;
             animation:barPulse 4s ease-in-out infinite;
         }
-        .dash-mock-bars span:nth-child(odd){background:linear-gradient(180deg,var(--growth-light),rgba(16,185,129,0.4))}
+        .dash-mock-bars span:nth-child(odd){background:linear-gradient(180deg,#34D399,rgba(52,211,153,0.55))}
         .dash-mock-bars span:nth-child(1){animation-delay:0s}
         .dash-mock-bars span:nth-child(2){animation-delay:0.3s}
         .dash-mock-bars span:nth-child(3){animation-delay:0.6s}
@@ -451,11 +467,11 @@
 
         /* SMS bubble */
         .sms-bubble{
-            position:absolute;bottom:2%;left:0;
-            width:212px;
+            position:absolute;bottom:-9%;left:-8px;
+            width:200px;
             background:rgba(10,15,34,0.85);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
-            border:1px solid rgba(255,255,255,0.08);border-radius:18px;padding:0.95rem;
-            box-shadow:0 30px 80px rgba(0,0,0,0.5),0 0 0 1px rgba(255,255,255,0.04) inset;
+            border:1px solid rgba(255,255,255,0.1);border-radius:18px;padding:0.95rem;
+            box-shadow:0 34px 80px rgba(0,0,0,0.55),0 0 0 1px rgba(255,255,255,0.06) inset,0 0 46px rgba(10,132,255,0.22);
             transform:translateZ(80px) rotateY(8deg) rotateX(-2deg);
             animation:floatB 9s ease-in-out infinite;
         }
@@ -1286,11 +1302,18 @@
             .mobile-proof-actions{gap:0.45rem}
             .mobile-proof-actions a{min-height:40px;border-radius:11px;font-size:0.74rem}
             .mobile-proof-actions a:first-child{background:rgba(37,99,235,0.16);border-color:rgba(59,130,246,0.32);box-shadow:none;color:#BFDBFE}
-            .hero-visual{display:none}
+            .mobile-hero-proof{display:none}
+            .hero-copy{text-shadow:0 1px 12px rgba(4,6,15,0.9)}
+            .hero-visual{display:flex;justify-content:center;height:auto;max-width:none;margin:0.25rem auto 0;perspective:none}
+            .hero-visual::before{display:none}
+            .hero-stage{position:static;transform:none!important;display:flex;justify-content:center;width:100%}
+            .phone{position:relative;top:auto;left:auto;margin:0 auto;transform:none!important;animation:none}
+            .dash-mock,.sms-bubble{display:none}
+            #threeCanvas{opacity:0.4}
             .hero-stage{position:relative;height:100%;transform:none!important}
             .phone{
-                width:218px;height:436px;top:53%;left:56%;margin:-218px 0 0 -109px;
-                border-radius:34px;transform:none!important;z-index:2;
+                width:230px;height:460px;top:auto;left:auto;margin:0 auto;
+                border-radius:36px;transform:none!important;z-index:2;
             }
             .phone::before{top:11px;width:74px;height:20px}
             .phone-screen{top:7px;left:7px;right:7px;bottom:7px;border-radius:29px}
@@ -1402,11 +1425,11 @@
             .mobile-proof-actions{grid-template-columns:1fr 1fr}
             .hero-visual{height:470px}
             .dash-mock{width:min(260px,82vw)}
-            .phone{width:190px;height:380px;top:54%;left:58%;margin:-190px 0 0 -95px}
+            .phone{width:230px;height:460px;top:auto;left:auto;margin:0 auto}
             .phone-call-name{font-size:1rem}
             .phone-call-label,.phone-call-number{font-size:0.62rem}
             .phone-waveform{height:38px}
-            .phone-transcript{display:none}
+            .phone-transcript{min-height:46px}
             .phone-actions{grid-template-columns:1fr}
             .sms-bubble{width:min(260px,84vw)}
             .dash-mock-stats{grid-template-columns:1fr 1fr}
@@ -1608,6 +1631,7 @@
                                 <div>📅 Calendar Held</div>
                                 <div class="book">✓ Booked Tue 2pm</div>
                             </div>
+                            <div class="phone-tap-hint">Tap to call this AI line</div>
                         </div>
                     </div>
 
@@ -2236,7 +2260,7 @@
     const isMobile = window.innerWidth < 969;
     const isTouch = matchMedia('(hover:none)').matches;
 
-    /* ──────────────── THREE.JS HERO PARTICLE NETWORK ──────────────── */
+    /* ──────────────── THREE.JS HERO WAVE FIELD ──────────────── */
     if (!prefersReduced && typeof THREE !== 'undefined') {
         const canvas = document.getElementById('threeCanvas');
         const renderer = new THREE.WebGLRenderer({ canvas, alpha:true, antialias:true, powerPreference:'high-performance' });
@@ -2244,111 +2268,89 @@
         renderer.setSize(window.innerWidth, window.innerHeight, false);
 
         const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(70, window.innerWidth/window.innerHeight, 0.1, 1000);
-        camera.position.z = 22;
+        scene.fog = new THREE.FogExp2(0x04060F, 0.0125);
+        const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight, 0.1, 1000);
+        camera.position.set(0, 7, 26);
 
-        // Particle field
-        const PARTICLE_COUNT = isMobile ? 600 : 1400;
-        const positions = new Float32Array(PARTICLE_COUNT * 3);
-        const colors = new Float32Array(PARTICLE_COUNT * 3);
-        const sizes = new Float32Array(PARTICLE_COUNT);
+        // ── Flowing wireframe terrain (no dot-field) ──
+        const SEG = isMobile ? 46 : 92;
+        const SPAN = 150;
+        const geo = new THREE.PlaneGeometry(SPAN, SPAN, SEG, SEG);
+        geo.rotateX(-Math.PI / 2);
+        const base = Float32Array.from(geo.attributes.position.array);
+        const vcount = geo.attributes.position.count;
 
-        const colA = new THREE.Color('#3B82F6');
-        const colB = new THREE.Color('#10B981');
-        const colC = new THREE.Color('#0EA5E9');
-
-        for (let i = 0; i < PARTICLE_COUNT; i++) {
-            const r = 4 + Math.random() * 22;
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.acos(2 * Math.random() - 1);
-            positions[i*3]   = r * Math.sin(phi) * Math.cos(theta);
-            positions[i*3+1] = r * Math.sin(phi) * Math.sin(theta) * 0.7;
-            positions[i*3+2] = r * Math.cos(phi);
-            const t = Math.random();
-            const c = t < 0.4 ? colA : (t < 0.7 ? colB : colC);
-            colors[i*3]   = c.r; colors[i*3+1] = c.g; colors[i*3+2] = c.b;
-            sizes[i] = Math.random() * 1.5 + 0.5;
+        // gradient vertex colors: far (green) -> mid (cyan) -> near (pink)
+        const cFar  = new THREE.Color('#10B981');
+        const cMid  = new THREE.Color('#0EA5E9');
+        const cNear = new THREE.Color('#EC4899');
+        const cols = new Float32Array(vcount * 3);
+        for (let i = 0; i < vcount; i++) {
+            const z = base[i*3+2];
+            const tt = (z + SPAN/2) / SPAN;
+            const col = tt < 0.5 ? cFar.clone().lerp(cMid, tt*2) : cMid.clone().lerp(cNear, (tt-0.5)*2);
+            cols[i*3] = col.r; cols[i*3+1] = col.g; cols[i*3+2] = col.b;
         }
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-        geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-        geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+        geo.setAttribute('color', new THREE.BufferAttribute(cols, 3));
 
-        // sprite-like circular point texture
-        const tex = (() => {
-            const c = document.createElement('canvas');
-            c.width = c.height = 64;
-            const ctx = c.getContext('2d');
-            const g = ctx.createRadialGradient(32,32,0,32,32,32);
-            g.addColorStop(0, 'rgba(255,255,255,1)');
-            g.addColorStop(0.4, 'rgba(255,255,255,0.6)');
-            g.addColorStop(1, 'rgba(255,255,255,0)');
-            ctx.fillStyle = g; ctx.beginPath(); ctx.arc(32,32,32,0,Math.PI*2); ctx.fill();
-            const t = new THREE.CanvasTexture(c);
-            t.minFilter = THREE.LinearFilter;
-            return t;
-        })();
+        const wireMat = new THREE.MeshBasicMaterial({ wireframe:true, vertexColors:true, transparent:true, opacity:0.32, blending:THREE.AdditiveBlending, depthWrite:false });
+        const terrain = new THREE.Mesh(geo, wireMat);
+        scene.add(terrain);
 
-        const mat = new THREE.PointsMaterial({
-            size: 0.18,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.85,
-            map: tex,
-            depthWrite: false,
-            blending: THREE.AdditiveBlending,
-            sizeAttenuation: true
-        });
-        const points = new THREE.Points(geo, mat);
-        scene.add(points);
-
-        // Inner orbital rings
-        const ringGroup = new THREE.Group();
-        scene.add(ringGroup);
-        for (let i = 0; i < 3; i++) {
-            const ringGeo = new THREE.TorusGeometry(8 + i*1.4, 0.015, 16, 220);
-            const ringMat = new THREE.MeshBasicMaterial({ color: i===0?0x3B82F6:(i===1?0x10B981:0x0EA5E9), transparent:true, opacity:0.18 });
-            const ring = new THREE.Mesh(ringGeo, ringMat);
-            ring.rotation.x = (Math.random()-0.5) * Math.PI;
-            ring.rotation.y = (Math.random()-0.5) * Math.PI;
-            ringGroup.add(ring);
+        // ── pointer (mouse + touch) drives a glowing swell ──
+        let pErX = 0, pErY = 0, pRawX = 0, pRawY = 0, pActive = 0, pTarget = 0;
+        function setPointer(cx, cy){
+            pRawX = (cx / window.innerWidth - 0.5) * 2;
+            pRawY = (cy / window.innerHeight - 0.5) * 2;
+            pTarget = 1;
         }
+        window.addEventListener('mousemove', e => setPointer(e.clientX, e.clientY), { passive:true });
+        window.addEventListener('mouseout', () => { pTarget = 0; }, { passive:true });
+        window.addEventListener('touchmove', e => { if (e.touches[0]) setPointer(e.touches[0].clientX, e.touches[0].clientY); }, { passive:true });
+        window.addEventListener('touchend', () => { pTarget = 0; }, { passive:true });
 
-        // mouse parallax
-        let mx=0, my=0, tmx=0, tmy=0;
-        window.addEventListener('mousemove', e => {
-            mx = (e.clientX / window.innerWidth - 0.5) * 2;
-            my = (e.clientY / window.innerHeight - 0.5) * 2;
-        }, { passive: true });
-
-        let scrollY = 0;
-        window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive: true });
-
+        let scrollY = window.scrollY || 0;
+        window.addEventListener('scroll', () => { scrollY = window.scrollY; }, { passive:true });
         window.addEventListener('resize', () => {
             renderer.setSize(window.innerWidth, window.innerHeight, false);
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
         });
 
-        let last = performance.now();
-        function loop() {
+        const pos = geo.attributes.position.array;
+        let t = 0, last = performance.now();
+        function loop(){
             const now = performance.now();
-            const dt = Math.min((now - last) / 16.67, 3);
-            last = now;
-            tmx += (mx - tmx) * 0.05;
-            tmy += (my - tmy) * 0.05;
-            points.rotation.y += 0.0009 * dt;
-            points.rotation.x += 0.0004 * dt;
-            ringGroup.rotation.y -= 0.0014 * dt;
-            ringGroup.rotation.x += 0.0006 * dt;
-            camera.position.x += (tmx * 2.5 - camera.position.x) * 0.05;
-            camera.position.y += (-tmy * 1.6 - scrollY * 0.005 - camera.position.y) * 0.05;
-            camera.lookAt(0, 0, 0);
+            const dt = Math.min((now - last) / 16.67, 3); last = now;
+            t += 0.016 * dt;
+            pErX += (pRawX - pErX) * 0.06;
+            pErY += (pRawY - pErY) * 0.06;
+            pActive += (pTarget - pActive) * 0.05;
+
+            const pX = pErX * (SPAN * 0.42);
+            const pZ = pErY * (SPAN * 0.42);
+            for (let i = 0; i < vcount; i++){
+                const x = base[i*3], z = base[i*3+2];
+                let y = Math.sin(x*0.16 + t) * 1.5
+                      + Math.cos(z*0.2 + t*0.9) * 1.3
+                      + Math.sin((x + z)*0.1 + t*1.25) * 0.9;
+                const dx = x - pX, dz = z - pZ;
+                y += Math.exp(-(dx*dx + dz*dz) * 0.004) * 7.5 * pActive;
+                pos[i*3+1] = y;
+            }
+            geo.attributes.position.needsUpdate = true;
+
+            terrain.rotation.z = pErX * 0.04;
+            camera.position.x += (pErX * 5 - camera.position.x) * 0.04;
+            camera.position.y += (7 - pErY * 2.4 - Math.min(scrollY, 700) * 0.004 - camera.position.y) * 0.04;
+            camera.lookAt(0, 1.5, -8);
+
             renderer.render(scene, camera);
             requestAnimationFrame(loop);
         }
         loop();
     }
+
 
     /* ──────────────── CURSOR GLOW ──────────────── */
     if (!isMobile && !prefersReduced && !isTouch) {
@@ -2452,6 +2454,17 @@
     });
 
     /* ──────────────── HERO TYPING TRANSCRIPT ──────────────── */
+    /* ──────────────── HERO PHONE: TAP TO CALL ──────────────── */
+    const heroPhone = document.getElementById('heroPhone');
+    if (heroPhone) {
+        heroPhone.setAttribute('role', 'link');
+        heroPhone.setAttribute('tabindex', '0');
+        heroPhone.setAttribute('aria-label', 'Call the AI demo line at (916) 659-8131');
+        const callDemo = () => { window.location.href = 'tel:+19166598131'; };
+        heroPhone.addEventListener('click', callDemo);
+        heroPhone.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); callDemo(); } });
+    }
+
     const transcript = document.getElementById('heroTranscript');
     const lines = [
         'Hi, this is Acme Plumbing. What can I help with?',
@@ -2987,7 +3000,7 @@
 
 
     if (prefersReduced) {
-        document.querySelectorAll('.hero-line-inner, .hero-badge, .hero .sub, .hero-cta, .hero-trust, .mobile-hero-proof, .hero-visual, .module, .section-eyebrow, .section-header h2, .section-header p, .flow-step, .dash-frame').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
+        document.querySelectorAll('.hero-line-inner, .hero-badge, .hero .sub, .hero-proof-line, .hero-cta, .hero-trust, .mobile-hero-proof, .hero-visual, .module, .section-eyebrow, .section-header h2, .section-header p, .flow-step, .dash-frame').forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
         return;
     }
 
@@ -2995,12 +3008,13 @@
     if (typeof gsap === 'undefined') return;
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.set(['.hero-badge', '.hero .sub', '.hero-cta', '.hero-trust', '.mobile-hero-proof', '.hero-visual'], { y: 30, opacity: 0 });
+    gsap.set(['.hero-badge', '.hero .sub', '.hero-proof-line', '.hero-cta', '.hero-trust', '.mobile-hero-proof', '.hero-visual'], { y: 30, opacity: 0 });
     const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
     heroTl
         .to('.hero-line-inner', { y: 0, duration: 1, stagger: 0.13, ease: 'power4.out' })
         .to('.hero-badge', { opacity: 1, y: 0, duration: 0.7 }, '-=0.7')
         .to('.hero .sub', { opacity: 1, y: 0, duration: 0.8 }, '-=0.3')
+        .to('.hero-proof-line', { opacity: 1, y: 0, duration: 0.6 }, '-=0.45')
         .to('.hero-cta', { opacity: 1, y: 0, duration: 0.7 }, '-=0.4')
         .to('.hero-trust', { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
         .to('.mobile-hero-proof', { opacity: 1, y: 0, duration: 0.6 }, '-=0.5')
