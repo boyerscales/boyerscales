@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#04060F">
-    <meta name="theme-color" content="#04060F" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#07101F">
+    <meta name="theme-color" content="#07101F" media="(prefers-color-scheme: dark)">
     <meta name="color-scheme" content="dark">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -21,6 +21,7 @@
 
         :root{
             --dark:#04060F;
+            --chrome:#07101F;
             --dark-800:#0A0F22;
             --dark-700:#0F1632;
             --text-primary:#F1F5F9;
@@ -53,7 +54,7 @@
 
         html{
             scroll-behavior:smooth;scroll-padding-top:96px;
-            background:#04060F;color-scheme:dark;
+            background:var(--chrome);color-scheme:dark;
         }
 
         body{
@@ -70,6 +71,11 @@
             min-height:100svh;
             -webkit-font-smoothing:antialiased;
             -moz-osx-font-smoothing:grayscale;
+        }
+        body::before,
+        body::after{
+            content:'';position:fixed;left:0;right:0;z-index:59;pointer-events:none;
+            display:none;
         }
 
         .container{max-width:1240px;margin:0 auto;padding:0 2rem;position:relative;z-index:2}
@@ -1263,6 +1269,16 @@
         @media(max-width:720px){
             html{scroll-padding-top:calc(82px + env(safe-area-inset-top,0px))}
             body{background-attachment:scroll}
+            body::before,
+            body::after{display:block}
+            body::before{
+                top:0;height:calc(92px + env(safe-area-inset-top,0px));
+                background:linear-gradient(180deg,var(--chrome) 0%,rgba(7,16,31,0.88) 46%,rgba(7,16,31,0) 100%);
+            }
+            body::after{
+                bottom:0;height:calc(96px + env(safe-area-inset-bottom,0px));
+                background:linear-gradient(0deg,var(--chrome) 0%,rgba(7,16,31,0.9) 42%,rgba(7,16,31,0) 100%);
+            }
             .container{padding:0 1rem}
             nav{top:calc(8px + env(safe-area-inset-top,0px))}
             nav .container{max-width:calc(100% - 1rem);padding:0.5rem;border-radius:16px;position:relative;gap:0.6rem}
