@@ -228,11 +228,7 @@
         /* ── HERO ── */
         .hero{
             min-height:min(100vh,900px);display:flex;align-items:center;
-            padding:104px 0 64px;position:relative;overflow:hidden;
-        }
-        .hero::after{
-            content:'';position:absolute;left:0;right:0;bottom:-1px;height:210px;z-index:1;pointer-events:none;
-            background:linear-gradient(180deg,rgba(4,6,15,0),rgba(4,6,15,0.26) 68%,rgba(4,6,15,0.42) 100%);
+            padding:104px 0 64px;position:relative;overflow-x:clip;
         }
         .hero-grid{
             position:absolute;inset:0;z-index:1;pointer-events:none;
@@ -259,7 +255,7 @@
         .hero h1{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(2.6rem,5.6vw,4.8rem);font-weight:800;line-height:1.06;margin-bottom:1.4rem;letter-spacing:-0.038em}
         .hero-line{display:block;overflow:hidden}
         .hero-line-inner{display:block;transform:translateY(110%);will-change:transform}
-        .hero h1 .grad{background:linear-gradient(135deg,var(--ai-light) 0%,#22D3EE 45%,var(--growth-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradShift 8s ease-in-out infinite}
+        .hero h1 .grad{background:linear-gradient(135deg,var(--ai-light) 0%,#22D3EE 45%,var(--ai-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200% 200%;animation:gradShift 8s ease-in-out infinite}
         @keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 
         .hero .sub{font-size:1.1rem;color:var(--text-secondary);margin-bottom:1.15rem;line-height:1.62;max-width:528px;font-weight:400;opacity:0}
@@ -341,9 +337,7 @@
             transform:translateZ(60px) rotateY(-12deg) rotateX(6deg);
             overflow:hidden;
             cursor:pointer;
-            animation:floatPhone 7s ease-in-out infinite;
         }
-        @keyframes floatPhone{0%,100%{transform:translateZ(60px) rotateY(-12deg) rotateX(6deg) translateY(0)}50%{transform:translateZ(60px) rotateY(-12deg) rotateX(6deg) translateY(-11px)}}
         .phone::before{
             content:'';position:absolute;top:14px;left:50%;transform:translateX(-50%);
             width:90px;height:24px;border-radius:14px;
@@ -355,10 +349,11 @@
             background:linear-gradient(180deg,#040814 0%,#0B1230 100%);
             overflow:hidden;
             display:flex;flex-direction:column;
+            backface-visibility:hidden;-webkit-backface-visibility:hidden;will-change:transform;
         }
         .phone-statusbar{
             display:flex;justify-content:space-between;align-items:center;
-            padding:1.85rem 1.4rem 0.5rem;font-family:'DM Sans',sans-serif;
+            padding:1.15rem 1.4rem 0.4rem;font-family:'DM Sans',sans-serif;
             font-size:0.72rem;font-weight:600;color:var(--text-primary);
         }
         .phone-statusbar .signal{display:flex;gap:3px;align-items:flex-end}
@@ -369,7 +364,7 @@
         .phone-statusbar .signal span:nth-child(4){height:11px;opacity:0.9}
 
         .phone-call{
-            text-align:center;padding:1.5rem 1.25rem 0.85rem;
+            text-align:center;padding:0.9rem 1.25rem 0.5rem;
         }
         .phone-call-label{font-size:0.7rem;color:var(--text-tertiary);letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:0.65rem}
         .phone-call-name{font-family:'Bricolage Grotesque',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:0.3rem;letter-spacing:-0.01em}
@@ -378,8 +373,8 @@
         .phone-call-status .ring{width:6px;height:6px;border-radius:50%;background:var(--growth);box-shadow:0 0 8px var(--growth);animation:pulseDot 1.2s infinite}
 
         .phone-waveform{
-            display:flex;align-items:flex-end;justify-content:center;gap:3px;height:60px;
-            margin:0.5rem 1rem 0.85rem;
+            display:flex;align-items:flex-end;justify-content:center;gap:3px;height:42px;
+            margin:0.3rem 1rem 0.5rem;
         }
         .phone-waveform span{
             display:block;width:3px;border-radius:2px;
@@ -1305,7 +1300,7 @@
             .mobile-proof-actions a{min-height:40px;border-radius:11px;font-size:0.74rem}
             .mobile-proof-actions a:first-child{background:rgba(37,99,235,0.16);border-color:rgba(59,130,246,0.32);box-shadow:none;color:#BFDBFE}
             .mobile-hero-proof{display:none}
-            .hero-copy{text-shadow:0 1px 12px rgba(4,6,15,0.9)}
+            .hero .sub,.hero-proof-line{text-shadow:0 1px 12px rgba(4,6,15,0.9)}
             .hero-visual{display:flex;justify-content:center;height:auto;max-width:none;margin:0.25rem auto 0;perspective:none}
             .hero-visual::before{display:none}
             .hero-stage{position:static;transform:none!important;display:flex;justify-content:center;width:100%}
@@ -1384,6 +1379,7 @@
             .flow-track{grid-template-columns:1fr;gap:0.65rem}
             .dash-body{padding:1rem}
             .dash-row{grid-template-columns:1fr 1fr}
+            .dash-stat-spark{display:none}
             section:not(.hero){padding:4.8rem 0 !important}
             .calc{margin-top:-1.4rem;padding:4.4rem 0 3.4rem !important}
             .paths{padding:3.4rem 0 !important}
@@ -1629,8 +1625,8 @@
                             <span style="height:96%"></span>
                         </div>
                         <div class="dash-mock-stats">
-                            <div><strong>23</strong>Booked</div>
-                            <div><strong>12</strong>Reviews</div>
+                            <div><strong>12</strong>Booked</div>
+                            <div><strong>7</strong>Reviews</div>
                         </div>
                     </div>
 
@@ -1723,9 +1719,9 @@
                     <div class="calc-control">
                         <div class="calc-control-row">
                             <span class="calc-control-label">% of missed calls that would've booked</span>
-                            <span class="calc-control-value" id="convValue">18<span class="unit">%</span></span>
+                            <span class="calc-control-value" id="convValue">15<span class="unit">%</span></span>
                         </div>
-                        <input type="range" id="convSlider" class="calc-slider" min="10" max="80" value="18" style="--p:11.4%">
+                        <input type="range" id="convSlider" class="calc-slider" min="10" max="80" value="15" style="--p:7.1%">
                         <div class="calc-control-hint"><span>10%</span><span>80%</span></div>
                     </div>
                 </div>
@@ -1733,14 +1729,14 @@
                 <div class="calc-result">
                     <div class="calc-result-label">You're losing</div>
                     <div class="calc-result-amount">
-                        <span class="dollar">$</span><span id="lostAmount">39,420</span>
+                        <span class="dollar">$</span><span id="lostAmount">32,850</span>
                     </div>
                     <div class="calc-result-period">
-                        per <strong>year</strong> · <span id="lostPerDay">$108</span>/day
+                        per <strong>year</strong> · <span id="lostPerDay">$90</span>/day
                     </div>
                     <div class="calc-recovery">
                         <span class="calc-recovery-label">You could win back ≈</span>
-                        <span class="calc-recovery-value">$<span id="recoveredAmount">23,652</span> / yr</span>
+                        <span class="calc-recovery-value">$<span id="recoveredAmount">19,710</span> / yr</span>
                     </div>
                     <a href="#contact" class="btn-primary calc-cta magnetic">
                         Plug the leak → Get set up free
@@ -1914,8 +1910,8 @@
                 <p class="module-desc">One screen. Every dollar. Missed calls recovered, jobs booked, reviews posted, old leads woken back up, with the revenue tied to each. Everything in one view.</p>
                 <div class="module-vis vis-os">
                     <div class="vis-os-grid">
-                        <div class="vis-os-tile"><strong>$12k</strong><span>Recovered</span></div>
-                        <div class="vis-os-tile"><strong>38</strong><span>Booked</span></div>
+                        <div class="vis-os-tile"><strong>$8.6k</strong><span>Recovered</span></div>
+                        <div class="vis-os-tile"><strong>26</strong><span>Booked</span></div>
                         <div class="vis-os-tile"><strong>4.8★</strong><span>Avg</span></div>
                     </div>
                     <div class="vis-os-spark">
@@ -2049,19 +2045,19 @@
                         <div class="dash-row">
                             <div class="dash-stat">
                                 <div class="dash-stat-label">Recovered</div>
-                                <div class="dash-stat-value gold">$<span class="counter" data-to="12400">12,400</span></div>
+                                <div class="dash-stat-value gold">$<span class="counter" data-to="8600">8,600</span></div>
                                 <span class="dash-stat-delta"><svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6-6 6 6"/></svg>+18% MoM</span>
                                 <div class="dash-stat-spark"><span style="height:30%"></span><span style="height:50%"></span><span style="height:40%"></span><span style="height:65%"></span><span style="height:55%"></span><span style="height:80%"></span><span style="height:95%"></span></div>
                             </div>
                             <div class="dash-stat">
                                 <div class="dash-stat-label">Calls Answered</div>
-                                <div class="dash-stat-value ai"><span class="counter" data-to="142">142</span></div>
+                                <div class="dash-stat-value ai"><span class="counter" data-to="112">112</span></div>
                                 <span class="dash-stat-delta"><svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6-6 6 6"/></svg>+12% MoM</span>
                                 <div class="dash-stat-spark"><span style="height:40%"></span><span style="height:35%"></span><span style="height:55%"></span><span style="height:70%"></span><span style="height:60%"></span><span style="height:75%"></span><span style="height:85%"></span></div>
                             </div>
                             <div class="dash-stat">
                                 <div class="dash-stat-label">Booked Jobs</div>
-                                <div class="dash-stat-value growth"><span class="counter" data-to="38">38</span></div>
+                                <div class="dash-stat-value growth"><span class="counter" data-to="26">26</span></div>
                                 <span class="dash-stat-delta"><svg viewBox="0 0 24 24" fill="none"><path stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" d="m6 9 6-6 6 6"/></svg>+19% MoM</span>
                                 <div class="dash-stat-spark"><span style="height:25%"></span><span style="height:45%"></span><span style="height:60%"></span><span style="height:55%"></span><span style="height:75%"></span><span style="height:88%"></span><span style="height:100%"></span></div>
                             </div>
