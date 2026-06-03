@@ -1268,11 +1268,7 @@
         @media(max-width:720px){
             html{scroll-padding-top:calc(82px + env(safe-area-inset-top,0px))}
             body{background-attachment:scroll}
-            body::before{display:block}
-            body::before{
-                top:0;height:calc(128px + env(safe-area-inset-top,0px));
-                background:linear-gradient(180deg,var(--chrome) 0%,var(--chrome) 30%,rgba(7,16,31,0.82) 62%,rgba(7,16,31,0) 100%);
-            }
+            body::before{display:none} /* top scrim disabled: was a solid band above the floating nav on mobile */
             .container{padding:0 1rem}
             nav{top:calc(8px + env(safe-area-inset-top,0px))}
             nav .container{max-width:calc(100% - 1rem);padding:0.5rem;border-radius:16px;position:relative;gap:0.6rem}
@@ -1523,6 +1519,57 @@
             .sticky-cta-btn{padding:0.7rem 0.95rem;font-size:0.86rem}
         }
     </style>
+
+<!-- ============ Meta Pixel: base code ============ -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '1995055151120545');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1995055151120545&ev=PageView&noscript=1"/></noscript>
+<!-- ============ end base code ============ -->
+
+<!-- ============ BoyerScales custom events ============ -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // EVENT 1: call-button tap — fires on ANY tel: link click
+  document.querySelectorAll('a[href^="tel:"]').forEach(function (link) {
+    link.addEventListener('click', function () {
+      if (window.fbq) {
+        fbq('trackCustom', 'CallButtonTap', {
+          source: this.id || 'tel_link',
+          number: this.getAttribute('href').replace('tel:', '')
+        });
+      }
+    });
+  });
+
+  // EVENT 2: calculator start — fires once, on first slider interaction
+  var calcFired = false;
+  ['callsSlider', 'jobSlider', 'convSlider'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener('input', function () {
+      if (!calcFired && window.fbq) {
+        calcFired = true;
+        fbq('trackCustom', 'CalculatorStart');
+      }
+    });
+  });
+
+});
+</script>
+<!-- ============ end custom events ============ -->
 </head>
 <body>
 
