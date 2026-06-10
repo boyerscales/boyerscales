@@ -8,8 +8,8 @@
     <meta name="color-scheme" content="dark">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>BoyerScales | The AI front desk for plumbing & water restoration</title>
-    <meta name="description" content="BoyerScales is like a front desk that never sleeps for plumbers, water restoration, and home service businesses. It answers the calls you miss, texts customers back, follows up on old leads, and gets you more 5-star reviews.">
+    <title>BoyerScales | The AI front desk for mobile detailers & detail shops</title>
+    <meta name="description" content="BoyerScales is like a front desk that never sleeps for mobile detailers and auto detailing shops. It answers the calls you miss while you're mid-detail, books the job, texts customers back, follows up on past customers, and gets you more 5-star reviews.">
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -273,7 +273,9 @@
             font-size:0.82rem;color:var(--text-secondary);font-weight:600;
             margin-bottom:1.4rem;letter-spacing:0.01em;opacity:0;
         }
-        .hero-badge-bar{width:22px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--ai-light),var(--growth-light));flex:0 0 auto}
+        .hero-badge-bar{position:relative;width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:linear-gradient(135deg,var(--ai-light),var(--growth-light));box-shadow:0 0 8px rgba(52,211,153,0.6)}
+        .hero-badge-bar::after{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--growth-light);animation:badgePing 2s cubic-bezier(0,0,0.2,1) infinite}
+        @keyframes badgePing{0%{transform:scale(0.9);opacity:0.7}70%,100%{transform:scale(2.8);opacity:0}}
         .hero-badge .b-divider{color:var(--text-muted);margin:0 0.15rem}
         .hero-badge .b-os{background:linear-gradient(135deg,var(--ai-light),var(--growth-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700}
 
@@ -1623,7 +1625,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="hero-copy">
                 <div class="hero-badge">
                     <span class="hero-badge-bar"></span>
-                    <span>For plumbers, water restoration &amp; home service pros</span>
+                    <span>For mobile detailers and detail shops</span>
                 </div>
                 <h1>
                     <span class="hero-line"><span class="hero-line-inner">Stop losing money</span></span>
@@ -1631,7 +1633,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <span class="hero-line"><span class="hero-line-inner"><span class="grad">slow follow-up</span> &amp; dead leads.</span></span>
                 </h1>
                 <p class="sub">
-                    BoyerScales is like a <strong>front desk that never sleeps</strong>. It picks up the calls you miss, texts people back in seconds, follows up on old leads, and brings in more 5-star reviews. <span class="recover">You keep working. It books the jobs.</span>
+                    You're elbow-deep in a wheel well, polishing a hood, or laying down a ceramic coat, and your phone rings. BoyerScales is the <strong>front desk that never sleeps</strong>. It picks up the call, books the detail, and texts the customer back in seconds. It also follows up with past customers and brings in more 5-star reviews. <span class="recover">You stay on the car. It books the jobs.</span>
                 </p>
                 <p class="hero-proof-line" style="margin:0 0 1.4rem;font-size:0.95rem;color:var(--text-secondary);line-height:1.55">
                     Don't take our word for it. <a href="tel:+19166598131" style="color:var(--ai-light,#38bdf8);font-weight:600;text-decoration:none;border-bottom:1px solid currentColor">Call the AI right now</a> and hear it answer.
@@ -1751,7 +1753,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c5.5 0 10 3.6 10 8.1 0 4.5-4.5 8.1-10 8.1-1 0-2-.1-2.9-.3-2 1.4-3.7 1.7-5.5 1.6.7-.7 1.3-1.6 1.6-2.6C2.4 15.4 2 13.4 2 11.4 2 7.6 6.5 4 12 4z"/></svg>
                             iMessage · Auto follow-up
                         </div>
-                        <div class="imsg">Hey Marisol! This is Riley from Acme Plumbing. We have you booked Tue at 2pm. Reply Y to confirm 👍</div>
+                        <div class="imsg">Hey Marisol! This is Riley from Apex Detailing. We have you booked Tue at 2pm. Reply Y to confirm 👍</div>
                         <div class="imsg from-them delay-1">Yes confirmed!</div>
                         <div class="imsg delay-2">Perfect, see you then.</div>
                     </div>
@@ -1792,18 +1794,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="calc-control">
                         <div class="calc-control-row">
                             <span class="calc-control-label">Average revenue per booked job</span>
-                            <span class="calc-control-value" id="jobValue">$300<span class="unit">avg job</span></span>
+                            <span class="calc-control-value" id="jobValue">$200<span class="unit">avg job</span></span>
                         </div>
-                        <input type="range" id="jobSlider" class="calc-slider" min="100" max="3000" step="50" value="300" style="--p:6.9%">
+                        <input type="range" id="jobSlider" class="calc-slider" min="100" max="3000" step="50" value="200" style="--p:3.4%">
                         <div class="calc-control-hint"><span>$100</span><span>$3,000+</span></div>
                     </div>
 
                     <div class="calc-control">
                         <div class="calc-control-row">
                             <span class="calc-control-label">% of missed calls that would've booked</span>
-                            <span class="calc-control-value" id="convValue">15<span class="unit">%</span></span>
+                            <span class="calc-control-value" id="convValue">25<span class="unit">%</span></span>
                         </div>
-                        <input type="range" id="convSlider" class="calc-slider" min="10" max="80" value="15" style="--p:7.1%">
+                        <input type="range" id="convSlider" class="calc-slider" min="10" max="80" value="25" style="--p:21.4%">
                         <div class="calc-control-hint"><span>10%</span><span>80%</span></div>
                     </div>
                 </div>
@@ -1811,14 +1813,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="calc-result">
                     <div class="calc-result-label">You're losing</div>
                     <div class="calc-result-amount">
-                        <span class="dollar">$</span><span id="lostAmount">32,850</span>
+                        <span class="dollar">$</span><span id="lostAmount">36,500</span>
                     </div>
                     <div class="calc-result-period">
-                        per <strong>year</strong> · <span id="lostPerDay">$90</span>/day
+                        per <strong>year</strong> · <span id="lostPerDay">$100</span>/day
                     </div>
                     <div class="calc-recovery">
                         <span class="calc-recovery-label">You could win back ≈</span>
-                        <span class="calc-recovery-value">$<span id="recoveredAmount">19,710</span> / yr</span>
+                        <span class="calc-recovery-value">$<span id="recoveredAmount">21,900</span> / yr</span>
                     </div>
                     <a href="#contact" class="btn-primary calc-cta magnetic">
                         Plug the leak → Get set up free
@@ -1898,7 +1900,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="#0EA5E9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="module-title">AI Voice Receptionist</div>
-                <p class="module-desc">Answers every missed or forwarded call, 24/7. It qualifies the lead, books the job, and texts the customer back, whether you're on a roof, in a truck, or asleep.</p>
+                <p class="module-desc">A customer calls about a full interior detail while you're mid-job. It answers every missed or forwarded call, 24/7, qualifies the lead, books the appointment, and texts them back, whether you're buried in a back seat or asleep.</p>
                 <div class="module-vis">
                     <div class="vis-voice-row">
                         <strong>● LIVE CALL</strong>
@@ -1921,7 +1923,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="module-title">Blue SMS Follow-Up</div>
                 <p class="module-desc">iMessage-style blue bubbles for missed-call recovery, appointment reminders, and quote follow-ups. Feels personal, not like another spammy business text.</p>
                 <div class="module-vis vis-sms">
-                    <div class="b from-them">Hey! Got your missed call. Want me to send a free estimate?</div>
+                    <div class="b from-them">Hey! Got your missed call. Want a quote for a full detail?</div>
                     <div class="b from-cust">Yes please 🙏</div>
                     <div class="b from-them">Booked! Tue 2pm 👍</div>
                 </div>
@@ -1934,7 +1936,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <svg viewBox="0 0 24 24" fill="none"><path d="M21 12a9 9 0 1 1-9-9c2.5 0 4.7 1 6.4 2.6L21 8m0-5v5h-5" stroke="#A855F7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="module-title">Lead Reactivation</div>
-                <p class="module-desc">Old leads. Dead estimates. Cold customers. We reach back out to them for you and push the warm ones back into your booking flow, turning old contacts into booked jobs.</p>
+                <p class="module-desc">Old quotes. Past customers due for another detail. Most cars need one every few months, so we reach back out for you, remind them it's time, and push the warm ones back into your booking flow, turning old contacts into booked details.</p>
                 <div class="module-vis vis-react">
                     <div class="vis-react-grid" id="reactGrid">
                         <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
@@ -1953,7 +1955,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <svg viewBox="0 0 24 24" fill="#EC4899"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
                 </div>
                 <div class="module-title">Review Boosting</div>
-                <p class="module-desc">After every job: happy customers go straight to Google. Unhappy ones go to a private feedback page so you can fix it before it ever becomes a 1-star review.</p>
+                <p class="module-desc">After every detail: happy customers go straight to Google. Unhappy ones go to a private feedback page so you can fix it before it ever becomes a 1-star review.</p>
                 <div class="module-vis vis-review">
                     <div class="vis-review-stars" id="reviewStars">
                         <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
@@ -1974,7 +1976,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     <svg viewBox="0 0 24 24" fill="none"><path d="M3 17l6-6 4 4 8-8M14 7h7v7" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </div>
                 <div class="module-title">Local Visibility</div>
-                <p class="module-desc">Better reviews, fresh service-area content, profile optimization, and local visibility assets. Show up first when neighbors search for the work you do.</p>
+                <p class="module-desc">Better reviews, fresh service-area content, profile optimization, and local visibility assets. Show up first when someone nearby searches for mobile detailing.</p>
                 <div class="module-vis vis-seo">
                     <div class="vis-seo-row"><span class="vis-seo-rank up">1</span><div class="vis-seo-bar"><div class="vis-seo-bar-fill" data-w="92"></div></div><span class="delta">+12</span></div>
                     <div class="vis-seo-row"><span class="vis-seo-rank up">3</span><div class="vis-seo-bar"><div class="vis-seo-bar-fill" data-w="76"></div></div><span class="delta">+8</span></div>
@@ -2019,7 +2021,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <span class="pulse-dot"></span>
                 How it works
             </div>
-            <h2>How a missed call becomes <span class="gold">$450 in your bank.</span></h2>
+            <h2>How a missed call becomes <span class="gold">$250 in your bank.</span></h2>
             <p>Six clean steps. Watch one customer move through the system in real-time.</p>
         </div>
 
@@ -2079,7 +2081,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="flow-result-text">
                     Result: <strong>One call you would've missed</strong> → booked, paid, reviewed, tracked.
                 </div>
-                <div class="flow-result-amount">+$<span id="flowAmount">450</span></div>
+                <div class="flow-result-amount">+$<span id="flowAmount">250</span></div>
             </div>
         </div>
     </div>
@@ -2184,13 +2186,13 @@ document.addEventListener('DOMContentLoaded', function () {
                                 <span class="name">Marisol Vega</span>
                                 <span class="ph">(916) 555-0142</span>
                                 <span class="tag tag-booked">Booked</span>
-                                <span class="amt">+$450</span>
+                                <span class="amt">+$250</span>
                             </div>
                             <div class="dash-list-row">
                                 <span class="name">Diego Ramirez</span>
                                 <span class="ph">(530) 555-0388</span>
                                 <span class="tag tag-recovered">Reactivated</span>
-                                <span class="amt">+$1,200</span>
+                                <span class="amt">+$600</span>
                             </div>
                             <div class="dash-list-row">
                                 <span class="name">Tasha Williams</span>
@@ -2227,7 +2229,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="qualifier-options">
                     <button class="qualifier-option active" type="button" data-choice="ai">
                         <span class="qualifier-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.72 16.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-                        <span><strong>I already get calls.</strong><span>I just miss too many of them.</span></span>
+                        <span><strong>I get calls, but I'm always mid-job.</strong><span>I'm under a car and miss too many.</span></span>
                         <span class="qualifier-arrow">→</span>
                     </button>
                     <button class="qualifier-option" type="button" data-choice="growth">
@@ -2296,7 +2298,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="section-header">
             <div class="section-eyebrow">Start your free 7-day leak test</div>
             <h2>Your free leak test <span class="grad">starts here.</span></h2>
-            <p>Built for plumbing and water restoration first. It works for any home service business where a missed call means a missed job.</p>
+            <p>Built for mobile detailers and small detail shops first. It works for any business where a missed call means a missed job.</p>
         </div>
         <div class="contact-box">
             <form id="contactForm">
@@ -2346,7 +2348,8 @@ document.addEventListener('DOMContentLoaded', function () {
             <a href="https://tiktok.com/@boyerscales" target="_blank">TikTok</a>
             <a href="https://linkedin.com/company/boyerscales" target="_blank">LinkedIn</a>
         </div>
-        <p>&copy; 2025 BoyerScales · Sacramento-based · Built for home service businesses</p>
+        <p>&copy; 2025 BoyerScales · Sacramento-based · Built for mobile detailers</p>
+        <p style="font-size:0.78rem;color:var(--text-muted);margin-top:0.1rem">Also works for plumbers, restoration, and other home service pros.</p>
         <div class="footer-links">
             <a href="/privacypolicy/" target="_blank">Privacy Policy</a>
             <span class="dot">·</span>
@@ -2574,7 +2577,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const transcript = document.getElementById('heroTranscript');
     const lines = [
-        'Hi, this is Acme Plumbing. What can I help with?',
+        'Hi, this is Apex Detailing. What can I help with?',
         'Got it. Tuesday at 2pm works. You\'re booked.',
         'Sending a confirmation text now.',
             'You\'re all set, Marisol. Thanks!'
@@ -2698,7 +2701,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function setDemoBubbleCopy(message) {
         if (!demoBubbles) return;
         const bubbles = demoBubbles.querySelectorAll('.demo-bubble');
-        if (bubbles[0]) bubbles[0].textContent = message || buildDemoPreviewMessage('Marisol', 'Acme Plumbing');
+        if (bubbles[0]) bubbles[0].textContent = message || buildDemoPreviewMessage('Marisol', 'Apex Detailing');
         if (bubbles[1]) bubbles[1].textContent = 'YES';
         if (bubbles[2]) bubbles[2].textContent = 'Absolutely. Here is the 7-day leak test setup link.';
     }
