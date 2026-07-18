@@ -728,8 +728,8 @@
       border: 1px solid transparent;
       border-radius: 20px;
       background:
-        linear-gradient(var(--bg), var(--bg)) padding-box,
-        linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 54%, transparent), var(--line)) border-box;
+        linear-gradient(color-mix(in srgb, var(--bg) 94%, #07111f), color-mix(in srgb, var(--bg) 94%, #07111f)) padding-box,
+        linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 48%, transparent), var(--line)) border-box;
       box-shadow: var(--shadow);
       overflow: hidden;
       transition: transform .28s ease, box-shadow .28s ease;
@@ -737,10 +737,10 @@
 
     .preview-head {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       justify-content: space-between;
       gap: 12px;
-      padding: 18px 18px 5px;
+      padding: 19px 18px 14px;
     }
 
     .preview-head h3 {
@@ -749,87 +749,90 @@
       font-weight: 600;
     }
 
-    .preview-link {
-      display: inline-flex;
-      min-height: 34px;
+    .preview-greeting {
+      margin: 4px 0 0;
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    .preview-refresh {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
       align-items: center;
       justify-content: center;
-      gap: 5px;
       border: 1px solid var(--line);
-      border-radius: 10px;
+      border-radius: 50%;
       background: var(--surface-glass);
-      color: var(--blue);
+      color: var(--text-soft);
       box-shadow: var(--shadow-sm);
-      padding: 0 10px;
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 19px;
       text-decoration: none;
       transition: border-color .18s ease, background .18s ease, transform .18s ease;
     }
 
-    .preview-link:hover {
+    .preview-refresh:hover {
       border-color: color-mix(in srgb, var(--blue) 42%, var(--line));
       background: var(--blue-soft);
       transform: translateY(-1px);
     }
 
-    .preview-greeting {
-      margin: 0;
-      padding: 0 18px 13px;
-      color: var(--text-soft);
-      font-size: 13px;
-    }
-
     .preview-body {
       display: grid;
-      gap: 11px;
-      padding: 0 13px 13px;
+      gap: 10px;
+      padding: 0 12px 12px;
     }
 
     .revenue-panel {
       position: relative;
-      min-height: 132px;
-      border: 1px solid rgba(255, 255, 255, .16);
-      border-radius: 17px;
-      background: linear-gradient(145deg, #1f55ca, #2f75f1 55%, #49a9ff);
-      padding: 20px;
+      min-height: 114px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid rgba(105, 151, 255, .16);
+      border-radius: 15px;
+      background:
+        radial-gradient(circle at 92% 8%, rgba(80, 132, 255, .17), transparent 35%),
+        linear-gradient(135deg, #152e59, #1b376a);
+      padding: 17px 18px;
       color: #fff;
-      box-shadow: 0 16px 34px rgba(37, 103, 231, .27);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
       overflow: hidden;
-    }
-
-    .revenue-panel::after {
-      content: "";
-      position: absolute;
-      top: -52px;
-      right: -52px;
-      width: 150px;
-      height: 150px;
-      border: 1px solid rgba(255, 255, 255, .2);
-      border-radius: 50%;
-      box-shadow: 0 0 0 26px rgba(255, 255, 255, .035);
     }
 
     .revenue-panel span,
     .revenue-panel strong {
       position: relative;
       z-index: 1;
-      display: block;
     }
 
-    .revenue-panel span {
-      color: rgba(255, 255, 255, .72);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: .05em;
+    .revenue-label {
+      color: rgba(255, 255, 255, .58);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
       text-transform: uppercase;
     }
 
-    .revenue-panel strong {
-      margin-top: 11px;
+    .revenue-amount {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 8px;
+    }
+
+    .revenue-amount strong {
       font-family: var(--display);
-      font-size: 38px;
+      font-size: 39px;
       letter-spacing: -.04em;
+      line-height: 1;
+    }
+
+    .revenue-trend {
+      color: #25d7a3;
+      font-size: 23px;
+      font-weight: 700;
       line-height: 1;
     }
 
@@ -838,131 +841,228 @@
       z-index: 1;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 9px;
+      gap: 8px;
     }
 
     .stat-tile {
-      min-height: 92px;
+      min-height: 100px;
       border: 1px solid var(--line);
-      border-radius: 14px;
-      background: color-mix(in srgb, var(--surface) 82%, var(--bg));
-      padding: 14px;
-      box-shadow: var(--shadow-sm);
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+      padding: 12px;
+      box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 2.5%, transparent);
     }
 
     .stat-icon {
-      position: relative;
-      display: block;
-      width: 27px;
-      height: 27px;
-      margin-bottom: 8px;
-      border-radius: 8px;
-      background: linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 22%, var(--surface)), var(--blue-soft));
-      color: var(--blue);
-      box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 16%, transparent);
-    }
-
-    .stat-icon::before,
-    .stat-icon::after {
-      content: "";
-      position: absolute;
-      box-sizing: border-box;
-    }
-
-    .stat-icon-leads::before {
-      top: 5px;
-      left: 9px;
-      width: 7px;
-      height: 7px;
-      border: 2px solid currentColor;
-      border-radius: 50%;
-      box-shadow: 6px 2px 0 -1px var(--blue-soft), 6px 2px 0 1px currentColor;
-    }
-
-    .stat-icon-leads::after {
-      bottom: 5px;
-      left: 5px;
-      width: 17px;
-      height: 7px;
-      border: 2px solid currentColor;
-      border-bottom: 0;
-      border-radius: 10px 10px 0 0;
-    }
-
-    .stat-icon-calls::before {
-      content: "☎︎";
-      inset: 0;
       display: grid;
+      width: 29px;
+      height: 29px;
+      margin-bottom: 9px;
       place-items: center;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--blue) 18%, transparent);
+      color: var(--blue);
       font-family: Arial, sans-serif;
       font-size: 16px;
+      font-weight: 700;
       line-height: 1;
     }
 
-    .stat-icon-calls::after {
-      display: none;
+    .stat-icon-new {
+      background: rgba(216, 55, 136, .16);
+      color: #e04494;
     }
 
-    .stat-icon-booked::before {
-      top: 5px;
-      left: 5px;
-      width: 17px;
-      height: 17px;
-      border: 2px solid currentColor;
-      border-radius: 4px;
+    .stat-icon-calls {
+      background: rgba(26, 192, 174, .15);
+      color: #24c8b5;
     }
 
-    .stat-icon-booked::after {
-      top: 11px;
-      left: 10px;
-      width: 8px;
-      height: 5px;
-      border-bottom: 2px solid currentColor;
-      border-left: 2px solid currentColor;
-      transform: rotate(-45deg);
+    .stat-icon-booked {
+      background: rgba(35, 175, 103, .15);
+      color: #32c87d;
     }
 
-    .stat-icon-missed::before {
-      top: 5px;
-      left: 6px;
-      width: 15px;
-      height: 17px;
-      border: 2px solid currentColor;
-      border-radius: 8px 8px 10px 10px;
+    .stat-icon-completed {
+      background: rgba(126, 87, 240, .16);
+      color: #9876ff;
     }
 
-    .stat-icon-missed::after {
-      top: 12px;
-      left: 10px;
-      width: 7px;
-      height: 2px;
-      border-radius: 99px;
-      background: currentColor;
+    .stat-icon-fallback {
+      background: rgba(229, 73, 102, .15);
+      color: #f05b75;
     }
 
     .stat-tile strong,
-    .stat-tile span {
+    .stat-tile > span:not(.stat-icon) {
       display: block;
     }
 
     .stat-tile strong {
       font-family: var(--display);
-      font-size: 23px;
+      font-size: 24px;
       letter-spacing: -.03em;
       line-height: 1;
     }
 
-    .stat-tile span {
+    .stat-tile > span:not(.stat-icon) {
       margin-top: 5px;
       color: var(--text-soft);
       font-size: 11px;
     }
 
+    .preview-details {
+      display: grid;
+      gap: 8px;
+    }
+
+    .chart-card,
+    .activity-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      background: color-mix(in srgb, var(--surface) 88%, var(--bg));
+      overflow: hidden;
+    }
+
+    .preview-card-title {
+      margin: 0;
+      padding: 13px 13px 0;
+      color: var(--text-soft);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+
+    .chart-wrap {
+      padding: 12px 12px 10px;
+    }
+
+    .chart-plot {
+      position: relative;
+      height: 108px;
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 74%, transparent);
+      overflow: hidden;
+    }
+
+    .chart-area {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(77, 128, 255, .19), rgba(77, 128, 255, .035));
+      clip-path: polygon(0 100%, 43% 100%, 47% 24%, 100% 24%, 100% 100%);
+    }
+
+    .chart-line {
+      position: absolute;
+      height: 2px;
+      border-radius: 99px;
+      background: #4f83ff;
+      box-shadow: 0 0 12px rgba(79, 131, 255, .18);
+    }
+
+    .chart-line-low {
+      left: 0;
+      bottom: 0;
+      width: 44%;
+    }
+
+    .chart-line-rise {
+      left: 44.5%;
+      bottom: 0;
+      width: 2px;
+      height: 76%;
+      transform: skewX(-4deg);
+      transform-origin: bottom;
+    }
+
+    .chart-line-high {
+      top: 24%;
+      right: 0;
+      width: 54%;
+    }
+
+    .chart-labels {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      margin-top: 8px;
+      color: var(--text-faint);
+      font-size: 8px;
+    }
+
+    .chart-labels span:nth-child(2) {
+      color: var(--text-soft);
+    }
+
+    .activity-list {
+      margin-top: 9px;
+      border-top: 1px solid var(--line);
+    }
+
+    .activity-row {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 8px;
+      min-height: 48px;
+      padding: 7px 11px;
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
+    }
+
+    .activity-row:last-child {
+      border-bottom: 0;
+    }
+
+    .activity-avatar {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border-radius: 50%;
+      background: rgba(223, 80, 80, .88);
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    .activity-person {
+      min-width: 0;
+    }
+
+    .activity-person strong,
+    .activity-person span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .activity-person strong {
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    .activity-person span {
+      margin-top: 2px;
+      color: var(--text-faint);
+      font-size: 8px;
+    }
+
+    .activity-badge {
+      border-radius: 99px;
+      background: color-mix(in srgb, var(--blue) 16%, transparent);
+      padding: 4px 7px;
+      color: var(--blue-bright);
+      font-size: 8px;
+      font-weight: 600;
+    }
+
     .preview-note {
       margin: 0;
-      padding: 0 16px 15px;
+      padding: 1px 15px 14px;
       color: var(--text-faint);
-      font-size: 10px;
+      font-size: 9px;
     }
 
     .trial {
@@ -1159,6 +1259,134 @@
       color: var(--text-soft);
     }
 
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    .success-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      align-items: end;
+      padding: 14px;
+      background: rgba(2, 8, 19, .78);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity .22s ease, visibility .22s ease;
+    }
+
+    .success-modal.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .success-card {
+      position: relative;
+      width: min(100%, 440px);
+      margin: 0 auto;
+      border: 1px solid color-mix(in srgb, var(--blue-bright) 42%, var(--line));
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--blue-bright) 19%, transparent), transparent 36%),
+        color-mix(in srgb, var(--surface) 96%, transparent);
+      padding: 26px 20px 20px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, .42);
+      transform: translateY(22px) scale(.985);
+      transition: transform .26s cubic-bezier(.2, .75, .25, 1);
+    }
+
+    .success-modal.is-open .success-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .success-close {
+      position: absolute;
+      top: 13px;
+      right: 13px;
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: color-mix(in srgb, var(--bg) 72%, transparent);
+      color: var(--text-soft);
+      font: inherit;
+      font-size: 21px;
+      cursor: pointer;
+    }
+
+    .success-close:focus-visible,
+    .success-actions a:focus-visible,
+    .success-actions button:focus-visible {
+      outline: 3px solid var(--blue-wash);
+      outline-offset: 3px;
+    }
+
+    .success-icon {
+      display: grid;
+      width: 52px;
+      height: 52px;
+      margin-bottom: 22px;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, var(--blue-bright) 65%, white 6%);
+      border-radius: 16px;
+      background: linear-gradient(145deg, var(--blue), var(--blue-bright));
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      box-shadow: 0 14px 34px color-mix(in srgb, var(--blue) 28%, transparent);
+    }
+
+    .success-card .eyebrow {
+      margin-bottom: 10px;
+    }
+
+    .success-card h2 {
+      max-width: 330px;
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(31px, 9vw, 42px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .success-copy {
+      margin: 17px 0 0;
+      color: var(--text-soft);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .success-email {
+      margin: 15px 0 0;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: color-mix(in srgb, var(--bg) 76%, transparent);
+      padding: 11px 13px;
+      color: var(--text);
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .success-actions {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .success-actions .button {
+      width: 100%;
+      min-height: 50px;
+    }
+
+    .success-done {
+      cursor: pointer;
+    }
+
     footer {
       border-top: 1px solid color-mix(in srgb, var(--line) 52%, transparent);
       background: color-mix(in srgb, var(--blue) 6%, var(--bg));
@@ -1324,6 +1552,41 @@
         gap: 46px;
       }
 
+      .preview-head {
+        padding: 22px 20px 16px;
+      }
+
+      .preview-body {
+        gap: 11px;
+        padding: 0 14px 14px;
+      }
+
+      .revenue-panel {
+        min-height: 126px;
+        padding: 20px;
+      }
+
+      .revenue-amount strong {
+        font-size: 44px;
+      }
+
+      .stat-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .stat-tile {
+        min-height: 110px;
+        padding: 14px;
+      }
+
+      .preview-details {
+        grid-template-columns: minmax(0, 1.45fr) minmax(180px, .9fr);
+      }
+
+      .chart-plot {
+        height: 126px;
+      }
+
       .field-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 14px;
@@ -1418,8 +1681,8 @@
       }
 
       .overview-layout {
-        grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
-        gap: 56px;
+        grid-template-columns: minmax(0, 1.25fr) minmax(330px, .75fr);
+        gap: 62px;
         align-items: center;
       }
 
@@ -1468,6 +1731,17 @@
       .motion-ready .reveal {
         opacity: 1 !important;
         transform: none !important;
+      }
+    }
+
+    @media (min-width: 680px) {
+      .success-modal {
+        align-items: center;
+        padding: 24px;
+      }
+
+      .success-card {
+        padding: 31px 28px 26px;
       }
     }
   </style>
@@ -1601,37 +1875,92 @@
 
         <div class="dashboard-preview reveal" aria-label="Sample BoyerScales dashboard overview">
           <div class="preview-head">
-            <h3>Overview</h3>
-            <a class="preview-link dashboard-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener" aria-label="Open the BoyerScales client dashboard">Open <span aria-hidden="true">↗</span></a>
+            <div>
+              <h3>Overview</h3>
+              <p class="preview-greeting">Here’s your day at a glance.</p>
+            </div>
+            <a class="preview-refresh dashboard-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener" aria-label="Open the BoyerScales client dashboard"><span aria-hidden="true">↻</span></a>
           </div>
-          <p class="preview-greeting">Here’s your day at a glance.</p>
 
           <div class="preview-body">
             <div class="revenue-panel">
-              <span>Revenue captured</span>
-              <strong>$1,250</strong>
+              <span class="revenue-label">Revenue captured</span>
+              <div class="revenue-amount">
+                <strong>$250</strong>
+                <span class="revenue-trend" aria-hidden="true">↗</span>
+              </div>
             </div>
 
             <div class="stat-grid">
               <div class="stat-tile">
-                <span class="stat-icon stat-icon-leads" aria-hidden="true"></span>
-                <strong>8</strong>
+                <span class="stat-icon" aria-hidden="true">◎</span>
+                <strong>29</strong>
                 <span>Leads</span>
               </div>
               <div class="stat-tile">
-                <span class="stat-icon stat-icon-calls" aria-hidden="true"></span>
-                <strong>6</strong>
-                <span>Calls answered</span>
+                <span class="stat-icon stat-icon-new" aria-hidden="true">✦</span>
+                <strong>28</strong>
+                <span>New</span>
               </div>
               <div class="stat-tile">
-                <span class="stat-icon stat-icon-booked" aria-hidden="true"></span>
-                <strong>3</strong>
-                <span>Jobs booked</span>
+                <span class="stat-icon stat-icon-calls" aria-hidden="true">☎</span>
+                <strong>29</strong>
+                <span>Calls captured</span>
               </div>
               <div class="stat-tile">
-                <span class="stat-icon stat-icon-missed" aria-hidden="true"></span>
+                <span class="stat-icon stat-icon-booked" aria-hidden="true">▣</span>
+                <strong>1</strong>
+                <span>Booked</span>
+              </div>
+              <div class="stat-tile">
+                <span class="stat-icon stat-icon-completed" aria-hidden="true">✓</span>
                 <strong>0</strong>
-                <span>Calls missed</span>
+                <span>Jobs completed</span>
+              </div>
+              <div class="stat-tile">
+                <span class="stat-icon stat-icon-fallback" aria-hidden="true">!</span>
+                <strong>0</strong>
+                <span>Fallbacks</span>
+              </div>
+            </div>
+
+            <div class="preview-details">
+              <div class="chart-card">
+                <p class="preview-card-title">Revenue captured · last 30 days</p>
+                <div class="chart-wrap" aria-label="$250 in revenue captured over the last 30 days">
+                  <div class="chart-plot" aria-hidden="true">
+                    <span class="chart-area"></span>
+                    <span class="chart-line chart-line-low"></span>
+                    <span class="chart-line chart-line-rise"></span>
+                    <span class="chart-line chart-line-high"></span>
+                  </div>
+                  <div class="chart-labels" aria-hidden="true">
+                    <span>30 days ago</span>
+                    <span>$250 captured</span>
+                    <span>Today</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="activity-card">
+                <p class="preview-card-title">Recent activity</p>
+                <div class="activity-list">
+                  <div class="activity-row">
+                    <span class="activity-avatar" aria-hidden="true">☎</span>
+                    <div class="activity-person"><strong>Unknown caller</strong><span>New call captured</span></div>
+                    <span class="activity-badge">New</span>
+                  </div>
+                  <div class="activity-row">
+                    <span class="activity-avatar" aria-hidden="true">☎</span>
+                    <div class="activity-person"><strong>Unknown caller</strong><span>Lead details saved</span></div>
+                    <span class="activity-badge">New</span>
+                  </div>
+                  <div class="activity-row">
+                    <span class="activity-avatar" aria-hidden="true">☎</span>
+                    <div class="activity-person"><strong>Unknown caller</strong><span>Appointment requested</span></div>
+                    <span class="activity-badge">New</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1716,6 +2045,21 @@
     </div>
   </footer>
 
+  <div class="success-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-describedby="successDescription" aria-hidden="true">
+    <div class="success-card">
+      <button class="success-close" id="successClose" type="button" aria-label="Close confirmation">×</button>
+      <div class="success-icon" aria-hidden="true">✓</div>
+      <p class="eyebrow">Trial request received</p>
+      <h2 id="successTitle">You’re all set.</h2>
+      <p class="success-copy" id="successDescription">We have your business details. Watch for a text from Elijah so you can choose a quick setup time and connect your call forwarding.</p>
+      <p class="success-email" id="successEmail"></p>
+      <div class="success-actions">
+        <a class="button button-primary dashboard-link" href="https://dashboard.boyerscales.com/demo/" target="_blank" rel="noopener">Preview the dashboard <span aria-hidden="true">→</span></a>
+        <button class="button button-secondary success-done" id="successDone" type="button">Done</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     (function () {
       'use strict';
@@ -1771,11 +2115,67 @@
 
       var form = document.getElementById('trialForm');
       var status = document.getElementById('formStatus');
+      var successModal = document.getElementById('successModal');
+      var successClose = document.getElementById('successClose');
+      var successDone = document.getElementById('successDone');
+      var successEmail = document.getElementById('successEmail');
+      var modalReturnFocus = null;
       var endpoint = 'https://script.google.com/macros/s/AKfycbwUOe7b1_yA1JSrEPat3og4Cij1DPbttek2B8qG4zk3LQh9LPa-tpnzNZfzmb37ShmiEw/exec';
 
       function setStatus(message, type) {
         status.textContent = message || '';
         status.className = 'form-status' + (type ? ' ' + type : '');
+      }
+
+      function openSuccessModal(email) {
+        if (!successModal) return;
+        modalReturnFocus = document.activeElement;
+        successEmail.textContent = email ? 'Submitted with ' + email : '';
+        successEmail.hidden = !email;
+        successModal.classList.add('is-open');
+        successModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        window.setTimeout(function () {
+          if (successClose) successClose.focus();
+        }, 30);
+      }
+
+      function closeSuccessModal() {
+        if (!successModal) return;
+        successModal.classList.remove('is-open');
+        successModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        if (modalReturnFocus && typeof modalReturnFocus.focus === 'function') {
+          modalReturnFocus.focus();
+        }
+      }
+
+      if (successClose) successClose.addEventListener('click', closeSuccessModal);
+      if (successDone) successDone.addEventListener('click', closeSuccessModal);
+      if (successModal) {
+        successModal.addEventListener('click', function (event) {
+          if (event.target === successModal) closeSuccessModal();
+        });
+
+        successModal.addEventListener('keydown', function (event) {
+          if (event.key === 'Escape') {
+            closeSuccessModal();
+            return;
+          }
+
+          if (event.key !== 'Tab') return;
+          var focusable = successModal.querySelectorAll('a[href], button:not([disabled])');
+          if (!focusable.length) return;
+          var first = focusable[0];
+          var last = focusable[focusable.length - 1];
+          if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        });
       }
 
       if (form) {
@@ -1811,7 +2211,8 @@
             body: JSON.stringify(data)
           }).then(function () {
             form.reset();
-            setStatus('You’re in. We’ll contact you within 24 hours to finish setup.', 'success');
+            setStatus('Trial request received.', 'success');
+            openSuccessModal(data.email);
             if (window.fbq) fbq('trackCustom', 'TrialFormSubmitted');
           }).catch(function () {
             setStatus('Something went wrong. Please try again or call (916) 659-8131.', 'error');
