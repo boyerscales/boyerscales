@@ -362,19 +362,101 @@
       transition: transform .28s ease, box-shadow .28s ease;
     }
 
-    .demo-card {
-      padding: 20px;
+    .call-card.demo-card {
+      width: min(100%, 308px);
+      margin-inline: auto;
+      overflow: visible;
+      border: 2px solid #303b4c;
+      border-radius: 50px;
+      background: #080c12;
+      padding: 9px;
+      box-shadow: 0 28px 68px rgba(0, 0, 0, .4), inset 0 0 0 1px rgba(255, 255, 255, .035);
     }
 
-    .demo-status {
+    .call-card.demo-card::before,
+    .call-card.demo-card::after {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      width: 4px;
+      background: #252f3e;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+
+    .call-card.demo-card::before {
+      top: 105px;
+      left: -5px;
+      height: 58px;
+      border-radius: 4px 0 0 4px;
+      box-shadow: 0 78px 0 #252f3e, inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+
+    .call-card.demo-card::after {
+      top: 145px;
+      right: -5px;
+      height: 88px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .phone-hardware {
+      display: grid;
+      height: 32px;
+      place-items: center;
+    }
+
+    .phone-speaker {
+      position: relative;
+      width: 84px;
+      height: 22px;
+      border: 1px solid #161d27;
+      border-radius: 99px;
+      background: #010204;
+      box-shadow: inset 0 1px 2px rgba(255, 255, 255, .025), 0 1px 2px rgba(0, 0, 0, .75);
+    }
+
+    .phone-speaker::after {
+      content: "";
+      position: absolute;
+      top: 7px;
+      right: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #0b2039;
+      box-shadow: inset 0 0 0 1px rgba(89, 151, 219, .18);
+    }
+
+    .phone-screen {
+      display: flex;
+      min-height: 515px;
+      flex-direction: column;
+      border: 1px solid rgba(124, 151, 192, .17);
+      border-radius: 39px;
+      background: linear-gradient(180deg, #151d29, #101722 72%);
+      padding: 16px 18px 20px;
+      color: #f4f6fa;
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025);
+    }
+
+    .phone-line-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 0;
+    }
+
+    .demo-status,
+    .phone-ready {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 24px;
-      color: var(--blue);
-      font-size: 11px;
+      gap: 7px;
+      margin: 0;
+      color: #78a1ff;
+      font-size: 9px;
       font-weight: 600;
-      letter-spacing: .08em;
+      letter-spacing: .09em;
       text-transform: uppercase;
     }
 
@@ -382,69 +464,122 @@
       flex: 0 0 auto;
     }
 
+    .phone-ready {
+      color: #7f8999;
+      letter-spacing: .06em;
+    }
+
+    .phone-avatar {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      margin: 26px auto 13px;
+      place-items: center;
+      border: 1px solid rgba(109, 160, 255, .28);
+      border-radius: 18px;
+      background: #00152f;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
+      overflow: hidden;
+    }
+
+    .phone-avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .phone-contact-type {
+      margin-bottom: 5px;
+      color: #7f8999;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
     .demo-card h2 {
       margin-bottom: 7px;
-      font-size: 31px;
+      color: #f4f6fa;
+      font-size: 30px;
       font-weight: 600;
     }
 
     .demo-number {
       display: inline-block;
-      margin-bottom: 15px;
-      background: linear-gradient(100deg, var(--blue), var(--blue-bright));
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      color: #68a6ff;
       font-family: var(--display);
-      font-size: clamp(31px, 9vw, 39px);
+      font-size: clamp(30px, 8.5vw, 36px);
       font-weight: 600;
       letter-spacing: -.04em;
       line-height: 1;
       text-decoration: none;
     }
 
-    .demo-card > p {
-      margin-bottom: 19px;
-      color: var(--text-soft);
-      font-size: 14px;
+    .phone-call-state {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: #9ca7b8;
+      font-size: 11px;
+    }
+
+    .phone-call-state::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #51c6ff;
+      box-shadow: 0 0 0 3px rgba(81, 198, 255, .09);
+    }
+
+    .phone-script {
+      margin: auto 0 17px;
+      border-top: 1px solid rgba(130, 151, 182, .15);
+      border-bottom: 1px solid rgba(130, 151, 182, .15);
+      padding: 13px 3px 14px;
+      text-align: left;
+    }
+
+    .phone-script span {
+      display: block;
+      margin-bottom: 4px;
+      color: #78a1ff;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .phone-script p {
+      margin: 0;
+      color: #c0c8d5;
+      font-size: 12px;
+      line-height: 1.45;
     }
 
     .demo-call-button {
       width: 100%;
+      min-height: 48px;
+      border-radius: 14px;
     }
 
-    .demo-steps {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 7px;
-      margin-top: 18px;
+    .demo-note {
+      margin: 12px 3px 0;
+      color: #737f90;
+      font-size: 10px;
+      line-height: 1.45;
     }
 
-    .demo-step {
-      min-width: 0;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: color-mix(in srgb, var(--blue) 5%, var(--surface));
-      padding: 11px 8px;
-      text-align: center;
-    }
-
-    .demo-step strong,
-    .demo-step span {
+    .phone-home {
       display: block;
-    }
-
-    .demo-step strong {
-      margin-bottom: 3px;
-      color: var(--blue);
-      font-size: 10px;
-      font-weight: 600;
-    }
-
-    .demo-step span {
-      color: var(--text-soft);
-      font-size: 10px;
-      line-height: 1.25;
+      width: 90px;
+      height: 4px;
+      margin: 8px auto 2px;
+      border-radius: 99px;
+      background: #2b3442;
     }
 
     .call-head {
@@ -1502,16 +1637,17 @@
         margin-inline: auto;
       }
 
-      .demo-card {
-        padding: 27px;
+      .call-card.demo-card {
+        padding: 9px;
+      }
+
+      .phone-screen {
+        min-height: 520px;
+        padding: 17px 19px 21px;
       }
 
       .demo-card h2 {
-        font-size: 35px;
-      }
-
-      .demo-card > p {
-        font-size: 15px;
+        font-size: 32px;
       }
 
       .benefit {
@@ -1796,16 +1932,28 @@
         </div>
 
         <div class="call-card demo-card reveal reveal-delay-1" aria-label="Live BoyerScales AI demo line">
-          <div class="demo-status"><span class="live-dot" aria-hidden="true"></span> Live AI demo line</div>
-          <h2>Call it yourself.</h2>
-          <a class="demo-number call-link" href="tel:+19166598131">(916) 659-8131</a>
-          <p>Ask about booking a detail. Hear how the AI answers, gets the job details, and moves the call toward an appointment.</p>
-          <a class="button button-primary demo-call-button call-link" href="tel:+19166598131">Call demo now <span aria-hidden="true">→</span></a>
-          <div class="demo-steps" aria-label="What happens on the demo call">
-            <div class="demo-step"><strong>01</strong><span>AI answers</span></div>
-            <div class="demo-step"><strong>02</strong><span>You ask</span></div>
-            <div class="demo-step"><strong>03</strong><span>It books</span></div>
+          <div class="phone-hardware" aria-hidden="true"><span class="phone-speaker"></span></div>
+          <div class="phone-screen">
+            <div class="phone-line-status">
+              <div class="demo-status"><span class="live-dot" aria-hidden="true"></span> Live demo line</div>
+              <span class="phone-ready">Ready now</span>
+            </div>
+
+            <span class="phone-avatar" aria-hidden="true"><img src="./logo.png" alt=""></span>
+            <p class="phone-contact-type">BoyerScales receptionist</p>
+            <h2>Call it yourself.</h2>
+            <a class="demo-number call-link" href="tel:+19166598131">(916) 659-8131</a>
+            <div class="phone-call-state">Standing by for a test call</div>
+
+            <div class="phone-script">
+              <span>Try saying</span>
+              <p>“I need an interior detail for my SUV this Saturday.”</p>
+            </div>
+
+            <a class="button button-primary demo-call-button call-link" href="tel:+19166598131">Call the demo line <span aria-hidden="true">→</span></a>
+            <p class="demo-note">It will ask for the vehicle, service, date, and contact info.</p>
           </div>
+          <span class="phone-home" aria-hidden="true"></span>
         </div>
       </div>
     </section>
