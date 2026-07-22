@@ -180,6 +180,20 @@
             font-size: 0.9rem !important;
             line-height: 1.8 !important;
         }
+        /* Quoted opt-in script block */
+        .script-block {
+            background: var(--surface);
+            border-left: 3px solid var(--pink);
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+        .script-block p {
+            color: var(--text) !important;
+            font-size: 0.92rem !important;
+            font-style: italic;
+            line-height: 1.8 !important;
+        }
         footer {
             padding: 40px 0 28px;
             border-top: 1px solid var(--border);
@@ -226,7 +240,7 @@
     <div class="page-header">
         <div class="page-header-glow"></div>
         <h1>Terms and Conditions</h1>
-        <p class="effective">Effective Date: July 20, 2026</p>
+        <p class="effective">Effective Date: July 21, 2026</p>
     </div>
     <div class="content-wrap">
         <p class="legal-intro">These Terms and Conditions ("Terms") govern the use of services provided by BoyerScales LLC ("we," "our," or "us"). By using our services, submitting any form on our website, or providing your contact information, you agree to these Terms in their entirety.</p>
@@ -246,10 +260,14 @@
             <p>By submitting any form on any BoyerScales LLC website or web property — including but not limited to contact forms, inquiry forms, onboarding forms, demo request forms, and lead capture forms — you acknowledge and agree that BoyerScales LLC may contact you regarding your inquiry or request. This contact may occur via email, phone call, or SMS text message.</p>
             <br>
             <div class="notice-block">
-                <p><strong style="color:var(--text)">By submitting a form and agreeing to these Terms and Conditions, you expressly consent for BoyerScales LLC to contact you using automated or manual means, including automated SMS messages sent via an A2P (Application-to-Person) messaging system, in connection with your inquiry, requested services, or ongoing business relationship.</strong> This consent applies to all forms across all BoyerScales LLC web properties.</p>
+                <p><strong style="color:var(--text)">By submitting a form and agreeing to these Terms and Conditions, you expressly consent for BoyerScales LLC to contact you using automated or manual means, including automated SMS messages sent via an A2P (Application-to-Person) messaging system, in connection with your inquiry, requested services, or ongoing business relationship.</strong> This consent applies to all forms across all BoyerScales LLC web properties. Consent to receive SMS messages is not a condition of purchasing any goods or services.</p>
             </div>
             <br>
-            <p>For client businesses (e.g., Jody's Mobile Detailing, Fez Aura Auto Spa) that use our AI receptionist platform, consent may also be obtained verbally during a phone call. When a call to a client business is missed, our AI receptionist follows up with the caller and, if the caller's need isn't resolved on the call, asks whether they would like a text follow-up. Before any text message is sent, the caller is informed they will receive a text confirmation and, where applicable, follow-up messages such as appointment reminders or review requests, and must verbally confirm they would like to receive it. This verbal consent exchange is captured as part of the call recording described below and logged against the call record prior to any message being sent.</p>
+            <p>For client businesses (e.g., Jody's Mobile Detailing, Fez Aura Auto Spa) that use our AI receptionist platform, consent may also be obtained verbally during an inbound phone call placed by the end user to the business. When a caller's need isn't resolved during the call, the AI receptionist asks whether the caller would like a text follow-up. Before any consent is given, the AI receptionist states the following disclosure:</p>
+            <div class="script-block">
+                <p>"Would you like a text follow-up from [Business Name]? Message frequency varies, and message and data rates may apply. You can reply STOP at any time to opt out, or HELP for help."</p>
+            </div>
+            <p>A text message is sent <strong style="color:var(--text)">only if the caller verbally confirms yes</strong> after hearing this disclosure. This verbal consent exchange is captured as part of the call recording described below, timestamped, tied to the caller's phone number, and logged against the call record prior to any message being sent.</p>
             <br>
             <p>If you do not wish to be contacted by SMS, you may leave the phone number field blank where it is optional, decline verbally during a call, or opt out at any time after receiving your first message by replying <strong style="color:var(--text)">STOP</strong>.</p>
         </div>
@@ -264,15 +282,15 @@
             <p>BoyerScales LLC is not liable for damages resulting from improper client use of messaging systems or failure to obtain proper customer consent.</p>
         </div>
         <!-- SECTION 6 — SMS Messaging Terms (A2P) -->
-        <div class="legal-section">
+        <div class="legal-section" id="sms-terms">
             <h2><span class="section-line"></span> SMS Messaging Terms (A2P)</h2>
-            <p><strong style="color:var(--text)">Program Name:</strong> BoyerScales Customer Communications Program — used to send call follow-ups, appointment booking confirmations, and review requests on behalf of BoyerScales LLC client businesses.</p>
+            <p><strong style="color:var(--text)">Program Name:</strong> BoyerScales Customer Communications Program — used to send call follow-ups, appointment booking confirmations, appointment reminders, and review requests on behalf of BoyerScales LLC and its client businesses.</p>
             <br>
-            <p>By submitting your phone number through any BoyerScales LLC form, or by verbally confirming during a phone call with a BoyerScales LLC client business, you expressly agree to receive SMS text messages from BoyerScales LLC delivered via an <strong style="color:var(--text)">A2P (Application-to-Person) automated messaging system</strong>.</p>
+            <p>By submitting your phone number through any BoyerScales LLC form, or by verbally confirming during a phone call with a BoyerScales LLC client business after hearing the disclosure described above, you expressly agree to receive SMS text messages from BoyerScales LLC delivered via an <strong style="color:var(--text)">A2P (Application-to-Person) automated messaging system</strong>.</p>
             <br>
-            <p>Agreeing to these Terms and Conditions and providing your phone number on any BoyerScales LLC form, or verbally confirming during a phone call, constitutes <strong style="color:var(--text)">prior express consent</strong> as required under the Telephone Consumer Protection Act (TCPA) and CTIA messaging guidelines governing A2P 10DLC messaging programs.</p>
+            <p>Agreeing to these Terms and Conditions and providing your phone number on any BoyerScales LLC form, or verbally confirming during a phone call, constitutes <strong style="color:var(--text)">prior express consent</strong> as required under the Telephone Consumer Protection Act (TCPA) and CTIA messaging guidelines governing A2P 10DLC messaging programs. Consent is not a condition of purchase.</p>
             <br>
-            <p><strong style="color:var(--text)">Message Types.</strong> Messages may include: responses to your inquiry, follow-up communications related to your request, appointment confirmations or reminders, and customer care communications related to services you have requested.</p>
+            <p><strong style="color:var(--text)">Message Types.</strong> Messages may include: responses to your inquiry, follow-up communications related to your call or request, appointment confirmations or reminders, review requests, and customer care communications related to services you have requested.</p>
             <br>
             <p><strong style="color:var(--text)">Message Frequency.</strong> Message frequency varies based on your interaction and the nature of your request. You will not receive messages unrelated to your inquiry or service. Messages are not used for promotional or unsolicited marketing purposes.</p>
             <br>
@@ -282,9 +300,11 @@
             <br>
             <p><strong style="color:var(--text)">Help.</strong> Reply <strong style="color:var(--text)">HELP</strong> for assistance, or contact us at <a href="mailto:elijah@boyerscales.com" style="color:var(--pink);text-decoration:none;">elijah@boyerscales.com</a>.</p>
             <br>
-            <p><strong style="color:var(--text)">No Sharing.</strong> Phone numbers collected through BoyerScales LLC web properties are never sold, rented, or shared with third parties for marketing purposes. SMS consent obtained by BoyerScales LLC is not transferable.</p>
+            <div class="notice-block">
+                <p><strong style="color:var(--text)">No Sharing of Mobile Information.</strong> No mobile information will be sold, rented, or shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties, excluding vendors and aggregators acting solely on our behalf to deliver messages. SMS consent obtained by BoyerScales LLC is not transferable.</p>
+            </div>
         </div>
-        <!-- SECTION 7 — CALL RECORDING & TRANSCRIPTION (NEW) -->
+        <!-- SECTION 7 — CALL RECORDING & TRANSCRIPTION -->
         <div class="legal-section">
             <h2><span class="section-line"></span> Call Recording &amp; Transcription</h2>
             <p>Calls placed to or received by BoyerScales LLC client businesses through our AI receptionist platform may be recorded and transcribed. Recordings and transcripts are used for quality assurance, service delivery, and compliance verification — including verifying that consent to receive SMS messages was obtained during the call.</p>
