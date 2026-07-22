@@ -205,6 +205,20 @@
             font-size: 0.9rem !important;
             line-height: 1.8 !important;
         }
+        /* Quoted opt-in script block */
+        .script-block {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+            padding: 18px 22px;
+            margin: 20px 0;
+        }
+        .script-block p {
+            color: var(--text) !important;
+            font-size: 0.92rem !important;
+            font-style: italic;
+            line-height: 1.8 !important;
+        }
         footer {
             padding: 40px 0 28px;
             border-top: 1px solid var(--border);
@@ -251,7 +265,7 @@
     <div class="page-header">
         <div class="page-header-glow"></div>
         <h1>Privacy Policy</h1>
-        <p class="effective">Effective Date: July 20, 2026</p>
+        <p class="effective">Effective Date: July 21, 2026</p>
     </div>
     <div class="content-wrap">
         <p class="legal-intro">BoyerScales LLC ("we," "our," or "us") respects your privacy and is committed to protecting your personal information. This Privacy Policy explains how information is collected, used, and safeguarded when interacting with our services, websites, and communication systems.</p>
@@ -278,21 +292,30 @@
             <p>By submitting any form on any BoyerScales LLC website or web property — including but not limited to contact forms, inquiry forms, onboarding forms, demo request forms, and lead capture forms — you acknowledge and agree that BoyerScales LLC may contact you regarding your inquiry or request. This contact may occur via email, phone call, or SMS text message.</p>
             <br>
             <div class="notice-block">
-                <p><strong style="color:var(--text)">By submitting a form, you expressly consent to be contacted by BoyerScales LLC through automated or manual means, including automated SMS messages sent via an A2P (Application-to-Person) messaging system, in connection with your inquiry, requested services, or ongoing business relationship.</strong> This consent applies to all forms across all BoyerScales LLC web properties and is a condition of submitting your contact information.</p>
+                <p><strong style="color:var(--text)">By submitting a form, you expressly consent to be contacted by BoyerScales LLC through automated or manual means, including automated SMS messages sent via an A2P (Application-to-Person) messaging system, in connection with your inquiry, requested services, or ongoing business relationship.</strong> This consent applies to all forms across all BoyerScales LLC web properties. Consent to receive SMS messages is not a condition of purchasing any goods or services.</p>
             </div>
-            <br>
-            <p>For client businesses (e.g., Jody's Mobile Detailing, Fez Aura Auto Spa) that use our AI receptionist platform, consent may also be obtained verbally during a phone call. When a call to a client business is missed, our AI receptionist follows up with the caller and, if the caller's need isn't resolved on the call, asks whether they would like a text follow-up. Before any text message is sent, the caller is informed they will receive a text confirmation and, where applicable, follow-up messages such as appointment reminders or review requests, and must verbally confirm they would like to receive it. This verbal consent exchange is captured as part of the call recording described below and logged against the call record prior to any message being sent.</p>
             <br>
             <p>If you do not wish to be contacted by SMS, you may leave the phone number field blank (where optional), decline verbally during a call, or opt out at any time after receiving your first message by replying <strong style="color:var(--text)">STOP</strong>.</p>
         </div>
-        <!-- SECTION 4 — SMS MESSAGING NOTICE -->
-        <div class="legal-section">
+        <!-- SECTION 4 — VERBAL OPT-IN DURING PHONE CALLS -->
+        <div class="legal-section" id="verbal-opt-in">
+            <h2><span class="section-line"></span> Verbal Opt-In During Phone Calls</h2>
+            <p>For client businesses (e.g., Jody's Mobile Detailing, Fez Aura Auto Spa) that use our AI receptionist platform, consent to receive SMS messages may be obtained verbally during an inbound phone call placed by the end user to the business. When a caller's need isn't resolved during the call, the AI receptionist asks whether the caller would like a text follow-up. Before any consent is given, the AI receptionist states the following disclosure:</p>
+            <div class="script-block">
+                <p>"Would you like a text follow-up from [Business Name]? Message frequency varies, and message and data rates may apply. You can reply STOP at any time to opt out, or HELP for help."</p>
+            </div>
+            <p>A text message is sent <strong style="color:var(--text)">only if the caller verbally confirms yes</strong> after hearing this disclosure. This verbal consent exchange is captured in the call recording and transcript, timestamped, tied to the caller's phone number, and logged against the call record before any message is sent. Consent records are retained and available for compliance verification.</p>
+            <br>
+            <p>This verbal confirmation, given after the disclosure above, constitutes prior express consent to receive automated SMS messages under the Telephone Consumer Protection Act (TCPA) and applicable CTIA guidelines governing A2P 10DLC messaging.</p>
+        </div>
+        <!-- SECTION 5 — SMS MESSAGING NOTICE -->
+        <div class="legal-section" id="sms-messaging-notice">
             <h2><span class="section-line"></span> SMS Messaging Notice (A2P)</h2>
-            <p>By submitting your phone number through any BoyerScales LLC contact or service request form, or by verbally confirming during a phone call with a BoyerScales LLC client business, you expressly consent to receive SMS text messages from BoyerScales LLC sent via an <strong style="color:var(--text)">A2P (Application-to-Person) automated messaging system</strong>. This consent is obtained in connection with your inquiry, requested services, or any ongoing business relationship with BoyerScales LLC.</p>
+            <p><strong style="color:var(--text)">Program Name.</strong> BoyerScales Customer Communications Program — used to send call follow-ups, appointment booking confirmations, appointment reminders, and review requests on behalf of BoyerScales LLC and its client businesses.</p>
             <br>
-            <p>Consent to receive automated SMS messages is obtained either (a) by submitting your phone number through a BoyerScales LLC form after agreeing to our Terms &amp; Conditions, or (b) by verbally confirming during a phone call with a BoyerScales LLC client business that you would like to receive a text message. Both methods constitute prior express consent to receive automated SMS messages under the Telephone Consumer Protection Act (TCPA) and applicable CTIA guidelines.</p>
+            <p>Consent to receive automated SMS messages is obtained either (a) by submitting your phone number through a BoyerScales LLC form after agreeing to our Terms &amp; Conditions, or (b) by verbally confirming during a phone call with a BoyerScales LLC client business, after hearing the disclosure described in the Verbal Opt-In section above, that you would like to receive a text message. Both methods constitute prior express consent to receive automated SMS messages under the Telephone Consumer Protection Act (TCPA) and applicable CTIA guidelines.</p>
             <br>
-            <p><strong style="color:var(--text)">Message Types.</strong> Messages sent may include: responses to your inquiry, follow-up communications related to your request, appointment confirmations or reminders, and customer care communications related to services you have requested.</p>
+            <p><strong style="color:var(--text)">Message Types.</strong> Messages sent may include: responses to your inquiry, follow-up communications related to your call or request, appointment confirmations or reminders, review requests, and customer care communications related to services you have requested.</p>
             <br>
             <p><strong style="color:var(--text)">Message Frequency.</strong> Message frequency varies based on your interaction and the nature of your request. You will not receive messages unrelated to your inquiry or service.</p>
             <br>
@@ -302,11 +325,13 @@
             <br>
             <p><strong style="color:var(--text)">Help.</strong> Reply <strong style="color:var(--text)">HELP</strong> to any message for assistance, or contact us directly at <a href="mailto:elijah@boyerscales.com" style="color:var(--accent);text-decoration:none;">elijah@boyerscales.com</a>.</p>
             <br>
-            <p><strong style="color:var(--text)">No Sharing of Phone Numbers.</strong> Phone numbers collected through any BoyerScales LLC website are never sold, rented, or shared with third parties for marketing purposes. SMS consent obtained by BoyerScales LLC for its own communications is not transferable.</p>
+            <div class="notice-block">
+                <p><strong style="color:var(--text)">No Sharing of Mobile Information.</strong> No mobile information will be sold, rented, or shared with third parties or affiliates for marketing or promotional purposes. Text messaging originator opt-in data and consent will not be shared with any third parties, excluding vendors and aggregators acting solely on our behalf to deliver messages.</p>
+            </div>
             <br>
             <p>All automated A2P messaging initiated through BoyerScales LLC systems operates only after prior express consent has been obtained from the end user, in accordance with applicable TCPA, CTIA, and carrier guidelines governing A2P 10DLC messaging.</p>
         </div>
-        <!-- SECTION 5 — CALL RECORDING & TRANSCRIPTION (NEW) -->
+        <!-- SECTION 6 — CALL RECORDING & TRANSCRIPTION -->
         <div class="legal-section">
             <h2><span class="section-line"></span> Call Recording &amp; Transcription</h2>
             <p>Calls placed to or received by BoyerScales LLC client businesses through our AI receptionist platform may be recorded and transcribed. Recordings and transcripts are used for quality assurance, service delivery, and compliance verification — including verifying that consent to receive SMS messages was obtained during the call.</p>
@@ -315,17 +340,17 @@
                 <p><strong style="color:var(--text)">By engaging with the AI receptionist during a phone call, you consent to that call being recorded and transcribed.</strong> Recordings and transcripts are retained securely, tied to the caller's phone number for compliance purposes, and are not sold, rented, or shared with third parties for marketing purposes.</p>
             </div>
         </div>
-        <!-- SECTION 6 -->
+        <!-- SECTION 7 -->
         <div class="legal-section">
             <h2><span class="section-line"></span> Data Sharing</h2>
-            <p>We do not sell, rent, or share personal data with third parties for marketing purposes. Information may be processed by trusted service providers solely for delivering contracted services.</p>
+            <p>We do not sell, rent, or share personal data with third parties for marketing purposes. Information may be processed by trusted service providers solely for delivering contracted services. All personal data categories described in this policy exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</p>
         </div>
-        <!-- SECTION 7 -->
+        <!-- SECTION 8 -->
         <div class="legal-section">
             <h2><span class="section-line"></span> Data Protection</h2>
             <p>We implement administrative, technical, and security safeguards designed to protect personal data from unauthorized access or misuse.</p>
         </div>
-        <!-- SECTION 8 -->
+        <!-- SECTION 9 -->
         <div class="legal-section">
             <h2><span class="section-line"></span> Contact Information</h2>
             <div class="contact-block">
@@ -336,7 +361,7 @@
                 </p>
             </div>
         </div>
-        <!-- SECTION 9 -->
+        <!-- SECTION 10 -->
         <div class="legal-section">
             <h2><span class="section-line"></span> Policy Updates</h2>
             <p>This Privacy Policy may be updated periodically. Updated versions will be posted with a revised effective date.</p>
