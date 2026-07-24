@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07111f">
+<title>Book &amp; Reschedule — BoyerScales</title>
+<style>
+  :root{
+    color-scheme:dark;
+    --accent:#2f80ff;
+    --ink:#f6faff; --muted:#9fb0c4; --faint:#6f7f93;
+    --bg0:#050a12; --bg1:#0a1728; --panel:#111c2de8; --line:#26354a; --slot:#16233a;
+    --ok:#34d17b; --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    min-height:100dvh; font-family:var(--font); color:var(--ink);
+    background:radial-gradient(circle at 50% -18%,#17447b 0,var(--bg1) 34%,var(--bg0) 76%);
+    padding:calc(24px + env(safe-area-inset-top)) 16px calc(28px + env(safe-area-inset-bottom));
+  }
+  main{width:min(100%,560px);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:11px;margin-bottom:22px}
+  .brand .dot{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;
+    background:linear-gradient(145deg,color-mix(in srgb,var(--accent) 78%,#fff),var(--accent));
+    font-size:22px;box-shadow:0 12px 30px color-mix(in srgb,var(--accent) 34%,transparent)}
+  .brand h1{font-size:20px;line-height:1.1;letter-spacing:-.02em;margin:0}
+  .brand p{margin:2px 0 0;color:var(--faint);font-size:12.5px}
+  .lead{color:var(--muted);font-size:15px;line-height:1.5;margin:0 0 20px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:18px;
+    box-shadow:0 18px 46px #0006;margin-bottom:14px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--faint);margin:0 0 12px}
+  /* day rail */
+  .days{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+  .days::-webkit-scrollbar{display:none}
+  .day{flex:0 0 auto;min-width:58px;text-align:center;border:1px solid var(--line);border-radius:14px;
+    padding:10px 6px;background:var(--slot);cursor:pointer;transition:.12s}
+  .day.sel{background:var(--accent);border-color:var(--accent)}
+  .day.off{opacity:.32;pointer-events:none}
+  .day .dow{font-size:11px;color:var(--muted)}
+  .day.sel .dow{color:#dbe8ff}
+  .day .num{font-size:18px;font-weight:700;margin-top:2px}
+  /* slots */
+  .slots{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:14px}
+  .slot{border:1px solid var(--line);border-radius:12px;padding:12px 6px;background:var(--slot);
+    color:var(--ink);font-size:15px;font-weight:600;cursor:pointer;transition:.12s}
+  .slot:hover{border-color:var(--accent)}
+  .slot.sel{background:var(--accent);border-color:var(--accent)}
+  .empty{color:var(--faint);font-size:14px;text-align:center;padding:26px 8px}
+  /* form */
+  label{display:block;font-size:12.5px;color:var(--muted);margin:14px 0 6px}
+  input{width:100%;border:1px solid var(--line);border-radius:12px;background:var(--slot);
+    color:var(--ink);font-family:var(--font);font-size:16px;padding:13px 14px;outline:none}
+  input:focus{border-color:var(--accent)}
+  .cta{width:100%;margin-top:18px;min-height:52px;border:none;border-radius:14px;background:var(--accent);
+    color:#fff;font-family:var(--font);font-size:16px;font-weight:750;cursor:pointer;
+    box-shadow:0 12px 26px color-mix(in srgb,var(--accent) 34%,transparent)}
+  .cta:disabled{opacity:.4;box-shadow:none;cursor:default}
+  .pick-note{margin-top:12px;color:var(--faint);font-size:12.5px;text-align:center}
+  .err{color:#ff8a8a;font-size:13.5px;margin-top:10px;min-height:1em}
+  /* success */
+  .done{text-align:center;padding:14px 6px}
+  .done .mark{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:6px auto 16px;
+    background:color-mix(in srgb,var(--ok) 18%,transparent);border:1px solid color-mix(in srgb,var(--ok) 45%,transparent);
+    color:var(--ok);font-size:32px}
+  .done h2{color:var(--ink);font-size:20px;text-transform:none;letter-spacing:0;margin:0 0 8px}
+  .done p{color:var(--muted);font-size:15px;line-height:1.5;margin:0}
+  .fine{color:var(--faint);font-size:11.5px;text-align:center;margin:18px 10px 0;line-height:1.45}
+  [hidden]{display:none!important}
+  @media (prefers-color-scheme:light){
+    :root{--ink:#0c1626;--muted:#4a5a6e;--faint:#8494a6;--bg0:#eef3fb;--bg1:#dbe6f5;
+      --panel:#ffffffea;--line:#d3deee;--slot:#f2f6fd}
+    body{background:radial-gradient(circle at 50% -18%,#bcd4f7 0,var(--bg1) 40%,var(--bg0) 80%)}
+  }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">
+    <div class="dot" id="brandIcon">📅</div>
+    <div>
+      <h1 id="bizName">Book your appointment</h1>
+      <p id="bizSub">Powered by BoyerScales</p>
+    </div>
+  </div>
+
+  <p class="lead" id="lead">Pick a time that works for you. Already booked? Choose a new slot to reschedule — only open times are shown.</p>
+
+  <!-- STEP 1: choose a day -->
+  <div class="card" id="stepPick">
+    <h2>Choose a day</h2>
+    <div class="days" id="dayRail"></div>
+    <div class="slots" id="slotGrid"></div>
+    <div class="empty" id="slotEmpty" hidden>No open times that day — try another.</div>
+  </div>
+
+  <!-- STEP 2: details + confirm -->
+  <div class="card" id="stepForm" hidden>
+    <h2 id="chosenLabel">Your time</h2>
+    <label for="fName">Your name</label>
+    <input id="fName" type="text" autocomplete="name" placeholder="Jane Doe">
+    <label for="fPhone">Mobile number</label>
+    <input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(555) 123-4567">
+    <button class="cta" id="confirmBtn" disabled>Confirm appointment</button>
+    <div class="err" id="formErr"></div>
+    <div class="pick-note"><a href="#" id="backToSlots" style="color:var(--accent);text-decoration:none">← Pick a different time</a></div>
+  </div>
+
+  <!-- STEP 3: success -->
+  <div class="card" id="stepDone" hidden>
+    <div class="done">
+      <div class="mark">✓</div>
+      <h2 id="doneTitle">You're booked!</h2>
+      <p id="doneMsg"></p>
+    </div>
+  </div>
+
+  <p class="fine">Times shown in the business's local schedule. This page only shows slots that are actually open, so you can't double-book.</p>
+</main>
+
+<script>
+/* ============================================================================
+ * BoyerScales per-client booking / reschedule page.
+ *
+ * URL: /schedule/<slug>     e.g. /schedule/jodys
+ *      (also accepts ?c=<slug> as a fallback for static hosts without routing)
+ *
+ * It talks to two PUBLIC endpoints on the dashboard server (set API_BASE):
+ *   GET  {API_BASE}/api/public/schedule/{slug}
+ *        -> { business, accent, icon, slotMinutes, horizonDays, leadHours,
+ *             hours: { "0":null|["09:00","17:00"], ... 0=Sun..6=Sat },
+ *             booked: [ "2026-07-24T15:00", ... ]  // taken slot starts, local time }
+ *   POST {API_BASE}/api/public/schedule/{slug}/book
+ *        body { name, phone, start }  -> { ok:true }
+ *
+ * If API_BASE is blank OR the fetch fails, it falls back to DEMO data so the
+ * page always renders (handy for previewing before the backend is wired).
+ * ==========================================================================*/
+const API_BASE = ""; // e.g. "https://dashboard.boyerscales.com" — leave "" for demo mode
+
+const DEMO = {
+  business: "Jody's Mobile Detailing",
+  accent: "#2f80ff", icon: "🚗",
+  slotMinutes: 60, horizonDays: 14, leadHours: 2,
+  hours: { "0": null, "1": ["09:00","17:00"], "2": ["09:00","17:00"], "3": ["09:00","17:00"],
+           "4": ["09:00","17:00"], "5": ["09:00","15:00"], "6": null },
+  booked: [] // filled with a couple demo slots below
+};
+
+const slug = (() => {
+  const m = location.pathname.match(/\/schedule\/([^/?#]+)/i);
+  if (m) return decodeURIComponent(m[1]);
+  return new URLSearchParams(location.search).get("c") || "demo";
+})();
+
+let CFG = null;
+let bookedSet = new Set();
+let selDay = null;      // Date (midnight local)
+let selStart = null;    // "YYYY-MM-DDTHH:MM"
+
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2, "0");
+const isoLocal = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+
+async function load(){
+  try {
+    if (!API_BASE) throw new Error("demo");
+    const r = await fetch(`${API_BASE}/api/public/schedule/${encodeURIComponent(slug)}`);
+    if (!r.ok) throw new Error("http " + r.status);
+    CFG = await r.json();
+  } catch {
+    CFG = structuredClone(DEMO);
+    // seed a few demo "taken" slots on the next open day so blocking is visible
+    const d = nextOpenDay(new Date());
+    if (d) { CFG.booked = [ `${isoLocal(atTime(d,"10:00"))}`, `${isoLocal(atTime(d,"13:00"))}` ]; }
+  }
+  bookedSet = new Set((CFG.booked||[]).map(s => s.slice(0,16)));
+  applyBrand();
+  buildDays();
+}
+
+function applyBrand(){
+  document.documentElement.style.setProperty("--accent", CFG.accent || "#2f80ff");
+  $("bizName").textContent = CFG.business || "Book your appointment";
+  $("bizSub").textContent = "Schedule with " + (CFG.business || "us");
+  $("brandIcon").textContent = CFG.icon || "📅";
+  document.querySelector('meta[name=theme-color]').setAttribute("content", CFG.accent || "#07111f");
+}
+
+function atTime(day, hhmm){ const [h,m]=hhmm.split(":").map(Number); const d=new Date(day); d.setHours(h,m,0,0); return d; }
+function dayHours(day){ const h = (CFG.hours||{})[String(day.getDay())]; return Array.isArray(h) ? h : null; }
+function nextOpenDay(from){
+  for (let i=0;i<(CFG?.horizonDays||14);i++){ const d=new Date(from); d.setDate(d.getDate()+i); d.setHours(0,0,0,0); if (dayHours(d)) return d; }
+  return null;
+}
+
+function buildDays(){
+  const rail = $("dayRail"); rail.innerHTML = "";
+  const today = new Date(); today.setHours(0,0,0,0);
+  const dows = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+  let firstOpen = null;
+  for (let i=0;i<(CFG.horizonDays||14);i++){
+    const d = new Date(today); d.setDate(d.getDate()+i);
+    const open = !!dayHours(d) && slotsFor(d).length > 0;
+    const el = document.createElement("div");
+    el.className = "day" + (open ? "" : " off");
+    el.innerHTML = `<div class="dow">${dows[d.getDay()]}</div><div class="num">${d.getDate()}</div>`;
+    if (open){ el.onclick = () => selectDay(d, el); if (!firstOpen){ firstOpen = {d, el}; } }
+    rail.appendChild(el);
+  }
+  if (firstOpen) selectDay(firstOpen.d, firstOpen.el);
+  else $("slotGrid").innerHTML = `<div class="empty">No openings in the next ${CFG.horizonDays||14} days.</div>`;
+}
+
+function slotsFor(day){
+  const hrs = dayHours(day); if (!hrs) return [];
+  const [start,end] = hrs, step = CFG.slotMinutes || 60;
+  const cur = atTime(day, start), stop = atTime(day, end);
+  const minTime = new Date(Date.now() + (CFG.leadHours||0)*3600e3);
+  const out = [];
+  while (cur < stop){
+    const key = isoLocal(cur).slice(0,16);
+    if (cur >= minTime && !bookedSet.has(key)) out.push({ key, label: fmtTime(cur) });
+    cur.setMinutes(cur.getMinutes() + step);
+  }
+  return out;
+}
+
+function fmtTime(d){ let h=d.getHours(), m=d.getMinutes(); const ap=h<12?"AM":"PM"; h=h%12||12; return `${h}:${pad(m)} ${ap}`; }
+function fmtDay(d){ return d.toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"}); }
+
+function selectDay(d, el){
+  selDay = d; selStart = null;
+  [...$("dayRail").children].forEach(c => c.classList.remove("sel"));
+  el.classList.add("sel");
+  const slots = slotsFor(d), grid = $("slotGrid");
+  grid.innerHTML = "";
+  $("slotEmpty").hidden = slots.length > 0;
+  slots.forEach(s => {
+    const b = document.createElement("button");
+    b.className = "slot"; b.textContent = s.label;
+    b.onclick = () => selectSlot(s, b);
+    grid.appendChild(b);
+  });
+  showStep("pick");
+}
+
+function selectSlot(s, b){
+  selStart = s.key;
+  [...$("slotGrid").children].forEach(c => c.classList.remove("sel"));
+  b.classList.add("sel");
+  $("chosenLabel").textContent = `${fmtDay(selDay)} · ${s.label}`;
+  showStep("form");
+  $("fName").focus();
+}
+
+function showStep(step){
+  $("stepPick").hidden = step === "done";
+  $("stepForm").hidden = step !== "form";
+  $("stepDone").hidden = step !== "done";
+  if (step === "done") $("stepPick").hidden = true;
+}
+
+function validForm(){
+  const name = $("fName").value.trim();
+  const phone = $("fPhone").value.replace(/\D/g,"");
+  return name.length >= 2 && (phone.length === 10 || (phone.length === 11 && phone[0] === "1"));
+}
+function refreshCta(){ $("confirmBtn").disabled = !(selStart && validForm()); }
+
+$("fName").addEventListener("input", refreshCta);
+$("fPhone").addEventListener("input", refreshCta);
+$("backToSlots").addEventListener("click", e => { e.preventDefault(); showStep("pick"); });
+
+$("confirmBtn").addEventListener("click", async () => {
+  if (!validForm() || !selStart) return;
+  const btn = $("confirmBtn"); btn.disabled = true; btn.textContent = "Booking…"; $("formErr").textContent = "";
+  const payload = { name: $("fName").value.trim(), phone: $("fPhone").value.trim(), start: selStart };
+  try {
+    if (API_BASE){
+      const r = await fetch(`${API_BASE}/api/public/schedule/${encodeURIComponent(slug)}/book`, {
+        method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload)
+      });
+      if (!r.ok){ const j = await r.json().catch(()=>({})); throw new Error(j.error || `Couldn't book (${r.status})`); }
+    } else { await new Promise(r => setTimeout(r, 500)); } // demo
+    $("doneMsg").textContent = `You're set for ${$("chosenLabel").textContent}. A confirmation text is on its way.`;
+    showStep("done");
+    window.scrollTo({ top:0, behavior:"smooth" });
+  } catch (e){
+    $("formErr").textContent = e.message || "Something went wrong. Please try again.";
+    btn.disabled = false; btn.textContent = "Confirm appointment";
+  }
+});
+
+load();
+</script>
+</body>
+</html>
