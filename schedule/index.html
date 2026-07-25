@@ -137,7 +137,7 @@
  * If API_BASE is blank OR the fetch fails, it falls back to DEMO data so the
  * page always renders (handy for previewing before the backend is wired).
  * ==========================================================================*/
-const API_BASE = ""; // e.g. "https://dashboard.boyerscales.com" — leave "" for demo mode
+const API_BASE = "https://dashboard.boyerscales.com"; // talks to your dashboard's booking API
 
 const DEMO = {
   business: "Jody's Mobile Detailing",
@@ -153,6 +153,7 @@ const slug = (() => {
   if (m) return decodeURIComponent(m[1]);
   return new URLSearchParams(location.search).get("c") || "demo";
 })();
+const apptToken = new URLSearchParams(location.search).get("appt") || "";
 
 let CFG = null;
 let bookedSet = new Set();
@@ -164,18 +165,28 @@ const pad = n => String(n).padStart(2, "0");
 const isoLocal = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 
 async function load(){
+  const url = apptToken
+    ? `${API_BASE}/api/public/schedule/${encodeURIComponent(slug)}/appt/${encodeURIComponent(apptToken)}`
+    : `${API_BASE}/api/public/schedule/${encodeURIComponent(slug)}`;
   try {
-    if (!API_BASE) throw new Error("demo");
-    const r = await fetch(`${API_BASE}/api/public/schedule/${encodeURIComponent(slug)}`);
+    const r = await fetch(url);
     if (!r.ok) throw new Error("http " + r.status);
     CFG = await r.json();
   } catch {
-    CFG = structuredClone(DEMO);
-    // seed a few demo "taken" slots on the next open day so blocking is visible
-    const d = nextOpenDay(new Date());
-    if (d) { CFG.booked = [ `${isoLocal(atTime(d,"10:00"))}`, `${isoLocal(atTime(d,"13:00"))}` ]; }
+    document.querySelector("main").innerHTML =
+      '<div class="brand"><div class="dot" aria-hidden="true">📅</div><div>' +
+      '<h1>Booking unavailable</h1><p style="color:var(--faint);font-size:13px;margin-top:4px">' +
+      "This link isn't valid or has expired. Please contact the business directly.</p></div></div>";
+    return;
   }
   bookedSet = new Set((CFG.booked||[]).map(s => s.slice(0,16)));
+  if (apptToken && CFG.appointment){
+    $("fName").value = CFG.appointment.name || "";
+    const ph = $("fPhone"); ph.style.display = "none";
+    if (ph.previousElementSibling) ph.previousElementSibling.style.display = "none";
+    $("confirmBtn").textContent = "Update appointment";
+    $("lead").textContent = "Reschedule your appointment — pick any open time. Only your appointment changes.";
+  }
   applyBrand();
   buildDays();
 }
@@ -264,6 +275,7 @@ function showStep(step){
 
 function validForm(){
   const name = $("fName").value.trim();
+  if (apptToken) return name.length >= 2;
   const phone = $("fPhone").value.replace(/\D/g,"");
   return name.length >= 2 && (phone.length === 10 || (phone.length === 11 && phone[0] === "1"));
 }
@@ -275,21 +287,23 @@ $("backToSlots").addEventListener("click", e => { e.preventDefault(); showStep("
 
 $("confirmBtn").addEventListener("click", async () => {
   if (!validForm() || !selStart) return;
-  const btn = $("confirmBtn"); btn.disabled = true; btn.textContent = "Booking…"; $("formErr").textContent = "";
-  const payload = { name: $("fName").value.trim(), phone: $("fPhone").value.trim(), start: selStart };
+  const btn = $("confirmBtn"); btn.disabled = true; btn.textContent = apptToken ? "Updating…" : "Booking…"; $("formErr").textContent = "";
+  const base = `${API_BASE}/api/public/schedule/${encodeURIComponent(slug)}`;
+  const url = apptToken ? `${base}/appt/${encodeURIComponent(apptToken)}` : `${base}/book`;
+  const payload = apptToken
+    ? { name: $("fName").value.trim(), start: selStart }
+    : { name: $("fName").value.trim(), phone: $("fPhone").value.trim(), start: selStart };
   try {
-    if (API_BASE){
-      const r = await fetch(`${API_BASE}/api/public/schedule/${encodeURIComponent(slug)}/book`, {
-        method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload)
-      });
-      if (!r.ok){ const j = await r.json().catch(()=>({})); throw new Error(j.error || `Couldn't book (${r.status})`); }
-    } else { await new Promise(r => setTimeout(r, 500)); } // demo
-    $("doneMsg").textContent = `You're set for ${$("chosenLabel").textContent}. A confirmation text is on its way.`;
+    const r = await fetch(url, { method:"POST", headers:{ "Content-Type":"application/json" }, body: JSON.stringify(payload) });
+    if (!r.ok){ const j = await r.json().catch(()=>({})); throw new Error(j.error || `Couldn't ${apptToken ? "update" : "book"} (${r.status})`); }
+    $("doneMsg").textContent = apptToken
+      ? `Updated — you're set for ${$("chosenLabel").textContent}.`
+      : `You're set for ${$("chosenLabel").textContent}. A confirmation text is on its way.`;
     showStep("done");
     window.scrollTo({ top:0, behavior:"smooth" });
   } catch (e){
     $("formErr").textContent = e.message || "Something went wrong. Please try again.";
-    btn.disabled = false; btn.textContent = "Confirm appointment";
+    btn.disabled = false; btn.textContent = apptToken ? "Update appointment" : "Confirm appointment";
   }
 });
 
