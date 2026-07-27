@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
-  <title>BoyerScales | Turn missed calls into booked jobs</title>
-  <meta name="description" content="BoyerScales answers the calls mobile detailers miss, books the job, and shows every lead and appointment in one simple dashboard.">
+  <title>BoyerScales | AI receptionist and automatic texts for detailers</title>
+  <meta name="description" content="BoyerScales answers the calls mobile detailers miss and books the job, then texts the customer on its own: confirmation, reminders, review request, and a nudge to book again.">
   <link rel="icon" type="image/png" href="./logo.png">
   <link rel="apple-touch-icon" href="./logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -306,9 +306,9 @@
     }
 
     h1 {
-      max-width: 360px;
+      max-width: 340px;
       margin-bottom: 18px;
-      font-size: clamp(44px, 12.4vw, 52px);
+      font-size: clamp(34px, 9.7vw, 42px);
       font-weight: 600;
       line-height: .98;
     }
@@ -428,7 +428,7 @@
 
     .phone-screen {
       display: flex;
-      min-height: 515px;
+      min-height: 570px;
       flex-direction: column;
       border: 1px solid rgba(124, 151, 192, .17);
       border-radius: 39px;
@@ -739,18 +739,24 @@
 
     .benefit-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .benefit {
       min-width: 0;
       border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
       padding: 17px 8px;
       text-align: center;
     }
 
+    .benefit:nth-child(2n),
     .benefit:last-child {
       border-right: 0;
+    }
+
+    .benefit:nth-last-child(-n+2) {
+      border-bottom: 0;
     }
 
     .benefit strong {
@@ -831,6 +837,260 @@
       margin: 14px 0 0;
       color: var(--text-faint);
       font-size: 12px;
+    }
+
+    .section-copy > p.future-note {
+      margin: 16px 0 0;
+      color: var(--text-faint);
+      font-size: 12px;
+    }
+
+    .messages-section {
+      background:
+        radial-gradient(circle at 88% 6%, var(--blue-wash), transparent 26rem),
+        linear-gradient(
+          180deg,
+          transparent,
+          color-mix(in srgb, var(--surface) 70%, var(--bg)) 18%,
+          color-mix(in srgb, var(--surface) 70%, var(--bg)) 82%,
+          transparent
+        );
+    }
+
+    .messages-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 34px;
+    }
+
+    .seq-list {
+      margin-top: 22px;
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .seq-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 4px;
+      border-bottom: 1px solid var(--line-strong);
+      padding: 15px 0;
+    }
+
+    .seq-when {
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .seq-row strong,
+    .seq-row span:not(.seq-when) {
+      display: block;
+    }
+
+    .seq-row strong {
+      margin-bottom: 3px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .seq-row span:not(.seq-when) {
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .thread-screen {
+      display: flex;
+      min-height: 570px;
+      flex-direction: column;
+      border: 1px solid rgba(124, 151, 192, .17);
+      border-radius: 39px;
+      background: linear-gradient(180deg, #151d29, #101722 72%);
+      padding: 15px 13px 14px;
+      color: #f4f6fa;
+      text-align: left;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025);
+      overflow: hidden;
+    }
+
+    .thread-head {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      border-bottom: 1px solid rgba(130, 151, 182, .15);
+      padding: 1px 3px 10px;
+    }
+
+    .thread-avatar {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid rgba(109, 160, 255, .28);
+      border-radius: 11px;
+      background: #00152f;
+      overflow: hidden;
+    }
+
+    .thread-avatar img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thread-who {
+      min-width: 0;
+      margin-right: auto;
+    }
+
+    .thread-who strong,
+    .thread-who span {
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .thread-who strong {
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .thread-who span {
+      color: #7f8999;
+      font-size: 10px;
+    }
+
+    .thread-auto {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex: 0 0 auto;
+      border-radius: 99px;
+      background: rgba(90, 140, 255, .16);
+      padding: 4px 8px;
+      color: #78a1ff;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .thread-body {
+      display: grid;
+      align-content: start;
+      gap: 5px;
+      padding: 9px 2px;
+    }
+
+    .thread-stage {
+      margin: 3px 0 1px;
+      color: #7f8999;
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .thread-body > .thread-stage:first-child {
+      margin-top: 0;
+    }
+
+    .bubble {
+      max-width: 85%;
+      border-radius: 16px;
+      padding: 6px 11px;
+      font-size: 11.5px;
+      line-height: 1.38;
+    }
+
+    .bubble-out {
+      justify-self: end;
+      border-bottom-right-radius: 6px;
+      background: linear-gradient(180deg, #3b96ff, #0a72f5);
+      color: #fff;
+    }
+
+    .bubble-in {
+      justify-self: start;
+      border-bottom-left-radius: 6px;
+      background: #272f3c;
+      color: #dfe5ee;
+    }
+
+    .bubble-link {
+      display: block;
+      margin-top: 4px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .thread-input {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: auto;
+      border: 1px solid rgba(130, 151, 182, .2);
+      border-radius: 99px;
+      padding: 7px 7px 7px 14px;
+      color: #6d7789;
+      font-size: 11px;
+    }
+
+    .thread-input > span:first-child {
+      margin-right: auto;
+    }
+
+    .thread-send {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      flex: 0 0 auto;
+      place-items: center;
+      border-radius: 50%;
+      background: #0a72f5;
+      color: #fff;
+      font-size: 12px;
+    }
+
+    .inbox-card {
+      display: grid;
+      gap: 15px;
+      margin-top: 34px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .inbox-card strong {
+      display: block;
+      margin-bottom: 5px;
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+    }
+
+    .inbox-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .inbox-card .button {
+      justify-self: start;
+      min-height: 43px;
+      padding-inline: 15px;
+      font-size: 13px;
     }
 
     .overview-section {
@@ -1606,8 +1866,8 @@
       }
 
       h1 {
-        max-width: 650px;
-        font-size: 66px;
+        max-width: 620px;
+        font-size: 54px;
       }
 
       .hero-copy > p:not(.eyebrow) {
@@ -1642,7 +1902,6 @@
       }
 
       .phone-screen {
-        min-height: 520px;
         padding: 17px 19px 21px;
       }
 
@@ -1650,14 +1909,27 @@
         font-size: 32px;
       }
 
+      .benefit-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
       .benefit {
         min-height: 108px;
-        padding: 24px 22px;
+        border-bottom: 0;
+        padding: 22px 18px;
         text-align: left;
       }
 
+      .benefit:nth-child(2n) {
+        border-right: 1px solid var(--line);
+      }
+
+      .benefit:last-child {
+        border-right: 0;
+      }
+
       .benefit strong {
-        font-size: 17px;
+        font-size: 16px;
       }
 
       .benefit span {
@@ -1684,8 +1956,19 @@
 
       .included-layout,
       .overview-layout,
+      .messages-layout,
       .trial-layout {
         gap: 46px;
+      }
+
+      .seq-row {
+        grid-template-columns: 118px minmax(0, 1fr);
+        gap: 14px;
+        padding: 17px 0;
+      }
+
+      .seq-when {
+        padding-top: 4px;
       }
 
       .preview-head {
@@ -1793,8 +2076,8 @@
       }
 
       h1 {
-        max-width: 650px;
-        font-size: clamp(64px, 6.1vw, 78px);
+        max-width: 700px;
+        font-size: clamp(50px, 5vw, 62px);
       }
 
       .hero-copy > p:not(.eyebrow) {
@@ -1820,6 +2103,19 @@
         grid-template-columns: minmax(0, 1.25fr) minmax(330px, .75fr);
         gap: 62px;
         align-items: center;
+      }
+
+      .messages-layout {
+        grid-template-columns: minmax(0, 1.06fr) minmax(330px, .94fr);
+        gap: 70px;
+        align-items: center;
+      }
+
+      .inbox-card {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 30px;
+        padding: 24px 26px;
       }
 
       .overview-copy,
@@ -1906,6 +2202,7 @@
 
       <div class="nav-links">
         <a href="#included">How it works</a>
+        <a href="#texting">Texting</a>
         <a href="#dashboard">Dashboard</a>
       </div>
 
@@ -1921,8 +2218,8 @@
       <div class="hero-grid wrap">
         <div class="hero-copy reveal">
           <p class="eyebrow">For mobile detailers and detail shops</p>
-          <h1 id="hero-title">Missed calls become <span class="headline-blue">booked jobs.</span></h1>
-          <p>BoyerScales answers the calls you miss, gets the details, books the appointment, and logs it in one simple dashboard. <strong>You stay on the car.</strong></p>
+          <h1 id="hero-title">Answers the call. Books the job. <span class="headline-blue">Texts the customer.</span></h1>
+          <p>BoyerScales picks up the calls you miss and books them in. Then it handles the texts on its own — confirmation, reminders, review request, and a nudge to book again. <strong>You stay on the car.</strong></p>
 
           <div class="hero-actions">
             <a class="button button-primary trial-link" href="#trial">Start your free 7-day trial <span aria-hidden="true">→</span></a>
@@ -1961,16 +2258,20 @@
     <section class="benefits" aria-label="Trial benefits">
       <div class="benefit-grid wrap">
         <div class="benefit reveal">
-          <strong>Answer calls</strong>
+          <strong>Answers calls</strong>
           <span>Your front desk picks up when you cannot.</span>
         </div>
         <div class="benefit reveal reveal-delay-1">
-          <strong>Book jobs</strong>
+          <strong>Books jobs</strong>
           <span>Qualified work lands on your calendar.</span>
         </div>
+        <div class="benefit reveal reveal-delay-1">
+          <strong>Sends the texts</strong>
+          <span>Confirmations, reminders, and review asks.</span>
+        </div>
         <div class="benefit reveal reveal-delay-2">
-          <strong>Track it</strong>
-          <span>Every lead and booking stays in one place.</span>
+          <strong>Brings them back</strong>
+          <span>A rebooking nudge when the car is due again.</span>
         </div>
       </div>
     </section>
@@ -2002,12 +2303,116 @@
             <div class="included-row">
               <span class="included-number">03</span>
               <div>
+                <strong>Automatic text follow-up</strong>
+                <span>Confirmation, reminders, review request, and a rebooking nudge.</span>
+              </div>
+            </div>
+            <div class="included-row">
+              <span class="included-number">04</span>
+              <div>
+                <strong>Your own message inbox</strong>
+                <span>Read every thread and reply yourself from any device.</span>
+              </div>
+            </div>
+            <div class="included-row">
+              <span class="included-number">05</span>
+              <div>
                 <strong>Your client dashboard</strong>
                 <span>Shows every lead, call, and appointment without clutter.</span>
               </div>
             </div>
           </div>
-          <p class="future-note">SMS confirmations and follow-ups can slot into this same system once messaging is ready.</p>
+          <p class="future-note">All of it is live and set up for you before the trial starts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section messages-section" id="texting" aria-labelledby="texting-title">
+      <div class="wrap">
+        <div class="messages-layout">
+          <div class="section-copy reveal">
+            <p class="eyebrow">After the booking</p>
+            <h2 id="texting-title">Then it texts them for you.</h2>
+            <p>Booking the job is half of it. The follow-up is what keeps the calendar full, and it runs on its own from the second the appointment is set.</p>
+
+            <div class="seq-list">
+              <div class="seq-row">
+                <span class="seq-when">Right away</span>
+                <div>
+                  <strong>Booking confirmation</strong>
+                  <span>Includes a link to reschedule or fix the details the AI took down. No callback to you.</span>
+                </div>
+              </div>
+              <div class="seq-row">
+                <span class="seq-when">1 day + 1 hour</span>
+                <div>
+                  <strong>Reminders before the appointment</strong>
+                  <span>Fewer no-shows and fewer surprise cancellations.</span>
+                </div>
+              </div>
+              <div class="seq-row">
+                <span class="seq-when">After the job</span>
+                <div>
+                  <strong>Review request</strong>
+                  <span>Asks how it went. If they had a good one, they get the option to post it on Google.</span>
+                </div>
+              </div>
+              <div class="seq-row">
+                <span class="seq-when">Weeks later</span>
+                <div>
+                  <strong>Rebooking nudge</strong>
+                  <span>Checks back in while you are still fresh in their mind.</span>
+                </div>
+              </div>
+            </div>
+
+            <p class="future-note">Move any of the timing, or switch a step off. Registered A2P 10DLC, so the messages actually deliver.</p>
+          </div>
+
+          <div class="call-card demo-card thread-card reveal reveal-delay-1" aria-label="Example of the automatic text sequence after a booking">
+            <div class="phone-hardware" aria-hidden="true"><span class="phone-speaker"></span></div>
+            <div class="thread-screen">
+              <div class="thread-head">
+                <span class="thread-avatar" aria-hidden="true"><img src="./logo.png" alt=""></span>
+                <div class="thread-who">
+                  <strong>Marcus R.</strong>
+                  <span>Full interior · Sat 10:00 AM</span>
+                </div>
+                <span class="thread-auto"><span class="live-dot" aria-hidden="true"></span> Auto</span>
+              </div>
+
+              <div class="thread-body">
+                <p class="thread-stage">Booked</p>
+                <div class="bubble bubble-out">You're booked for a full interior detail Saturday at 10:00 AM.<span class="bubble-link">Reschedule or edit details</span></div>
+
+                <p class="thread-stage">1 day before</p>
+                <div class="bubble bubble-out">Reminder: your detail is tomorrow at 10:00 AM.</div>
+                <div class="bubble bubble-in">Perfect, see you then</div>
+
+                <p class="thread-stage">After the job</p>
+                <div class="bubble bubble-out">How did we do today?</div>
+                <div class="bubble bubble-in">Great, car looks brand new</div>
+                <div class="bubble bubble-out">Appreciate that. If you have a second, it would help us a lot.<span class="bubble-link">Leave a Google review</span></div>
+
+                <p class="thread-stage">6 weeks later</p>
+                <div class="bubble bubble-out">Hey Marcus, about time for another detail. Want Saturday again?</div>
+              </div>
+
+              <div class="thread-input" aria-hidden="true">
+                <span>Jump in any time…</span>
+                <span class="thread-send">↑</span>
+              </div>
+            </div>
+            <span class="phone-home" aria-hidden="true"></span>
+          </div>
+        </div>
+
+        <div class="inbox-card reveal">
+          <div>
+            <strong>Every thread, on every device.</strong>
+            <p>You get your own app to watch the automatic messages go out, and you can step in and reply yourself from your phone, tablet, or laptop.</p>
+          </div>
+          <a class="button button-secondary dashboard-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener">See the client app</a>
         </div>
       </div>
     </section>
