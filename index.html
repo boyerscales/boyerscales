@@ -1348,40 +1348,44 @@
       overflow: hidden;
     }
 
-    .chart-area {
+    .chart-svg {
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(77, 128, 255, .19), rgba(77, 128, 255, .035));
-      clip-path: polygon(0 100%, 43% 100%, 47% 24%, 100% 24%, 100% 100%);
+      display: block;
+      width: 100%;
+      height: 100%;
     }
 
-    .chart-line {
+    .chart-grid line {
+      stroke: var(--line);
+      stroke-width: 1;
+      stroke-dasharray: 3 4;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .chart-fill {
+      fill: url(#revFill);
+    }
+
+    .chart-stroke {
+      fill: none;
+      stroke: #4f83ff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .chart-dot {
       position: absolute;
-      height: 2px;
-      border-radius: 99px;
-      background: #4f83ff;
-      box-shadow: 0 0 12px rgba(79, 131, 255, .18);
-    }
-
-    .chart-line-low {
-      left: 0;
-      bottom: 0;
-      width: 44%;
-    }
-
-    .chart-line-rise {
-      left: 44.5%;
-      bottom: 0;
-      width: 2px;
-      height: 76%;
-      transform: skewX(-4deg);
-      transform-origin: bottom;
-    }
-
-    .chart-line-high {
-      top: 24%;
+      top: 8%;
       right: 0;
-      width: 54%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4f83ff;
+      box-shadow: 0 0 0 4px rgba(79, 131, 255, .2);
+      transform: translateY(-50%);
     }
 
     .chart-labels {
@@ -2810,10 +2814,23 @@
                 <p class="preview-card-title">Revenue captured · last 30 days</p>
                 <div class="chart-wrap" aria-label="$4,380 in revenue captured over the last 30 days">
                   <div class="chart-plot" aria-hidden="true">
-                    <span class="chart-area"></span>
-                    <span class="chart-line chart-line-low"></span>
-                    <span class="chart-line chart-line-rise"></span>
-                    <span class="chart-line chart-line-high"></span>
+                    <!-- Cumulative revenue over 30 days: flat stretches, then a step each time a job books. -->
+                    <svg class="chart-svg" viewBox="0 0 300 100" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="revFill" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0" stop-color="#4f83ff" stop-opacity=".28"/>
+                          <stop offset="1" stop-color="#4f83ff" stop-opacity="0"/>
+                        </linearGradient>
+                      </defs>
+                      <g class="chart-grid">
+                        <line x1="0" y1="25" x2="300" y2="25"/>
+                        <line x1="0" y1="50" x2="300" y2="50"/>
+                        <line x1="0" y1="75" x2="300" y2="75"/>
+                      </g>
+                      <path class="chart-fill" d="M0,96 L20,92.4 L30,92.4 L50,87.6 L70,83.1 L80,83.1 L100,72.9 L120,69.3 L140,63.7 L150,63.7 L170,54.8 L190,50.2 L210,37.9 L220,37.9 L240,31.5 L260,24.5 L280,16 L300,8 L300,100 L0,100 Z"/>
+                      <polyline class="chart-stroke" points="0,96 20,92.4 30,92.4 50,87.6 70,83.1 80,83.1 100,72.9 120,69.3 140,63.7 150,63.7 170,54.8 190,50.2 210,37.9 220,37.9 240,31.5 260,24.5 280,16 300,8"/>
+                    </svg>
+                    <span class="chart-dot"></span>
                   </div>
                   <div class="chart-labels" aria-hidden="true">
                     <span>30 days ago</span>
