@@ -6,8 +6,15 @@
   <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
-  <title>BoyerScales | AI receptionist and automatic texts for detailers</title>
-  <meta name="description" content="BoyerScales answers the calls mobile detailers miss and books the job, then texts the customer on its own: confirmation, reminders, review request, and a nudge to book again.">
+  <title>BoyerScales | AI receptionist for plumbers</title>
+  <meta name="description" content="BoyerScales answers the calls your plumbing company misses, nights, weekends and mid-job, books the job on your calendar, and texts the customer from your number. Try it free for 7 days.">
+  <link rel="canonical" href="https://boyerscales.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://boyerscales.com/">
+  <meta property="og:title" content="The plumber who picks up gets the job.">
+  <meta property="og:description" content="An AI receptionist for plumbing companies. Answers every call, books the job, texts the customer. Call it yourself: (916) 659-8131.">
+  <meta property="og:image" content="https://boyerscales.com/logo.png">
+  <meta name="twitter:card" content="summary">
   <link rel="icon" type="image/png" href="./logo.png">
   <link rel="apple-touch-icon" href="./logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1805,6 +1812,292 @@
       text-decoration: none;
     }
 
+    /* ── Plumbing page sections ─────────────────────────────────────────── */
+    .math-layout,
+    .call-layout,
+    .faq-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 30px;
+    }
+
+    .math-card {
+      border: 1px solid transparent;
+      border-radius: 18px;
+      background:
+        linear-gradient(var(--surface), var(--surface)) padding-box,
+        linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 55%, transparent), var(--line)) border-box;
+      padding: 6px 20px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .math-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+
+    .math-row span {
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .math-row strong {
+      font-family: var(--display);
+      font-size: 34px;
+      font-weight: 600;
+      letter-spacing: -.04em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .math-row .math-blue {
+      color: var(--blue);
+    }
+
+    .math-foot {
+      margin: 16px 0 0;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .transcript-card {
+      display: grid;
+      gap: 11px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .transcript-head {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 12px;
+      color: var(--text-faint);
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .tline {
+      display: grid;
+      gap: 3px;
+      max-width: 88%;
+    }
+
+    .tline span {
+      color: var(--text-faint);
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .tline p {
+      margin: 0;
+      border-radius: 14px;
+      padding: 9px 13px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .tline-caller p {
+      border-bottom-left-radius: 5px;
+      background: var(--surface-soft);
+      color: var(--text);
+    }
+
+    .tline-ai {
+      justify-self: end;
+      text-align: right;
+    }
+
+    .tline-ai p {
+      border-bottom-right-radius: 5px;
+      background: var(--blue-soft);
+      color: var(--text);
+      text-align: left;
+    }
+
+    .transcript-result {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px 10px;
+      margin-top: 3px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+      color: var(--text-soft);
+      font-size: 12px;
+    }
+
+    .transcript-result strong {
+      border-radius: 999px;
+      background: rgba(35, 175, 103, .15);
+      padding: 4px 10px;
+      color: #23a866;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .faq-list {
+      border-top: 1px solid var(--line-strong);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .faq-item summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      font-size: 16px;
+      font-weight: 600;
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq-item summary::after {
+      content: "+";
+      flex: 0 0 auto;
+      color: var(--blue);
+      font-size: 22px;
+      font-weight: 500;
+      line-height: 1;
+      transition: transform .2s ease;
+    }
+
+    .faq-item[open] summary::after {
+      transform: rotate(45deg);
+    }
+
+    .faq-item p {
+      max-width: 620px;
+      margin: -4px 0 18px;
+      color: var(--text-soft);
+      font-size: 14px;
+    }
+
+    .faq-item a {
+      color: var(--blue);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .founder-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .founder-card img {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      border-radius: 12px;
+      background: #00152f;
+      object-fit: cover;
+    }
+
+    .founder-card strong {
+      display: block;
+      margin-bottom: 3px;
+      font-size: 15px;
+    }
+
+    .founder-card p {
+      margin: 0;
+      color: var(--text-soft);
+      font-size: 13px;
+    }
+
+    .mobile-cta {
+      position: fixed;
+      right: 12px;
+      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+      left: 12px;
+      z-index: 60;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface-glass);
+      padding: 8px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px) saturate(150%);
+      -webkit-backdrop-filter: blur(18px) saturate(150%);
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .mobile-cta.is-hidden {
+      opacity: 0;
+      transform: translateY(140%);
+      pointer-events: none;
+    }
+
+    .mobile-cta .button {
+      min-height: 44px;
+      padding-inline: 10px;
+      font-size: 14px;
+    }
+
+    @media (min-width: 700px) {
+      .mobile-cta {
+        display: none;
+      }
+
+      .math-row strong {
+        font-size: 42px;
+      }
+
+      .transcript-card {
+        padding: 22px;
+      }
+    }
+
+    @media (min-width: 940px) {
+      .math-layout {
+        grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr);
+        gap: 80px;
+        align-items: center;
+      }
+
+      .call-layout {
+        grid-template-columns: minmax(380px, .95fr) minmax(0, 1.05fr);
+        gap: 80px;
+        align-items: center;
+      }
+
+      .faq-layout {
+        grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+        gap: 80px;
+        align-items: start;
+      }
+    }
+
     @media (hover: hover) and (pointer: fine) {
       .button-primary:hover {
         transform: translateY(-2px);
@@ -2201,9 +2494,10 @@
       </a>
 
       <div class="nav-links">
+        <a href="#calls">Hear a call</a>
         <a href="#included">How it works</a>
         <a href="#texting">Texting</a>
-        <a href="#dashboard">Dashboard</a>
+        <a href="#faq">FAQ</a>
       </div>
 
       <div class="nav-actions">
@@ -2214,18 +2508,18 @@
   </header>
 
   <main>
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero" id="hero" aria-labelledby="hero-title">
       <div class="hero-grid wrap">
         <div class="hero-copy reveal">
-          <p class="eyebrow">For mobile detailers and detail shops</p>
-          <h1 id="hero-title">Answers the call. Books the job. <span class="headline-blue">Texts the customer.</span></h1>
-          <p>BoyerScales picks up the calls you miss and books them in. Then it handles the texts on its own — confirmation, reminders, review request, and a nudge to book again. <strong>You stay on the car.</strong></p>
+          <p class="eyebrow">AI receptionist for plumbers</p>
+          <h1 id="hero-title">The plumber who picks up <span class="headline-blue">gets the job.</span></h1>
+          <p>BoyerScales answers the calls you can't get to, nights, weekends, and while you're under a sink. It books the job on your calendar and texts the customer from your number. <strong>You stay on the job.</strong></p>
 
           <div class="hero-actions">
             <a class="button button-primary trial-link" href="#trial">Start your free 7-day trial <span aria-hidden="true">→</span></a>
-            <a class="button button-secondary call-link" href="tel:+19166598131">Call the AI demo</a>
+            <a class="button button-secondary call-link" href="tel:+19166598131">Hear it: call (916) 659-8131</a>
           </div>
-          <div class="fine-print">No card · Plans start at $129/month after trial · Cancel anytime</div>
+          <div class="fine-print">No card · Keep your number · $129/month after the free week · Cancel anytime</div>
         </div>
 
         <div class="call-card demo-card reveal reveal-delay-1" aria-label="Live BoyerScales AI demo line">
@@ -2238,17 +2532,17 @@
 
             <span class="phone-avatar" aria-hidden="true"><img src="./logo.png" alt=""></span>
             <p class="phone-contact-type">BoyerScales receptionist</p>
-            <h2>Call it yourself.</h2>
+            <h2>Don't take our word for it.</h2>
             <a class="demo-number call-link" href="tel:+19166598131">(916) 659-8131</a>
-            <div class="phone-call-state">Standing by for a test call</div>
+            <div class="phone-call-state">Answers 24/7 · Call it now</div>
 
             <div class="phone-script">
-              <span>Try saying</span>
-              <p>“I need an interior detail for my SUV this Saturday.”</p>
+              <span>Try asking</span>
+              <p>“How would this work for my plumbing company?”</p>
             </div>
 
-            <a class="button button-primary demo-call-button call-link" href="tel:+19166598131">Call the demo line <span aria-hidden="true">→</span></a>
-            <p class="demo-note">It will ask for the vehicle, service, date, and contact info.</p>
+            <a class="button button-primary demo-call-button call-link" href="tel:+19166598131">Call the receptionist <span aria-hidden="true">→</span></a>
+            <p class="demo-note">Ask it anything, then let it book you a quick call with Elijah. That's the same way it books jobs for your customers.</p>
           </div>
           <span class="phone-home" aria-hidden="true"></span>
         </div>
@@ -2258,20 +2552,64 @@
     <section class="benefits" aria-label="Trial benefits">
       <div class="benefit-grid wrap">
         <div class="benefit reveal">
-          <strong>Answers calls</strong>
-          <span>Your front desk picks up when you cannot.</span>
+          <strong>Picks up every call</strong>
+          <span>Nights, weekends, and mid-job.</span>
         </div>
         <div class="benefit reveal reveal-delay-1">
-          <strong>Books jobs</strong>
-          <span>Qualified work lands on your calendar.</span>
+          <strong>Books the job</strong>
+          <span>Straight onto your calendar.</span>
         </div>
         <div class="benefit reveal reveal-delay-1">
-          <strong>Sends the texts</strong>
-          <span>Confirmations, reminders, and review asks.</span>
+          <strong>Texts from your number</strong>
+          <span>Confirmations, reminders, reviews.</span>
         </div>
         <div class="benefit reveal reveal-delay-2">
           <strong>Brings them back</strong>
-          <span>A rebooking nudge when the car is due again.</span>
+          <span>Maintenance reminders that rebook.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="math-title">
+      <div class="math-layout wrap">
+        <div class="section-copy reveal">
+          <p class="eyebrow">The math</p>
+          <h2 id="math-title">One missed call can cost more than a year of this.</h2>
+          <p>Someone with water on the floor doesn't leave a voicemail. They call the next plumber on Google. BoyerScales picks up before they do.</p>
+        </div>
+
+        <div class="math-card reveal reveal-delay-1" aria-label="Cost of a missed call compared with BoyerScales">
+          <div class="math-row">
+            <span>A water heater job that went to voicemail</span>
+            <strong>$1,500+</strong>
+          </div>
+          <div class="math-row">
+            <span>BoyerScales, per month</span>
+            <strong class="math-blue">$129</strong>
+          </div>
+          <p class="math-foot">One extra drain call a month covers it. Every job after that is yours.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section messages-section" id="calls" aria-labelledby="calls-title">
+      <div class="call-layout wrap">
+        <div class="transcript-card reveal" aria-label="Example of a call the receptionist handles">
+          <div class="transcript-head"><span class="live-dot" aria-hidden="true"></span> Saturday, 9:42 PM · Example call</div>
+          <div class="tline tline-caller"><span>Caller</span><p>Hey, my water heater's leaking all over the garage.</p></div>
+          <div class="tline tline-ai"><span>Receptionist</span><p>Oh no. Were you able to shut the water off to it?</p></div>
+          <div class="tline tline-caller"><span>Caller</span><p>Yeah, I turned the valve.</p></div>
+          <div class="tline tline-ai"><span>Receptionist</span><p>Okay, good. I can get someone out tomorrow at eight, or at ten. Which is better?</p></div>
+          <div class="tline tline-caller"><span>Caller</span><p>Eight.</p></div>
+          <div class="tline tline-ai"><span>Receptionist</span><p>Got it. And what's the address?</p></div>
+          <div class="transcript-result"><strong>Booked</strong><span>Sun 8:00 AM · Water heater leak · Confirmation texted</span></div>
+        </div>
+
+        <div class="section-copy reveal reveal-delay-1">
+          <p class="eyebrow">What your customers hear</p>
+          <h2 id="calls-title">A calm voice that gets the job booked.</h2>
+          <p>It knows your services, your hours, and where you work. It asks what you'd ask, one question at a time, and puts the job on your calendar. No phone tree. No "press 1."</p>
+          <p class="future-note">Example call. Yours is built on your own business info. Or skip the example and <a class="call-link" href="tel:+19166598131">call the real one</a>.</p>
         </div>
       </div>
     </section>
@@ -2279,9 +2617,9 @@
     <section class="section" id="included" aria-labelledby="included-title">
       <div class="included-layout wrap">
         <div class="section-copy reveal">
-          <p class="eyebrow">What is live today</p>
-          <h2 id="included-title">Everything needed to catch the next job.</h2>
-          <p>We set up the system around your business and let it run for seven days. You see exactly what it catches.</p>
+          <p class="eyebrow">How it works</p>
+          <h2 id="included-title">Live on your line in one setup call.</h2>
+          <p>You don't learn new software or change your number. We build it around your business and you watch what it catches for a week, free.</p>
         </div>
 
         <div class="included-details reveal reveal-delay-1">
@@ -2289,40 +2627,26 @@
             <div class="included-row">
               <span class="included-number">01</span>
               <div>
-                <strong>AI receptionist</strong>
-                <span>Answers missed or forwarded calls using your business information.</span>
+                <strong>Send us five details</strong>
+                <span>Name, business, phone, carrier, email. It takes about a minute.</span>
               </div>
             </div>
             <div class="included-row">
               <span class="included-number">02</span>
               <div>
-                <strong>Lead capture and booking</strong>
-                <span>Collects what the customer needs and books the appointment.</span>
+                <strong>We build your receptionist</strong>
+                <span>Your services, prices, hours, and service area. Then we forward the calls you miss to it.</span>
               </div>
             </div>
             <div class="included-row">
               <span class="included-number">03</span>
               <div>
-                <strong>Automatic text follow-up</strong>
-                <span>Confirmation, reminders, review request, and a rebooking nudge.</span>
-              </div>
-            </div>
-            <div class="included-row">
-              <span class="included-number">04</span>
-              <div>
-                <strong>Your own message inbox</strong>
-                <span>Read every thread and reply yourself from any device.</span>
-              </div>
-            </div>
-            <div class="included-row">
-              <span class="included-number">05</span>
-              <div>
-                <strong>Your client dashboard</strong>
-                <span>Shows every lead, call, and appointment without clutter.</span>
+                <strong>It answers, books, and texts</strong>
+                <span>Every call and booking shows up in your app. Step in and reply yourself any time.</span>
               </div>
             </div>
           </div>
-          <p class="future-note">All of it is live and set up for you before the trial starts.</p>
+          <p class="future-note">Included: the receptionist, booking, automatic texts, your message inbox, and your dashboard.</p>
         </div>
       </div>
     </section>
@@ -2358,15 +2682,15 @@
                 </div>
               </div>
               <div class="seq-row">
-                <span class="seq-when">Weeks later</span>
+                <span class="seq-when">Months later</span>
                 <div>
-                  <strong>Rebooking nudge</strong>
-                  <span>Checks back in while you are still fresh in their mind.</span>
+                  <strong>Maintenance reminder</strong>
+                  <span>The water heater flush, the annual check. It books the next job before they forget your name.</span>
                 </div>
               </div>
             </div>
 
-            <p class="future-note">Move any of the timing, or switch a step off. Registered A2P 10DLC, so the messages actually deliver.</p>
+            <p class="future-note">Move any of the timing, or switch a step off. Texts come from your own number, so customers know exactly who it is.</p>
           </div>
 
           <div class="call-card demo-card thread-card reveal reveal-delay-1" aria-label="Example of the automatic text sequence after a booking">
@@ -2375,27 +2699,27 @@
               <div class="thread-head">
                 <span class="thread-avatar" aria-hidden="true"><img src="./logo.png" alt=""></span>
                 <div class="thread-who">
-                  <strong>Marcus R.</strong>
-                  <span>Full interior · Sat 10:00 AM</span>
+                  <strong>Dana K.</strong>
+                  <span>Water heater leak · Sun 8:00 AM</span>
                 </div>
                 <span class="thread-auto"><span class="live-dot" aria-hidden="true"></span> Auto</span>
               </div>
 
               <div class="thread-body">
                 <p class="thread-stage">Booked</p>
-                <div class="bubble bubble-out">You're booked for a full interior detail Saturday at 10:00 AM.<span class="bubble-link">Reschedule or edit details</span></div>
+                <div class="bubble bubble-out">You're booked for Sunday at 8:00 AM for the water heater leak.<span class="bubble-link">Reschedule or edit details</span></div>
 
-                <p class="thread-stage">1 day before</p>
-                <div class="bubble bubble-out">Reminder: your detail is tomorrow at 10:00 AM.</div>
-                <div class="bubble bubble-in">Perfect, see you then</div>
+                <p class="thread-stage">1 hour before</p>
+                <div class="bubble bubble-out">Reminder: we'll be there at 8:00 AM.</div>
+                <div class="bubble bubble-in">Sounds good, side gate is open</div>
 
                 <p class="thread-stage">After the job</p>
-                <div class="bubble bubble-out">How did we do today?</div>
-                <div class="bubble bubble-in">Great, car looks brand new</div>
-                <div class="bubble bubble-out">Appreciate that. If you have a second, it would help us a lot.<span class="bubble-link">Leave a Google review</span></div>
+                <div class="bubble bubble-out">How did everything go today?</div>
+                <div class="bubble bubble-in">Really good, super quick</div>
+                <div class="bubble bubble-out">Glad to hear it. If you have a second, a review helps us a lot.<span class="bubble-link">Leave a Google review</span></div>
 
-                <p class="thread-stage">6 weeks later</p>
-                <div class="bubble bubble-out">Hey Marcus, about time for another detail. Want Saturday again?</div>
+                <p class="thread-stage">11 months later</p>
+                <div class="bubble bubble-out">Hi Dana, it's been about a year since your water heater job. Want us to flush it so it lasts longer?</div>
               </div>
 
               <div class="thread-input" aria-hidden="true">
@@ -2439,7 +2763,7 @@
             <div class="revenue-panel">
               <span class="revenue-label">Revenue captured</span>
               <div class="revenue-amount">
-                <strong>$250</strong>
+                <strong>$4,380</strong>
                 <span class="revenue-trend" aria-hidden="true">↗</span>
               </div>
             </div>
@@ -2447,40 +2771,40 @@
             <div class="stat-grid">
               <div class="stat-tile">
                 <span class="stat-icon" aria-hidden="true">◎</span>
-                <strong>29</strong>
+                <strong>34</strong>
                 <span>Leads</span>
               </div>
               <div class="stat-tile">
                 <span class="stat-icon stat-icon-new" aria-hidden="true">✦</span>
-                <strong>28</strong>
+                <strong>5</strong>
                 <span>New</span>
               </div>
               <div class="stat-tile">
                 <span class="stat-icon stat-icon-calls" aria-hidden="true">☎</span>
-                <strong>29</strong>
+                <strong>41</strong>
                 <span>Calls captured</span>
               </div>
               <div class="stat-tile">
                 <span class="stat-icon stat-icon-booked" aria-hidden="true">▣</span>
-                <strong>1</strong>
+                <strong>19</strong>
                 <span>Booked</span>
               </div>
               <div class="stat-tile">
                 <span class="stat-icon stat-icon-completed" aria-hidden="true">✓</span>
-                <strong>0</strong>
+                <strong>15</strong>
                 <span>Jobs completed</span>
               </div>
               <div class="stat-tile">
                 <span class="stat-icon stat-icon-fallback" aria-hidden="true">!</span>
-                <strong>0</strong>
-                <span>Fallbacks</span>
+                <strong>2</strong>
+                <span>Callbacks</span>
               </div>
             </div>
 
             <div class="preview-details">
               <div class="chart-card">
                 <p class="preview-card-title">Revenue captured · last 30 days</p>
-                <div class="chart-wrap" aria-label="$250 in revenue captured over the last 30 days">
+                <div class="chart-wrap" aria-label="$4,380 in revenue captured over the last 30 days">
                   <div class="chart-plot" aria-hidden="true">
                     <span class="chart-area"></span>
                     <span class="chart-line chart-line-low"></span>
@@ -2489,7 +2813,7 @@
                   </div>
                   <div class="chart-labels" aria-hidden="true">
                     <span>30 days ago</span>
-                    <span>$250 captured</span>
+                    <span>$4,380 captured</span>
                     <span>Today</span>
                   </div>
                 </div>
@@ -2500,18 +2824,18 @@
                 <div class="activity-list">
                   <div class="activity-row">
                     <span class="activity-avatar" aria-hidden="true">☎</span>
-                    <div class="activity-person"><strong>Unknown caller</strong><span>New call captured</span></div>
-                    <span class="activity-badge">New</span>
+                    <div class="activity-person"><strong>Dana K.</strong><span>Water heater leak · Sun 8 AM</span></div>
+                    <span class="activity-badge">Booked</span>
                   </div>
                   <div class="activity-row">
                     <span class="activity-avatar" aria-hidden="true">☎</span>
-                    <div class="activity-person"><strong>Unknown caller</strong><span>Lead details saved</span></div>
-                    <span class="activity-badge">New</span>
+                    <div class="activity-person"><strong>Luis M.</strong><span>Kitchen drain clog · Mon 10 AM</span></div>
+                    <span class="activity-badge">Booked</span>
                   </div>
                   <div class="activity-row">
                     <span class="activity-avatar" aria-hidden="true">☎</span>
-                    <div class="activity-person"><strong>Unknown caller</strong><span>Appointment requested</span></div>
-                    <span class="activity-badge">New</span>
+                    <div class="activity-person"><strong>Priya S.</strong><span>Wants a repipe quote</span></div>
+                    <span class="activity-badge">Callback</span>
                   </div>
                 </div>
               </div>
@@ -2522,16 +2846,62 @@
       </div>
     </section>
 
+    <section class="section" id="faq" aria-labelledby="faq-title">
+      <div class="faq-layout wrap">
+        <div class="section-copy reveal">
+          <p class="eyebrow">Straight answers</p>
+          <h2 id="faq-title">What plumbers ask first.</h2>
+          <p>You've heard plenty of AI pitches. Here's what this one does and doesn't do.</p>
+
+          <div class="founder-card">
+            <img src="./logo.png" alt="">
+            <div>
+              <strong>You deal with me, not a call center.</strong>
+              <p>I'm Elijah, based in Sacramento. I set up every receptionist myself, and if something needs changing, you text me and it gets changed.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-list reveal reveal-delay-1">
+          <details class="faq-item">
+            <summary>Will it sound like a robot?</summary>
+            <p>Call it and decide for yourself: <a class="call-link" href="tel:+19166598131">(916) 659-8131</a>. That's the same receptionist your customers would talk to.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I have to change my number?</summary>
+            <p>No. Your number stays the same. The calls you don't pick up forward to your receptionist, and the texts go out from your number.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What if it's an emergency, or they want to talk to me?</summary>
+            <p>It gets what's going on and books the soonest opening you have. If they want you, it takes their name, number, and what it's about, and flags it for you to call back. It never pretends to transfer.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Will customers know it's AI?</summary>
+            <p>If someone sincerely asks, it tells them. Most people calling about a leak just want someone to show up, and it gets them on your calendar.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What if it gets a detail wrong?</summary>
+            <p>Every customer gets a confirmation text with a link to fix their details or reschedule, so small mix-ups get sorted without a call to you.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What does it cost?</summary>
+            <p>The first seven days are free with no card. After that, plans start at $129 a month. No contract, cancel any time.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <section class="trial" id="trial" aria-labelledby="trial-title">
       <div class="trial-layout wrap">
         <div class="trial-copy reveal">
           <p class="eyebrow">Start free</p>
           <h2 id="trial-title">Try it on your line for seven days.</h2>
-          <p>Tell us where to reach you. We will use this information to prepare your receptionist and trial account.</p>
+          <p>Send five details and we'll build your receptionist around your services, hours, and service area. If it hasn't caught you a job in a week, walk away. There's no card on file and nothing to cancel.</p>
           <div class="trial-points" aria-label="Trial terms">
             <span>Seven days free</span>
             <span>No credit card</span>
             <span>We handle setup</span>
+            <span>Keep your number</span>
           </div>
         </div>
 
@@ -2553,7 +2923,7 @@
             </div>
             <div class="field">
               <label for="business">Business name</label>
-              <input id="business" name="business" type="text" autocomplete="organization" placeholder="Your business name" required>
+              <input id="business" name="business" type="text" autocomplete="organization" placeholder="e.g. Rivera Plumbing &amp; Drain" required>
             </div>
             <div class="field">
               <label for="phone">Business phone</label>
@@ -2587,6 +2957,11 @@
       </div>
     </section>
   </main>
+
+  <div class="mobile-cta is-hidden" id="mobileCta">
+    <a class="button button-secondary call-link" href="tel:+19166598131">Hear it</a>
+    <a class="button button-primary trial-link" href="#trial">Start free <span aria-hidden="true">→</span></a>
+  </div>
 
   <footer>
     <div class="footer-inner wrap">
@@ -2646,6 +3021,21 @@
             item.classList.add('is-visible');
           });
         }
+      }
+
+      // Phone-only bar with the two actions. It stays out of the way while the
+      // hero's own buttons, the trial form, or the footer are on screen.
+      var mobileCta = document.getElementById('mobileCta');
+      if (mobileCta && 'IntersectionObserver' in window) {
+        var inView = {};
+        var watch = ['hero', 'trial'].map(function (id) { return document.getElementById(id); })
+          .concat([document.querySelector('footer')]).filter(Boolean);
+        var ctaObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) { inView[entry.target.id || 'footer'] = entry.isIntersecting; });
+          var hide = Object.keys(inView).some(function (k) { return inView[k]; });
+          mobileCta.classList.toggle('is-hidden', hide);
+        }, { threshold: 0 });
+        watch.forEach(function (el) { ctaObserver.observe(el); });
       }
 
       document.querySelectorAll('.trial-link').forEach(function (link) {
