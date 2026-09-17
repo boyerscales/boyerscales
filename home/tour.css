@@ -131,11 +131,21 @@ h3{font-size:clamp(19px,1.7vw,22px);letter-spacing:-.015em;line-height:1.2}
 .sec-head .lede{margin-top:22px}
 
 /* ---------- devices ---------- */
-.phone{position:relative;min-width:0;width:100%;max-width:300px;aspect-ratio:390/844;border-radius:15.5% / 7.2%;padding:3.2%;
-  background:linear-gradient(145deg,#2a2d33,#0c0d10 45%,#1d2025);
-  box-shadow:0 0 0 1px rgba(0,0,0,.35),inset 0 0 0 1.5px rgba(255,255,255,.08),0 30px 60px -20px rgba(13,16,21,.45),0 12px 24px -12px rgba(13,16,21,.3)}
-.phone-screen{width:100%;height:100%;border-radius:13% / 6%;overflow:hidden;background:#000}
-.phone-screen img{width:100%;height:100%;object-fit:cover;object-position:top}
+/* The frame's height comes from the screen, so the screenshot always sits inside
+   the bezel at its true 390/844 shape instead of being cropped to fit. */
+.phone{position:relative;min-width:0;width:100%;max-width:300px;display:grid;container-type:inline-size;
+  border-radius:17% / 8.3%;
+  background:linear-gradient(145deg,#3c4048,#0b0c0f 44%,#23262d);
+  box-shadow:0 0 0 1px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.16),0 30px 60px -20px rgba(13,16,21,.45),0 12px 24px -12px rgba(13,16,21,.3)}
+/* side buttons */
+.phone::before,.phone::after{content:"";position:absolute;width:2.5px;border-radius:3px;
+  background:linear-gradient(180deg,#3a3e46,#14171c);pointer-events:none}
+.phone::before{left:-1.5px;top:21%;height:13%}
+.phone::after{right:-1.5px;top:24%;height:9%}
+/* bezel: cqw resolves against .phone, so it scales with the frame, not the column */
+.phone-screen{position:relative;margin:13px;margin:4.6cqw;aspect-ratio:390/844;border-radius:13.7% / 6.3%;overflow:hidden;background:#000;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.phone-screen img{display:block;width:100%;height:100%;object-fit:cover;object-position:top center}
 .phone-sm{max-width:200px}
 
 .browser{border-radius:var(--r);overflow:hidden;background:var(--card);border:1px solid var(--line);
