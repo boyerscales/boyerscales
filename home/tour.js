@@ -10,6 +10,25 @@
   const linkify = s => esc(s).replace(/((?:dashboard\.boyerscales\.com|valleydetails\.site|g\.page)[^\s]*)/g, '<u>$1</u>');
   const wait = ms => new Promise(r => setTimeout(r, reduce ? 0 : ms));
 
+  /* ---------------- clean URLs, refresh starts at the top ---------------- */
+  // In-page links scroll without writing #section into the address bar, and a
+  // refresh (or an old link that still has a #hash) always opens at the top.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  const toTop = () => window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+  toTop();
+  addEventListener('load', toTop, { once: true });
+  document.addEventListener('click', e => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    const id = a.getAttribute('href').slice(1);
+    const target = id ? document.getElementById(id) : null;
+    if (!id || !target) return;
+    e.preventDefault();
+    target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    if (id === 'main') { target.setAttribute('tabindex', '-1'); target.focus({ preventScroll: true }); }
+  });
+
   /* ---------------- nav state ---------------- */
   const nav = $('#nav');
   const darkSecs = $$('.sec-dark');
