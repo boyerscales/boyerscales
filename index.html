@@ -1,3192 +1,595 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
-  <meta name="color-scheme" content="light dark">
-  <title>BoyerScales | AI receptionist for plumbers</title>
-  <meta name="description" content="BoyerScales answers the calls your plumbing company misses, nights, weekends and mid-job, books the job on your calendar, and texts the customer from your number. Try it free for 7 days.">
-  <link rel="canonical" href="https://boyerscales.com/">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://boyerscales.com/">
-  <meta property="og:title" content="The plumber who picks up gets the job.">
-  <meta property="og:description" content="An AI receptionist for plumbing companies. Answers every call, books the job, texts the customer. Call it yourself: (916) 659-8131.">
-  <meta property="og:image" content="https://boyerscales.com/logo.png">
-  <meta name="twitter:card" content="summary">
-  <link rel="icon" type="image/png" href="./logo.png">
-  <link rel="apple-touch-icon" href="./logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      color-scheme: light dark;
-      --bg: #f5f7fb;
-      --surface: #ffffff;
-      --surface-soft: #edf1f7;
-      --surface-glass: rgba(255, 255, 255, .76);
-      --text: #111722;
-      --text-soft: #596474;
-      --text-faint: #8993a2;
-      --line: #e1e6ee;
-      --line-strong: #d2d9e4;
-      --blue: #286cff;
-      --blue-bright: #48adff;
-      --blue-deep: #164dd5;
-      --blue-soft: #e8f0ff;
-      --blue-wash: rgba(40, 108, 255, .09);
-      --shadow-sm: 0 2px 8px rgba(20, 35, 65, .06);
-      --shadow: 0 18px 48px rgba(20, 42, 90, .12), 0 3px 10px rgba(20, 42, 90, .06);
-      --shadow-blue: 0 16px 38px rgba(40, 108, 255, .27);
-      --font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --display: "Bricolage Grotesque", var(--font);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0b0f17;
-        --surface: #141a24;
-        --surface-soft: #1b2330;
-        --surface-glass: rgba(20, 26, 36, .78);
-        --text: #f4f6fa;
-        --text-soft: #a4afbf;
-        --text-faint: #727e8f;
-        --line: #222c3a;
-        --line-strong: #303c4d;
-        --blue: #5a8cff;
-        --blue-bright: #55c2ff;
-        --blue-deep: #316ff4;
-        --blue-soft: #192a50;
-        --blue-wash: rgba(90, 140, 255, .11);
-        --shadow-sm: 0 2px 8px rgba(0, 0, 0, .22);
-        --shadow: 0 20px 56px rgba(0, 0, 0, .35), 0 3px 10px rgba(0, 0, 0, .22);
-        --shadow-blue: 0 18px 42px rgba(49, 111, 244, .25);
-      }
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      scroll-padding-top: 74px;
-    }
-
-    body {
-      min-width: 320px;
-      min-height: 100vh;
-      margin: 0;
-      overflow-x: hidden;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    button,
-    input,
-    select {
-      font: inherit;
-    }
-
-    button,
-    select {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    a:focus-visible,
-    button:focus-visible,
-    input:focus-visible,
-    select:focus-visible {
-      outline: 3px solid color-mix(in srgb, var(--blue) 42%, transparent);
-      outline-offset: 3px;
-    }
-
-    .wrap {
-      width: min(100% - 32px, 1120px);
-      margin-inline: auto;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1,
-    h2,
-    h3 {
-      font-family: var(--display);
-      letter-spacing: -.04em;
-      line-height: 1.04;
-    }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
-      background: color-mix(in srgb, var(--bg) 88%, transparent);
-      backdrop-filter: blur(18px) saturate(150%);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-    }
-
-    .nav {
-      display: flex;
-      min-height: 60px;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand {
-      display: inline-flex;
-      min-width: 0;
-      align-items: center;
-      gap: 8px;
-      margin-right: auto;
-      font-family: var(--display);
-      font-size: 16px;
-      font-weight: 700;
-      letter-spacing: -.035em;
-      text-decoration: none;
-    }
-
-    .brand-mark {
-      display: block;
-      width: 29px;
-      height: 29px;
-      flex: 0 0 auto;
-      border-radius: 9px;
-      background: #00152f;
-      box-shadow: none;
-      overflow: hidden;
-    }
-
-    .brand-mark img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brand-accent {
-      color: var(--blue);
-    }
-
-    .nav-links,
-    .login-link {
-      display: none;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 46px;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 1px solid transparent;
-      border-radius: 12px;
-      padding: 0 18px;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
-    }
-
-    .button:active {
-      transform: scale(.985);
-    }
-
-    .button-primary {
-      background: linear-gradient(135deg, var(--blue-bright), var(--blue) 48%, var(--blue-deep));
-      color: #fff;
-      box-shadow: var(--shadow-blue);
-    }
-
-    .button-secondary {
-      border-color: var(--line-strong);
-      background: var(--surface-glass);
-      color: var(--text);
-      box-shadow: var(--shadow-sm);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .button-small {
-      min-height: 37px;
-      border-radius: 10px;
-      padding-inline: 13px;
-      font-size: 12px;
-    }
-
-    .button span[aria-hidden="true"] {
-      transition: transform .22s ease;
-    }
-
-    .motion-ready .reveal {
-      opacity: 0;
-      transform: translate3d(0, 18px, 0);
-      transition: opacity .68s cubic-bezier(.22, 1, .36, 1), transform .68s cubic-bezier(.22, 1, .36, 1);
-      will-change: opacity, transform;
-    }
-
-    .motion-ready .reveal.is-visible {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-      will-change: auto;
-    }
-
-    .motion-ready .reveal-delay-1 {
-      transition-delay: .09s;
-    }
-
-    .motion-ready .reveal-delay-2 {
-      transition-delay: .18s;
-    }
-
-    @keyframes glow-drift {
-      0%, 100% { transform: translate3d(-2%, 0, 0) scale(1); opacity: .82; }
-      50% { transform: translate3d(3%, 3%, 0) scale(1.06); opacity: 1; }
-    }
-
-    @keyframes live-pulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue-bright) 14%, transparent), 0 0 14px color-mix(in srgb, var(--blue-bright) 34%, transparent); }
-      50% { transform: scale(1.08); box-shadow: 0 0 0 6px color-mix(in srgb, var(--blue-bright) 8%, transparent), 0 0 20px color-mix(in srgb, var(--blue-bright) 48%, transparent); }
-    }
-
-    .hero {
-      position: relative;
-      isolation: isolate;
-      padding: 38px 0 58px;
-      overflow: hidden;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: -180px;
-      left: 44%;
-      z-index: -1;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      background: radial-gradient(circle, color-mix(in srgb, var(--blue-bright) 20%, transparent), color-mix(in srgb, var(--blue) 7%, transparent) 43%, transparent 70%);
-      filter: blur(4px);
-      animation: glow-drift 12s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 34px;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 12px;
-      color: var(--blue);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 14px;
-      height: 2px;
-      border-radius: 99px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-bright));
-    }
-
-    h1 {
-      max-width: 340px;
-      margin-bottom: 18px;
-      font-size: clamp(34px, 9.7vw, 42px);
-      font-weight: 600;
-      line-height: .98;
-    }
-
-    .headline-blue {
-      display: block;
-      background: linear-gradient(100deg, var(--blue), var(--blue-bright));
-      background-clip: text;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-copy > p:not(.eyebrow) {
-      max-width: 370px;
-      margin-bottom: 23px;
-      color: var(--text-soft);
-      font-size: 16px;
-    }
-
-    .hero-copy strong {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .hero-actions {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 9px;
-    }
-
-    .hero-actions .button {
-      width: 100%;
-    }
-
-    .fine-print {
-      margin-top: 13px;
-      color: var(--text-faint);
-      font-size: 11px;
-    }
-
-    .call-card {
-      position: relative;
-      width: 100%;
-      border: 1px solid transparent;
-      border-radius: 18px;
-      background:
-        linear-gradient(var(--surface), var(--surface)) padding-box,
-        linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 60%, transparent), color-mix(in srgb, var(--blue) 8%, var(--line))) border-box;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: transform .28s ease, box-shadow .28s ease;
-    }
-
-    .call-card.demo-card {
-      width: min(100%, 308px);
-      margin-inline: auto;
-      overflow: visible;
-      border: 2px solid #303b4c;
-      border-radius: 50px;
-      background: #080c12;
-      padding: 9px;
-      box-shadow: 0 28px 68px rgba(0, 0, 0, .4), inset 0 0 0 1px rgba(255, 255, 255, .035);
-    }
-
-    .call-card.demo-card::before,
-    .call-card.demo-card::after {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      width: 4px;
-      background: #252f3e;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
-    }
-
-    .call-card.demo-card::before {
-      top: 105px;
-      left: -5px;
-      height: 58px;
-      border-radius: 4px 0 0 4px;
-      box-shadow: 0 78px 0 #252f3e, inset 0 1px 0 rgba(255, 255, 255, .08);
-    }
-
-    .call-card.demo-card::after {
-      top: 145px;
-      right: -5px;
-      height: 88px;
-      border-radius: 0 4px 4px 0;
-    }
-
-    .phone-hardware {
-      display: grid;
-      height: 32px;
-      place-items: center;
-    }
-
-    .phone-speaker {
-      position: relative;
-      width: 84px;
-      height: 22px;
-      border: 1px solid #161d27;
-      border-radius: 99px;
-      background: #010204;
-      box-shadow: inset 0 1px 2px rgba(255, 255, 255, .025), 0 1px 2px rgba(0, 0, 0, .75);
-    }
-
-    .phone-speaker::after {
-      content: "";
-      position: absolute;
-      top: 7px;
-      right: 9px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #0b2039;
-      box-shadow: inset 0 0 0 1px rgba(89, 151, 219, .18);
-    }
-
-    .phone-screen {
-      display: flex;
-      min-height: 570px;
-      flex-direction: column;
-      border: 1px solid rgba(124, 151, 192, .17);
-      border-radius: 39px;
-      background: linear-gradient(180deg, #151d29, #101722 72%);
-      padding: 16px 18px 20px;
-      color: #f4f6fa;
-      text-align: center;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025);
-    }
-
-    .phone-line-status {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 0;
-    }
-
-    .demo-status,
-    .phone-ready {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      margin: 0;
-      color: #78a1ff;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .demo-status .live-dot {
-      flex: 0 0 auto;
-    }
-
-    .phone-ready {
-      color: #7f8999;
-      letter-spacing: .06em;
-    }
-
-    .phone-avatar {
-      display: grid;
-      width: 58px;
-      height: 58px;
-      margin: 26px auto 13px;
-      place-items: center;
-      border: 1px solid rgba(109, 160, 255, .28);
-      border-radius: 18px;
-      background: #00152f;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, .25);
-      overflow: hidden;
-    }
-
-    .phone-avatar img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .phone-contact-type {
-      margin-bottom: 5px;
-      color: #7f8999;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-    }
-
-    .demo-card h2 {
-      margin-bottom: 7px;
-      color: #f4f6fa;
-      font-size: 30px;
-      font-weight: 600;
-    }
-
-    .demo-number {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: #68a6ff;
-      font-family: var(--display);
-      font-size: clamp(30px, 8.5vw, 36px);
-      font-weight: 600;
-      letter-spacing: -.04em;
-      line-height: 1;
-      text-decoration: none;
-    }
-
-    .phone-call-state {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 7px;
-      color: #9ca7b8;
-      font-size: 11px;
-    }
-
-    .phone-call-state::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #51c6ff;
-      box-shadow: 0 0 0 3px rgba(81, 198, 255, .09);
-    }
-
-    .phone-script {
-      margin: auto 0 17px;
-      border-top: 1px solid rgba(130, 151, 182, .15);
-      border-bottom: 1px solid rgba(130, 151, 182, .15);
-      padding: 13px 3px 14px;
-      text-align: left;
-    }
-
-    .phone-script span {
-      display: block;
-      margin-bottom: 4px;
-      color: #78a1ff;
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .phone-script p {
-      margin: 0;
-      color: #c0c8d5;
-      font-size: 12px;
-      line-height: 1.45;
-    }
-
-    .demo-call-button {
-      width: 100%;
-      min-height: 48px;
-      border-radius: 14px;
-    }
-
-    .demo-note {
-      margin: 12px 3px 0;
-      color: #737f90;
-      font-size: 10px;
-      line-height: 1.45;
-    }
-
-    .phone-home {
-      display: block;
-      width: 90px;
-      height: 4px;
-      margin: 8px auto 2px;
-      border-radius: 99px;
-      background: #2b3442;
-    }
-
-    .call-head {
-      display: flex;
-      min-height: 50px;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      border-bottom: 1px solid var(--line);
-      padding: 0 15px;
-      color: var(--text-soft);
-      font-size: 12px;
-    }
-
-    .live {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--blue);
-      font-weight: 500;
-    }
-
-    .live-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--blue-bright);
-      box-shadow: 0 0 0 4px color-mix(in srgb, var(--blue-bright) 14%, transparent), 0 0 16px color-mix(in srgb, var(--blue-bright) 42%, transparent);
-      animation: live-pulse 2.8s ease-in-out infinite;
-    }
-
-    .call-main {
-      margin: 12px;
-      border-radius: 15px;
-      background: linear-gradient(145deg, #245dde, #347ff8 58%, #44a7ff);
-      padding: 19px;
-      color: #fff;
-      box-shadow: 0 14px 32px rgba(32, 91, 218, .24);
-    }
-
-    .call-label {
-      color: rgba(255, 255, 255, .7);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .call-main h3 {
-      margin: 7px 0 5px;
-      font-size: 23px;
-      letter-spacing: -.035em;
-    }
-
-    .call-main p {
-      margin-bottom: 15px;
-      color: rgba(255, 255, 255, .82);
-      font-size: 13px;
-    }
-
-    .call-result {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      border-top: 1px solid rgba(255, 255, 255, .2);
-      padding-top: 13px;
-      font-size: 12px;
-    }
-
-    .booked {
-      border-radius: 999px;
-      background: rgba(255, 255, 255, .92);
-      padding: 5px 9px;
-      color: #1855ce;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .activity-list {
-      padding: 0 14px 5px;
-    }
-
-    .activity {
-      display: grid;
-      grid-template-columns: 8px minmax(0, 1fr) auto;
-      gap: 10px;
-      align-items: start;
-      border-bottom: 1px solid var(--line);
-      padding: 13px 0;
-    }
-
-    .activity:last-child {
-      border-bottom: 0;
-    }
-
-    .activity-dot {
-      width: 7px;
-      height: 7px;
-      margin-top: 6px;
-      border-radius: 50%;
-      background: var(--blue);
-      box-shadow: 0 0 0 3px var(--blue-wash);
-    }
-
-    .activity strong,
-    .activity span {
-      display: block;
-    }
-
-    .activity strong {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .activity-copy span,
-    .activity time {
-      color: var(--text-faint);
-      font-size: 10px;
-    }
-
-    .activity time {
-      padding-top: 2px;
-      white-space: nowrap;
-    }
-
-    .benefits {
-      position: relative;
-      background: linear-gradient(
-        180deg,
-        transparent,
-        color-mix(in srgb, var(--surface) 72%, transparent) 24%,
-        color-mix(in srgb, var(--surface) 72%, transparent) 76%,
-        transparent
-      );
-    }
-
-    .benefits::before,
-    .benefits::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      left: 0;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--line) 18%, var(--line) 82%, transparent);
-      opacity: .72;
-      pointer-events: none;
-    }
-
-    .benefits::before {
-      top: 0;
-    }
-
-    .benefits::after {
-      bottom: 0;
-    }
-
-    .benefit-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .benefit {
-      min-width: 0;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-      padding: 17px 8px;
-      text-align: center;
-    }
-
-    .benefit:nth-child(2n),
-    .benefit:last-child {
-      border-right: 0;
-    }
-
-    .benefit:nth-last-child(-n+2) {
-      border-bottom: 0;
-    }
-
-    .benefit strong {
-      display: block;
-      font-family: var(--display);
-      font-size: 13px;
-      letter-spacing: -.02em;
-      line-height: 1.25;
-    }
-
-    .benefit span {
-      display: none;
-    }
-
-    .section {
-      padding: 70px 0;
-    }
-
-    .section-copy {
-      min-width: 0;
-    }
-
-    .section h2,
-    .trial h2 {
-      margin-bottom: 14px;
-      font-size: 35px;
-      font-weight: 600;
-    }
-
-    .section-copy > p:not(.eyebrow),
-    .trial-copy > p:not(.eyebrow) {
-      color: var(--text-soft);
-      font-size: 15px;
-    }
-
-    .included-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 30px;
-    }
-
-    .included-list {
-      border-top: 1px solid var(--line-strong);
-    }
-
-    .included-row {
-      display: grid;
-      grid-template-columns: 30px minmax(0, 1fr);
-      gap: 12px;
-      border-bottom: 1px solid var(--line-strong);
-      padding: 18px 0;
-    }
-
-    .included-number {
-      padding-top: 2px;
-      color: var(--blue);
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .included-row strong,
-    .included-row span {
-      display: block;
-    }
-
-    .included-row strong {
-      margin-bottom: 3px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .included-row span {
-      color: var(--text-soft);
-      font-size: 13px;
-    }
-
-    .future-note {
-      margin: 14px 0 0;
-      color: var(--text-faint);
-      font-size: 12px;
-    }
-
-    .section-copy > p.future-note {
-      margin: 16px 0 0;
-      color: var(--text-faint);
-      font-size: 12px;
-    }
-
-    .messages-section {
-      background:
-        radial-gradient(circle at 88% 6%, var(--blue-wash), transparent 26rem),
-        linear-gradient(
-          180deg,
-          transparent,
-          color-mix(in srgb, var(--surface) 70%, var(--bg)) 18%,
-          color-mix(in srgb, var(--surface) 70%, var(--bg)) 82%,
-          transparent
-        );
-    }
-
-    .messages-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 34px;
-    }
-
-    .seq-list {
-      margin-top: 22px;
-      border-top: 1px solid var(--line-strong);
-    }
-
-    .seq-row {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 4px;
-      border-bottom: 1px solid var(--line-strong);
-      padding: 15px 0;
-    }
-
-    .seq-when {
-      color: var(--blue);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .seq-row strong,
-    .seq-row span:not(.seq-when) {
-      display: block;
-    }
-
-    .seq-row strong {
-      margin-bottom: 3px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .seq-row span:not(.seq-when) {
-      color: var(--text-soft);
-      font-size: 13px;
-    }
-
-    .thread-screen {
-      display: flex;
-      min-height: 570px;
-      flex-direction: column;
-      border: 1px solid rgba(124, 151, 192, .17);
-      border-radius: 39px;
-      background: linear-gradient(180deg, #151d29, #101722 72%);
-      padding: 15px 13px 14px;
-      color: #f4f6fa;
-      text-align: left;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .025);
-      overflow: hidden;
-    }
-
-    .thread-head {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      border-bottom: 1px solid rgba(130, 151, 182, .15);
-      padding: 1px 3px 10px;
-    }
-
-    .thread-avatar {
-      display: grid;
-      width: 32px;
-      height: 32px;
-      flex: 0 0 auto;
-      place-items: center;
-      border: 1px solid rgba(109, 160, 255, .28);
-      border-radius: 11px;
-      background: #00152f;
-      overflow: hidden;
-    }
-
-    .thread-avatar img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .thread-who {
-      min-width: 0;
-      margin-right: auto;
-    }
-
-    .thread-who strong,
-    .thread-who span {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .thread-who strong {
-      font-size: 13px;
-      font-weight: 600;
-    }
-
-    .thread-who span {
-      color: #7f8999;
-      font-size: 10px;
-    }
-
-    .thread-auto {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      flex: 0 0 auto;
-      border-radius: 99px;
-      background: rgba(90, 140, 255, .16);
-      padding: 4px 8px;
-      color: #78a1ff;
-      font-size: 8px;
-      font-weight: 600;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .thread-body {
-      display: grid;
-      align-content: start;
-      gap: 5px;
-      padding: 9px 2px;
-    }
-
-    .thread-stage {
-      margin: 3px 0 1px;
-      color: #7f8999;
-      font-size: 8px;
-      font-weight: 600;
-      letter-spacing: .12em;
-      text-align: center;
-      text-transform: uppercase;
-    }
-
-    .thread-body > .thread-stage:first-child {
-      margin-top: 0;
-    }
-
-    .bubble {
-      max-width: 85%;
-      border-radius: 16px;
-      padding: 6px 11px;
-      font-size: 11.5px;
-      line-height: 1.38;
-    }
-
-    .bubble-out {
-      justify-self: end;
-      border-bottom-right-radius: 6px;
-      background: linear-gradient(180deg, #3b96ff, #0a72f5);
-      color: #fff;
-    }
-
-    .bubble-in {
-      justify-self: start;
-      border-bottom-left-radius: 6px;
-      background: #272f3c;
-      color: #dfe5ee;
-    }
-
-    .bubble-link {
-      display: block;
-      margin-top: 4px;
-      color: #fff;
-      font-weight: 600;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
-
-    .thread-input {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: auto;
-      border: 1px solid rgba(130, 151, 182, .2);
-      border-radius: 99px;
-      padding: 7px 7px 7px 14px;
-      color: #6d7789;
-      font-size: 11px;
-    }
-
-    .thread-input > span:first-child {
-      margin-right: auto;
-    }
-
-    .thread-send {
-      display: grid;
-      width: 24px;
-      height: 24px;
-      flex: 0 0 auto;
-      place-items: center;
-      border-radius: 50%;
-      background: #0a72f5;
-      color: #fff;
-      font-size: 12px;
-    }
-
-    .inbox-card {
-      display: grid;
-      gap: 15px;
-      margin-top: 34px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      padding: 20px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .inbox-card strong {
-      display: block;
-      margin-bottom: 5px;
-      font-family: var(--display);
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: -.03em;
-      line-height: 1.15;
-    }
-
-    .inbox-card p {
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .inbox-card .button {
-      justify-self: start;
-      min-height: 43px;
-      padding-inline: 15px;
-      font-size: 13px;
-    }
-
-    .overview-section {
-      background:
-        radial-gradient(circle at 12% 10%, var(--blue-wash), transparent 28rem),
-        linear-gradient(
-          180deg,
-          transparent,
-          color-mix(in srgb, var(--surface) 72%, var(--bg)) 16%,
-          color-mix(in srgb, var(--surface) 72%, var(--bg)) 84%,
-          transparent
-        );
-    }
-
-    .overview-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 30px;
-    }
-
-    .overview-copy .button {
-      min-height: 43px;
-      margin-top: 8px;
-      padding-inline: 15px;
-      font-size: 13px;
-    }
-
-    .dashboard-preview {
-      width: 100%;
-      border: 1px solid transparent;
-      border-radius: 20px;
-      background:
-        linear-gradient(color-mix(in srgb, var(--bg) 94%, #07111f), color-mix(in srgb, var(--bg) 94%, #07111f)) padding-box,
-        linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 48%, transparent), var(--line)) border-box;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: transform .28s ease, box-shadow .28s ease;
-    }
-
-    .preview-head {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 19px 18px 14px;
-    }
-
-    .preview-head h3 {
-      margin: 0;
-      font-size: 22px;
-      font-weight: 600;
-    }
-
-    .preview-greeting {
-      margin: 4px 0 0;
-      color: var(--text-soft);
-      font-size: 12px;
-    }
-
-    .preview-refresh {
-      display: grid;
-      width: 36px;
-      height: 36px;
-      flex: 0 0 auto;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: var(--surface-glass);
-      color: var(--text-soft);
-      box-shadow: var(--shadow-sm);
-      font-size: 19px;
-      text-decoration: none;
-      transition: border-color .18s ease, background .18s ease, transform .18s ease;
-    }
-
-    .preview-refresh:hover {
-      border-color: color-mix(in srgb, var(--blue) 42%, var(--line));
-      background: var(--blue-soft);
-      transform: translateY(-1px);
-    }
-
-    .preview-body {
-      display: grid;
-      gap: 10px;
-      padding: 0 12px 12px;
-    }
-
-    .revenue-panel {
-      position: relative;
-      min-height: 114px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border: 1px solid rgba(105, 151, 255, .16);
-      border-radius: 15px;
-      background:
-        radial-gradient(circle at 92% 8%, rgba(80, 132, 255, .17), transparent 35%),
-        linear-gradient(135deg, #152e59, #1b376a);
-      padding: 17px 18px;
-      color: #fff;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
-      overflow: hidden;
-    }
-
-    .revenue-panel span,
-    .revenue-panel strong {
-      position: relative;
-      z-index: 1;
-    }
-
-    .revenue-label {
-      color: rgba(255, 255, 255, .58);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .revenue-amount {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      margin-top: 8px;
-    }
-
-    .revenue-amount strong {
-      font-family: var(--display);
-      font-size: 39px;
-      letter-spacing: -.04em;
-      line-height: 1;
-    }
-
-    .revenue-trend {
-      color: #25d7a3;
-      font-size: 23px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .stat-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-    }
-
-    .stat-tile {
-      min-height: 100px;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: color-mix(in srgb, var(--surface) 88%, var(--bg));
-      padding: 12px;
-      box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 2.5%, transparent);
-    }
-
-    .stat-icon {
-      display: grid;
-      width: 29px;
-      height: 29px;
-      margin-bottom: 9px;
-      place-items: center;
-      border-radius: 8px;
-      background: color-mix(in srgb, var(--blue) 18%, transparent);
-      color: var(--blue);
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .stat-icon-new {
-      background: rgba(216, 55, 136, .16);
-      color: #e04494;
-    }
-
-    .stat-icon-calls {
-      background: rgba(26, 192, 174, .15);
-      color: #24c8b5;
-    }
-
-    .stat-icon-booked {
-      background: rgba(35, 175, 103, .15);
-      color: #32c87d;
-    }
-
-    .stat-icon-completed {
-      background: rgba(126, 87, 240, .16);
-      color: #9876ff;
-    }
-
-    .stat-icon-fallback {
-      background: rgba(229, 73, 102, .15);
-      color: #f05b75;
-    }
-
-    .stat-tile strong,
-    .stat-tile > span:not(.stat-icon) {
-      display: block;
-    }
-
-    .stat-tile strong {
-      font-family: var(--display);
-      font-size: 24px;
-      letter-spacing: -.03em;
-      line-height: 1;
-    }
-
-    .stat-tile > span:not(.stat-icon) {
-      margin-top: 5px;
-      color: var(--text-soft);
-      font-size: 11px;
-    }
-
-    .preview-details {
-      display: grid;
-      gap: 8px;
-    }
-
-    .chart-card,
-    .activity-card {
-      min-width: 0;
-      border: 1px solid var(--line);
-      border-radius: 13px;
-      background: color-mix(in srgb, var(--surface) 88%, var(--bg));
-      overflow: hidden;
-    }
-
-    .preview-card-title {
-      margin: 0;
-      padding: 13px 13px 0;
-      color: var(--text-soft);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .075em;
-      text-transform: uppercase;
-    }
-
-    .chart-wrap {
-      padding: 12px 12px 10px;
-    }
-
-    .chart-plot {
-      position: relative;
-      height: 108px;
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 74%, transparent);
-      overflow: hidden;
-    }
-
-    .chart-svg {
-      position: absolute;
-      inset: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .chart-grid line {
-      stroke: var(--line);
-      stroke-width: 1;
-      stroke-dasharray: 3 4;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .chart-fill {
-      fill: url(#revFill);
-    }
-
-    .chart-stroke {
-      fill: none;
-      stroke: #4f83ff;
-      stroke-width: 2;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      vector-effect: non-scaling-stroke;
-    }
-
-    .chart-dot {
-      position: absolute;
-      top: 8%;
-      right: 0;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #4f83ff;
-      box-shadow: 0 0 0 4px rgba(79, 131, 255, .2);
-      transform: translateY(-50%);
-    }
-
-    .chart-labels {
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      margin-top: 8px;
-      color: var(--text-faint);
-      font-size: 8px;
-    }
-
-    .chart-labels span:nth-child(2) {
-      color: var(--text-soft);
-    }
-
-    .activity-list {
-      margin-top: 9px;
-      border-top: 1px solid var(--line);
-    }
-
-    .activity-row {
-      display: grid;
-      grid-template-columns: 28px minmax(0, 1fr) auto;
-      align-items: center;
-      gap: 8px;
-      min-height: 48px;
-      padding: 7px 11px;
-      border-bottom: 1px solid color-mix(in srgb, var(--line) 82%, transparent);
-    }
-
-    .activity-row:last-child {
-      border-bottom: 0;
-    }
-
-    .activity-avatar {
-      display: grid;
-      width: 28px;
-      height: 28px;
-      place-items: center;
-      border-radius: 50%;
-      background: rgba(223, 80, 80, .88);
-      color: #fff;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-    }
-
-    .activity-person {
-      min-width: 0;
-    }
-
-    .activity-person strong,
-    .activity-person span {
-      display: block;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .activity-person strong {
-      font-size: 10px;
-      font-weight: 600;
-    }
-
-    .activity-person span {
-      margin-top: 2px;
-      color: var(--text-faint);
-      font-size: 8px;
-    }
-
-    .activity-badge {
-      border-radius: 99px;
-      background: color-mix(in srgb, var(--blue) 16%, transparent);
-      padding: 4px 7px;
-      color: var(--blue-bright);
-      font-size: 8px;
-      font-weight: 600;
-    }
-
-    .preview-note {
-      margin: 0;
-      padding: 1px 15px 14px;
-      color: var(--text-faint);
-      font-size: 9px;
-    }
-
-    .trial {
-      position: relative;
-      padding: 70px 0 76px;
-      background: linear-gradient(
-        180deg,
-        transparent,
-        color-mix(in srgb, var(--blue) 3%, var(--bg)) 28%,
-        color-mix(in srgb, var(--blue) 6%, var(--bg))
-      );
-      overflow: hidden;
-    }
-
-    .trial::before {
-      content: "";
-      position: absolute;
-      right: -220px;
-      bottom: -220px;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      background: radial-gradient(circle, color-mix(in srgb, var(--blue-bright) 13%, transparent), transparent 68%);
-      pointer-events: none;
-    }
-
-    .trial-layout {
-      position: relative;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 28px;
-    }
-
-    .trial-points {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px 12px;
-      margin-top: 20px;
-      color: var(--text-soft);
-      font-size: 12px;
-    }
-
-    .trial-points span::before {
-      content: "✓";
-      margin-right: 7px;
-      color: var(--blue);
-      font-weight: 700;
-    }
-
-    .trial-form {
-      position: relative;
-      border: 1px solid transparent;
-      border-radius: 18px;
-      background:
-        linear-gradient(var(--surface), var(--surface)) padding-box,
-        linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 55%, transparent), var(--line)) border-box;
-      padding: 22px 17px;
-      box-shadow: var(--shadow);
-    }
-
-    .form-heading {
-      margin-bottom: 20px;
-    }
-
-    .form-heading h3 {
-      margin-bottom: 5px;
-      font-size: 23px;
-    }
-
-    .form-heading p {
-      margin-bottom: 0;
-      color: var(--text-soft);
-      font-size: 13px;
-    }
-
-    .trial-price {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin: -2px 0 20px;
-      border: 1px solid color-mix(in srgb, var(--blue) 22%, var(--line));
-      border-radius: 12px;
-      background: color-mix(in srgb, var(--blue) 6%, var(--surface));
-      padding: 12px 13px;
-    }
-
-    .trial-price > span {
-      color: var(--text-soft);
-      font-size: 11px;
-    }
-
-    .trial-price strong {
-      color: var(--text);
-      font-family: var(--display);
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: -.02em;
-      text-align: right;
-    }
-
-    .trial-price strong span {
-      color: var(--blue);
-      font-size: 17px;
-    }
-
-    .field-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 12px;
-    }
-
-    .field {
-      min-width: 0;
-    }
-
-    .field label {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--text-soft);
-      font-size: 12px;
-      font-weight: 500;
-    }
-
-    .field input,
-    .field select {
-      width: 100%;
-      min-height: 48px;
-      border: 1px solid var(--line-strong);
-      border-radius: 11px;
-      background: color-mix(in srgb, var(--bg) 82%, transparent);
-      padding: 0 13px;
-      color: var(--text);
-      font-size: 16px;
-      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-
-    .field input::placeholder {
-      color: var(--text-faint);
-    }
-
-    .field input:focus,
-    .field select:focus {
-      border-color: var(--blue);
-      background: var(--surface);
-      outline: 0;
-      box-shadow: 0 0 0 4px var(--blue-wash);
-    }
-
-    .consent {
-      display: grid;
-      grid-template-columns: 18px minmax(0, 1fr);
-      gap: 9px;
-      margin: 17px 0;
-      color: var(--text-soft);
-      font-size: 10px;
-      line-height: 1.45;
-    }
-
-    .consent input {
-      width: 17px;
-      height: 17px;
-      margin: 1px 0 0;
-      accent-color: var(--blue);
-    }
-
-    .consent a {
-      color: var(--blue);
-    }
-
-    .submit-button {
-      width: 100%;
-      border: 0;
-    }
-
-    .submit-button:disabled {
-      cursor: wait;
-      opacity: .7;
-    }
-
-    .form-status {
-      min-height: 20px;
-      margin: 11px 0 0;
-      color: var(--text-soft);
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .form-status.success {
-      color: var(--blue);
-    }
-
-    .form-status.error {
-      color: var(--text-soft);
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
-    .success-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      display: grid;
-      align-items: end;
-      padding: 14px;
-      background: rgba(2, 8, 19, .78);
-      -webkit-backdrop-filter: blur(12px);
-      backdrop-filter: blur(12px);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity .22s ease, visibility .22s ease;
-    }
-
-    .success-modal.is-open {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .success-card {
-      position: relative;
-      width: min(100%, 440px);
-      margin: 0 auto;
-      border: 1px solid color-mix(in srgb, var(--blue-bright) 42%, var(--line));
-      border-radius: 22px;
-      background:
-        radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--blue-bright) 19%, transparent), transparent 36%),
-        color-mix(in srgb, var(--surface) 96%, transparent);
-      padding: 26px 20px 20px;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, .42);
-      transform: translateY(22px) scale(.985);
-      transition: transform .26s cubic-bezier(.2, .75, .25, 1);
-    }
-
-    .success-modal.is-open .success-card {
-      transform: translateY(0) scale(1);
-    }
-
-    .success-close {
-      position: absolute;
-      top: 13px;
-      right: 13px;
-      display: grid;
-      width: 38px;
-      height: 38px;
-      place-items: center;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: color-mix(in srgb, var(--bg) 72%, transparent);
-      color: var(--text-soft);
-      font: inherit;
-      font-size: 21px;
-      cursor: pointer;
-    }
-
-    .success-close:focus-visible,
-    .success-actions a:focus-visible,
-    .success-actions button:focus-visible {
-      outline: 3px solid var(--blue-wash);
-      outline-offset: 3px;
-    }
-
-    .success-icon {
-      display: grid;
-      width: 52px;
-      height: 52px;
-      margin-bottom: 22px;
-      place-items: center;
-      border: 1px solid color-mix(in srgb, var(--blue-bright) 65%, white 6%);
-      border-radius: 16px;
-      background: linear-gradient(145deg, var(--blue), var(--blue-bright));
-      color: white;
-      font-size: 24px;
-      font-weight: 700;
-      box-shadow: 0 14px 34px color-mix(in srgb, var(--blue) 28%, transparent);
-    }
-
-    .success-card .eyebrow {
-      margin-bottom: 10px;
-    }
-
-    .success-card h2 {
-      max-width: 330px;
-      margin: 0;
-      font-family: var(--display);
-      font-size: clamp(31px, 9vw, 42px);
-      line-height: .98;
-      letter-spacing: -.055em;
-    }
-
-    .success-copy {
-      margin: 17px 0 0;
-      color: var(--text-soft);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .success-email {
-      margin: 15px 0 0;
-      border: 1px solid var(--line);
-      border-radius: 11px;
-      background: color-mix(in srgb, var(--bg) 76%, transparent);
-      padding: 11px 13px;
-      color: var(--text);
-      font-size: 13px;
-      overflow-wrap: anywhere;
-    }
-
-    .success-actions {
-      display: grid;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .success-actions .button {
-      width: 100%;
-      min-height: 50px;
-    }
-
-    .success-done {
-      cursor: pointer;
-    }
-
-    footer {
-      border-top: 1px solid color-mix(in srgb, var(--line) 52%, transparent);
-      background: color-mix(in srgb, var(--blue) 6%, var(--bg));
-      padding: 24px 0 calc(24px + env(safe-area-inset-bottom, 0px));
-      color: var(--text-faint);
-      font-size: 12px;
-    }
-
-    .footer-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 16px;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-    }
-
-    /* ── Plumbing page sections ─────────────────────────────────────────── */
-    .math-layout,
-    .call-layout,
-    .faq-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 30px;
-    }
-
-    .math-card {
-      border: 1px solid transparent;
-      border-radius: 18px;
-      background:
-        linear-gradient(var(--surface), var(--surface)) padding-box,
-        linear-gradient(145deg, color-mix(in srgb, var(--blue-bright) 55%, transparent), var(--line)) border-box;
-      padding: 6px 20px 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .math-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      border-bottom: 1px solid var(--line);
-      padding: 18px 0;
-    }
-
-    .math-row span {
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .math-row strong {
-      font-family: var(--display);
-      font-size: 34px;
-      font-weight: 600;
-      letter-spacing: -.04em;
-      line-height: 1;
-      white-space: nowrap;
-    }
-
-    .math-row .math-blue {
-      color: var(--blue);
-    }
-
-    .math-foot {
-      margin: 16px 0 0;
-      color: var(--text);
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .transcript-card {
-      display: grid;
-      gap: 11px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: var(--surface);
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .transcript-head {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-bottom: 1px solid var(--line);
-      padding-bottom: 12px;
-      color: var(--text-faint);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .tline {
-      display: grid;
-      gap: 3px;
-      max-width: 88%;
-    }
-
-    .tline span {
-      color: var(--text-faint);
-      font-size: 9px;
-      font-weight: 600;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-    }
-
-    .tline p {
-      margin: 0;
-      border-radius: 14px;
-      padding: 9px 13px;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-
-    .tline-caller p {
-      border-bottom-left-radius: 5px;
-      background: var(--surface-soft);
-      color: var(--text);
-    }
-
-    .tline-ai {
-      justify-self: end;
-      text-align: right;
-    }
-
-    .tline-ai p {
-      border-bottom-right-radius: 5px;
-      background: var(--blue-soft);
-      color: var(--text);
-      text-align: left;
-    }
-
-    .transcript-result {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px 10px;
-      margin-top: 3px;
-      border-top: 1px solid var(--line);
-      padding-top: 14px;
-      color: var(--text-soft);
-      font-size: 12px;
-    }
-
-    .transcript-result strong {
-      border-radius: 999px;
-      background: rgba(35, 175, 103, .15);
-      padding: 4px 10px;
-      color: #23a866;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .faq-list {
-      border-top: 1px solid var(--line-strong);
-    }
-
-    .faq-item {
-      border-bottom: 1px solid var(--line-strong);
-    }
-
-    .faq-item summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 18px 0;
-      font-size: 16px;
-      font-weight: 600;
-      list-style: none;
-      cursor: pointer;
-    }
-
-    .faq-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .faq-item summary::after {
-      content: "+";
-      flex: 0 0 auto;
-      color: var(--blue);
-      font-size: 22px;
-      font-weight: 500;
-      line-height: 1;
-      transition: transform .2s ease;
-    }
-
-    .faq-item[open] summary::after {
-      transform: rotate(45deg);
-    }
-
-    .faq-item p {
-      max-width: 620px;
-      margin: -4px 0 18px;
-      color: var(--text-soft);
-      font-size: 14px;
-    }
-
-    .faq-item a {
-      color: var(--blue);
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .founder-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      margin-top: 24px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--surface);
-      padding: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .founder-card img {
-      width: 44px;
-      height: 44px;
-      flex: 0 0 auto;
-      border-radius: 12px;
-      background: #00152f;
-      object-fit: cover;
-    }
-
-    .founder-card strong {
-      display: block;
-      margin-bottom: 3px;
-      font-size: 15px;
-    }
-
-    .founder-card p {
-      margin: 0;
-      color: var(--text-soft);
-      font-size: 13px;
-    }
-
-    .mobile-cta {
-      position: fixed;
-      right: 12px;
-      bottom: calc(12px + env(safe-area-inset-bottom, 0px));
-      left: 12px;
-      z-index: 60;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      background: var(--surface-glass);
-      padding: 8px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px) saturate(150%);
-      -webkit-backdrop-filter: blur(18px) saturate(150%);
-      transition: transform .25s ease, opacity .25s ease;
-    }
-
-    .mobile-cta.is-hidden {
-      opacity: 0;
-      transform: translateY(140%);
-      pointer-events: none;
-    }
-
-    .mobile-cta .button {
-      min-height: 44px;
-      padding-inline: 10px;
-      font-size: 14px;
-    }
-
-    @media (min-width: 700px) {
-      .mobile-cta {
-        display: none;
-      }
-
-      .math-row strong {
-        font-size: 42px;
-      }
-
-      .transcript-card {
-        padding: 22px;
-      }
-    }
-
-    @media (min-width: 940px) {
-      .math-layout {
-        grid-template-columns: minmax(0, 1.05fr) minmax(380px, .95fr);
-        gap: 80px;
-        align-items: center;
-      }
-
-      .call-layout {
-        grid-template-columns: minmax(380px, .95fr) minmax(0, 1.05fr);
-        gap: 80px;
-        align-items: center;
-      }
-
-      .faq-layout {
-        grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
-        gap: 80px;
-        align-items: start;
-      }
-    }
-
-    @media (hover: hover) and (pointer: fine) {
-      .button-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 20px 44px color-mix(in srgb, var(--blue) 32%, transparent);
-      }
-
-      .button-secondary:hover {
-        border-color: color-mix(in srgb, var(--blue) 35%, var(--line-strong));
-        transform: translateY(-2px);
-        box-shadow: var(--shadow);
-      }
-
-      .button:hover span[aria-hidden="true"] {
-        transform: translateX(3px);
-      }
-
-      .call-card:hover,
-      .dashboard-preview:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 24px 62px rgba(0, 0, 0, .22), 0 8px 24px color-mix(in srgb, var(--blue) 10%, transparent);
-      }
-
-      .nav-links a:hover,
-      .login-link:hover,
-      .footer-links a:hover {
-        color: var(--text);
-      }
-    }
-
-    @media (min-width: 700px) {
-      .wrap {
-        width: min(100% - 48px, 1120px);
-      }
-
-      .nav {
-        min-height: 68px;
-      }
-
-      .brand {
-        font-size: 18px;
-      }
-
-      .brand-mark {
-        width: 32px;
-        height: 32px;
-      }
-
-      .hero {
-        padding: 64px 0 82px;
-      }
-
-      .hero-copy {
-        text-align: center;
-      }
-
-      h1,
-      .hero-copy > p:not(.eyebrow) {
-        margin-inline: auto;
-      }
-
-      h1 {
-        max-width: 620px;
-        font-size: 54px;
-      }
-
-      .hero-copy > p:not(.eyebrow) {
-        max-width: 570px;
-        font-size: 18px;
-      }
-
-      .hero-copy .eyebrow,
-      .hero-actions {
-        justify-content: center;
-      }
-
-      .hero-actions {
-        display: flex;
-      }
-
-      .hero-actions .button {
-        width: auto;
-      }
-
-      .fine-print {
-        text-align: center;
-      }
-
-      .call-card {
-        width: min(100%, 560px);
-        margin-inline: auto;
-      }
-
-      .call-card.demo-card {
-        padding: 9px;
-      }
-
-      .phone-screen {
-        padding: 17px 19px 21px;
-      }
-
-      .demo-card h2 {
-        font-size: 32px;
-      }
-
-      .benefit-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .benefit {
-        min-height: 108px;
-        border-bottom: 0;
-        padding: 22px 18px;
-        text-align: left;
-      }
-
-      .benefit:nth-child(2n) {
-        border-right: 1px solid var(--line);
-      }
-
-      .benefit:last-child {
-        border-right: 0;
-      }
-
-      .benefit strong {
-        font-size: 16px;
-      }
-
-      .benefit span {
-        display: block;
-        margin-top: 4px;
-        color: var(--text-soft);
-        font-size: 13px;
-      }
-
-      .section,
-      .trial {
-        padding-block: 92px;
-      }
-
-      .section h2,
-      .trial h2 {
-        font-size: 47px;
-      }
-
-      .section-copy > p:not(.eyebrow),
-      .trial-copy > p:not(.eyebrow) {
-        font-size: 17px;
-      }
-
-      .included-layout,
-      .overview-layout,
-      .messages-layout,
-      .trial-layout {
-        gap: 46px;
-      }
-
-      .seq-row {
-        grid-template-columns: 118px minmax(0, 1fr);
-        gap: 14px;
-        padding: 17px 0;
-      }
-
-      .seq-when {
-        padding-top: 4px;
-      }
-
-      .preview-head {
-        padding: 22px 20px 16px;
-      }
-
-      .preview-body {
-        gap: 11px;
-        padding: 0 14px 14px;
-      }
-
-      .revenue-panel {
-        min-height: 126px;
-        padding: 20px;
-      }
-
-      .revenue-amount strong {
-        font-size: 44px;
-      }
-
-      .stat-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .stat-tile {
-        min-height: 110px;
-        padding: 14px;
-      }
-
-      .preview-details {
-        grid-template-columns: minmax(0, 1.45fr) minmax(180px, .9fr);
-      }
-
-      .chart-plot {
-        height: 126px;
-      }
-
-      .field-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .field-full {
-        grid-column: 1 / -1;
-      }
-
-      .trial-form {
-        padding: 28px;
-      }
-
-      .footer-inner {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-      }
-    }
-
-    @media (min-width: 940px) {
-      .nav-links,
-      .nav-actions {
-        display: flex;
-        align-items: center;
-      }
-
-      .nav-links {
-        gap: 26px;
-      }
-
-      .nav-links a,
-      .login-link {
-        display: inline-flex;
-        color: var(--text-soft);
-        font-size: 14px;
-        font-weight: 500;
-        text-decoration: none;
-      }
-
-      .nav-actions {
-        gap: 18px;
-        margin-left: 20px;
-      }
-
-      .hero {
-        padding: 82px 0 96px;
-      }
-
-      .hero-grid {
-        grid-template-columns: minmax(0, 1.03fr) minmax(400px, .83fr);
-        gap: 80px;
-        align-items: center;
-      }
-
-      .hero-copy {
-        text-align: left;
-      }
-
-      .hero-copy .eyebrow,
-      .hero-actions {
-        justify-content: flex-start;
-      }
-
-      h1,
-      .hero-copy > p:not(.eyebrow) {
-        margin-inline: 0;
-      }
-
-      h1 {
-        max-width: 700px;
-        font-size: clamp(50px, 5vw, 62px);
-      }
-
-      .hero-copy > p:not(.eyebrow) {
-        max-width: 590px;
-        font-size: 19px;
-      }
-
-      .fine-print {
-        text-align: left;
-      }
-
-      .call-card {
-        margin: 0;
-      }
-
-      .included-layout {
-        grid-template-columns: minmax(0, .9fr) minmax(460px, 1.1fr);
-        gap: 90px;
-        align-items: center;
-      }
-
-      .overview-layout {
-        grid-template-columns: minmax(0, 1.25fr) minmax(330px, .75fr);
-        gap: 62px;
-        align-items: center;
-      }
-
-      .messages-layout {
-        grid-template-columns: minmax(0, 1.06fr) minmax(330px, .94fr);
-        gap: 70px;
-        align-items: center;
-      }
-
-      .inbox-card {
-        grid-template-columns: minmax(0, 1fr) auto;
-        align-items: center;
-        gap: 30px;
-        padding: 24px 26px;
-      }
-
-      .overview-copy,
-      .dashboard-preview {
-        min-width: 0;
-      }
-
-      .overview-copy h2 {
-        font-size: clamp(38px, 4.15vw, 47px);
-      }
-
-      .dashboard-preview {
-        order: 1;
-      }
-
-      .overview-copy {
-        order: 2;
-      }
-
-      .trial-layout {
-        grid-template-columns: minmax(0, .78fr) minmax(480px, 1.22fr);
-        gap: 90px;
-        align-items: start;
-      }
-
-      .trial-copy {
-        position: sticky;
-        top: 104px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-      }
-
-      .motion-ready .reveal {
-        opacity: 1 !important;
-        transform: none !important;
-      }
-    }
-
-    @media (min-width: 680px) {
-      .success-modal {
-        align-items: center;
-        padding: 24px;
-      }
-
-      .success-card {
-        padding: 31px 28px 26px;
-      }
-    }
-  </style>
-
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-    (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','1995055151120545');
-    fbq('track','PageView');
-  </script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BoyerScales · Customer systems for detailers</title>
+<meta name="description" content="I build customer systems for detailing businesses: get found, get booked, follow up, bring them back. Walk through the real system behind Valley Details.">
+<meta property="og:title" content="BoyerScales · Customer systems for detailers">
+<meta property="og:description" content="The real booking, Blue SMS follow-up, review, referral and rebooking system I built for Valley Details.">
+<meta property="og:image" content="https://boyerscales.com/home/img/og.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://boyerscales.com/">
+<link rel="canonical" href="https://boyerscales.com/">
+<link rel="apple-touch-icon" href="home/img/bs-logo.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f4f2ee">
+<link rel="icon" type="image/webp" href="home/img/bs-logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home/tour.css">
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1995055151120545');
+  fbq('track','PageView');
+</script>
 </head>
+<body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1995055151120545&amp;ev=PageView&amp;noscript=1"></noscript>
 
-<body id="top">
-  <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1995055151120545&amp;ev=PageView&amp;noscript=1"></noscript>
+<a class="skip" href="#main">Skip to content</a>
 
-  <header class="site-header">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="#top" aria-label="BoyerScales home">
-        <span class="brand-mark" aria-hidden="true"><img src="./logo.png" alt=""></span>
-        <span>Boyer<span class="brand-accent">Scales</span></span>
-      </a>
-
-      <div class="nav-links">
-        <a href="#calls">Hear a call</a>
-        <a href="#included">How it works</a>
-        <a href="#texting">Texting</a>
-        <a href="#faq">FAQ</a>
-      </div>
-
-      <div class="nav-actions">
-        <a class="login-link dashboard-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener">Client login</a>
-        <a class="button button-primary button-small trial-link" href="#trial">Start free</a>
-      </div>
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="BoyerScales, back to top">
+      <img src="home/img/bs-logo.webp" alt="" width="28" height="28">
+      <span>BoyerScales</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#valley">Valley Details</a>
+      <a href="#loop">The system</a>
+      <a href="#follow-up">Blue SMS</a>
+      <a href="#build">What I build</a>
     </nav>
-  </header>
+    <ol class="stage-rail" id="stageRail" aria-hidden="true">
+      <li data-stage="found"><i>01</i>Found</li>
+      <li data-stage="booked"><i>02</i>Booked</li>
+      <li data-stage="follow"><i>03</i>Follow up</li>
+      <li data-stage="back"><i>04</i>Back</li>
+    </ol>
+    <a class="btn btn-ink btn-sm" href="#start">Talk to me</a>
+  </div>
+</header>
 
-  <main>
-    <section class="hero" id="hero" aria-labelledby="hero-title">
-      <div class="hero-grid wrap">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">AI receptionist for plumbers</p>
-          <h1 id="hero-title">The plumber who picks up <span class="headline-blue">gets the job.</span></h1>
-          <p>BoyerScales answers the calls you can't get to, nights, weekends, and while you're under a sink. It books the job on your calendar and texts the customer from your number. <strong>You stay on the job.</strong></p>
+<main id="main">
 
-          <div class="hero-actions">
-            <a class="button button-primary trial-link" href="#trial">Start your free 7-day trial <span aria-hidden="true">→</span></a>
-            <a class="button button-secondary call-link" href="tel:+19166598131">Hear it: call (916) 659-8131</a>
-          </div>
-          <div class="fine-print">No card · Keep your number · $500 build + $99/month if you keep it · Cancel anytime</div>
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Customer systems for detailing businesses</p>
+      <h1>I build the systems that keep detailers booked.</h1>
+      <p class="lede">Get found. Get booked. Follow up. Bring them back. This page walks through the real system I built and run for <b>Valley Details</b>, a mobile detailer in Elk Grove, California.</p>
+      <div class="hero-cta">
+        <a class="btn btn-ink" href="#valley">See what I built <span class="arr" aria-hidden="true">↓</span></a>
+        <a class="btn btn-line" href="https://valleydetails.site" target="_blank" rel="noopener">Open valleydetails.site <span class="arr" aria-hidden="true">↗</span></a>
+      </div>
+      <ol class="hero-stages">
+        <li><a href="#found"><i>01</i>Get found</a></li>
+        <li><a href="#booked"><i>02</i>Get booked</a></li>
+        <li><a href="#follow-up"><i>03</i>Follow up</a></li>
+        <li><a href="#back"><i>04</i>Bring them back</a></li>
+      </ol>
+    </div>
+
+    <div class="hero-visual" aria-label="The Valley Details website on a phone next to a text conversation in the owner's dashboard">
+      <figure class="phone phone-a">
+        <div class="phone-screen"><img src="home/img/vd-phone-hero.webp" alt="Valley Details website on a phone: Like the day you bought it. Full detail $100, Book a detail." width="390" height="844" fetchpriority="high"></div>
+      </figure>
+      <figure class="phone phone-b">
+        <div class="phone-screen"><img src="home/img/dash-phone-text.webp" alt="Owner dashboard text thread: booking confirmation, customer replies YES and asks a question, business answers." width="390" height="844"></div>
+      </figure>
+      <p class="hero-cap"><span>Left</span> valleydetails.site &nbsp;·&nbsp; <span>Right</span> the owner's dashboard, sample customer</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="rules">
+      <li><b>Every screenshot is real.</b> Taken from the live site and the dashboard I built. Text messages use the system's real wording.</li>
+      <li><b>No invented numbers.</b> Only what's measured, like its Google rating. Projections and "up to" claims don't go here.</li>
+      <li><b>Customer privacy.</b> Names in dashboard screens are samples. Real customers stay private.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ VALLEY DETAILS ============ -->
+<section class="sec" id="valley">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">The proof</p>
+      <h2>Valley Details is a real detailing business. I built everything it runs on.</h2>
+      <p class="lede">Mobile detailing out of Elk Grove: a full detail from $100, a one-hour Express, and a $149 a month membership. I'm involved on the ownership, marketing and operations side, so I don't just build the system. I see what it does with real bookings.</p>
+      <a class="rating" href="https://www.google.com/search?q=Valley+Details&amp;stick=H4sIAAAAAAAA_-NgU1I1qDBKTkyysLS0SDZLMUw0TjG0MqgwMzVKTk5NTjRJMkgyMDZNXMTKF5aYk5NaqeCSWpKYmVMMAGJfezU6AAAA" target="_blank" rel="noopener">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <b>5.0</b><span>from 8 Google reviews</span>
+        <span class="rating-note">Checked Sep 2026 ↗</span>
+      </a>
+    </header>
+
+    <figure class="browser reveal">
+      <div class="browser-bar">
+        <span class="dots"><i></i><i></i><i></i></span>
+        <a class="url" href="https://valleydetails.site" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 7V5a3 3 0 0 1 6 0v2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="3.5" y="7" width="9" height="7" rx="1.5" fill="currentColor"/></svg>valleydetails.site</a>
+        <a class="browser-open" href="https://valleydetails.site" target="_blank" rel="noopener">Visit live site ↗</a>
+      </div>
+      <img src="home/img/vd-desktop-hero.webp" alt="Valley Details homepage on desktop with the $100 full detail offer and booking buttons" width="1600" height="1000" loading="lazy">
+    </figure>
+
+    <div class="work reveal">
+      <figure><img src="home/img/work-mercedes-ext.webp" alt="Silver Mercedes sedan after a Valley Details exterior detail" width="900" height="1200" loading="lazy"></figure>
+      <figure><img src="home/img/work-tesla-int.webp" alt="Tesla interior after a Valley Details interior detail" width="900" height="1200" loading="lazy"></figure>
+      <figure><img src="home/img/work-lexus-ext.webp" alt="Lexus exterior after a Valley Details detail" width="900" height="675" loading="lazy"></figure>
+      <figure><img src="home/img/work-mercedes-int.webp" alt="Mercedes interior after a Valley Details detail" width="900" height="675" loading="lazy"></figure>
+      <figcaption>Real Valley Details jobs around Elk Grove.</figcaption>
+    </div>
+
+    <div class="built reveal">
+      <h3 class="built-title">What I built for Valley Details</h3>
+      <div class="built-grid">
+        <div class="built-col">
+          <p class="tag"><i>01</i>Get found</p>
+          <ul>
+            <li>Mobile-first website with prices on the first screen</li>
+            <li>Google Business Profile written to Google's rules</li>
+            <li>Service-area markup search engines can read</li>
+          </ul>
         </div>
-
-        <div class="call-card demo-card reveal reveal-delay-1" aria-label="Live BoyerScales AI demo line">
-          <div class="phone-hardware" aria-hidden="true"><span class="phone-speaker"></span></div>
-          <div class="phone-screen">
-            <div class="phone-line-status">
-              <div class="demo-status"><span class="live-dot" aria-hidden="true"></span> Live demo line</div>
-              <span class="phone-ready">Ready now</span>
-            </div>
-
-            <span class="phone-avatar" aria-hidden="true"><img src="./logo.png" alt=""></span>
-            <p class="phone-contact-type">BoyerScales receptionist</p>
-            <h2>Don't take our word for it.</h2>
-            <a class="demo-number call-link" href="tel:+19166598131">(916) 659-8131</a>
-            <div class="phone-call-state">Answers 24/7 · Call it now</div>
-
-            <div class="phone-script">
-              <span>Try asking</span>
-              <p>“How would this work for my plumbing company?”</p>
-            </div>
-
-            <a class="button button-primary demo-call-button call-link" href="tel:+19166598131">Call the receptionist <span aria-hidden="true">→</span></a>
-            <p class="demo-note">Ask it anything, then let it book you a quick call with Elijah. That's the same way it books jobs for your customers.</p>
-          </div>
-          <span class="phone-home" aria-hidden="true"></span>
+        <div class="built-col">
+          <p class="tag"><i>02</i>Get booked</p>
+          <ul>
+            <li>Online booking against the live schedule</li>
+            <li>Two cars, 3+ cars and drop-off in one flow</li>
+            <li>Self-serve reschedule link for every appointment</li>
+          </ul>
+        </div>
+        <div class="built-col">
+          <p class="tag"><i>03</i>Follow up</p>
+          <ul>
+            <li>Blue SMS texts from the business's own number</li>
+            <li>Confirmations, 1 day and 1 hour reminders</li>
+            <li>Replies and history inside the owner's dashboard</li>
+          </ul>
+        </div>
+        <div class="built-col">
+          <p class="tag"><i>04</i>Bring them back</p>
+          <ul>
+            <li>Review request when a job is marked complete</li>
+            <li>$20 / $20 referral links that track themselves</li>
+            <li>Valley Club membership, rebook and win-back texts</li>
+          </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section class="benefits" aria-label="Trial benefits">
-      <div class="benefit-grid wrap">
-        <div class="benefit reveal">
-          <strong>Picks up every call</strong>
-          <span>Nights, weekends, and mid-job.</span>
+<!-- ============ THE LOOP ============ -->
+<section class="sec sec-tint" id="loop">
+  <div class="wrap loop-grid">
+    <header class="sec-head loop-head">
+      <p class="eyebrow">The system</p>
+      <h2>One loop, not thirty features.</h2>
+      <p class="lede">Each step feeds the next. A good detail becomes a review. A review helps the next stranger trust you. A referral link turns one customer into two. A text at the right time turns a one-time job into a regular.</p>
+      <p class="loop-hint">Tap any step to see how it works at Valley Details.</p>
+    </header>
+
+    <div class="loop" id="loop-widget">
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 400 400" role="img" aria-label="Growth loop: found, booked, confirmed, detailed, reviewed, referred, rebooked, back to found">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="currentColor"/></marker>
+          </defs>
+          <circle class="ring-track" cx="200" cy="200" r="150"/>
+          <g id="ringArcs"></g>
+          <path class="ring-chord" id="chord" d="" marker-end="url(#ah)"/>
+          <circle class="ring-runner" id="runner" r="5" cx="200" cy="50"/>
+          <g id="ringNodes"></g>
+          <text class="ring-center-k" x="200" y="192" text-anchor="middle" id="ringK">01</text>
+          <text class="ring-center-l" x="200" y="220" text-anchor="middle" id="ringL">Get found</text>
+        </svg>
+      </div>
+      <div class="loop-panel" id="loopPanel" aria-live="polite">
+        <p class="tag" id="lpTag"><i>01</i>Get found</p>
+        <h3 id="lpTitle">Someone finds you</h3>
+        <p id="lpBody"></p>
+        <p class="lp-vd"><span>At Valley Details</span><span id="lpVd"></span></p>
+        <a class="lp-link" id="lpLink" href="#found">See this step <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 01 GET FOUND ============ -->
+<section class="sec stage" id="found" data-stage="found">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow stage-eyebrow"><i>01</i>Get found</p>
+      <h2>Look like the obvious choice before anyone calls.</h2>
+      <p class="lede">Most people pick a detailer off a map result or a quick search. What they see there, and on your site right after, decides whether they reach out or keep scrolling.</p>
+    </header>
+
+    <div class="found-grid">
+      <div class="found-list">
+        <article class="point reveal">
+          <h3>A Google profile set up by the rules</h3>
+          <p>For Valley Details I wrote the profile to spec: the right primary category, service areas instead of a home address, real prices on every service, and a plain business name. Stuffing keywords into the name is a common way new profiles get suspended.</p>
+        </article>
+        <article class="point reveal">
+          <h3>A website search engines can actually read</h3>
+          <p>Services, prices and cities in plain text. Structured markup that tells search engines this is a detailing business, where it works, and when it's open. Fast on a phone, because that's where the search happens.</p>
+        </article>
+        <article class="point reveal">
+          <h3>A steady flow of new reviews</h3>
+          <p>Every finished job gets asked, by text, while the car still looks new. More recent, real reviews means more trust with the people comparing you side by side.</p>
+        </article>
+      </div>
+
+      <figure class="code reveal" aria-label="Structured data on valleydetails.site">
+        <div class="code-bar"><span>What search engines read on valleydetails.site</span></div>
+<pre><code><span class="c">// excerpt, from the live page source</span>
+{
+  <span class="k">"@type"</span>: <span class="s">"AutoDetailing"</span>,
+  <span class="k">"name"</span>: <span class="s">"Valley Details"</span>,
+  <span class="k">"telephone"</span>: <span class="s">"+1-916-249-0631"</span>,
+  <span class="k">"address"</span>: { <span class="k">"addressLocality"</span>: <span class="s">"Elk Grove"</span> },
+  <span class="k">"areaServed"</span>: {
+    <span class="k">"@type"</span>: <span class="s">"GeoCircle"</span>,
+    <span class="k">"geoRadius"</span>: <span class="s">"16093"</span>  <span class="c">// 10 miles</span>
+  },
+  <span class="k">"sameAs"</span>: [<span class="s">"instagram.com/valleydetailsca"</span>]
+}</code></pre>
+      </figure>
+    </div>
+
+    <aside class="honest reveal">
+      <p class="honest-k">The honest version</p>
+      <p>Nobody can promise you the top spot on Google, and I won't. Google says local results weigh relevance, distance and prominence, and reviews are part of prominence. What I can do is make sure your profile and site are complete, accurate and consistent, and that good customers get asked for reviews every time. That builds trust with people either way, and it can help you show up.</p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ 02 GET BOOKED ============ -->
+<section class="sec sec-tint stage" id="booked" data-stage="booked">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow stage-eyebrow"><i>02</i>Get booked</p>
+      <h2>Close the gap between “looks good” and “I'm booked.”</h2>
+      <p class="lede">When someone lands on your site, the interest is already there. The job is not to lose them. Every screen on Valley Details points at one action.</p>
+    </header>
+
+    <div class="booked-grid">
+      <div class="booked-phones">
+        <figure class="phone reveal">
+          <div class="phone-screen"><img src="home/img/vd-phone-hero.webp" alt="Valley Details mobile homepage with price and Book a detail button" width="390" height="844" loading="lazy"></div>
+          <span class="pin" style="--x:48%;--y:66%">1</span>
+          <span class="pin" style="--x:53%;--y:95%">2</span>
+        </figure>
+        <figure class="phone reveal">
+          <div class="phone-screen"><img src="home/img/vd-phone-book.webp" alt="Valley Details booking step two: selected time, come to you or drop off, name, mobile, text opt-in, vehicle" width="390" height="844" loading="lazy"></div>
+          <span class="pin" style="--x:4%;--y:33%">3</span>
+          <span class="pin" style="--x:64%;--y:11%">4</span>
+          <span class="pin" style="--x:4%;--y:80%">5</span>
+        </figure>
+      </div>
+
+      <ol class="notes">
+        <li class="reveal"><i>1</i><div><h3>The price is on the first screen</h3><p>$100, about two hours, no deposit. The question most people would call to ask is answered before they scroll.</p></div></li>
+        <li class="reveal"><i>2</i><div><h3>Call and Book never leave the screen</h3><p>On phones, both buttons stay pinned to the bottom. Whenever they're ready, they don't have to hunt.</p></div></li>
+        <li class="reveal"><i>3</i><div><h3>Pick a time first. Details second.</h3><p>The service, the day and the time come first, so it reads like a calendar, not a form. Name, phone and car only show up after a time is tapped.</p></div></li>
+        <li class="reveal"><i>4</i><div><h3>Real availability</h3><p>Times come from the live schedule. Taken slots show crossed out instead of disappearing, so the calendar never offers a time that's gone.</p></div></li>
+        <li class="reveal"><i>5</i><div><h3>Permission to text, asked at the right moment</h3><p>A checkbox at booking lets customers opt in to open-slot deals. That list is what the rest of the system markets to.</p></div></li>
+      </ol>
+    </div>
+
+    <div class="after-book">
+      <article class="card reveal">
+        <p class="tag">Right after they book</p>
+        <h3>It becomes a customer, not a notification.</h3>
+        <p>The booking lands in the dashboard as a person with the service, time and phone number. The confirmation text goes out from the business's own number, and the owner can get an alert.</p>
+      </article>
+      <article class="card card-img reveal">
+        <div>
+          <p class="tag">Plans change</p>
+          <h3>Customers move their own appointment.</h3>
+          <p>Every confirmation carries a private link to that one appointment. No phone tag to reschedule, and the calendar stays right.</p>
         </div>
-        <div class="benefit reveal reveal-delay-1">
-          <strong>Books the job</strong>
-          <span>Straight onto your calendar.</span>
+        <figure class="phone phone-sm"><div class="phone-screen"><img src="home/img/vd-phone-schedule.webp" alt="Valley Details reschedule page with a month calendar and a time picker" width="390" height="844" loading="lazy"></div></figure>
+      </article>
+      <article class="card reveal">
+        <p class="tag">When they call instead</p>
+        <h3>A missed call doesn't have to be a missed job.</h3>
+        <p>For shops that can't answer mid-detail, an AI receptionist can pick up, take the details and book. If a call ends without a booking, a text follows up on its own.</p>
+        <a class="lp-link" href="https://dashboard.boyerscales.com/tour/call/">Hear an example call <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 FOLLOW UP / BLUE SMS ============ -->
+<section class="sec sec-dark stage" id="follow-up" data-stage="follow">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow stage-eyebrow"><i>03</i>Follow up · Blue SMS</p>
+      <h2>Texts from your number. Not a no-reply robot.</h2>
+      <p class="lede">Blue SMS sends through the business's own iPhone and number. Customers get a normal text thread with the business, blue bubbles on an iPhone, and their replies come back to that phone and into the dashboard. The follow-up that happens is the one nobody has to remember.</p>
+    </header>
+
+    <div class="sms" id="sms">
+      <div class="sms-side">
+        <div class="tabs" role="tablist" aria-label="Scenarios">
+          <button role="tab" aria-selected="true" data-sc="booked">Booked online</button>
+          <button role="tab" aria-selected="false" data-sc="after">After the detail</button>
+          <button role="tab" aria-selected="false" data-sc="missed">Call, no booking</button>
         </div>
-        <div class="benefit reveal reveal-delay-1">
-          <strong>Texts from your number</strong>
-          <span>Confirmations, reminders, reviews.</span>
+        <ol class="steps" id="smsSteps"></ol>
+        <div class="sms-controls">
+          <button class="btn btn-light btn-sm" id="smsNext" type="button">Next text <span aria-hidden="true">→</span></button>
+          <button class="btn-ghost" id="smsReplay" type="button">Replay</button>
         </div>
-        <div class="benefit reveal reveal-delay-2">
-          <strong>Brings them back</strong>
-          <span>Maintenance reminders that rebook.</span>
+        <p class="fine">Real wording from the Valley Details system. The customer is an example.</p>
+      </div>
+
+      <div class="sms-phone">
+        <div class="imsg" aria-live="polite">
+          <div class="imsg-head">
+            <span class="imsg-back" aria-hidden="true">‹</span>
+            <div class="imsg-who">
+              <img src="home/img/vd-logo.webp" alt="" width="44" height="44">
+              <span>Valley Details</span>
+            </div>
+          </div>
+          <div class="imsg-body" id="smsThread"></div>
+          <div class="imsg-foot" aria-hidden="true"><span>iMessage</span></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="section" aria-labelledby="math-title">
-      <div class="math-layout wrap">
-        <div class="section-copy reveal">
-          <p class="eyebrow">The math</p>
-          <h2 id="math-title">One missed call can cost more than the whole build.</h2>
-          <p>Someone with water on the floor doesn't leave a voicemail. They call the next plumber on Google. BoyerScales picks up before they do.</p>
+    <div class="guard">
+      <h3 class="guard-title">Built with the brakes on</h3>
+      <p class="guard-sub">Automated texting done carelessly burns a customer list. These rules are in the code.</p>
+      <ul class="guard-grid">
+        <li><code>opt-in</code><b>Promos only go to people who said yes.</b><span>Every promo is checked against a recorded YES and no STOP before it sends.</span></li>
+        <li><code>7 days</code><b>One promo a week, at most.</b><span>Per customer, no matter how many campaigns are running.</span></li>
+        <li><code>booked</code><b>Nothing while they're already booked.</b><span>No “come back” text to someone who's on the calendar.</span></li>
+        <li><code>10a–6p</code><b>Promos go out during the day.</b><span>Between 10 AM and 6 PM, never at night.</span></li>
+        <li><code>replied</code><b>A reply pauses the sequence.</b><span>Once they answer a promo, rebook and win-back texts wait until their next detail.</span></li>
+        <li><code>once</code><b>Each reminder sends exactly once.</b><span>A restart or a double tap can't text a customer twice.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 BRING THEM BACK ============ -->
+<section class="sec stage" id="back" data-stage="back">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow stage-eyebrow"><i>04</i>Bring them back</p>
+      <h2>A finished detail is the best marketing you'll get. Use it.</h2>
+      <p class="lede">A happy customer standing next to a clean car is proof, a referral source, and your next booking. It's easy to let all three drive off.</p>
+    </header>
+
+    <div class="rr">
+      <article class="rr-card reveal">
+        <figure class="shot-card"><img src="home/img/vd-review-card.webp" alt="Valley Details review page: How did Valley Details do? Leave a Google review" width="780" height="880" loading="lazy"></figure>
+        <div>
+          <p class="tag">Reviews</p>
+          <h3>Turn completed details into more proof.</h3>
+          <p>When a job is marked complete, the customer gets a thank-you text with the review link while the car still looks new. It's guarded so it can't send twice.</p>
+          <p class="rule-note"><b>So far:</b> Valley Details has a 5.0 rating from 8 Google reviews.</p>
+          <p class="rule-note"><b>What we never do:</b> trade discounts for reviews. Google prohibits it and can filter those reviews. Ask every customer, never pay for it.</p>
         </div>
+      </article>
 
-        <div class="math-card reveal reveal-delay-1" aria-label="Cost of a missed call compared with BoyerScales">
-          <div class="math-row">
-            <span>A water heater job that went to voicemail</span>
-            <strong>$1,500+</strong>
+      <article class="rr-card rr-ref reveal">
+        <div class="ref">
+          <div class="ref-bubble out">Hi Marcus, glad the car came out right. Your link gives friends $20 off their first detail with Valley Details, and you get $20 off your next one when they book: valleydetails.site/?ref=…</div>
+          <div class="ref-gap">Later, a friend books with the link</div>
+          <div class="ref-bubble out">Hi Marcus, Dana just got detailed with Valley Details using your link. Your $20 off is waiting and comes off automatically next time you book: valleydetails.site</div>
+        </div>
+        <div>
+          <p class="tag">Referrals</p>
+          <h3>Give happy customers something to share.</h3>
+          <p>Every customer gets their own link. Their friend gets $20 off the first detail. When that friend's job is done, the customer's $20 comes off their next booking automatically. The owner sees each customer's link, who they sent, and the credit left.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="retain">
+      <header class="retain-head">
+        <h3>Then the calendar does the remembering.</h3>
+        <p>After a detail, the system knows when each customer is due and texts them at the right time. These are the default timings. Each business sets its own, and every promo follows the rules above.</p>
+      </header>
+
+      <div class="tl" id="timeline">
+        <div class="tl-track" aria-hidden="true"><span class="tl-fill" id="tlFill"></span></div>
+        <ol class="tl-marks" id="tlMarks" role="tablist" aria-label="Days after a detail"></ol>
+        <div class="tl-detail" id="tlDetail" aria-live="polite">
+          <div class="tl-copy">
+            <p class="tag" id="tlTag"></p>
+            <h4 id="tlTitle"></h4>
+            <p id="tlBody"></p>
           </div>
-          <div class="math-row">
-            <span>Your receptionist build, one time</span>
-            <strong class="math-blue">$500</strong>
-          </div>
-          <div class="math-row">
-            <span>Keeping it answering, per month</span>
-            <strong class="math-blue">$99</strong>
-          </div>
-          <p class="math-foot">One water heater job covers the build. One drain call a month covers the rest.</p>
+          <div class="tl-bubble" id="tlBubble"></div>
         </div>
       </div>
-    </section>
 
-    <section class="section messages-section" id="calls" aria-labelledby="calls-title">
-      <div class="call-layout wrap">
-        <div class="transcript-card reveal" aria-label="Example of a call the receptionist handles">
-          <div class="transcript-head"><span class="live-dot" aria-hidden="true"></span> Saturday, 9:42 PM · Example call</div>
-          <div class="tline tline-caller"><span>Caller</span><p>Hey, my water heater's leaking all over the garage.</p></div>
-          <div class="tline tline-ai"><span>Receptionist</span><p>Oh no. Were you able to shut the water off to it?</p></div>
-          <div class="tline tline-caller"><span>Caller</span><p>Yeah, I turned the valve.</p></div>
-          <div class="tline tline-ai"><span>Receptionist</span><p>Okay, good. I can get someone out tomorrow at eight, or at ten. Which is better?</p></div>
-          <div class="tline tline-caller"><span>Caller</span><p>Eight.</p></div>
-          <div class="tline tline-ai"><span>Receptionist</span><p>Got it. And what's the address?</p></div>
-          <div class="transcript-result"><strong>Booked</strong><span>Sun 8:00 AM · Water heater leak · Confirmation texted</span></div>
-        </div>
-
-        <div class="section-copy reveal reveal-delay-1">
-          <p class="eyebrow">What your customers hear</p>
-          <h2 id="calls-title">A calm voice that gets the job booked.</h2>
-          <p>It knows your services, your hours, and where you work. It asks what you'd ask, one question at a time, and puts the job on your calendar. No phone tree. No "press 1."</p>
-          <p class="future-note">Example call. Yours is built on your own business info. Or skip the example and <a class="call-link" href="tel:+19166598131">call the real one</a>.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="included" aria-labelledby="included-title">
-      <div class="included-layout wrap">
-        <div class="section-copy reveal">
-          <p class="eyebrow">How it works</p>
-          <h2 id="included-title">Live on your line in one setup call.</h2>
-          <p>You don't learn new software or change your number. We build it around your business and you watch what it catches for a week, free.</p>
-        </div>
-
-        <div class="included-details reveal reveal-delay-1">
-          <div class="included-list">
-            <div class="included-row">
-              <span class="included-number">01</span>
-              <div>
-                <strong>Send us five details</strong>
-                <span>Name, business, phone, carrier, email. It takes about a minute.</span>
-              </div>
-            </div>
-            <div class="included-row">
-              <span class="included-number">02</span>
-              <div>
-                <strong>We build your receptionist</strong>
-                <span>Your services, prices, hours, and service area. Then we forward the calls you miss to it.</span>
-              </div>
-            </div>
-            <div class="included-row">
-              <span class="included-number">03</span>
-              <div>
-                <strong>It answers, books, and texts</strong>
-                <span>Every call and booking shows up in your app. Step in and reply yourself any time.</span>
-              </div>
-            </div>
-          </div>
-          <p class="future-note">Included: the receptionist, booking, automatic texts, your message inbox, and your dashboard.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section messages-section" id="texting" aria-labelledby="texting-title">
-      <div class="wrap">
-        <div class="messages-layout">
-          <div class="section-copy reveal">
-            <p class="eyebrow">After the booking</p>
-            <h2 id="texting-title">Then it texts them for you.</h2>
-            <p>Booking the job is half of it. The follow-up is what keeps the calendar full, and it runs on its own from the second the appointment is set.</p>
-
-            <div class="seq-list">
-              <div class="seq-row">
-                <span class="seq-when">Right away</span>
-                <div>
-                  <strong>Booking confirmation</strong>
-                  <span>Includes a link to reschedule or fix the details the AI took down. No callback to you.</span>
-                </div>
-              </div>
-              <div class="seq-row">
-                <span class="seq-when">1 day + 1 hour</span>
-                <div>
-                  <strong>Reminders before the appointment</strong>
-                  <span>Fewer no-shows and fewer surprise cancellations.</span>
-                </div>
-              </div>
-              <div class="seq-row">
-                <span class="seq-when">After the job</span>
-                <div>
-                  <strong>Review request</strong>
-                  <span>Asks how it went. If they had a good one, they get the option to post it on Google.</span>
-                </div>
-              </div>
-              <div class="seq-row">
-                <span class="seq-when">Months later</span>
-                <div>
-                  <strong>Maintenance reminder</strong>
-                  <span>The water heater flush, the annual check. It books the next job before they forget your name.</span>
-                </div>
-              </div>
-            </div>
-
-            <p class="future-note">Move any of the timing, or switch a step off. Texts come from your own number, so customers know exactly who it is.</p>
-          </div>
-
-          <div class="call-card demo-card thread-card reveal reveal-delay-1" aria-label="Example of the automatic text sequence after a booking">
-            <div class="phone-hardware" aria-hidden="true"><span class="phone-speaker"></span></div>
-            <div class="thread-screen">
-              <div class="thread-head">
-                <span class="thread-avatar" aria-hidden="true"><img src="./logo.png" alt=""></span>
-                <div class="thread-who">
-                  <strong>Dana K.</strong>
-                  <span>Water heater leak · Sun 8:00 AM</span>
-                </div>
-                <span class="thread-auto"><span class="live-dot" aria-hidden="true"></span> Auto</span>
-              </div>
-
-              <div class="thread-body">
-                <p class="thread-stage">Booked</p>
-                <div class="bubble bubble-out">You're booked for Sunday at 8:00 AM for the water heater leak.<span class="bubble-link">Reschedule or edit details</span></div>
-
-                <p class="thread-stage">1 hour before</p>
-                <div class="bubble bubble-out">Reminder: we'll be there at 8:00 AM.</div>
-                <div class="bubble bubble-in">Sounds good, side gate is open</div>
-
-                <p class="thread-stage">After the job</p>
-                <div class="bubble bubble-out">How did everything go today?</div>
-                <div class="bubble bubble-in">Really good, super quick</div>
-                <div class="bubble bubble-out">Glad to hear it. If you have a second, a review helps us a lot.<span class="bubble-link">Leave a Google review</span></div>
-
-                <p class="thread-stage">11 months later</p>
-                <div class="bubble bubble-out">Hi Dana, it's been about a year since your water heater job. Want us to flush it so it lasts longer?</div>
-              </div>
-
-              <div class="thread-input" aria-hidden="true">
-                <span>Jump in any time…</span>
-                <span class="thread-send">↑</span>
-              </div>
-            </div>
-            <span class="phone-home" aria-hidden="true"></span>
-          </div>
-        </div>
-
-        <div class="inbox-card reveal">
+      <div class="offers">
+        <article class="offer-card reveal">
+          <figure class="phone phone-sm"><div class="phone-screen"><img src="home/img/vd-phone-club.webp" alt="The Valley Club membership section: $149 a month, two full details" width="390" height="844" loading="lazy"></div></figure>
           <div>
-            <strong>Every thread, on every device.</strong>
-            <p>You get your own app to watch the automatic messages go out, and you can step in and reply yourself from your phone, tablet, or laptop.</p>
+            <p class="tag">New offers</p>
+            <h3>Launch a membership without a separate system.</h3>
+            <p>Valley Details launched the Valley Club: two full details a month for $149, with ten founding spots. The site takes signups, the spots-left counter is real, and the system can pitch the Club by text a few days after a customer's detail.</p>
           </div>
-          <a class="button button-secondary dashboard-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener">See the client app</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section overview-section" id="dashboard" aria-labelledby="dashboard-title">
-      <div class="overview-layout wrap">
-        <div class="overview-copy section-copy reveal reveal-delay-1">
-          <p class="eyebrow">Your overview</p>
-          <h2 id="dashboard-title">A dashboard you can check in seconds.</h2>
-          <p>Open it and see the leads captured, calls answered, and jobs booked. No complicated reports.</p>
-          <a class="button button-secondary dashboard-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener">Open client dashboard</a>
-        </div>
-
-        <div class="dashboard-preview reveal" aria-label="Sample BoyerScales dashboard overview">
-          <div class="preview-head">
-            <div>
-              <h3>Overview</h3>
-              <p class="preview-greeting">Here’s your day at a glance.</p>
-            </div>
-            <a class="preview-refresh dashboard-link" href="https://dashboard.boyerscales.com" target="_blank" rel="noopener" aria-label="Open the BoyerScales client dashboard"><span aria-hidden="true">↻</span></a>
-          </div>
-
-          <div class="preview-body">
-            <div class="revenue-panel">
-              <span class="revenue-label">Revenue captured</span>
-              <div class="revenue-amount">
-                <strong>$4,380</strong>
-                <span class="revenue-trend" aria-hidden="true">↗</span>
-              </div>
-            </div>
-
-            <div class="stat-grid">
-              <div class="stat-tile">
-                <span class="stat-icon" aria-hidden="true">◎</span>
-                <strong>34</strong>
-                <span>Leads</span>
-              </div>
-              <div class="stat-tile">
-                <span class="stat-icon stat-icon-new" aria-hidden="true">✦</span>
-                <strong>5</strong>
-                <span>New</span>
-              </div>
-              <div class="stat-tile">
-                <span class="stat-icon stat-icon-calls" aria-hidden="true">☎</span>
-                <strong>41</strong>
-                <span>Calls captured</span>
-              </div>
-              <div class="stat-tile">
-                <span class="stat-icon stat-icon-booked" aria-hidden="true">▣</span>
-                <strong>19</strong>
-                <span>Booked</span>
-              </div>
-              <div class="stat-tile">
-                <span class="stat-icon stat-icon-completed" aria-hidden="true">✓</span>
-                <strong>15</strong>
-                <span>Jobs completed</span>
-              </div>
-              <div class="stat-tile">
-                <span class="stat-icon stat-icon-fallback" aria-hidden="true">!</span>
-                <strong>2</strong>
-                <span>Callbacks</span>
-              </div>
-            </div>
-
-            <div class="preview-details">
-              <div class="chart-card">
-                <p class="preview-card-title">Revenue captured · last 30 days</p>
-                <div class="chart-wrap" aria-label="$4,380 in revenue captured over the last 30 days">
-                  <div class="chart-plot" aria-hidden="true">
-                    <!-- Cumulative revenue over 30 days: flat stretches, then a step each time a job books. -->
-                    <svg class="chart-svg" viewBox="0 0 300 100" preserveAspectRatio="none">
-                      <defs>
-                        <linearGradient id="revFill" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0" stop-color="#4f83ff" stop-opacity=".28"/>
-                          <stop offset="1" stop-color="#4f83ff" stop-opacity="0"/>
-                        </linearGradient>
-                      </defs>
-                      <g class="chart-grid">
-                        <line x1="0" y1="25" x2="300" y2="25"/>
-                        <line x1="0" y1="50" x2="300" y2="50"/>
-                        <line x1="0" y1="75" x2="300" y2="75"/>
-                      </g>
-                      <path class="chart-fill" d="M0,96 L20,92.4 L30,92.4 L50,87.6 L70,83.1 L80,83.1 L100,72.9 L120,69.3 L140,63.7 L150,63.7 L170,54.8 L190,50.2 L210,37.9 L220,37.9 L240,31.5 L260,24.5 L280,16 L300,8 L300,100 L0,100 Z"/>
-                      <polyline class="chart-stroke" points="0,96 20,92.4 30,92.4 50,87.6 70,83.1 80,83.1 100,72.9 120,69.3 140,63.7 150,63.7 170,54.8 190,50.2 210,37.9 220,37.9 240,31.5 260,24.5 280,16 300,8"/>
-                    </svg>
-                    <span class="chart-dot"></span>
-                  </div>
-                  <div class="chart-labels" aria-hidden="true">
-                    <span>30 days ago</span>
-                    <span>$4,380 captured</span>
-                    <span>Today</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="activity-card">
-                <p class="preview-card-title">Recent activity</p>
-                <div class="activity-list">
-                  <div class="activity-row">
-                    <span class="activity-avatar" aria-hidden="true">☎</span>
-                    <div class="activity-person"><strong>Dana K.</strong><span>Water heater leak · Sun 8 AM</span></div>
-                    <span class="activity-badge">Booked</span>
-                  </div>
-                  <div class="activity-row">
-                    <span class="activity-avatar" aria-hidden="true">☎</span>
-                    <div class="activity-person"><strong>Luis M.</strong><span>Kitchen drain clog · Mon 10 AM</span></div>
-                    <span class="activity-badge">Booked</span>
-                  </div>
-                  <div class="activity-row">
-                    <span class="activity-avatar" aria-hidden="true">☎</span>
-                    <div class="activity-person"><strong>Priya S.</strong><span>Wants a repipe quote</span></div>
-                    <span class="activity-badge">Callback</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <p class="preview-note">Sample data. Your real activity appears here during the trial.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq" aria-labelledby="faq-title">
-      <div class="faq-layout wrap">
-        <div class="section-copy reveal">
-          <p class="eyebrow">Straight answers</p>
-          <h2 id="faq-title">What plumbers ask first.</h2>
-          <p>You've heard plenty of AI pitches. Here's what this one does and doesn't do.</p>
-
-          <div class="founder-card">
-            <img src="./logo.png" alt="">
-            <div>
-              <strong>You deal with me, not a call center.</strong>
-              <p>I'm Elijah, based in Sacramento. I set up every receptionist myself, and if something needs changing, you text me and it gets changed.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="faq-list reveal reveal-delay-1">
-          <details class="faq-item">
-            <summary>Will it sound like a robot?</summary>
-            <p>Call it and decide for yourself: <a class="call-link" href="tel:+19166598131">(916) 659-8131</a>. That's the same receptionist your customers would talk to.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Do I have to change my number?</summary>
-            <p>No. Your number stays the same. The calls you don't pick up forward to your receptionist, and the texts go out from your number.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What if it's an emergency, or they want to talk to me?</summary>
-            <p>It gets what's going on and books the soonest opening you have. If they want you, it takes their name, number, and what it's about, and flags it for you to call back. It never pretends to transfer.</p>
-          </details>
-          <details class="faq-item">
-            <summary>Will customers know it's AI?</summary>
-            <p>If someone sincerely asks, it tells them. Most people calling about a leak just want someone to show up, and it gets them on your calendar.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What if it gets a detail wrong?</summary>
-            <p>Every customer gets a confirmation text with a link to fix their details or reschedule, so small mix-ups get sorted without a call to you.</p>
-          </details>
-          <details class="faq-item">
-            <summary>What does it cost?</summary>
-            <p>The first seven days are free with no card. If you keep it, it's $500 once for the build, then $99 a month to keep it answering. No contract, cancel any time.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <section class="trial" id="trial" aria-labelledby="trial-title">
-      <div class="trial-layout wrap">
-        <div class="trial-copy reveal">
-          <p class="eyebrow">Start free</p>
-          <h2 id="trial-title">Try it on your line for seven days.</h2>
-          <p>Send five details and we'll build your receptionist around your services, hours, and service area. If it hasn't caught you a job in a week, walk away. There's no card on file and nothing to cancel.</p>
-          <div class="trial-points" aria-label="Trial terms">
-            <span>Seven days free</span>
-            <span>No credit card</span>
-            <span>We handle setup</span>
-            <span>Keep your number</span>
-          </div>
-        </div>
-
-        <form class="trial-form reveal reveal-delay-1" id="trialForm">
-          <div class="form-heading">
-            <h3>Business details</h3>
-            <p>Five details. We handle the setup from there.</p>
-          </div>
-
-          <div class="trial-price" aria-label="Pricing after the free trial">
-            <span>If you keep it after the free week</span>
-            <strong><span>$500</span> build, then <span>$99</span>/month</strong>
-          </div>
-
-          <div class="field-grid">
-            <div class="field">
-              <label for="name">Your name</label>
-              <input id="name" name="name" type="text" autocomplete="name" placeholder="First and last name" required>
-            </div>
-            <div class="field">
-              <label for="business">Business name</label>
-              <input id="business" name="business" type="text" autocomplete="organization" placeholder="e.g. Rivera Plumbing &amp; Drain" required>
-            </div>
-            <div class="field">
-              <label for="phone">Business phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(916) 555-0142" required>
-            </div>
-            <div class="field">
-              <label for="carrier">Phone carrier</label>
-              <select id="carrier" name="carrier" required>
-                <option value="" selected disabled>Select carrier</option>
-                <option>Verizon</option>
-                <option>AT&amp;T</option>
-                <option>T-Mobile</option>
-                <option>UScellular</option>
-                <option>Other / Not sure</option>
-              </select>
-            </div>
-            <div class="field field-full">
-              <label for="email">Business email</label>
-              <input id="email" name="email" type="email" autocomplete="email" placeholder="name@business.com" required>
-            </div>
-          </div>
-
-          <label class="consent" for="smsOptIn">
-            <input id="smsOptIn" name="smsOptIn" type="checkbox" required>
-            <span>I agree to receive SMS messages from BoyerScales about my trial, setup, and scheduling. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. See the <a href="/privacypolicy/" target="_blank">Privacy Policy</a> and <a href="/termsconditions/" target="_blank">Terms</a>.</span>
-          </label>
-
-          <button class="button button-primary submit-button" type="submit">Start my free 7-day trial <span aria-hidden="true">→</span></button>
-          <p class="form-status" id="formStatus" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <div class="mobile-cta is-hidden" id="mobileCta">
-    <a class="button button-secondary call-link" href="tel:+19166598131">Hear it</a>
-    <a class="button button-primary trial-link" href="#trial">Start free <span aria-hidden="true">→</span></a>
-  </div>
-
-  <footer>
-    <div class="footer-inner wrap">
-      <span>© <span id="year"></span> BoyerScales · Sacramento, CA</span>
-      <div class="footer-links">
-        <a href="/privacypolicy/" target="_blank">Privacy</a>
-        <a href="/termsconditions/" target="_blank">Terms</a>
-      </div>
-    </div>
-  </footer>
-
-  <div class="success-modal" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle" aria-describedby="successDescription" aria-hidden="true">
-    <div class="success-card">
-      <button class="success-close" id="successClose" type="button" aria-label="Close confirmation">×</button>
-      <div class="success-icon" aria-hidden="true">✓</div>
-      <p class="eyebrow">Trial request received</p>
-      <h2 id="successTitle">You’re all set.</h2>
-      <p class="success-copy" id="successDescription">We have your business details. Watch for a text from Elijah so you can choose a quick setup time and connect your call forwarding.</p>
-      <p class="success-email" id="successEmail"></p>
-      <div class="success-actions">
-        <a class="button button-primary dashboard-link" href="https://dashboard.boyerscales.com/demo/" target="_blank" rel="noopener">Preview the dashboard <span aria-hidden="true">→</span></a>
-        <button class="button button-secondary success-done" id="successDone" type="button">Done</button>
+        </article>
+        <article class="offer-card offer-plain reveal">
+          <p class="tag">Open slots</p>
+          <h3>Fill tomorrow's gaps with people who already like you.</h3>
+          <p>From noon, if tomorrow still has openings, opted-in past customers can get an open-slot deal. It stops the moment tomorrow fills up.</p>
+          <p class="tag tag-top">Honest offers</p>
+          <h3>A promo that says $20 off is honored automatically.</h3>
+          <p>When that customer books, the job saves at the lower price with a note explaining why. The crew knows, and the numbers in the dashboard stay true.</p>
+        </article>
       </div>
     </div>
   </div>
+</section>
 
-  <script>
-    (function () {
-      'use strict';
+<!-- ============ OWNER SIDE ============ -->
+<section class="sec sec-dark" id="owner">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">The owner's side</p>
+      <h2>Never lose track of someone who wants a detail.</h2>
+      <p class="lede">None of this helps if the owner can't see it. Every booking, call and text lands in one place, so the team knows who the customer is, what they want, and what happens next.</p>
+    </header>
 
-      var year = document.getElementById('year');
-      if (year) year.textContent = new Date().getFullYear();
+    <div class="dash" id="dash">
+      <div class="dash-tabs" role="tablist" aria-label="Dashboard screens">
+        <button role="tab" aria-selected="true" data-d="people">People</button>
+        <button role="tab" aria-selected="false" data-d="person">A customer</button>
+        <button role="tab" aria-selected="false" data-d="calendar">Calendar</button>
+      </div>
+      <figure class="browser browser-dark">
+        <div class="browser-bar">
+          <span class="dots"><i></i><i></i><i></i></span>
+          <span class="url">dashboard.boyerscales.com</span>
+          <span class="browser-flag">Sample customers</span>
+        </div>
+        <div class="dash-stage">
+          <picture data-d="people" class="on"><source media="(max-width: 640px)" srcset="home/img/dash-phone-people.webp" width="390" height="844"><img src="home/img/dash-desktop-people.webp" alt="Dashboard People list: each customer marked Booked, Not booked or Completed" width="1600" height="1000" loading="lazy"></picture>
+          <picture data-d="person"><source media="(max-width: 640px)" srcset="home/img/dash-phone-person.webp" width="390" height="844"><img src="home/img/dash-desktop-person.webp" alt="A customer record: name, phone, what they need, status, call and text buttons, appointments" width="1600" height="1000" loading="lazy"></picture>
+          <picture data-d="calendar"><source media="(max-width: 640px)" srcset="home/img/dash-phone-calendar.webp" width="390" height="844"><img src="home/img/dash-desktop-calendar.webp" alt="Dashboard calendar with the day's appointments" width="1600" height="1000" loading="lazy"></picture>
+        </div>
+      </figure>
+    </div>
 
-      var revealItems = document.querySelectorAll('.reveal');
-      var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    <ul class="owner-points">
+      <li><b>Who's booked and who isn't.</b> Every person is Booked, Not booked or Completed, so nobody who asked about a detail disappears.</li>
+      <li><b>Text them from their record.</b> The whole Blue SMS thread lives on the customer, sent from the business's number.</li>
+      <li><b>Mark it complete, and the review ask goes out.</b> One tap closes the job and starts the after-detail texts.</li>
+      <li><b>Alerts when something happens.</b> New lead or new booking, sent where the owner will see it.</li>
+      <li><b>Built for a phone.</b> It installs to the home screen and works one-handed between jobs.</li>
+    </ul>
+  </div>
+</section>
 
-      if (!reduceMotion && revealItems.length) {
-        document.documentElement.classList.add('motion-ready');
+<!-- ============ BROADER CAPABILITY ============ -->
+<section class="sec" id="build">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Beyond the loop</p>
+      <h2>Valley Details didn't need more software. It needed specific problems solved.</h2>
+      <p class="lede">So I built what it needed. Your bottlenecks are probably different, and that's fine. Your system doesn't have to look like this one. I build around the problem instead of forcing you into a template.</p>
+    </header>
 
-        if ('IntersectionObserver' in window) {
-          var revealObserver = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add('is-visible');
-              revealObserver.unobserve(entry.target);
-            });
-          }, {
-            threshold: .12,
-            rootMargin: '0px 0px -8% 0px'
-          });
+    <div class="fix" role="table" aria-label="Problems and what I would build">
+      <div class="fix-row fix-headrow" role="row"><span role="columnheader">If this sounds like you</span><span role="columnheader">What I'd build</span></div>
+      <div class="fix-row reveal" role="row"><span role="cell">The phone rings while you're elbow-deep in a job.</span><span role="cell">An AI receptionist that answers in your business's name, takes the details and books. Plus a text if the call doesn't end in a booking.</span></div>
+      <div class="fix-row reveal" role="row"><span role="cell">Every quote turns into a phone call.</span><span role="cell">Instant quotes from your own price list, by vehicle size and add-ons, on the site or on a call.</span></div>
+      <div class="fix-row reveal" role="row"><span role="cell">Leads live in DMs, texts and your memory.</span><span role="cell">One customer list with status, history and a next step for each person.</span></div>
+      <div class="fix-row reveal" role="row"><span role="cell">You can't tell what's actually working.</span><span role="cell">A dashboard built around the handful of numbers you care about, from data you already have.</span></div>
+      <div class="fix-row reveal" role="row"><span role="cell">Your booking, payments and calendar don't talk.</span><span role="cell">Integrations and API connections so information moves on its own instead of by copy and paste.</span></div>
+      <div class="fix-row reveal" role="row"><span role="cell">Something gets done by hand every single week.</span><span role="cell">An internal tool or automation that does it for you.</span></div>
+    </div>
 
-          revealItems.forEach(function (item) {
-            revealObserver.observe(item);
-          });
-        } else {
-          revealItems.forEach(function (item) {
-            item.classList.add('is-visible');
-          });
-        }
-      }
+    <ul class="skills" aria-label="Things I build">
+      <li>Websites &amp; web apps</li><li>Booking systems</li><li>Blue SMS</li><li>Customer records</li><li>Automated follow-up</li><li>Text campaigns</li><li>AI receptionists</li><li>Dashboards</li><li>APIs &amp; integrations</li><li>Internal tools</li>
+    </ul>
+    <p class="aside-line">Don't need all of this? Good. I only build what makes sense for your business.</p>
+  </div>
+</section>
 
-      // Phone-only bar with the two actions. It stays out of the way while the
-      // hero's own buttons, the trial form, or the footer are on screen.
-      var mobileCta = document.getElementById('mobileCta');
-      if (mobileCta && 'IntersectionObserver' in window) {
-        var inView = {};
-        var watch = ['hero', 'trial'].map(function (id) { return document.getElementById(id); })
-          .concat([document.querySelector('footer')]).filter(Boolean);
-        var ctaObserver = new IntersectionObserver(function (entries) {
-          entries.forEach(function (entry) { inView[entry.target.id || 'footer'] = entry.isIntersecting; });
-          var hide = Object.keys(inView).some(function (k) { return inView[k]; });
-          mobileCta.classList.toggle('is-hidden', hide);
-        }, { threshold: 0 });
-        watch.forEach(function (el) { ctaObserver.observe(el); });
-      }
+<!-- ============ YOU MIGHT NOT NEED ME ============ -->
+<section class="sec sec-tint" id="check">
+  <div class="wrap check-grid">
+    <header class="sec-head">
+      <p class="eyebrow">A straight answer</p>
+      <h2>You might not need me.</h2>
+      <p class="lede">If all of these are already true for your business, you're in good shape and I'll tell you that. If some aren't, those are the leaks worth fixing first.</p>
+    </header>
 
-      document.querySelectorAll('.trial-link').forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (window.fbq) fbq('trackCustom', 'TrialStartClick');
-        });
-      });
+    <div class="check" id="checklist">
+      <p class="check-k">Check what's true today</p>
+      <ul>
+        <li><label><input type="checkbox"><span>People can book a time online without calling.</span></label></li>
+        <li><label><input type="checkbox"><span>Calls you miss during a job get answered or followed up the same day.</span></label></li>
+        <li><label><input type="checkbox"><span>Every booking gets a confirmation and a reminder.</span></label></li>
+        <li><label><input type="checkbox"><span>Every finished job gets asked for a review.</span></label></li>
+        <li><label><input type="checkbox"><span>Happy customers have a real reason to refer a friend.</span></label></li>
+        <li><label><input type="checkbox"><span>Past customers hear from you when they're due for another detail.</span></label></li>
+        <li><label><input type="checkbox"><span>You know who asked about a detail but never booked.</span></label></li>
+        <li><label><input type="checkbox"><span>Your Google profile is complete and gets new reviews regularly.</span></label></li>
+      </ul>
+      <div class="check-out" aria-live="polite">
+        <div class="meter" aria-hidden="true"><span id="meterFill"></span></div>
+        <p id="checkResult"><b>0 of 8.</b> Check what's already handled.</p>
+      </div>
+      <p class="fine">Nothing you check is saved or sent anywhere.</p>
+    </div>
+  </div>
+</section>
 
-      document.querySelectorAll('.call-link').forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (window.fbq) fbq('trackCustom', 'CallButtonTap', { number: '+19166598131' });
-        });
-      });
+<!-- ============ START ============ -->
+<section class="sec" id="start">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">How we'd start</p>
+      <h2>Start small. Build what's worth building.</h2>
+    </header>
 
-      document.querySelectorAll('.dashboard-link').forEach(function (link) {
-        link.addEventListener('click', function () {
-          if (window.fbq) fbq('trackCustom', 'DashboardLinkClick');
-        });
-      });
+    <ol class="how">
+      <li class="reveal"><i>01</i><h3>We talk about your business</h3><p>Fifteen minutes. How people find you, how they book, and what happens after the detail.</p></li>
+      <li class="reveal"><i>02</i><h3>I point at the leak</h3><p>A straight answer on what's worth fixing, what isn't, and what it would take.</p></li>
+      <li class="reveal"><i>03</i><h3>I build that part</h3><p>Then we look at whether anything else is worth doing. Sometimes nothing is.</p></li>
+    </ol>
 
-      var form = document.getElementById('trialForm');
-      var status = document.getElementById('formStatus');
-      var successModal = document.getElementById('successModal');
-      var successClose = document.getElementById('successClose');
-      var successDone = document.getElementById('successDone');
-      var successEmail = document.getElementById('successEmail');
-      var modalReturnFocus = null;
-      var endpoint = 'https://script.google.com/macros/s/AKfycbwUOe7b1_yA1JSrEPat3og4Cij1DPbttek2B8qG4zk3LQh9LPa-tpnzNZfzmb37ShmiEw/exec';
+    <div class="start-grid">
+      <article class="entry reveal">
+        <p class="tag">A common first step</p>
+        <h3>A website that books. <span>$300 flat.</span></h3>
+        <p>For a lot of detailers, the first fix is a fast, mobile-first site with clear prices and an easy way to book. Often live the same day, depending on scope. Everything else on this page is optional.</p>
+      </article>
 
-      function setStatus(message, type) {
-        status.textContent = message || '';
-        status.className = 'form-status' + (type ? ' ' + type : '');
-      }
+      <article class="contact reveal">
+        <img src="home/img/bs-logo.webp" alt="" width="48" height="48">
+        <h3>Elijah Boyer</h3>
+        <p class="contact-role">BoyerScales · Customer systems for detailers</p>
+        <p>If something on this page sounded like your business, let's talk about it.</p>
+        <div class="contact-btns">
+          <a class="btn btn-ink" href="tel:+19166598131">Call (916) 659-8131</a>
+          <a class="btn btn-line" href="sms:+19166598131">Text me</a>
+        </div>
+        <a class="contact-mail" href="mailto:elijah@boyerscales.com">elijah@boyerscales.com</a>
+      </article>
+    </div>
+  </div>
+</section>
 
-      function openSuccessModal(email) {
-        if (!successModal) return;
-        modalReturnFocus = document.activeElement;
-        successEmail.textContent = email ? 'Submitted with ' + email : '';
-        successEmail.hidden = !email;
-        successModal.classList.add('is-open');
-        successModal.setAttribute('aria-hidden', 'false');
-        document.body.classList.add('modal-open');
-        window.setTimeout(function () {
-          if (successClose) successClose.focus();
-        }, 30);
-      }
+</main>
 
-      function closeSuccessModal() {
-        if (!successModal) return;
-        successModal.classList.remove('is-open');
-        successModal.setAttribute('aria-hidden', 'true');
-        document.body.classList.remove('modal-open');
-        if (modalReturnFocus && typeof modalReturnFocus.focus === 'function') {
-          modalReturnFocus.focus();
-        }
-      }
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>© BoyerScales. This page is part of the proof: I built it too.</span>
+    <nav aria-label="Footer">
+      <a href="https://valleydetails.site" target="_blank" rel="noopener">valleydetails.site</a>
+      <a href="https://dashboard.boyerscales.com/demo/" target="_blank" rel="noopener">Dashboard demo</a>
+      <a href="https://dashboard.boyerscales.com/">Client login</a>
+    </nav>
+  </div>
+</footer>
 
-      if (successClose) successClose.addEventListener('click', closeSuccessModal);
-      if (successDone) successDone.addEventListener('click', closeSuccessModal);
-      if (successModal) {
-        successModal.addEventListener('click', function (event) {
-          if (event.target === successModal) closeSuccessModal();
-        });
+<div class="mcta" id="mcta">
+  <a class="btn btn-line" href="sms:+19166598131">Text me</a>
+  <a class="btn btn-ink" href="#start">Talk to me</a>
+</div>
 
-        successModal.addEventListener('keydown', function (event) {
-          if (event.key === 'Escape') {
-            closeSuccessModal();
-            return;
-          }
-
-          if (event.key !== 'Tab') return;
-          var focusable = successModal.querySelectorAll('a[href], button:not([disabled])');
-          if (!focusable.length) return;
-          var first = focusable[0];
-          var last = focusable[focusable.length - 1];
-          if (event.shiftKey && document.activeElement === first) {
-            event.preventDefault();
-            last.focus();
-          } else if (!event.shiftKey && document.activeElement === last) {
-            event.preventDefault();
-            first.focus();
-          }
-        });
-      }
-
-      if (form) {
-        form.addEventListener('submit', function (event) {
-          event.preventDefault();
-          if (!form.reportValidity()) return;
-
-          var button = form.querySelector('button[type="submit"]');
-          var original = button.innerHTML;
-          var carrier = form.elements.carrier.value;
-          var data = {
-            name: form.elements.name.value.trim(),
-            business: form.elements.business.value.trim(),
-            phone: form.elements.phone.value.trim(),
-            email: form.elements.email.value.trim(),
-            carrier: carrier,
-            notes: 'Business phone carrier: ' + carrier,
-            smsOptIn: form.elements.smsOptIn.checked,
-            submittedAt: new Date().toISOString(),
-            pageUrl: window.location.href,
-            userAgent: navigator.userAgent,
-            source: 'homepage-7-day-trial'
-          };
-
-          button.disabled = true;
-          button.textContent = 'Submitting…';
-          setStatus('');
-
-          fetch(endpoint, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify(data)
-          }).then(function () {
-            form.reset();
-            setStatus('Trial request received.', 'success');
-            openSuccessModal(data.email);
-            if (window.fbq) fbq('trackCustom', 'TrialFormSubmitted');
-          }).catch(function () {
-            setStatus('Something went wrong. Please try again or call (916) 659-8131.', 'error');
-          }).finally(function () {
-            button.disabled = false;
-            button.innerHTML = original;
-          });
-        });
-      }
-    }());
-  </script>
+<script src="home/tour.js" defer></script>
 </body>
 </html>
