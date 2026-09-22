@@ -97,8 +97,8 @@
       body: 'Their own link: $20 off for the friend, and $20 off for them once the friend\'s job is done. A new customer who arrives already trusting you.',
       vd: 'Referral links and credits tracked per customer and applied automatically.', href: '#back' },
     { k: '04', stage: 'Bring them back', label: 'Rebooked', title: 'They come back',
-      body: 'A nudge when they\'re due, a win-back if they go quiet, and offers like a membership. The next booking comes from someone you already earned.',
-      vd: 'Texts at 14, 28, 45 and 75 days, the Valley Club, and open-slot deals. Promos only go to people who opted in.', href: '#back' },
+      body: 'A nudge when they\'re due, a win-back if they go quiet, and offers like a prepaid pack. The next booking comes from someone you already earned.',
+      vd: 'Texts at 14, 28, 45 and 75 days, the Valley 3-Pack, and open-slot deals. Promos only go to people who opted in.', href: '#back' },
   ];
   (function loop() {
     const svg = $('.ring'); if (!svg) return;
@@ -360,8 +360,8 @@
     { d: 1, l: 'Referral', tag: 'Day 1', title: 'Their referral link',
       body: 'While the car still looks new. Sent once per customer, only for businesses that run referrals.',
       text: 'Hi Marcus, glad the car came out right. Your link gives friends $20 off their first detail with Valley Details, and you get $20 off your next one when they book: valleydetails.site/?ref=…' + STOP },
-    { d: 3, l: 'Membership', tag: 'Day 3', title: 'A membership offer',
-      body: 'For businesses with a membership like the Valley Club, a pitch goes out a few days after a customer\'s first or second detail. Each business writes its own, so there\'s no stock wording.',
+    { d: 3, l: 'Offer', tag: 'Day 3', title: 'A package or membership offer',
+      body: 'For businesses with a package or membership to sell, a pitch can go out a few days after a customer\'s first or second detail. Each business writes its own, so there\'s no stock wording.',
       text: null },
     { d: 14, l: 'Rebook', tag: 'Day 14', title: 'A friendly nudge',
       body: 'Not a coupon blast. A short text from a business they already know, with a link to book.',
