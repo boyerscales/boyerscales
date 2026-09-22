@@ -294,7 +294,6 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .booked-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
 .booked-phones{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px);position:sticky;top:calc(var(--nav-h) + 28px)}
 .booked-phones{align-items:start}
-.booked-phones .phone:nth-child(2){margin-top:12%}
 /* Each marker is a box drawn around the part of the screenshot its note describes,
    with the number on the box's corner. Coordinates are % of the screenshot itself. */
 .shot{position:relative;flex:0 0 auto}
@@ -644,8 +643,8 @@ a.url:hover{background:rgba(13,16,21,.08)}
   .tl-marks li.on .dot{transform:none;box-shadow:none}
   .dash-tabs{display:flex}
   .dash-tabs button{flex:1;padding:9px 6px;font-size:13.5px}
-  .browser-dark{overflow:visible;max-width:330px;margin:0 auto;border-radius:44px;padding:9px;background:linear-gradient(145deg,#2a2d33,#0c0d10 45%,#1d2025);border:0;position:relative}
-  .browser-dark .browser-bar{position:absolute;top:-14px;left:50%;transform:translateX(-50%);height:auto;padding:0;border:0;background:none;z-index:2}
+  .browser-dark{overflow:visible;max-width:330px;margin:40px auto 0;border-radius:44px;padding:9px;background:linear-gradient(145deg,#2a2d33,#0c0d10 45%,#1d2025);border:0;position:relative}
+  .browser-dark .browser-bar{position:absolute;top:-34px;left:50%;transform:translateX(-50%);height:auto;padding:0;border:0;background:none;z-index:2}
   .browser-dark .dots,.browser-dark .url{display:none}
   .dash-stage{aspect-ratio:390/844;border-radius:35px;overflow:hidden}
   .owner-points{grid-template-columns:1fr}
