@@ -79,7 +79,7 @@
       body: 'A Google search, a map result, a friend\'s link. What they see there decides whether they tap through.',
       vd: 'A complete Google Business Profile, a phone-first site with prices up front, and markup search engines can read.', href: '#found' },
     { k: '02', stage: 'Get booked', label: 'Booked', title: 'They book without calling',
-      body: 'Pick a time, add the car, done. No account, no deposit, no phone tag.',
+      body: 'Pick a time, add the car, done. No account, no deposit, no phone tag. If they\'d rather call, the call gets answered and booked too.',
       vd: 'Online booking against the live schedule, including two-car and drop-off jobs.', href: '#booked' },
     { k: '03', stage: 'Follow up', label: 'Confirmed', title: 'They get a text right away',
       body: 'A confirmation from the business\'s own number, with a private link to change the time.',
@@ -204,8 +204,9 @@
 
   /* ---------------- booked: pins follow the notes ---------------- */
   (function pins() {
-    const notes = $$('.notes li'), pinEls = $$('.pin');
+    const notes = $$('.notes li'), pinEls = $$('.pin'), phones = $('.booked-phones');
     const hot = n => {
+      if (phones) phones.classList.toggle('has-hot', n > 0);
       notes.forEach((li, i) => li.classList.toggle('hot', i + 1 === n));
       pinEls.forEach(p => p.classList.toggle('hot', +p.textContent === n));
     };

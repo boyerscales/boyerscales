@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>BoyerScales · Customer systems for detailers</title>
-<meta name="description" content="I build customer systems for detailing businesses: get found, get booked, follow up, bring them back. Walk through the real system behind Valley Details.">
+<meta name="description" content="I build customer systems for detailing businesses: websites, online booking, texts from your own number, and AI receptionists that answer the phone. Walk through the real system behind Valley Details.">
 <meta property="og:site_name" content="BoyerScales">
 <meta property="og:title" content="BoyerScales — I build the systems that keep detailers booked.">
 <meta property="og:description" content="Get found. Get booked. Follow up. Bring them back. Customer systems for detailing businesses, built and run by BoyerScales.">
@@ -54,6 +54,7 @@
     <nav class="nav-links" aria-label="Sections">
       <a href="#valley">Valley Details</a>
       <a href="#loop">The system</a>
+      <a href="#calls">Calls</a>
       <a href="#follow-up">Blue SMS</a>
       <a href="#build">What I build</a>
     </nav>
@@ -75,7 +76,7 @@
     <div class="hero-copy">
       <p class="eyebrow">Customer systems for detailing businesses</p>
       <h1>I build the systems that keep detailers booked.</h1>
-      <p class="lede">Get found. Get booked. Follow up. Bring them back. This page walks through the real system I built and run for <b>Valley Details</b>, a mobile detailer in Elk Grove, California.</p>
+      <p class="lede">Websites, online booking, texts from your own number, and an AI receptionist for the calls you can't take. This page walks through the real system I built and run for <b>Valley Details</b>, a mobile detailer in Elk Grove, California.</p>
       <div class="hero-cta">
         <a class="btn btn-ink" href="#valley">See what I built <span class="arr" aria-hidden="true">↓</span></a>
         <a class="btn btn-line" href="https://valleydetails.site" target="_blank" rel="noopener">Open valleydetails.site <span class="arr" aria-hidden="true">↗</span></a>
@@ -276,15 +277,19 @@
     <div class="booked-grid">
       <div class="booked-phones">
         <figure class="phone reveal">
-          <div class="phone-screen"><img src="home/img/vd-phone-hero.webp" alt="Valley Details mobile homepage with price and Book a detail button" width="390" height="844" loading="lazy"></div>
-          <span class="pin" style="--x:48%;--y:66%">1</span>
-          <span class="pin" style="--x:53%;--y:92%">2</span>
+          <div class="phone-screen"><div class="shot">
+            <img src="home/img/vd-phone-hero.webp" alt="Valley Details mobile homepage with price and Book a detail button" width="390" height="844" loading="lazy">
+            <span class="pin" style="--x:9%;--y:68%;--w:57%;--h:10.5%"><b>1</b></span>
+            <span class="pin l" style="--x:3.6%;--y:92%;--w:92.8%;--h:6.9%"><b>2</b></span>
+          </div></div>
         </figure>
         <figure class="phone reveal">
-          <div class="phone-screen"><img src="home/img/vd-phone-book.webp" alt="Valley Details booking step two: open times, the selected time, come to you or drop off, name, mobile, text opt-in" width="390" height="844" loading="lazy"></div>
-          <span class="pin" style="--x:4%;--y:33%">3</span>
-          <span class="pin" style="--x:64%;--y:14%">4</span>
-          <span class="pin" style="--x:4%;--y:80%">5</span>
+          <div class="phone-screen"><div class="shot">
+            <img src="home/img/vd-phone-book.webp" alt="Valley Details booking step two: open times, the selected time, come to you or drop off, name, mobile, text opt-in" width="390" height="844" loading="lazy">
+            <span class="pin" style="--x:10%;--y:35.5%;--w:80%;--h:7.1%"><b>3</b></span>
+            <span class="pin" style="--x:10%;--y:11.5%;--w:80%;--h:19%"><b>4</b></span>
+            <span class="pin" style="--x:10%;--y:81.4%;--w:80%;--h:7.7%"><b>5</b></span>
+          </div></div>
         </figure>
       </div>
 
@@ -313,11 +318,50 @@
       </article>
       <article class="card reveal">
         <p class="tag">When they call instead</p>
-        <h3>A missed call doesn't have to be a missed job.</h3>
-        <p>For shops that can't answer mid-detail, an AI receptionist can pick up, take the details and book. If a call ends without a booking, a text follows up on its own.</p>
-        <a class="lp-link" href="https://dashboard.boyerscales.com/tour/call/">Hear an example call <span aria-hidden="true">→</span></a>
+        <h3>The phone gets answered too.</h3>
+        <p>Not everyone books online. For shops that can't pick up mid-detail, an AI receptionist answers and books the same calendar.</p>
+        <a class="lp-link" href="#calls">How calls get handled <span aria-hidden="true">↓</span></a>
       </article>
     </div>
+  </div>
+</section>
+
+<!-- ============ CALLS / AI RECEPTIONIST ============ -->
+<section class="sec stage" id="calls" data-stage="booked">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow stage-eyebrow"><i>02</i>Get booked · AI receptionist</p>
+      <h2>Calls still book jobs. Every one should get answered.</h2>
+      <p class="lede">Plenty of customers would rather call than fill out a form, and nobody can pick up with a buffer in their hands. I build AI receptionists that answer on the business's own line, handle what people call about, and put the job on the calendar before they hang up.</p>
+    </header>
+
+    <div class="calls">
+      <ol class="call-points">
+        <li class="reveal"><i>1</i><div><h3>Answers in your business's name</h3><p>On the first ring, on the number customers already have. It listens, asks one thing at a time, and writes down what matters while they talk.</p></div></li>
+        <li class="reveal"><i>2</i><div><h3>Handles the questions people call about</h3><p>Prices by vehicle size from your own price list, what each service includes, and whether you cover their area. It only quotes numbers you've approved.</p></div></li>
+        <li class="reveal"><i>3</i><div><h3>Books while they're still on the line</h3><p>The job goes onto the same live calendar as online bookings, and the confirmation text goes out from your number.</p></div></li>
+        <li class="reveal"><i>4</i><div><h3>Nothing falls through</h3><p>Every call lands in the dashboard with who called and what they need. If a call ends without a booking, a text follows up with a link to pick a time.</p></div></li>
+      </ol>
+
+      <figure class="call-card reveal" aria-label="Example of what the receptionist captures on a call">
+        <div class="call-top">
+          <span class="call-live"><span aria-hidden="true"></span>On a call</span>
+          <span class="call-flag">Example call</span>
+        </div>
+        <p class="call-num">(916) 555-0187</p>
+        <p class="call-sub">Answered on the first ring</p>
+        <dl class="call-fields">
+          <div><dt>Service</dt><dd>Full detail, inside and out</dd></div>
+          <div><dt>Vehicle</dt><dd>SUV, three rows</dd></div>
+          <div><dt>Where</dt><dd>Their driveway, Elk Grove</dd></div>
+          <div><dt>When</dt><dd>Saturday morning</dd></div>
+          <div><dt>Name</dt><dd>Priya</dd></div>
+        </dl>
+        <p class="call-done"><span aria-hidden="true">✓</span>Booked Saturday, 9:00 AM, before the call ended</p>
+      </figure>
+    </div>
+
+    <p class="calls-foot"><a class="lp-link" href="https://dashboard.boyerscales.com/tour/call/">Hear an example call <span aria-hidden="true">→</span></a><span>A scripted walkthrough, so you can hear how it sounds and what happens after.</span></p>
   </div>
 </section>
 
@@ -386,7 +430,7 @@
 
     <div class="rr">
       <article class="rr-card reveal">
-        <figure class="shot-card"><img src="home/img/vd-review-card.webp" alt="Valley Details review page: How did Valley Details do? Leave a Google review" width="780" height="880" loading="lazy"></figure>
+        <figure class="shot-card"><img src="home/img/vd-review-card.webp" alt="Valley Details review page with the Valley Details logo: How did Valley Details do? Leave a Google review" width="780" height="880" loading="lazy"></figure>
         <div>
           <p class="tag">Reviews</p>
           <h3>Turn completed details into more proof.</h3>
@@ -574,7 +618,7 @@
         <p>If something on this page sounded like your business, let's talk about it.</p>
         <div class="contact-btns">
           <a class="btn btn-ink" href="tel:+19166598131">Call (916) 659-8131</a>
-          <a class="btn btn-line" href="sms:+19166598131">Text me</a>
+          <a class="btn btn-line" href="sms:+19167082759">Text me</a>
         </div>
         <a class="contact-mail" href="mailto:elijah@boyerscales.com">elijah@boyerscales.com</a>
       </article>
@@ -596,7 +640,7 @@
 </footer>
 
 <div class="mcta" id="mcta">
-  <a class="btn btn-line" href="sms:+19166598131">Text me</a>
+  <a class="btn btn-line" href="sms:+19167082759">Text me</a>
   <a class="btn btn-ink" href="#start">Talk to me</a>
 </div>
 

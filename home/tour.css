@@ -87,7 +87,7 @@ h3{font-size:clamp(19px,1.7vw,22px);letter-spacing:-.015em;line-height:1.2}
 .btn-line:hover .arr{transform:translate(2px,-2px)}
 
 /* ---------- nav ---------- */
-.nav{position:sticky;top:0;z-index:50;height:var(--nav-h);background:rgba(244,242,238,.82);
+.nav{position:sticky;top:0;z-index:50;height:var(--nav-h);background:rgba(244,242,238,.96);
   backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);
   border-bottom:1px solid transparent;transition:border-color .3s,background-color .3s}
 .nav.scrolled{border-bottom-color:var(--line)}
@@ -151,8 +151,8 @@ h3{font-size:clamp(19px,1.7vw,22px);letter-spacing:-.015em;line-height:1.2}
   display:flex;align-items:center;padding:0 7cqw;
   font-family:var(--sans);font-size:3.5cqw;font-weight:600;color:#fff;letter-spacing:.01em;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 15' fill='%23fff'%3E%3Crect x='0' y='9.5' width='3.2' height='5.5' rx='1.1'/%3E%3Crect x='5.2' y='7' width='3.2' height='8' rx='1.1'/%3E%3Crect x='10.4' y='4.2' width='3.2' height='10.8' rx='1.1'/%3E%3Crect x='15.6' y='1.4' width='3.2' height='13.6' rx='1.1'/%3E%3Cpath d='M23.5 6.9A10.6 10.6 0 0 1 38.5 6.9L37 8.4A8.5 8.5 0 0 0 25 8.4Z'/%3E%3Cpath d='M26.1 9.5A6.9 6.9 0 0 1 35.9 9.5L34.4 11A4.8 4.8 0 0 0 27.6 11Z'/%3E%3Ccircle cx='31' cy='12.8' r='1.75'/%3E%3Crect x='48' y='3' width='24' height='11.5' rx='3.4' fill='none' stroke='%23fff' stroke-opacity='.45' stroke-width='1.2'/%3E%3Crect x='49.9' y='4.9' width='16.5' height='7.7' rx='2.1'/%3E%3Cpath d='M73.6 6.6c1 .4 1.7 1.1 1.7 2.1s-.7 1.7-1.7 2.1z' fill-opacity='.5'/%3E%3C/svg%3E") no-repeat right 6.5cqw center / auto 3.3cqw}
-.phone-screen::after{content:"";flex:0 0 auto;height:5cqw;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 140 5'%3E%3Crect width='140' height='5' rx='2.5' fill='%23fff' fill-opacity='.9'/%3E%3C/svg%3E") no-repeat center bottom 1.7cqw / 33% .9cqw}
+.phone-screen::after{content:"";flex:0 0 auto;align-self:center;width:33%;height:.9cqw;min-height:2px;
+  margin:2.4cqw 0 1.7cqw;border-radius:99px;background:rgba(255,255,255,.9)}
 .phone-screen img{flex:0 0 auto;display:block;width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top center}
 .phone-sm{max-width:200px}
 
@@ -293,15 +293,24 @@ a.url:hover{background:rgba(13,16,21,.08)}
 /* ---------- booked ---------- */
 .booked-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
 .booked-phones{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,26px);position:sticky;top:calc(var(--nav-h) + 28px)}
+.booked-phones{align-items:start}
 .booked-phones .phone:nth-child(2){margin-top:12%}
-.pin{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;
-  display:grid;place-items:center;background:var(--brand);color:#fff;font-family:var(--mono);font-size:13px;font-weight:500;
-  box-shadow:0 0 0 4px rgba(47,91,255,.25),0 6px 14px rgba(0,0,0,.3);transition:transform .3s var(--ease)}
-.pin.hot{transform:translate(-50%,-50%) scale(1.25)}
-@media (prefers-reduced-motion:no-preference){
-  .pin::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px solid var(--brand);animation:ping 2.4s ease-out infinite;opacity:0}
-}
-@keyframes ping{0%{transform:scale(.8);opacity:.7}70%,100%{transform:scale(1.8);opacity:0}}
+/* Each marker is a box drawn around the part of the screenshot its note describes,
+   with the number on the box's corner. Coordinates are % of the screenshot itself. */
+.shot{position:relative;flex:0 0 auto}
+.pin{position:absolute;left:var(--x);top:var(--y);width:var(--w);height:var(--h);border-radius:2.4cqw;
+  border:1.5px solid rgba(47,91,255,.7);pointer-events:none;
+  transition:border-color .3s,box-shadow .3s,background-color .3s}
+/* The number sits on the box's top-right corner, clear of what it points at; .l puts it on the left. */
+.pin b{position:absolute;right:-1px;top:-1px;transform:translate(40%,-45%);width:clamp(18px,9cqw,23px);height:clamp(18px,9cqw,23px);border-radius:50%;
+  display:grid;place-items:center;background:var(--brand);color:#fff;font-family:var(--mono);font-size:clamp(10.5px,4.6cqw,12px);font-weight:500;
+  box-shadow:0 0 0 3px rgba(47,91,255,.28),0 4px 10px rgba(0,0,0,.35);transition:transform .3s var(--ease)}
+.pin.hot{border-color:#5b7cff;background:rgba(47,91,255,.1);box-shadow:0 0 0 3px rgba(47,91,255,.3)}
+.pin.l b{right:auto;left:-1px;transform:translate(-40%,-45%)}
+.pin.hot b{transform:translate(40%,-45%) scale(1.15)}
+.pin.l.hot b{transform:translate(-40%,-45%) scale(1.15)}
+.booked-phones.has-hot .pin:not(.hot){border-color:rgba(47,91,255,.28)}
+.booked-phones.has-hot .pin:not(.hot) b{opacity:.55}
 .notes li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:22px 0;border-top:1px solid var(--line)}
 .notes li:first-child{border-top-color:var(--ink)}
 .notes i{font-style:normal;font-family:var(--mono);font-size:13px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);color:var(--ink);transition:background-color .25s,color .25s,border-color .25s}
@@ -315,6 +324,31 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .card p{color:var(--ink-2);font-size:15.5px}
 .card-img{display:grid;grid-template-columns:1fr 150px;gap:24px;align-items:center}
 .card-img .phone{box-shadow:0 0 0 1px rgba(0,0,0,.3),0 18px 36px -16px rgba(13,16,21,.45)}
+
+/* ---------- calls ---------- */
+.calls{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,72px);align-items:center}
+.call-points li{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:22px 0;border-top:1px solid var(--line)}
+.call-points li:first-child{border-top-color:var(--ink)}
+.call-points i{font-style:normal;font-family:var(--mono);font-size:13px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);color:var(--ink)}
+.call-points h3{margin-bottom:6px}
+.call-points p{color:var(--ink-2);font-size:16px}
+.call-card{background:var(--night);color:var(--night-text);border-radius:var(--r-lg);padding:clamp(22px,3vw,30px);
+  box-shadow:0 40px 80px -40px rgba(13,16,21,.6),0 10px 30px -15px rgba(13,16,21,.3)}
+.call-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.call-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#7ee2a0}
+.call-live span{width:8px;height:8px;border-radius:50%;background:#34c759;box-shadow:0 0 0 4px rgba(52,199,89,.18)}
+.call-flag{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:#f0b44c;background:rgba(240,180,76,.1);border:1px solid rgba(240,180,76,.25);padding:4px 9px;border-radius:999px;white-space:nowrap}
+.call-num{margin-top:22px;font-size:clamp(24px,2.4vw,30px);font-weight:600;letter-spacing:-.02em}
+.call-sub{margin-top:4px;font-size:14px;color:var(--night-muted)}
+.call-fields{margin:22px 0 0;border-top:1px solid var(--night-line)}
+.call-fields div{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:11px 0;border-bottom:1px solid var(--night-line)}
+.call-fields dt{font-family:var(--mono);font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--night-muted);padding-top:2px}
+.call-fields dd{margin:0;font-size:15.5px}
+.call-done{display:flex;gap:10px;align-items:flex-start;margin-top:18px;padding:12px 14px;border-radius:12px;background:rgba(52,199,89,.1);border:1px solid rgba(52,199,89,.25);font-size:15px;color:#c9f2d6}
+.call-done span{color:#34c759;font-weight:700}
+.calls-foot{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin-top:clamp(28px,4vw,44px)}
+.calls-foot .lp-link{margin-top:0}
+.calls-foot>span{font-size:14.5px;color:var(--muted)}
 
 /* ---------- blue sms ---------- */
 .sms{display:grid;grid-template-columns:1fr minmax(300px,380px);gap:clamp(32px,6vw,90px);align-items:start}
@@ -399,7 +433,7 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .retain-head p{color:var(--ink-2)}
 
 .tl{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(22px,3vw,36px);position:relative}
-.tl-track{position:absolute;left:clamp(22px,3vw,36px);right:clamp(22px,3vw,36px);top:calc(clamp(22px,3vw,36px) + 21px);height:2px;background:var(--line)}
+.tl-track{position:absolute;left:clamp(22px,3vw,36px);right:clamp(22px,3vw,36px);top:calc(clamp(22px,3vw,36px) + 16px);height:2px;background:var(--line)}
 .tl-fill{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ink);transition:width .6s var(--ease)}
 .tl-marks{position:relative;height:84px}
 .tl-marks li{position:absolute;left:var(--p);transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
@@ -519,7 +553,7 @@ a.url:hover{background:rgba(13,16,21,.08)}
 
 @media (max-width:900px){
   body{font-size:16.5px}
-  .hero-grid,.loop-grid,.found-grid,.booked-grid,.sms,.check-grid,.start-grid{grid-template-columns:1fr}
+  .hero-grid,.loop-grid,.found-grid,.booked-grid,.calls,.sms,.check-grid,.start-grid{grid-template-columns:1fr}
   .hero-visual{max-width:520px;margin:0 auto;width:100%}
   .rules{grid-template-columns:1fr;border-top:0}
   .rules li,.rules li+li{padding:16px 0;border-left:0;border-top:1px solid var(--line)}
@@ -547,6 +581,7 @@ a.url:hover{background:rgba(13,16,21,.08)}
   .fix-row{grid-template-columns:1fr;gap:6px}
   .fix-headrow{display:none}
   .tl-detail{grid-template-columns:1fr;gap:18px}
+  .call-card{max-width:520px}
 }
 
 @media (max-width:640px){
@@ -582,8 +617,8 @@ a.url:hover{background:rgba(13,16,21,.08)}
   .ring-center-k{font-size:17px}
   .loop-panel{min-height:0}
   .booked-phones .phone{max-width:none}
-  .pin{width:24px;height:24px;font-size:12px}
   .after-book{grid-template-columns:1fr}
+  .after-book .card-img{order:0}
   .card-img{grid-template-columns:1fr 110px;gap:14px;padding-right:18px}
   .tabs{display:flex;width:100%}
   .tabs button{flex:1;padding:9px 8px;font-size:13.5px}
