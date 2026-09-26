@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f7fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0b0f17" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex">
+  <title>The BoyerScales Front Desk</title>
+  <meta name="description" content="Site, online booking, calls answered mid job and review texts, all in one short video.">
+  <meta property="og:title" content="The BoyerScales Front Desk">
+  <meta property="og:description" content="Everything we run at our shop, in one short video.">
+  <meta property="og:image" content="https://boyerscales.com/logo.png">
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #f5f7fb; --surface: #ffffff; --text: #111722; --text-soft: #596474; --line: #e1e6ee;
+      --blue: #286cff; --blue-deep: #164dd5;
+      --shadow: 0 18px 48px rgba(20, 42, 90, .12), 0 3px 10px rgba(20, 42, 90, .06);
+      --font: "DM Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --display: "Bricolage Grotesque", var(--font);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg: #0b0f17; --surface: #141a24; --text: #f4f6fa; --text-soft: #a4afbf; --line: #222c3a; --blue: #5a8cff; --blue-deep: #316ff4;
+        --shadow: 0 20px 56px rgba(0, 0, 0, .35), 0 3px 10px rgba(0, 0, 0, .22); }
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body { background: var(--bg); color: var(--text); font: 16px/1.5 var(--font); min-height: 100dvh;
+      padding: max(16px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom)); }
+    .wrap { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 18px; }
+    .brand { display: inline-flex; align-items: center; gap: 9px; color: inherit; text-decoration: none; font: 700 1.05rem/1 var(--display); }
+    .brand img { width: 30px; height: 30px; border-radius: 8px; }
+    .brand b { color: var(--blue); font-weight: 700; }
+    h1 { font: 700 1.6rem/1.1 var(--display); letter-spacing: -.02em; margin: 6px 0 0; text-wrap: balance; }
+    p { margin: 0; color: var(--text-soft); }
+    .player { position: relative; border-radius: 22px; overflow: hidden; background: #000; box-shadow: var(--shadow); aspect-ratio: 9 / 16; }
+    video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }
+    .cta { display: block; text-align: center; background: var(--blue); color: #fff; text-decoration: none; font-weight: 600;
+      border-radius: 14px; padding: 15px 16px; font-size: 1.02rem; }
+    .cta:active { background: var(--blue-deep); }
+    .fine { text-align: center; font-size: .88rem; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <a class="brand" href="/" aria-label="BoyerScales home"><img src="/logo.png" alt=""> <span>Boyer<b>Scales</b></span></a>
+    <div>
+      <h1>The whole front desk, in one short video</h1>
+      <p style="margin-top:8px">Site, online booking, calls answered mid job and review texts after. This is what we run at our shop.</p>
+    </div>
+    <div class="player">
+      <video src="demo.mp4" controls playsinline preload="metadata"></video>
+    </div>
+    <a class="cta" href="https://ig.me/m/elijahboyerrr">Want it for your shop? Message me</a>
+    <p class="fine">Elijah · BoyerScales</p>
+  </main>
+</body>
+</html>
