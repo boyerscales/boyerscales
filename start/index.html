@@ -33,6 +33,19 @@
   .choices label{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;background:#fff;cursor:pointer;font-weight:500}
   .choices input{margin-top:4px;accent-color:var(--ink);width:auto;flex:0 0 auto;padding:0}
   .choices small{display:block;color:var(--muted);font-weight:400;font-size:13.5px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chips label{position:relative;cursor:pointer}
+  .chips input{position:absolute;opacity:0;width:1px;height:1px}
+  .chips span{display:inline-flex;align-items:center;height:42px;padding:0 16px;border:1px solid var(--line-2);border-radius:999px;background:#fff;font-weight:500;font-size:15px}
+  .chips input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .chips input:focus-visible + span{outline:2px solid var(--brand);outline-offset:2px}
+  .svc-row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) 44px;gap:8px;margin-bottom:8px}
+  .svc-row input{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;width:100%}
+  .svc-row button{border:1px solid var(--line-2);background:#fff;border-radius:12px;font-size:20px;color:var(--muted);cursor:pointer}
+  .linkbtn{background:none;border:0;padding:8px 0;font:inherit;font-size:15px;font-weight:600;color:var(--brand-ink);cursor:pointer}
+  .check-inline{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:15px;cursor:pointer}
+  .check-inline input{margin-top:4px;accent-color:var(--ink);width:auto;flex:0 0 auto;padding:0}
+  .quote-on .svc-row input.price{opacity:.35;pointer-events:none}
   .days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
   .day{flex:0 0 68px;border:1px solid var(--line-2);background:#fff;border-radius:12px;padding:9px 0;text-align:center;cursor:pointer;font:inherit;color:var(--ink)}
   .day .dow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -43,7 +56,6 @@
   .day.sel .dow,.day.sel .mon{color:#b9bcc2}
   .slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
   .slot{border:1px solid var(--line-2);background:#fff;border-radius:10px;padding:11px 4px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;color:var(--ink)}
-  .slot.taken{opacity:.3;text-decoration:line-through;cursor:default}
   .slot.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
   .tznote{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:14px 0 0}
   .picked{margin-top:16px;padding:14px 16px;border-radius:12px;background:#fff;border:1px solid var(--line-2);font-weight:600}
@@ -53,18 +65,27 @@
   .err{color:#b42318;font-size:14.5px;margin:12px 0 0;min-height:1em}
   .fallback{display:none;margin-top:14px}
   .fallback.on{display:block}
+  .gate-row{display:flex;gap:8px}
+  .gate-row input{flex:1}
+  .paid-note{font-size:14.5px;color:var(--ok);font-weight:600;margin:0 0 18px}
   .done{display:none}
   .done.on{display:block}
+  .links{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+  .links a{display:block;padding:16px 18px;border:1px solid var(--line-2);border-radius:14px;background:#fff;text-decoration:none;font-weight:600}
+  .links a::after{content:"→";float:right;color:var(--muted)}
+  .links small{display:block;font-weight:400;color:var(--muted);font-size:13.5px;margin-top:2px}
   .next{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:0}
   .next li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
   .next li b{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:500;padding-top:3px}
   .next li p{margin:0}
   .contact-line{margin-top:22px;font-size:15px;color:var(--muted)}
   .contact-line a{color:var(--ink);white-space:nowrap}
+  [hidden]{display:none!important}
   @media (max-width:640px){
     .grid2{grid-template-columns:1fr;gap:0}
     .slots{grid-template-columns:repeat(3,minmax(0,1fr))}
     .next li{grid-template-columns:1fr;gap:4px}
+    .gate-row{flex-direction:column}
   }
 </style>
 <!-- Meta Pixel -->
@@ -101,24 +122,56 @@
   <section id="intro">
     <p class="eyebrow">You're in</p>
     <h1>Let's patch the leaks.</h1>
-    <p class="lede">Tell me about your business, then pick a time for a 30-minute kickoff call. I'll start building before we talk, so the call is about your business, not paperwork.</p>
+    <p class="lede">Tell me about your business and pick a time for a 30-minute kickoff call. The moment you finish, you get a starter version of your system: your own dashboard, a booking page and a preview website. On the call we polish it into the real thing.</p>
     <ol class="steps-head" aria-label="Steps">
       <li><i>01</i>Your business</li>
       <li><i>02</i>Kickoff call</li>
-      <li><i>03</i>I build it</li>
+      <li><i>03</i>Your starter system</li>
     </ol>
   </section>
 
-  <form id="startForm" novalidate>
+  <section class="panel" id="checking" aria-live="polite">
+    <p class="sub" style="margin:0">Checking your payment…</p>
+  </section>
+
+  <section class="panel" id="gate" hidden aria-labelledby="h-gate">
+    <h2 id="h-gate">Already paid?</h2>
+    <p class="sub">Enter the email you used at checkout and you'll pick up where you left off.</p>
+    <form class="gate-row" id="gateForm" novalidate>
+      <input id="gateEmail" type="email" autocomplete="email" placeholder="you@yourbusiness.com" aria-label="Email you paid with" style="font:inherit;font-size:16px;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;background:#fff">
+      <button class="btn btn-ink" type="submit" id="gateBtn">Continue</button>
+    </form>
+    <p class="err" id="gateErr" role="alert"></p>
+    <p class="fine">Haven't signed up yet? <a href="https://buy.stripe.com/dRmdR951q9d32Ezaxwa3u05">Start here: $250, 30 days to decide</a>.</p>
+  </section>
+
+  <form id="startForm" novalidate hidden>
     <section class="panel" aria-labelledby="h-biz">
       <h2 id="h-biz">Your business</h2>
-      <p class="sub">About 3 minutes. Rough answers are fine. We'll sort out the details on the call.</p>
+      <p class="paid-note" id="paidNote" hidden>Payment confirmed. Thanks for trusting me with this.</p>
+      <p class="sub">About 3 minutes. Rough answers are fine, and anything you skip we cover on the call.</p>
 
       <div class="grid2">
         <div class="f"><label for="name">Your name</label><input id="name" autocomplete="name" required></div>
         <div class="f"><label for="biz">Business name</label><input id="biz" autocomplete="organization" required></div>
         <div class="f"><label for="phone">Mobile</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(916) 555-0123" required></div>
-        <div class="f"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+        <div class="f" id="emailField"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+      </div>
+
+      <div class="f">
+        <span class="lab" id="kind-lab">What do you do? <span class="opt">(pick any)</span></span>
+        <div class="chips" role="group" aria-labelledby="kind-lab" id="kinds">
+          <label><input type="checkbox" value="Detailing" checked><span>Detailing</span></label>
+          <label><input type="checkbox" value="Ceramic coating"><span>Ceramic coating</span></label>
+          <label><input type="checkbox" value="Window tint"><span>Window tint</span></label>
+          <label><input type="checkbox" value="PPF"><span>PPF</span></label>
+          <label><input type="checkbox" value="Wraps"><span>Wraps</span></label>
+          <label><input type="checkbox" value="Paint correction"><span>Paint correction</span></label>
+        </div>
+        <input id="kindOther" placeholder="Something else? Type it here" style="margin-top:6px">
+      </div>
+
+      <div class="grid2">
         <div class="f"><label for="city">City you work out of</label><input id="city" autocomplete="address-level2" placeholder="Elk Grove, CA" required></div>
         <div class="f"><label for="radius">How far do you travel?</label>
           <select id="radius">
@@ -126,20 +179,42 @@
           </select></div>
       </div>
 
-      <div class="f">
-        <label for="services">Services and prices</label>
-        <textarea id="services" required placeholder="Full detail $150 sedan / $170 SUV / $190 truck&#10;Interior only $85, exterior only $75&#10;Ceramic coating from $400"></textarea>
-        <span class="hint">Whatever you charge today. I'll put these on your site and booking page.</span>
+      <div class="f" id="svcBox">
+        <span class="lab">Services and prices <span class="opt">(optional)</span></span>
+        <span class="hint">List what you sell. Prices can be exact, "from $85", or blank.</span>
+        <div id="svcRows"></div>
+        <button type="button" class="linkbtn" id="addSvc">+ Add a service</button>
+        <label class="check-inline"><input type="checkbox" id="quoteOnly"><span>I quote every job, so no prices on my site</span></label>
       </div>
 
       <div class="grid2">
-        <div class="f"><label for="hours">Days and hours you work</label><input id="hours" placeholder="Mon–Sat, 8am–6pm" required></div>
+        <div class="f"><label for="jobLen">A typical job takes about</label>
+          <select id="jobLen">
+            <option value="60">1 hour</option><option value="90">1.5 hours</option><option value="120" selected>2 hours</option><option value="180">3 hours</option><option value="240">Half a day or more</option>
+          </select></div>
         <div class="f"><label for="books">How do people book you now?</label>
-          <select id="books" required>
+          <select id="books">
             <option value="">Pick one</option>
             <option>Calls and texts</option><option>Instagram or Facebook DMs</option>
             <option>A booking app (Square, Urable, etc.)</option><option>A form on my website</option><option>A mix of everything</option>
           </select></div>
+      </div>
+
+      <div class="f">
+        <span class="lab" id="days-lab">Days you work</span>
+        <div class="chips" role="group" aria-labelledby="days-lab" id="workDays">
+          <label><input type="checkbox" value="1" checked><span>Mon</span></label>
+          <label><input type="checkbox" value="2" checked><span>Tue</span></label>
+          <label><input type="checkbox" value="3" checked><span>Wed</span></label>
+          <label><input type="checkbox" value="4" checked><span>Thu</span></label>
+          <label><input type="checkbox" value="5" checked><span>Fri</span></label>
+          <label><input type="checkbox" value="6" checked><span>Sat</span></label>
+          <label><input type="checkbox" value="0"><span>Sun</span></label>
+        </div>
+      </div>
+      <div class="grid2">
+        <div class="f"><label for="open">First job can start at</label><select id="open"></select></div>
+        <div class="f"><label for="close">Done for the day by</label><select id="close"></select></div>
         <div class="f"><label for="site">Current website <span class="opt">(if any)</span></label><input id="site" inputmode="url" placeholder="yourdetailing.com"></div>
         <div class="f"><label for="ig">Instagram <span class="opt">(if any)</span></label><input id="ig" placeholder="@yourdetailing"></div>
       </div>
@@ -155,6 +230,12 @@
 
       <div class="f"><label for="extra">Anything else I should know? <span class="opt">(optional)</span></label>
         <textarea id="extra" placeholder="Biggest headache right now, a tool you already pay for, a deadline…"></textarea></div>
+
+      <div class="f" id="pwField" hidden>
+        <label for="pw">Create a password for your dashboard</label>
+        <input id="pw" type="password" autocomplete="new-password" minlength="8" placeholder="At least 8 characters">
+        <span class="hint" id="pwHint">You'll log in at dashboard.boyerscales.com with the email you paid with.</span>
+      </div>
     </section>
 
     <section class="panel" aria-labelledby="h-call">
@@ -165,7 +246,7 @@
       <p class="tznote" id="tznote">Times are Pacific time.</p>
       <div class="picked" id="picked" hidden></div>
 
-      <button class="btn btn-ink submit" id="submitBtn" type="submit">Book my kickoff call</button>
+      <button class="btn btn-ink submit" id="submitBtn" type="submit">Book my call and build my starter system</button>
       <p class="err" id="err" role="alert"></p>
       <div class="fallback" id="fallback">
         <p class="fine" style="margin-top:0">The calendar isn't loading right now. Send me your answers by text instead and I'll reply with a time.</p>
@@ -175,13 +256,21 @@
   </form>
 
   <section class="panel done" id="done" aria-live="polite">
-    <p class="eyebrow" style="margin-bottom:10px">Booked</p>
+    <p class="eyebrow" style="margin-bottom:10px">You're set</p>
     <h2 id="doneTitle">You're on my calendar.</h2>
     <p class="sub" id="doneWhen"></p>
+    <div id="builtBox" hidden>
+      <p style="font-weight:600;margin:6px 0 0">Your starter system is ready to look around:</p>
+      <ul class="links">
+        <li><a id="lnkDash" href="#">Your dashboard<small id="lnkDashNote"></small></a></li>
+        <li><a id="lnkBook" href="#" target="_blank" rel="noopener">Your booking page<small>Where your customers pick a time</small></a></li>
+        <li><a id="lnkSite" href="#" target="_blank" rel="noopener">Your preview website<small>A rough first version. We polish it on the call.</small></a></li>
+      </ul>
+    </div>
+    <p class="fine" id="builtLater" hidden>Your starter dashboard and site will be ready by our call. I'll text you the links.</p>
     <ol class="next">
-      <li><b>Now</b><p>I've got your answers. Your Stripe receipt is in your email.</p></li>
       <li><b>Kickoff call</b><p>I call you at the time you picked. We go over your services, prices and how you want calls handled.</p></li>
-      <li><b>First days</b><p>Your website and online booking go live, then texts from your own number and the AI receptionist.</p></li>
+      <li><b>First days</b><p>Your real website goes live, then texts from your own number and the AI receptionist.</p></li>
       <li><b>Day 30</b><p>Not happy? You get the full $250 back. Otherwise it's $150 a month, and you can cancel anytime.</p></li>
     </ol>
     <p class="contact-line">Need to change something? Text me at <a href="sms:+19167082759">(916) 708-2759</a>.</p>
@@ -197,15 +286,81 @@
 
 <script>
 (function(){
-  var API = 'https://dashboard.boyerscales.com/api/public/schedule/boyerscales';
+  var BASE = 'https://dashboard.boyerscales.com/api/public';
+  var API = BASE + '/schedule/boyerscales';
+  var ONB = BASE + '/onboarding/boyerscales';
   var TZ = 'America/Los_Angeles';
   var SERVICE = { id: 'kickoff', label: 'Kickoff call' };
   var $ = function(s){ return document.querySelector(s); };
+  var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
   var pad = function(n){ return String(n).padStart(2, '0'); };
-  var cfg = null, pickedDay = null, picked = null;
+  var cfg = null, pickedDay = null, picked = null, sessionId = '', verified = false, paidEmail = '';
 
-  /* Wall-clock time in the dashboard's zone <-> real instants, so a visitor in
-     New York sees the same openings the server will accept. */
+  /* ---------- Who is this: a paid checkout, someone coming back, or the payment check is down ---------- */
+  function showForm(opts){
+    $('#checking').hidden = true; $('#gate').hidden = true; $('#startForm').hidden = false;
+    verified = !!opts.verified;
+    $('#paidNote').hidden = !verified;
+    $('#pwField').hidden = !verified;
+    if (verified){
+      $('#emailField').hidden = true;
+      if (opts.email){ paidEmail = opts.email; $('#pwHint').textContent = 'You\'ll log in at dashboard.boyerscales.com as ' + opts.email + '.'; }
+      if (opts.name && !$('#name').value) $('#name').value = opts.name;
+      if (opts.phone && !$('#phone').value) $('#phone').value = opts.phone;
+      if (opts.business && !$('#biz').value) $('#biz').value = opts.business;
+    }
+  }
+  function showGate(){ $('#checking').hidden = true; $('#gate').hidden = false; }
+  function check(query){
+    return fetch(ONB + '/checkout?' + query).then(function(r){
+      if (r.status === 404 || r.status === 503) return { unavailable: true };
+      return r.json().then(function(j){ return r.ok ? j : { error: j.error || 'Couldn\'t check your payment.' }; });
+    }).catch(function(){ return { unavailable: true }; });
+  }
+  var sid = new URLSearchParams(location.search).get('session_id') || '';
+  if (sid && sid.indexOf('{') !== 0){
+    check('session_id=' + encodeURIComponent(sid)).then(function(j){
+      if (j.unavailable || j.error) return showForm({ verified: false });
+      if (!j.ok) return showGate();
+      sessionId = j.session_id; showForm({ verified: true, email: j.email, name: j.name, phone: j.phone, business: j.business });
+    });
+  } else showGate();
+
+  $('#gateForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = $('#gateEmail').value.trim(), err = $('#gateErr'); err.textContent = '';
+    if (!/^\S+@\S+\.\S+$/.test(email)){ err.textContent = 'That email doesn\'t look right.'; return; }
+    $('#gateBtn').disabled = true;
+    check('email=' + encodeURIComponent(email)).then(function(j){
+      $('#gateBtn').disabled = false;
+      if (j.unavailable || j.error){ err.textContent = 'I can\'t check payments right now. Text me at (916) 708-2759 and I\'ll get you set up.'; return; }
+      if (!j.ok){ err.textContent = 'No payment found for that email. Use the same one you paid with, or start below.'; return; }
+      sessionId = j.session_id; showForm({ verified: true, email: email.toLowerCase() });
+    });
+  });
+
+  /* ---------- Services: as many rows as they need, prices optional ---------- */
+  function addRow(name, price){
+    var row = document.createElement('div'); row.className = 'svc-row';
+    row.innerHTML = '<input class="name" placeholder="Service, e.g. Full detail" aria-label="Service"><input class="price" placeholder="Price, e.g. $150" aria-label="Price"><button type="button" aria-label="Remove this service">×</button>';
+    row.querySelector('.name').value = name || ''; row.querySelector('.price').value = price || '';
+    row.querySelector('button').addEventListener('click', function(){ row.remove(); if (!$$('.svc-row').length) addRow(); });
+    $('#svcRows').appendChild(row);
+  }
+  addRow(); addRow(); addRow();
+  $('#addSvc').addEventListener('click', function(){ addRow(); $$('.svc-row .name').pop().focus(); });
+  $('#quoteOnly').addEventListener('change', function(){ $('#svcBox').classList.toggle('quote-on', this.checked); });
+
+  /* ---------- Work hours ---------- */
+  (function(){
+    var o = $('#open'), c = $('#close');
+    for (var h = 5; h <= 22; h++){
+      var v = pad(h) + ':00', t = (h % 12 || 12) + (h >= 12 ? ' PM' : ' AM');
+      o.add(new Option(t, v, false, h === 8)); c.add(new Option(t, v, false, h === 18));
+    }
+  })();
+
+  /* ---------- Kickoff call calendar, in the dashboard's time zone ---------- */
   function parts(ts){
     var p = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).formatToParts(new Date(ts));
     var g = function(k){ return +p.find(function(x){ return x.type === k; }).value; };
@@ -219,7 +374,6 @@
   }
   var hm = function(s){ return (+s.slice(0,2)) * 60 + (+s.slice(3,5)); };
   function label(min){ var h = Math.floor(min / 60), mm = min % 60; return (h % 12 || 12) + (mm ? ':' + pad(mm) : '') + (h >= 12 ? ' PM' : ' AM'); }
-
   function days(){
     var t = parts(Date.now()), out = [];
     for (var i = 0; i < (cfg.horizonDays || 14); i++){
@@ -263,7 +417,7 @@
   }
   function pickDay(d, btn){
     pickedDay = d; picked = null; $('#picked').hidden = true;
-    document.querySelectorAll('.day').forEach(function(x){ x.classList.toggle('sel', x === btn); });
+    $$('.day').forEach(function(x){ x.classList.toggle('sel', x === btn); });
     var el = $('#slots'); el.innerHTML = '';
     var list = slotsFor(d).filter(function(s){ return !s.taken; });
     if (!list.length){ el.innerHTML = '<p class="empty">Nothing open that day. Try another.</p>'; return; }
@@ -272,30 +426,50 @@
       b.type = 'button'; b.className = 'slot'; b.textContent = s.text;
       b.addEventListener('click', function(){
         picked = s;
-        document.querySelectorAll('.slot').forEach(function(x){ x.classList.toggle('sel', x === b); });
+        $$('.slot').forEach(function(x){ x.classList.toggle('sel', x === b); });
         $('#picked').hidden = false; $('#picked').innerHTML = esc(whenText(s)) + (localText(s) ? '<span>' + esc(localText(s)) + '</span>' : '');
       });
       el.appendChild(b);
     });
   }
-  function whenText(s){
-    return new Date(s.at).toLocaleDateString('en-US', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric' }) + ' at ' + s.text + ' Pacific';
-  }
+  function whenText(s){ return new Date(s.at).toLocaleDateString('en-US', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric' }) + ' at ' + s.text + ' Pacific'; }
   function localText(s){
-    var mine = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    if (!mine || offset(s.at) === -new Date(s.at).getTimezoneOffset() * 60000) return '';
+    if (offset(s.at) === -new Date(s.at).getTimezoneOffset() * 60000) return '';
     return 'That\'s ' + new Date(s.at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) + ' your time.';
   }
   function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function loadCalendar(){
+    return fetch(API).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(j){ cfg = j; renderDays(); })
+      .catch(function(){ $('#slots').innerHTML = ''; $('#tznote').hidden = true; showFallback(); });
+  }
+  loadCalendar();
 
+  /* ---------- What they told us ---------- */
+  function kinds(){
+    var list = $$('#kinds input:checked').map(function(x){ return x.value; });
+    var other = $('#kindOther').value.trim(); if (other) list.push(other);
+    return list;
+  }
+  function services(){
+    return $$('.svc-row').map(function(r){ return { name: r.querySelector('.name').value.trim(), price: $('#quoteOnly').checked ? '' : r.querySelector('.price').value.trim() }; })
+      .filter(function(s){ return s.name; });
+  }
+  function workDays(){ return $$('#workDays input:checked').map(function(x){ return +x.value; }); }
   function answers(){
     var v = function(id){ return $('#' + id).value.trim(); };
     var calls = document.querySelector('input[name="calls"]:checked');
+    var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var svc = services().map(function(s){ return s.name + (s.price ? ' ' + s.price : ''); }).join('; ');
     return [
-      { q: 'Business name', a: v('biz') }, { q: 'Owner', a: v('name') }, { q: 'Email', a: v('email') },
-      { q: 'Based in', a: v('city') }, { q: 'Travel', a: v('radius') }, { q: 'Services and prices', a: v('services') },
-      { q: 'Days and hours', a: v('hours') }, { q: 'Books by', a: v('books') }, { q: 'Website', a: v('site') },
-      { q: 'Instagram', a: v('ig') }, { q: 'Missed calls', a: calls ? calls.value : '' }, { q: 'Anything else', a: v('extra') }
+      { q: 'Business name', a: v('biz') }, { q: 'Owner', a: v('name') }, { q: 'Email', a: paidEmail || v('email') },
+      { q: 'What they do', a: kinds().join(', ') }, { q: 'Based in', a: v('city') }, { q: 'Travel', a: v('radius') },
+      { q: 'Services and prices', a: ($('#quoteOnly').checked ? 'Quotes every job. ' : '') + svc },
+      { q: 'Typical job', a: $('#jobLen').selectedOptions[0].textContent },
+      { q: 'Days and hours', a: workDays().map(function(d){ return DOW[d]; }).join(' ') + ', ' + $('#open').selectedOptions[0].textContent + ' to ' + $('#close').selectedOptions[0].textContent },
+      { q: 'Books by', a: v('books') }, { q: 'Website', a: v('site') }, { q: 'Instagram', a: v('ig') },
+      { q: 'Missed calls', a: calls ? calls.value : '' }, { q: 'Anything else', a: v('extra') },
+      { q: 'Paid', a: verified ? 'Yes, checkout ' + sessionId : 'Not confirmed' }
     ].filter(function(x){ return x.a; });
   }
   function showFallback(){
@@ -303,44 +477,61 @@
     $('#smsFallback').href = 'sms:+19167082759?&body=' + encodeURIComponent(body);
     $('#fallback').classList.add('on');
   }
-
-  // Rebuild the text right as it's tapped, so it carries whatever they've typed since.
   $('#smsFallback').addEventListener('click', showFallback);
 
-  fetch(API).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(j){ cfg = j; renderDays(); })
-    .catch(function(){ $('#slots').innerHTML = ''; $('#tznote').hidden = true; showFallback(); });
+  function post(url, body){
+    return fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok && j.ok !== false, j: j }; }); });
+  }
 
   $('#startForm').addEventListener('submit', function(e){
     e.preventDefault();
     var err = $('#err'); err.textContent = '';
-    var need = [['name','your name'],['biz','your business name'],['phone','your mobile'],['email','your email'],['city','where you work out of'],['services','your services and prices'],['hours','your days and hours'],['books','how people book you now']];
+    var need = [['name','your name'],['biz','your business name'],['phone','your mobile'],['city','where you work out of']];
+    if (!verified) need.push(['email','your email']);
     for (var i = 0; i < need.length; i++){
       if (!$('#' + need[i][0]).value.trim()){ err.textContent = 'Add ' + need[i][1] + ' first.'; $('#' + need[i][0]).focus(); return; }
     }
     if ($('#phone').value.replace(/\D/g, '').length < 10){ err.textContent = 'That mobile number looks short.'; $('#phone').focus(); return; }
-    if (!/^\S+@\S+\.\S+$/.test($('#email').value.trim())){ err.textContent = 'That email doesn\'t look right.'; $('#email').focus(); return; }
+    if (!verified && !/^\S+@\S+\.\S+$/.test($('#email').value.trim())){ err.textContent = 'That email doesn\'t look right.'; $('#email').focus(); return; }
+    if (!workDays().length){ err.textContent = 'Pick at least one day you work.'; return; }
+    if (verified && $('#pw').value.length < 8){ err.textContent = 'Pick a dashboard password with at least 8 characters.'; $('#pw').focus(); return; }
     if (!cfg){ showFallback(); err.textContent = 'The calendar isn\'t loading. Text me your answers below instead.'; return; }
     if (!picked){ err.textContent = 'Pick a time for the call.'; $('#days').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
-    var btn = $('#submitBtn'); btn.disabled = true; btn.textContent = 'Booking…';
-    fetch(API + '/book', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: $('#name').value.trim(), phone: $('#phone').value.trim(), start: picked.key,
-        service_id: SERVICE.id, service: SERVICE.label + ': ' + $('#biz').value.trim(), intake: answers() })
-    }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok && j.ok !== false, j: j }; }); })
+    var btn = $('#submitBtn'); btn.disabled = true; btn.textContent = 'Booking your call…';
+    post(API + '/book', { name: $('#name').value.trim(), phone: $('#phone').value.trim(), start: picked.key,
+      service_id: SERVICE.id, service: SERVICE.label + ': ' + $('#biz').value.trim(), intake: answers() })
       .then(function(res){
-        if (!res.ok){ throw new Error(res.j.error || 'That time was just taken. Pick another.'); }
+        if (!res.ok) throw new Error(res.j.error || 'That time was just taken. Pick another.');
         if (window.fbq) fbq('track', 'Schedule');
+        if (!verified) return null;
+        btn.textContent = 'Building your starter system…';
+        return post(ONB + '/setup', {
+          session_id: sessionId, password: $('#pw').value, business: $('#biz').value.trim(), phone: $('#phone').value.trim(),
+          kind: kinds().join(', '), city: $('#city').value.trim(), radius: $('#radius').value,
+          services: services(), quoteOnly: $('#quoteOnly').checked, jobMinutes: +$('#jobLen').value,
+          days: workDays(), open: $('#open').value, close: $('#close').value,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || '',
+          website: $('#site').value.trim(), instagram: $('#ig').value.trim()
+        }).catch(function(){ return { ok: false, j: {} }; });
+      })
+      .then(function(setup){
         $('#startForm').hidden = true; $('#intro').hidden = true;
         $('#doneWhen').textContent = whenText(picked) + '. ' + (localText(picked) || '');
+        if (setup && setup.ok && setup.j.booking_url){
+          $('#lnkDash').href = setup.j.dashboard_url;
+          $('#lnkDashNote').textContent = setup.j.existing ? 'Log in with your existing account' : 'Log in as ' + setup.j.email + ' with the password you just made';
+          $('#lnkBook').href = setup.j.booking_url; $('#lnkSite').href = setup.j.site_url;
+          $('#builtBox').hidden = false;
+        } else $('#builtLater').hidden = false;
         $('#done').classList.add('on'); window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(function(x){
-        btn.disabled = false; btn.textContent = 'Book my kickoff call';
+        btn.disabled = false; btn.textContent = 'Book my call and build my starter system';
         err.textContent = x.message || 'Something went wrong. Text me your answers below instead.';
         if (!/taken|available/i.test(err.textContent)) showFallback();
-        fetch(API).then(function(r){ return r.json(); }).then(function(j){ cfg = j; renderDays(); }).catch(function(){});
+        loadCalendar();
       });
   });
 })();
