@@ -421,6 +421,8 @@
     if (!a || !window.fbq) return;
     const kind = a.href.split(':')[0];
     fbq('trackCustom', kind === 'tel' ? 'CallButtonTap' : kind === 'sms' ? 'TextButtonTap' : 'EmailLinkTap');
+    // Standard Lead event, so a Leads campaign can optimize for people who reach out
+    fbq('track', 'Lead', { content_name: kind });
   });
 
   /* ---------------- self-check ---------------- */
