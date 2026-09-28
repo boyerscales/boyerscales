@@ -424,6 +424,10 @@
     // Standard Lead event, so a Leads campaign can optimize for people who reach out
     fbq('track', 'Lead', { content_name: kind });
   });
+  // Heading to Stripe checkout from the offer card.
+  document.addEventListener('click', e => {
+    if (e.target.closest('a[href^="https://buy.stripe.com/"]') && window.fbq) fbq('track', 'InitiateCheckout', { value: 250, currency: 'USD' });
+  });
 
   /* ---------------- self-check ---------------- */
   (function check() {

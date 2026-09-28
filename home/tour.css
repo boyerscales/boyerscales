@@ -516,6 +516,7 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .entry{background:var(--paper-2);border-radius:var(--r-lg);padding:clamp(26px,3.5vw,40px);display:flex;flex-direction:column;justify-content:flex-end}
 .entry h3{font-size:clamp(26px,2.8vw,36px);letter-spacing:-.025em;margin-bottom:14px}
 .entry h3 span{display:block;color:var(--muted)}
+.entry-buy{margin-top:22px}
 .entry p{color:var(--ink-2)}
 .contact{background:var(--night);color:var(--night-text);border-radius:var(--r-lg);padding:clamp(26px,3.5vw,40px)}
 .contact img{width:48px;height:48px;border-radius:13px;outline:1px solid rgba(255,255,255,.14);outline-offset:-1px;margin-bottom:22px}

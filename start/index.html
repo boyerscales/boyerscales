@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>You're in · BoyerScales</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#f4f2ee">
+<link rel="icon" type="image/webp" href="../home/img/bs-logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/tour.css?v=20260928c">
+<style>
+  .start{max-width:760px;margin:0 auto;padding:56px var(--gutter) 80px}
+  .start h1{font-size:clamp(34px,5.4vw,56px)}
+  .start .lede{margin-top:18px}
+  .steps-head{display:flex;gap:10px;margin:34px 0 0;padding:0;list-style:none;flex-wrap:wrap}
+  .steps-head li{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;color:var(--muted);border:1px solid var(--line-2);border-radius:999px;padding:6px 12px}
+  .steps-head li i{font-style:normal;color:var(--faint);margin-right:6px}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(20px,4vw,34px);margin-top:22px}
+  .panel h2{font-size:clamp(22px,3vw,28px);margin-bottom:6px}
+  .panel .sub{color:var(--muted);font-size:15.5px;margin:0 0 22px}
+  .grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .f{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+  .f label,.f .lab{font-size:14.5px;font-weight:600}
+  .f .opt{font-weight:400;color:var(--faint)}
+  .f input,.f select,.f textarea{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;width:100%}
+  .f textarea{min-height:96px;resize:vertical;line-height:1.45}
+  .f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+  .f .hint{font-size:13px;color:var(--faint)}
+  .choices{display:grid;gap:8px}
+  .choices label{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;background:#fff;cursor:pointer;font-weight:500}
+  .choices input{margin-top:4px;accent-color:var(--ink);width:auto;flex:0 0 auto;padding:0}
+  .choices small{display:block;color:var(--muted);font-weight:400;font-size:13.5px}
+  .days{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
+  .day{flex:0 0 68px;border:1px solid var(--line-2);background:#fff;border-radius:12px;padding:9px 0;text-align:center;cursor:pointer;font:inherit;color:var(--ink)}
+  .day .dow{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .day .num{font-size:21px;font-weight:600;line-height:1.25}
+  .day .mon{font-size:12px;color:var(--muted)}
+  .day.off{opacity:.35;cursor:default}
+  .day.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .day.sel .dow,.day.sel .mon{color:#b9bcc2}
+  .slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
+  .slot{border:1px solid var(--line-2);background:#fff;border-radius:10px;padding:11px 4px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;color:var(--ink)}
+  .slot.taken{opacity:.3;text-decoration:line-through;cursor:default}
+  .slot.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .tznote{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:14px 0 0}
+  .picked{margin-top:16px;padding:14px 16px;border-radius:12px;background:#fff;border:1px solid var(--line-2);font-weight:600}
+  .picked span{display:block;font-weight:400;color:var(--muted);font-size:14px}
+  .empty{grid-column:1/-1;color:var(--muted);font-size:15px;padding:10px 0}
+  .submit{margin-top:22px;width:100%}
+  .err{color:#b42318;font-size:14.5px;margin:12px 0 0;min-height:1em}
+  .fallback{display:none;margin-top:14px}
+  .fallback.on{display:block}
+  .done{display:none}
+  .done.on{display:block}
+  .next{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:0}
+  .next li{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-top:1px solid var(--line)}
+  .next li b{font-family:var(--mono);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);font-weight:500;padding-top:3px}
+  .next li p{margin:0}
+  .contact-line{margin-top:22px;font-size:15px;color:var(--muted)}
+  .contact-line a{color:var(--ink);white-space:nowrap}
+  @media (max-width:640px){
+    .grid2{grid-template-columns:1fr;gap:0}
+    .slots{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .next li{grid-template-columns:1fr;gap:4px}
+  }
+</style>
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1995055151120545');
+  fbq('track','PageView');
+  // Stripe sends paying customers here with ?session_id=…; count each payment once.
+  (function(){
+    var sid = new URLSearchParams(location.search).get('session_id');
+    if (!sid || sid.indexOf('{') === 0) return;
+    var key = 'bsPurchase:' + sid, seen = false;
+    try { seen = !!localStorage.getItem(key); localStorage.setItem(key, '1'); } catch (_) {}
+    if (!seen) fbq('track', 'Purchase', { value: 250, currency: 'USD' }, { eventID: sid });
+  })();
+</script>
+</head>
+<body>
+
+<header class="nav scrolled">
+  <div class="nav-in">
+    <a class="brand" href="/" aria-label="BoyerScales home">
+      <img src="../home/img/bs-logo.webp" alt="" width="28" height="28">
+      <span>BoyerScales</span>
+    </a>
+  </div>
+</header>
+
+<main class="start" id="main">
+  <section id="intro">
+    <p class="eyebrow">You're in</p>
+    <h1>Let's patch the leaks.</h1>
+    <p class="lede">Tell me about your business, then pick a time for a 30-minute kickoff call. I'll start building before we talk, so the call is about your business, not paperwork.</p>
+    <ol class="steps-head" aria-label="Steps">
+      <li><i>01</i>Your business</li>
+      <li><i>02</i>Kickoff call</li>
+      <li><i>03</i>I build it</li>
+    </ol>
+  </section>
+
+  <form id="startForm" novalidate>
+    <section class="panel" aria-labelledby="h-biz">
+      <h2 id="h-biz">Your business</h2>
+      <p class="sub">About 3 minutes. Rough answers are fine. We'll sort out the details on the call.</p>
+
+      <div class="grid2">
+        <div class="f"><label for="name">Your name</label><input id="name" autocomplete="name" required></div>
+        <div class="f"><label for="biz">Business name</label><input id="biz" autocomplete="organization" required></div>
+        <div class="f"><label for="phone">Mobile</label><input id="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(916) 555-0123" required></div>
+        <div class="f"><label for="email">Email</label><input id="email" type="email" autocomplete="email" required></div>
+        <div class="f"><label for="city">City you work out of</label><input id="city" autocomplete="address-level2" placeholder="Elk Grove, CA" required></div>
+        <div class="f"><label for="radius">How far do you travel?</label>
+          <select id="radius">
+            <option>Up to 10 miles</option><option selected>Up to 15 miles</option><option>Up to 25 miles</option><option>40+ miles</option><option>Shop only, customers come to me</option>
+          </select></div>
+      </div>
+
+      <div class="f">
+        <label for="services">Services and prices</label>
+        <textarea id="services" required placeholder="Full detail $150 sedan / $170 SUV / $190 truck&#10;Interior only $85, exterior only $75&#10;Ceramic coating from $400"></textarea>
+        <span class="hint">Whatever you charge today. I'll put these on your site and booking page.</span>
+      </div>
+
+      <div class="grid2">
+        <div class="f"><label for="hours">Days and hours you work</label><input id="hours" placeholder="Mon–Sat, 8am–6pm" required></div>
+        <div class="f"><label for="books">How do people book you now?</label>
+          <select id="books" required>
+            <option value="">Pick one</option>
+            <option>Calls and texts</option><option>Instagram or Facebook DMs</option>
+            <option>A booking app (Square, Urable, etc.)</option><option>A form on my website</option><option>A mix of everything</option>
+          </select></div>
+        <div class="f"><label for="site">Current website <span class="opt">(if any)</span></label><input id="site" inputmode="url" placeholder="yourdetailing.com"></div>
+        <div class="f"><label for="ig">Instagram <span class="opt">(if any)</span></label><input id="ig" placeholder="@yourdetailing"></div>
+      </div>
+
+      <div class="f">
+        <span class="lab" id="calls-lab">When you miss a call, what should happen?</span>
+        <div class="choices" role="radiogroup" aria-labelledby="calls-lab">
+          <label><input type="radio" name="calls" value="AI receptionist answers and books" checked><span>The AI receptionist answers and books it<small>On your business line, only when you can't pick up.</small></span></label>
+          <label><input type="radio" name="calls" value="Text them back automatically"><span>Text them back automatically<small>From your own number, with a link to book.</small></span></label>
+          <label><input type="radio" name="calls" value="Not sure yet"><span>Not sure yet<small>We'll figure it out on the call.</small></span></label>
+        </div>
+      </div>
+
+      <div class="f"><label for="extra">Anything else I should know? <span class="opt">(optional)</span></label>
+        <textarea id="extra" placeholder="Biggest headache right now, a tool you already pay for, a deadline…"></textarea></div>
+    </section>
+
+    <section class="panel" aria-labelledby="h-call">
+      <h2 id="h-call">Pick a kickoff call</h2>
+      <p class="sub">30 minutes, by phone. I'll call you at the number above.</p>
+      <div class="days" id="days" aria-label="Days"></div>
+      <div class="slots" id="slots" aria-label="Times"></div>
+      <p class="tznote" id="tznote">Times are Pacific time.</p>
+      <div class="picked" id="picked" hidden></div>
+
+      <button class="btn btn-ink submit" id="submitBtn" type="submit">Book my kickoff call</button>
+      <p class="err" id="err" role="alert"></p>
+      <div class="fallback" id="fallback">
+        <p class="fine" style="margin-top:0">The calendar isn't loading right now. Send me your answers by text instead and I'll reply with a time.</p>
+        <a class="btn btn-line" id="smsFallback" href="sms:+19167082759">Text my answers to Elijah</a>
+      </div>
+    </section>
+  </form>
+
+  <section class="panel done" id="done" aria-live="polite">
+    <p class="eyebrow" style="margin-bottom:10px">Booked</p>
+    <h2 id="doneTitle">You're on my calendar.</h2>
+    <p class="sub" id="doneWhen"></p>
+    <ol class="next">
+      <li><b>Now</b><p>I've got your answers. Your Stripe receipt is in your email.</p></li>
+      <li><b>Kickoff call</b><p>I call you at the time you picked. We go over your services, prices and how you want calls handled.</p></li>
+      <li><b>First days</b><p>Your website and online booking go live, then texts from your own number and the AI receptionist.</p></li>
+      <li><b>Day 30</b><p>Not happy? You get the full $250 back. Otherwise it's $150 a month, and you can cancel anytime.</p></li>
+    </ol>
+    <p class="contact-line">Need to change something? Text me at <a href="sms:+19167082759">(916) 708-2759</a>.</p>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span>© BoyerScales</span>
+    <nav aria-label="Footer"><a href="/privacypolicy/">Privacy</a><a href="/termsconditions/">Terms</a></nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var API = 'https://dashboard.boyerscales.com/api/public/schedule/boyerscales';
+  var TZ = 'America/Los_Angeles';
+  var SERVICE = { id: 'kickoff', label: 'Kickoff call' };
+  var $ = function(s){ return document.querySelector(s); };
+  var pad = function(n){ return String(n).padStart(2, '0'); };
+  var cfg = null, pickedDay = null, picked = null;
+
+  /* Wall-clock time in the dashboard's zone <-> real instants, so a visitor in
+     New York sees the same openings the server will accept. */
+  function parts(ts){
+    var p = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).formatToParts(new Date(ts));
+    var g = function(k){ return +p.find(function(x){ return x.type === k; }).value; };
+    return { y: g('year'), m: g('month'), d: g('day'), h: g('hour') % 24, mi: g('minute') };
+  }
+  function offset(ts){ var q = parts(ts); return Date.UTC(q.y, q.m - 1, q.d, q.h, q.mi) - Math.floor(ts / 60000) * 60000; }
+  function epoch(key){
+    var y = +key.slice(0,4), m = +key.slice(5,7), d = +key.slice(8,10), h = +key.slice(11,13), mi = +key.slice(14,16);
+    var wall = Date.UTC(y, m - 1, d, h, mi), t = wall - offset(wall);
+    var o2 = offset(t); return o2 === offset(wall) ? t : wall - o2;
+  }
+  var hm = function(s){ return (+s.slice(0,2)) * 60 + (+s.slice(3,5)); };
+  function label(min){ var h = Math.floor(min / 60), mm = min % 60; return (h % 12 || 12) + (mm ? ':' + pad(mm) : '') + (h >= 12 ? ' PM' : ' AM'); }
+
+  function days(){
+    var t = parts(Date.now()), out = [];
+    for (var i = 0; i < (cfg.horizonDays || 14); i++){
+      var u = new Date(Date.UTC(t.y, t.m - 1, t.d + i));
+      out.push({ key: u.getUTCFullYear() + '-' + pad(u.getUTCMonth() + 1) + '-' + pad(u.getUTCDate()), dow: u.getUTCDay(), date: u, i: i });
+    }
+    return out;
+  }
+  function busy(){
+    return (cfg.booked || []).map(function(b){
+      var s = typeof b === 'string' ? b : b && b.start; if (!s) return null;
+      var from = epoch(s); return { from: from, to: from + ((b && b.minutes) || cfg.slotMinutes || 30) * 60000 };
+    }).filter(Boolean);
+  }
+  function slotsFor(day){
+    var span = cfg.hours && cfg.hours[day.dow]; if (!span) return [];
+    var job = (cfg.services || []).reduce(function(a, s){ return s.id === SERVICE.id ? s.minutes : a; }, cfg.slotMinutes || 30);
+    var step = cfg.stepMinutes || 30, floor = Date.now() + (cfg.leadHours || 0) * 3600000, b = busy(), out = [];
+    for (var m = hm(span[0]); m + job <= hm(span[1]); m += step){
+      var key = day.key + 'T' + pad(Math.floor(m / 60)) + ':' + pad(m % 60), from = epoch(key);
+      if (from < floor) continue;
+      var to = from + job * 60000;
+      out.push({ key: key, text: label(m), at: from, taken: b.some(function(x){ return x.from < to && from < x.to; }) });
+    }
+    return out;
+  }
+  function renderDays(){
+    var el = $('#days'), MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], first = null;
+    el.innerHTML = '';
+    days().forEach(function(d){
+      var open = slotsFor(d).some(function(s){ return !s.taken; });
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'day' + (open ? '' : ' off'); b.disabled = !open;
+      b.innerHTML = '<div class="dow">' + (d.i === 0 ? 'Today' : DOW[d.dow]) + '</div><div class="num">' + d.date.getUTCDate() + '</div><div class="mon">' + MON[d.date.getUTCMonth()] + '</div>';
+      b.addEventListener('click', function(){ pickDay(d, b); });
+      el.appendChild(b);
+      if (open && !first) first = [d, b];
+    });
+    if (first) pickDay(first[0], first[1]);
+    else $('#slots').innerHTML = '<p class="empty">No open times in the next two weeks. Text me at (916) 708-2759 and we\'ll find one.</p>';
+  }
+  function pickDay(d, btn){
+    pickedDay = d; picked = null; $('#picked').hidden = true;
+    document.querySelectorAll('.day').forEach(function(x){ x.classList.toggle('sel', x === btn); });
+    var el = $('#slots'); el.innerHTML = '';
+    var list = slotsFor(d).filter(function(s){ return !s.taken; });
+    if (!list.length){ el.innerHTML = '<p class="empty">Nothing open that day. Try another.</p>'; return; }
+    list.forEach(function(s){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'slot'; b.textContent = s.text;
+      b.addEventListener('click', function(){
+        picked = s;
+        document.querySelectorAll('.slot').forEach(function(x){ x.classList.toggle('sel', x === b); });
+        $('#picked').hidden = false; $('#picked').innerHTML = esc(whenText(s)) + (localText(s) ? '<span>' + esc(localText(s)) + '</span>' : '');
+      });
+      el.appendChild(b);
+    });
+  }
+  function whenText(s){
+    return new Date(s.at).toLocaleDateString('en-US', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric' }) + ' at ' + s.text + ' Pacific';
+  }
+  function localText(s){
+    var mine = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    if (!mine || offset(s.at) === -new Date(s.at).getTimezoneOffset() * 60000) return '';
+    return 'That\'s ' + new Date(s.at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) + ' your time.';
+  }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+  function answers(){
+    var v = function(id){ return $('#' + id).value.trim(); };
+    var calls = document.querySelector('input[name="calls"]:checked');
+    return [
+      { q: 'Business name', a: v('biz') }, { q: 'Owner', a: v('name') }, { q: 'Email', a: v('email') },
+      { q: 'Based in', a: v('city') }, { q: 'Travel', a: v('radius') }, { q: 'Services and prices', a: v('services') },
+      { q: 'Days and hours', a: v('hours') }, { q: 'Books by', a: v('books') }, { q: 'Website', a: v('site') },
+      { q: 'Instagram', a: v('ig') }, { q: 'Missed calls', a: calls ? calls.value : '' }, { q: 'Anything else', a: v('extra') }
+    ].filter(function(x){ return x.a; });
+  }
+  function showFallback(){
+    var body = 'Hi Elijah, I just signed up. ' + answers().map(function(x){ return x.q + ': ' + x.a; }).join(' | ');
+    $('#smsFallback').href = 'sms:+19167082759?&body=' + encodeURIComponent(body);
+    $('#fallback').classList.add('on');
+  }
+
+  // Rebuild the text right as it's tapped, so it carries whatever they've typed since.
+  $('#smsFallback').addEventListener('click', showFallback);
+
+  fetch(API).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
+    .then(function(j){ cfg = j; renderDays(); })
+    .catch(function(){ $('#slots').innerHTML = ''; $('#tznote').hidden = true; showFallback(); });
+
+  $('#startForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var err = $('#err'); err.textContent = '';
+    var need = [['name','your name'],['biz','your business name'],['phone','your mobile'],['email','your email'],['city','where you work out of'],['services','your services and prices'],['hours','your days and hours'],['books','how people book you now']];
+    for (var i = 0; i < need.length; i++){
+      if (!$('#' + need[i][0]).value.trim()){ err.textContent = 'Add ' + need[i][1] + ' first.'; $('#' + need[i][0]).focus(); return; }
+    }
+    if ($('#phone').value.replace(/\D/g, '').length < 10){ err.textContent = 'That mobile number looks short.'; $('#phone').focus(); return; }
+    if (!/^\S+@\S+\.\S+$/.test($('#email').value.trim())){ err.textContent = 'That email doesn\'t look right.'; $('#email').focus(); return; }
+    if (!cfg){ showFallback(); err.textContent = 'The calendar isn\'t loading. Text me your answers below instead.'; return; }
+    if (!picked){ err.textContent = 'Pick a time for the call.'; $('#days').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
+
+    var btn = $('#submitBtn'); btn.disabled = true; btn.textContent = 'Booking…';
+    fetch(API + '/book', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: $('#name').value.trim(), phone: $('#phone').value.trim(), start: picked.key,
+        service_id: SERVICE.id, service: SERVICE.label + ': ' + $('#biz').value.trim(), intake: answers() })
+    }).then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok && j.ok !== false, j: j }; }); })
+      .then(function(res){
+        if (!res.ok){ throw new Error(res.j.error || 'That time was just taken. Pick another.'); }
+        if (window.fbq) fbq('track', 'Schedule');
+        $('#startForm').hidden = true; $('#intro').hidden = true;
+        $('#doneWhen').textContent = whenText(picked) + '. ' + (localText(picked) || '');
+        $('#done').classList.add('on'); window.scrollTo({ top: 0, behavior: 'smooth' });
+      })
+      .catch(function(x){
+        btn.disabled = false; btn.textContent = 'Book my kickoff call';
+        err.textContent = x.message || 'Something went wrong. Text me your answers below instead.';
+        if (!/taken|available/i.test(err.textContent)) showFallback();
+        fetch(API).then(function(r){ return r.json(); }).then(function(j){ cfg = j; renderDays(); }).catch(function(){});
+      });
+  });
+})();
+</script>
+</body>
+</html>
