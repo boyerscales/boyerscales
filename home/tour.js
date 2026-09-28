@@ -97,8 +97,8 @@
       body: 'Their own link: $20 off for the friend, and $20 off for them once the friend\'s job is done. A new customer who arrives already trusting you.',
       vd: 'Referral links and credits tracked per customer and applied automatically.', href: '#back' },
     { k: '04', stage: 'Bring them back', label: 'Rebooked', title: 'They come back',
-      body: 'A nudge when they\'re due, a win-back if they go quiet, and offers like a prepaid pack. The next booking comes from someone you already earned.',
-      vd: 'Texts at 14, 28, 45 and 75 days, the Valley 3-Pack, and open-slot deals. Promos only go to people who opted in.', href: '#back' },
+      body: 'A nudge when they\'re due, a win-back if they go quiet, and open-slot deals when the calendar has gaps. The next booking comes from someone you already earned.',
+      vd: 'Texts at 14, 28, 45 and 75 days, plus open-slot deals. Promos only go to people who opted in.', href: '#back' },
   ];
   (function loop() {
     const svg = $('.ring'); if (!svg) return;
