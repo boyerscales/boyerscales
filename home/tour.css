@@ -145,14 +145,30 @@ h3{font-size:clamp(19px,1.7vw,22px);letter-spacing:-.015em;line-height:1.2}
 .phone-screen{position:relative;display:flex;flex-direction:column;margin:13px;margin:4.6cqw;
   border-radius:13.7% / 5.6%;overflow:hidden;background:#000;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
-/* A status bar and a home indicator: the screenshots are bare viewport captures,
-   so without these the site content runs straight into the screen's rounded corners. */
-.phone-screen::before{content:"9:41";flex:0 0 auto;height:9cqw;
-  display:flex;align-items:center;padding:0 7cqw;
-  font-family:var(--sans);font-size:3.5cqw;font-weight:600;color:#fff;letter-spacing:.01em;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 15' fill='%23fff'%3E%3Crect x='0' y='9.5' width='3.2' height='5.5' rx='1.1'/%3E%3Crect x='5.2' y='7' width='3.2' height='8' rx='1.1'/%3E%3Crect x='10.4' y='4.2' width='3.2' height='10.8' rx='1.1'/%3E%3Crect x='15.6' y='1.4' width='3.2' height='13.6' rx='1.1'/%3E%3Cpath d='M23.5 6.9A10.6 10.6 0 0 1 38.5 6.9L37 8.4A8.5 8.5 0 0 0 25 8.4Z'/%3E%3Cpath d='M26.1 9.5A6.9 6.9 0 0 1 35.9 9.5L34.4 11A4.8 4.8 0 0 0 27.6 11Z'/%3E%3Ccircle cx='31' cy='12.8' r='1.75'/%3E%3Crect x='48' y='3' width='24' height='11.5' rx='3.4' fill='none' stroke='%23fff' stroke-opacity='.45' stroke-width='1.2'/%3E%3Crect x='49.9' y='4.9' width='16.5' height='7.7' rx='2.1'/%3E%3Cpath d='M73.6 6.6c1 .4 1.7 1.1 1.7 2.1s-.7 1.7-1.7 2.1z' fill-opacity='.5'/%3E%3C/svg%3E") no-repeat right 6.5cqw center / auto 3.3cqw}
-.phone-screen::after{content:"";flex:0 0 auto;align-self:center;width:33%;height:.9cqw;min-height:2px;
-  margin:2.4cqw 0 1.7cqw;border-radius:99px;background:rgba(255,255,255,.9)}
+/* Edge-to-edge screen, like a current iPhone: the status bar (with the Dynamic Island)
+   and the home indicator sit on the screen itself, not on black bars. The screenshots are
+   bare viewport captures, so each strip is painted in that screenshot's own edge colors
+   (--top / --bot, set per phone in the markup) and reads as part of the page. A photo
+   gets its own top rows stretched up instead (background-size 100% 5000cqw shows about
+   the top 4px), so the picture carries on under the status bar with no seam. */
+.phone-screen{--top:#0c0c0c;--bot:var(--top);--ink:#fff;
+  --sb-icons:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 15' fill='%23fff'%3E%3Crect x='0' y='9.5' width='3.2' height='5.5' rx='1.1'/%3E%3Crect x='5.2' y='7' width='3.2' height='8' rx='1.1'/%3E%3Crect x='10.4' y='4.2' width='3.2' height='10.8' rx='1.1'/%3E%3Crect x='15.6' y='1.4' width='3.2' height='13.6' rx='1.1'/%3E%3Cpath d='M23.5 6.9A10.6 10.6 0 0 1 38.5 6.9L37 8.4A8.5 8.5 0 0 0 25 8.4Z'/%3E%3Cpath d='M26.1 9.5A6.9 6.9 0 0 1 35.9 9.5L34.4 11A4.8 4.8 0 0 0 27.6 11Z'/%3E%3Ccircle cx='31' cy='12.8' r='1.75'/%3E%3Crect x='48' y='3' width='24' height='11.5' rx='3.4' fill='none' stroke='%23fff' stroke-opacity='.45' stroke-width='1.2'/%3E%3Crect x='49.9' y='4.9' width='16.5' height='7.7' rx='2.1'/%3E%3Cpath d='M73.6 6.6c1 .4 1.7 1.1 1.7 2.1s-.7 1.7-1.7 2.1z' fill-opacity='.5'/%3E%3C/svg%3E");
+  --pill:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 134 5'%3E%3Crect width='134' height='5' rx='2.5' fill='%23fff'/%3E%3C/svg%3E")}
+.phone-screen.light{--ink:#000;
+  --sb-icons:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 78 15' fill='%23000'%3E%3Crect x='0' y='9.5' width='3.2' height='5.5' rx='1.1'/%3E%3Crect x='5.2' y='7' width='3.2' height='8' rx='1.1'/%3E%3Crect x='10.4' y='4.2' width='3.2' height='10.8' rx='1.1'/%3E%3Crect x='15.6' y='1.4' width='3.2' height='13.6' rx='1.1'/%3E%3Cpath d='M23.5 6.9A10.6 10.6 0 0 1 38.5 6.9L37 8.4A8.5 8.5 0 0 0 25 8.4Z'/%3E%3Cpath d='M26.1 9.5A6.9 6.9 0 0 1 35.9 9.5L34.4 11A4.8 4.8 0 0 0 27.6 11Z'/%3E%3Ccircle cx='31' cy='12.8' r='1.75'/%3E%3Crect x='48' y='3' width='24' height='11.5' rx='3.4' fill='none' stroke='%23000' stroke-opacity='.45' stroke-width='1.2'/%3E%3Crect x='49.9' y='4.9' width='16.5' height='7.7' rx='2.1'/%3E%3Cpath d='M73.6 6.6c1 .4 1.7 1.1 1.7 2.1s-.7 1.7-1.7 2.1z' fill-opacity='.5'/%3E%3C/svg%3E");
+  --pill:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 134 5'%3E%3Crect width='134' height='5' rx='2.5' fill='%23000'/%3E%3C/svg%3E")}
+.phone-screen::before{content:"9:41";flex:0 0 auto;height:11.5cqw;
+  display:flex;align-items:center;padding:.6cqw 0 0 10.5cqw;
+  font-family:var(--sans);font-size:3.7cqw;font-weight:600;color:var(--ink);letter-spacing:.01em;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 126 37'%3E%3Crect width='126' height='37' rx='18.5'/%3E%3C/svg%3E") no-repeat center top 2.2cqw / 28.5cqw auto,
+    var(--sb-icons) no-repeat right 7cqw center / auto 3.3cqw,
+    var(--top)}
+.phone-screen::after{content:"";flex:0 0 auto;height:6cqw;
+  background:var(--pill) no-repeat center top 2.6cqw / 32% auto,var(--bot)}
+/* overlap each strip by a pixel so a subpixel gap never shows a hairline at the seam */
+.phone-screen>img,.phone-screen>.shot{margin:-1px 0}
+.phone-screen>.shot img{margin:0}
 .phone-screen img{flex:0 0 auto;display:block;width:100%;aspect-ratio:390/844;object-fit:cover;object-position:top center}
 .phone-sm{max-width:200px}
 
