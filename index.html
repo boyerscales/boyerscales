@@ -28,7 +28,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home/tour.css?v=20260929a">
+<link rel="stylesheet" href="home/tour.css?v=20261006a">
 <!-- Meta Pixel -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -64,7 +64,7 @@
       <li data-stage="follow"><i>03</i>Follow up</li>
       <li data-stage="back"><i>04</i>Back</li>
     </ol>
-    <a class="btn btn-ink btn-sm" href="#start">Talk to me</a>
+    <a class="btn btn-ink btn-sm" href="#book">Book a call</a>
   </div>
 </header>
 
@@ -78,9 +78,10 @@
       <h1>You don't need more leads. Stop losing the ones you have.</h1>
       <p class="lede">Missed calls, slow replies, customers who never come back. I patch every hole: websites, online booking, texts from your own number, and an AI receptionist for the calls you can't take. This page walks through the real system I built and run for <b>Valley Details</b>, a mobile detailer in Elk Grove, California.</p>
       <div class="hero-cta">
-        <a class="btn btn-ink" href="sms:+19167082759">Text me</a>
+        <a class="btn btn-ink" href="#book">Book a free call</a>
         <a class="btn btn-line" href="#valley">See what I built <span class="arr" aria-hidden="true">↓</span></a>
       </div>
+      <p class="hero-promise"><b>5 customers or your money back.</b> <a href="#pay">How the guarantee works</a></p>
       <ol class="hero-stages">
         <li><a href="#found"><i>01</i>Get found</a></li>
         <li><a href="#booked"><i>02</i>Get booked</a></li>
@@ -592,7 +593,7 @@
   <div class="wrap">
     <header class="sec-head">
       <p class="eyebrow">How we'd start</p>
-      <h2>Start small. Build what's worth building.</h2>
+      <h2>Book a call. Or start today.</h2>
     </header>
 
     <ol class="how">
@@ -602,26 +603,64 @@
     </ol>
 
     <div class="start-grid">
-      <article class="entry reveal">
-        <p class="tag">The offer</p>
-        <h3>Every leak patched. <span>$250 to set up.</span></h3>
-        <p>Website, online booking, texts from your own number and an AI receptionist, set up for your business. Not happy in the first 30 days? You get the full $250 back. Your first month is free, then it's $99 a month.</p>
-        <a class="btn btn-ink entry-buy" href="https://buy.stripe.com/bJe9AT2Ti2OFdjd7lka3u07">Start now: $250 <span class="arr" aria-hidden="true">→</span></a>
-        <p class="fine">Secure checkout by Stripe. Cancel anytime.</p>
+      <article class="book reveal" id="book">
+        <p class="tag">Free call</p>
+        <h3>Book 15 minutes with me.</h3>
+        <p class="book-sub">Pick a time and I'll call you. No pitch deck, no pressure. If I can't help, I'll tell you.</p>
+
+        <form id="bookForm" novalidate>
+          <div class="days" id="days" aria-label="Days"></div>
+          <div class="slots" id="slots" aria-label="Times"><p class="empty">Loading open times</p></div>
+          <p class="tznote" id="tznote">Times are Pacific time.</p>
+          <div class="picked" id="picked" hidden></div>
+
+          <div class="book-fields">
+            <div class="f"><label for="bName">Your name</label><input id="bName" autocomplete="name"></div>
+            <div class="f"><label for="bPhone">Mobile</label><input id="bPhone" type="tel" autocomplete="tel" placeholder="I'll call this number"></div>
+            <div class="f"><label for="bBiz">Business name</label><input id="bBiz" autocomplete="organization"></div>
+            <div class="f"><label for="bLeak">What's costing you customers? <span class="opt">Optional</span></label><input id="bLeak" placeholder="e.g. I miss calls while I'm on a job"></div>
+          </div>
+
+          <button class="btn btn-ink book-submit" id="bookBtn" type="submit">Book my free call</button>
+          <p class="err" id="bookErr" role="alert"></p>
+          <div class="fallback" id="bookFallback">
+            <p class="fine">The calendar isn't loading right now. Text me and I'll reply with a time.</p>
+            <a class="btn btn-line" id="bookSms" href="sms:+19167082759">Text Elijah for a time</a>
+          </div>
+        </form>
+
+        <div class="book-done" id="bookDone" hidden aria-live="polite">
+          <p class="tag">You're booked</p>
+          <h3>Talk soon.</h3>
+          <p id="bookWhen"></p>
+          <p class="fine">Need a different time? Text me at (916) 708-2759.</p>
+        </div>
       </article>
 
-      <article class="contact reveal">
-        <img src="home/img/bs-logo.webp" alt="" width="48" height="48">
-        <h3>Elijah Boyer</h3>
-        <p class="contact-role">BoyerScales · Customer systems for detailers</p>
-        <p>If something on this page sounded like your business, let's talk about it.</p>
-        <div class="contact-btns">
-          <a class="btn btn-ink" href="tel:+19166598131">Call (916) 659-8131</a>
-          <a class="btn btn-line" href="sms:+19167082759">Text me</a>
+      <article class="entry reveal" id="pay">
+        <p class="tag">Or start now</p>
+        <h3>Every leak patched. <span>$250 to set up.</span></h3>
+        <p>Website, online booking, texts from your own number and an AI receptionist, set up for your business. Your first month is free, then it's $99 a month.</p>
+
+        <div class="guarantee">
+          <p class="guarantee-head">I'll catch you 5 customers, or you get your money back.</p>
+          <p>In your first 30 days live, the system books you 5 customers through your new booking page, the AI receptionist or a missed-call text. If it doesn't, or you're not happy for any reason, text me and I refund everything you've paid. No forms, no arguing.</p>
         </div>
-        <a class="contact-mail" href="mailto:elijah@boyerscales.com">elijah@boyerscales.com</a>
+
+        <ul class="safe">
+          <li><b>You can't lose the $250.</b> It comes back if the system doesn't bring in 5 customers.</li>
+          <li><b>No contract.</b> First month free, then $99 a month. Cancel anytime with one text.</li>
+          <li><b>Your card stays with Stripe.</b> Stripe handles the payment. I never see your card number.</li>
+          <li><b>A real person.</b> You talk to me, Elijah. My cell is on this page and I answer it.</li>
+          <li><b>Proof you can check.</b> Valley Details runs on this exact system. Visit the live site above.</li>
+        </ul>
+
+        <a class="btn btn-ink entry-buy" href="https://buy.stripe.com/bJe9AT2Ti2OFdjd7lka3u07">Start now: $250 <span class="arr" aria-hidden="true">→</span></a>
+        <p class="fine">Secure checkout by Stripe. Backed by the 5 customer guarantee.</p>
       </article>
     </div>
+
+    <p class="reach">Rather talk right now? <a href="tel:+19166598131">Call (916) 659-8131</a> · <a href="sms:+19167082759">Text me</a> · <a href="mailto:elijah@boyerscales.com">elijah@boyerscales.com</a></p>
   </div>
 </section>
 
@@ -639,10 +678,11 @@
 </footer>
 
 <div class="mcta" id="mcta">
-  <a class="btn btn-line" href="sms:+19167082759">Text me</a>
-  <a class="btn btn-ink" href="#start">Talk to me</a>
+  <a class="btn btn-line" href="#pay">Start: $250</a>
+  <a class="btn btn-ink" href="#book">Book a call</a>
 </div>
 
 <script src="home/tour.js?v=20260928c" defer></script>
+<script src="home/book.js?v=20261006a" defer></script>
 </body>
 </html>
