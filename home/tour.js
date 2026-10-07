@@ -415,19 +415,7 @@
     }));
   })();
 
-  /* ---------------- ad tracking (Meta Pixel, same events as the previous homepage) ---------------- */
-  document.addEventListener('click', e => {
-    const a = e.target.closest('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]');
-    if (!a || !window.fbq) return;
-    const kind = a.href.split(':')[0];
-    fbq('trackCustom', kind === 'tel' ? 'CallButtonTap' : kind === 'sms' ? 'TextButtonTap' : 'EmailLinkTap');
-    // Standard Lead event, so a Leads campaign can optimize for people who reach out
-    fbq('track', 'Lead', { content_name: kind });
-  });
-  // Heading to Stripe checkout from the offer card.
-  document.addEventListener('click', e => {
-    if (e.target.closest('a[href^="https://buy.stripe.com/"]') && window.fbq) fbq('track', 'InitiateCheckout', { value: 250, currency: 'USD' });
-  });
+  /* Ad tracking lives in home/track.js. */
 
   /* ---------------- self-check ---------------- */
   (function check() {

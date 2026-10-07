@@ -36,7 +36,8 @@
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
   (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','1995055151120545');
+  // external_id lets Meta tie this visitor's later booking or purchase back to the ad. home/track.js uses the same id.
+  fbq('init','1995055151120545',(function(){try{var v=localStorage.getItem('bsVid');if(!v){v='v'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem('bsVid',v);}return {external_id:v};}catch(_){return {};}})());
   fbq('track','PageView');
 </script>
 </head>
@@ -693,7 +694,8 @@
   <a class="btn btn-ink" href="#book">Book a call</a>
 </div>
 
-<script src="home/tour.js?v=20260928c" defer></script>
-<script src="home/book.js?v=20261006a" defer></script>
+<script src="home/track.js?v=20261006a" defer></script>
+<script src="home/tour.js?v=20261006a" defer></script>
+<script src="home/book.js?v=20261006b" defer></script>
 </body>
 </html>

@@ -95,7 +95,8 @@
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
   (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init','1995055151120545');
+  // external_id lets Meta tie this visitor's later booking or purchase back to the ad. home/track.js uses the same id.
+  fbq('init','1995055151120545',(function(){try{var v=localStorage.getItem('bsVid');if(!v){v='v'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem('bsVid',v);}return {external_id:v};}catch(_){return {};}})());
   fbq('track','PageView');
   // Stripe sends paying customers here with ?session_id=…; count each payment once.
   (function(){
@@ -103,7 +104,8 @@
     if (!sid || sid.indexOf('{') === 0) return;
     var key = 'bsPurchase:' + sid, seen = false;
     try { seen = !!localStorage.getItem(key); localStorage.setItem(key, '1'); } catch (_) {}
-    if (!seen) fbq('track', 'Purchase', { value: 250, currency: 'USD' }, { eventID: sid });
+    var ad = {}; try { ad = JSON.parse(localStorage.getItem('bsAttrLast') || '{}') || {}; } catch (_) {}
+    if (!seen) fbq('track', 'Purchase', { value: 250, currency: 'USD', content_name: 'Setup $250', traffic_source: ad.utm_source ? ad.utm_source + (ad.utm_medium ? ' / ' + ad.utm_medium : '') : (ad.fbclid ? 'facebook / ad (no utm tags)' : (ad.referrer || 'unknown')), utm_campaign: ad.utm_campaign, utm_adset: ad.utm_term, utm_ad: ad.utm_content }, { eventID: sid });
   })();
 </script>
 </head>
@@ -470,7 +472,7 @@
       { q: 'Books by', a: v('books') }, { q: 'Website', a: v('site') }, { q: 'Instagram', a: v('ig') },
       { q: 'Missed calls', a: calls ? calls.value : '' }, { q: 'Anything else', a: v('extra') },
       { q: 'Paid', a: verified ? 'Yes, checkout ' + sessionId : 'Not confirmed' }
-    ].filter(function(x){ return x.a; });
+    ].concat(window.bsTrack ? bsTrack.intake() : []).filter(function(x){ return x.a; });
   }
   function showFallback(){
     var body = 'Hi Elijah, I just signed up. ' + answers().map(function(x){ return x.q + ': ' + x.a; }).join(' | ');
@@ -504,7 +506,10 @@
       service_id: SERVICE.id, service: SERVICE.label + ': ' + $('#biz').value.trim(), intake: answers() })
       .then(function(res){
         if (!res.ok) throw new Error(res.j.error || 'That time was just taken. Pick another.');
-        if (window.fbq) fbq('track', 'Schedule');
+        if (window.bsTrack){
+          bsTrack.user({ name: $('#name').value, phone: $('#phone').value, email: paidEmail || $('#email').value });
+          bsTrack.event('Schedule', { content_name: 'Kickoff call' }, { eventID: 'kickoff-' + bsTrack.vid + '-' + picked.key });
+        }
         if (!verified) return null;
         btn.textContent = 'Building your starter system…';
         return post(ONB + '/setup', {
@@ -518,6 +523,7 @@
       })
       .then(function(setup){
         $('#startForm').hidden = true; $('#intro').hidden = true;
+        if (window.bsTrack) bsTrack.event('CompleteRegistration', { content_name: 'Onboarding form', paid: verified ? 'yes' : 'not confirmed', starter_built: !!(setup && setup.ok) });
         $('#doneWhen').textContent = whenText(picked) + '. ' + (localText(picked) || '');
         if (setup && setup.ok && setup.j.booking_url){
           $('#lnkDash').href = setup.j.dashboard_url;
@@ -536,5 +542,6 @@
   });
 })();
 </script>
+<script src="../home/track.js?v=20261006a" defer></script>
 </body>
 </html>

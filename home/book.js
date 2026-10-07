@@ -76,6 +76,7 @@
         picked = s;
         $$('#slots .slot').forEach(function(x){ x.classList.toggle('sel', x === b); });
         $('#picked').hidden = false;
+        if (window.bsTrack) bsTrack.event('PickedCallTime', { day: s.key.slice(0, 10), time: s.text });
         $('#picked').innerHTML = esc(whenText(s)) + (localText(s) ? '<span>' + esc(localText(s)) + '</span>' : '');
       });
       el.appendChild(b);
@@ -97,6 +98,14 @@
     .then(function(j){ cfg = j; renderDays(); })
     .catch(function(){ $('#slots').innerHTML = ''; $('#tznote').hidden = true; showFallback(); });
 
+  var started = false;
+  function startedForm(e){
+    if (started || !e.target.matches('input')) return;
+    started = true; if (window.bsTrack) bsTrack.event('StartedBookingForm');
+  }
+  form.addEventListener('focusin', startedForm);
+  form.addEventListener('input', startedForm);
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var err = $('#bookErr'); err.textContent = '';
@@ -111,6 +120,7 @@
     var biz = $('#bBiz').value.trim(), leak = $('#bLeak').value.trim();
     var intake = [{ q: 'Business name', a: biz }, { q: 'Booked from', a: 'boyerscales.com homepage' }];
     if (leak) intake.push({ q: 'What\'s costing them customers', a: leak });
+    if (window.bsTrack) intake = intake.concat(bsTrack.intake());
     var btn = $('#bookBtn'); btn.disabled = true; btn.textContent = 'Booking your call';
     fetch(API + '/book', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
       name: $('#bName').value.trim(), phone: $('#bPhone').value.trim(), start: picked.key,
@@ -118,12 +128,16 @@
     }) })
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if (!r.ok || j.ok === false) throw new Error(j.error || 'That time was just taken. Pick another.'); }); })
       .then(function(){
-        if (window.fbq) fbq('track', 'Schedule');
+        if (window.bsTrack){
+          bsTrack.user({ name: $('#bName').value, phone: $('#bPhone').value });
+          bsTrack.event('Schedule', { content_name: 'Free 30-minute call' }, { eventID: 'call-' + bsTrack.vid + '-' + picked.key });
+        }
         form.hidden = true; $('#bookDone').hidden = false;
         $('#bookWhen').textContent = 'I\'ll call you at ' + $('#bPhone').value.trim() + ' on ' + whenText(picked) + '.';
       })
       .catch(function(ex){
         btn.disabled = false; btn.textContent = 'Book my free call';
+        if (window.bsTrack) bsTrack.event('BookingError', { reason: String(ex && ex.message || '').slice(0, 80) });
         err.textContent = (ex && ex.message && !/fetch|network/i.test(ex.message)) ? ex.message : 'Couldn\'t book that. Try again, or text me at (916) 708-2759.';
       });
   });
