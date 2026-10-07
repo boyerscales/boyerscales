@@ -17,7 +17,10 @@
   FIELDS.forEach(function(f){ var v = q.get(f); if (v) tags[f] = v.slice(0, 200); });
   var refHost = '';
   try { refHost = document.referrer ? new URL(document.referrer).hostname : ''; } catch (_) {}
-  var fromOutside = refHost && refHost !== location.hostname;
+  // Coming back from Stripe checkout is not a new visit from somewhere else.
+  var fromStripe = /(^|\.)stripe\.com$/.test(refHost);
+  if (fromStripe) tags = {};
+  var fromOutside = refHost && refHost !== location.hostname && !fromStripe;
   var touch = Object.assign({ landing: location.pathname, referrer: refHost || 'direct', at: new Date().toISOString() }, tags);
   if (!read('bsAttrFirst')) write('bsAttrFirst', touch);
   if (Object.keys(tags).length || fromOutside || !read('bsAttrLast')) write('bsAttrLast', touch);
@@ -48,8 +51,12 @@
     else fbq('trackCustom', name, payload, opts || {});
   }
   // Rows for the dashboard intake, so every booking shows which ad brought it.
-  function intake(){
+  function intake(compact){
     var a = attr(), f = read('bsAttrFirst') || a, rows = [];
+    if (compact){
+      var ad = [source(a), a.utm_campaign, a.utm_term, a.utm_content].filter(Boolean).join(' / ');
+      return [{ q: 'Came from', a: ad + ', landed ' + a.at.slice(0, 10) + ', visit ' + visits }, { q: 'Visitor id', a: vid }];
+    }
     rows.push({ q: 'Came from', a: source(a) });
     if (a.utm_campaign) rows.push({ q: 'Ad campaign', a: a.utm_campaign });
     if (a.utm_term) rows.push({ q: 'Ad set', a: a.utm_term });
@@ -70,7 +77,15 @@
     if (d.name){ var n = d.name.trim().toLowerCase().split(/\s+/); m.fn = n[0]; if (n.length > 1) m.ln = n[n.length - 1]; }
     fbq('init', '1995055151120545', m);
   }
-  window.bsTrack = { vid: vid, attr: attr, source: source, event: event, intake: intake, user: user };
+  function cookie(n){ var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; }
+  // Meta's click cookie. The pixel normally sets it; build it from the stored click id if it hasn't.
+  function fbc(){
+    var c = cookie('_fbc'); if (c) return c;
+    var a = attr(); return a.fbclid ? 'fb.1.' + new Date(a.at).getTime() + '.' + a.fbclid : '';
+  }
+  // Sent with a booking so the server can report the same event to Meta (Conversions API).
+  function meta(eventId){ return { event_id: eventId || '', external_id: vid, fbc: fbc(), fbp: cookie('_fbp'), page_url: location.href }; }
+  window.bsTrack = { vid: vid, attr: attr, source: source, event: event, intake: intake, user: user, meta: meta };
 
   /* ---------- Stripe links carry the visitor and the ad into checkout ---------- */
   function tagStripe(){
@@ -78,7 +93,11 @@
     document.querySelectorAll('a[href^="https://buy.stripe.com/"]').forEach(function(link){
       var u = new URL(link.href);
       u.searchParams.set('client_reference_id', vid);
-      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){ if (a[k]) u.searchParams.set(k, a[k]); });
+      // Stripe silently drops tags with spaces or symbols, so clean them first.
+      ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+        var v = String(a[k] || '').replace(/[^A-Za-z0-9_-]+/g, '_').replace(/^_+|_+$/g, '').slice(0, 150);
+        if (v) u.searchParams.set(k, v);
+      });
       link.href = u.toString();
     });
   }

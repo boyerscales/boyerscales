@@ -314,6 +314,10 @@
   }
   function showGate(){ $('#checking').hidden = true; $('#gate').hidden = false; }
   function check(query){
+    // Meta's cookies ride along so the server can report the purchase to Meta too.
+    var ck = function(n){ var m = document.cookie.match(new RegExp('(?:^|; )' + n + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : ''; };
+    if (ck('_fbc')) query += '&fbc=' + encodeURIComponent(ck('_fbc'));
+    if (ck('_fbp')) query += '&fbp=' + encodeURIComponent(ck('_fbp'));
     return fetch(ONB + '/checkout?' + query).then(function(r){
       if (r.status === 404 || r.status === 503) return { unavailable: true };
       return r.json().then(function(j){ return r.ok ? j : { error: j.error || 'Couldn\'t check your payment.' }; });
@@ -472,7 +476,7 @@
       { q: 'Books by', a: v('books') }, { q: 'Website', a: v('site') }, { q: 'Instagram', a: v('ig') },
       { q: 'Missed calls', a: calls ? calls.value : '' }, { q: 'Anything else', a: v('extra') },
       { q: 'Paid', a: verified ? 'Yes, checkout ' + sessionId : 'Not confirmed' }
-    ].concat(window.bsTrack ? bsTrack.intake() : []).filter(function(x){ return x.a; });
+    ].concat(window.bsTrack ? bsTrack.intake(true) : []).filter(function(x){ return x.a; });
   }
   function showFallback(){
     var body = 'Hi Elijah, I just signed up. ' + answers().map(function(x){ return x.q + ': ' + x.a; }).join(' | ');
@@ -502,13 +506,15 @@
     if (!picked){ err.textContent = 'Pick a time for the call.'; $('#days').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
 
     var btn = $('#submitBtn'); btn.disabled = true; btn.textContent = 'Booking your call…';
+    var eventId = 'kickoff-' + (window.bsTrack ? bsTrack.vid : 'x') + '-' + picked.key;
     post(API + '/book', { name: $('#name').value.trim(), phone: $('#phone').value.trim(), start: picked.key,
-      service_id: SERVICE.id, service: SERVICE.label + ': ' + $('#biz').value.trim(), intake: answers() })
+      service_id: SERVICE.id, service: SERVICE.label + ': ' + $('#biz').value.trim(), intake: answers(),
+      meta: window.bsTrack ? bsTrack.meta(eventId) : undefined })
       .then(function(res){
         if (!res.ok) throw new Error(res.j.error || 'That time was just taken. Pick another.');
         if (window.bsTrack){
           bsTrack.user({ name: $('#name').value, phone: $('#phone').value, email: paidEmail || $('#email').value });
-          bsTrack.event('Schedule', { content_name: 'Kickoff call' }, { eventID: 'kickoff-' + bsTrack.vid + '-' + picked.key });
+          bsTrack.event('Schedule', { content_name: 'Kickoff call' }, { eventID: eventId });
         }
         if (!verified) return null;
         btn.textContent = 'Building your starter system…';
@@ -542,6 +548,6 @@
   });
 })();
 </script>
-<script src="../home/track.js?v=20261006a" defer></script>
+<script src="../home/track.js?v=20261007a" defer></script>
 </body>
 </html>

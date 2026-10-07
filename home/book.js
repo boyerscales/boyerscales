@@ -122,15 +122,17 @@
     if (leak) intake.push({ q: 'What\'s costing them customers', a: leak });
     if (window.bsTrack) intake = intake.concat(bsTrack.intake());
     var btn = $('#bookBtn'); btn.disabled = true; btn.textContent = 'Booking your call';
+    var eventId = 'call-' + (window.bsTrack ? bsTrack.vid : 'x') + '-' + picked.key;
     fetch(API + '/book', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
       name: $('#bName').value.trim(), phone: $('#bPhone').value.trim(), start: picked.key,
-      service_id: SERVICE.id, service: SERVICE.label + ': ' + biz, intake: intake
+      service_id: SERVICE.id, service: SERVICE.label + ': ' + biz, intake: intake,
+      meta: window.bsTrack ? bsTrack.meta(eventId) : undefined
     }) })
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if (!r.ok || j.ok === false) throw new Error(j.error || 'That time was just taken. Pick another.'); }); })
       .then(function(){
         if (window.bsTrack){
           bsTrack.user({ name: $('#bName').value, phone: $('#bPhone').value });
-          bsTrack.event('Schedule', { content_name: 'Free 30-minute call' }, { eventID: 'call-' + bsTrack.vid + '-' + picked.key });
+          bsTrack.event('Schedule', { content_name: 'Free 30-minute call' }, { eventID: eventId });
         }
         form.hidden = true; $('#bookDone').hidden = false;
         $('#bookWhen').textContent = 'I\'ll call you at ' + $('#bPhone').value.trim() + ' on ' + whenText(picked) + '.';
