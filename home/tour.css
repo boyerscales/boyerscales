@@ -555,8 +555,10 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .foot a:hover{color:var(--ink)}
 
 /* ---------- book a call + guarantee ---------- */
-.hero-promise{margin-top:16px;font-size:15px;color:var(--ink-2)}
-.hero-promise a{color:var(--brand-ink);text-underline-offset:3px;margin-left:4px;white-space:nowrap}
+.hero-proof{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:8px}
+.hero-proof li{position:relative;padding-left:26px;font-size:15.5px;color:var(--ink-2)}
+.hero-proof li::before{content:"";position:absolute;left:2px;top:7px;width:13px;height:7px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
+.hero-proof b{color:var(--ink)}
 .book{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:clamp(26px,3.5vw,40px);scroll-margin-top:calc(var(--nav-h,64px) + 16px)}
 .book h3,.book-done h3{font-size:clamp(26px,2.8vw,36px);letter-spacing:-.025em;margin-bottom:10px}
 .book-sub{color:var(--ink-2);margin-bottom:22px}
@@ -589,7 +591,8 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .book .fallback .btn{margin-top:10px}
 .book [hidden]{display:none!important}
 #pay{scroll-margin-top:calc(var(--nav-h,64px) + 16px);justify-content:flex-start}
-.guarantee{margin-top:22px;padding:18px 20px;border-radius:14px;background:var(--card);border:1px solid var(--line-2);border-left:4px solid var(--ok)}
+.guarantees{display:grid;gap:10px;margin-top:22px}
+.guarantee{padding:18px 20px;border-radius:14px;background:var(--card);border:1px solid var(--line-2);border-left:4px solid var(--ok)}
 .guarantee-head{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px}
 .guarantee p:not(.guarantee-head){font-size:15px}
 .safe{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
