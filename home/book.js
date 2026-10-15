@@ -1,146 +1,136 @@
-/* Homepage call booking. Uses the same public calendar as /start, in Pacific time. */
+/* Homepage call times. Shows the same open times as the call page the DM bot sends
+   (preview.boyerscales.com/call), and every time links into that page with the time
+   already picked. The booking, Elijah's "call booked" text and the DM bot's "they
+   booked" check all happen there, the same as for a lead from Instagram.
+
+   WINDOWS is a copy of CALL_WINDOWS in Blue SMS instagram/preview/call.js (Elijah's
+   class schedule, Pacific time). Change both together. The call page checks the time
+   again before it books, so a stale copy here can't book a blocked time: the visitor
+   just lands on the call page and picks another. */
 (function(){
   var API = 'https://dashboard.boyerscales.com/api/public/schedule/boyerscales';
-  var TZ = 'America/Los_Angeles';
-  var SERVICE = { id: 'kickoff', label: 'Intro call' };
-  var form = document.getElementById('bookForm'); if (!form) return;
-  var $ = function(s){ return document.querySelector(s); };
-  var $$ = function(s){ return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  var CALL_PAGE = 'https://preview.boyerscales.com/call';
+  var PT = 'America/Los_Angeles';
+  var SERVICE_ID = 'kickoff';
+  var LEAD_HOURS = 1, OPEN_DAYS = 3;
+  var WINDOWS = {
+    0: [['07:30', '18:00']],
+    1: [['07:30', '08:30'], ['10:00', '11:00'], ['12:00', '18:00']],
+    2: [['07:30', '08:30'], ['10:00', '10:30'], ['12:00', '18:00']],
+    3: [['07:30', '08:30'], ['10:00', '11:00'], ['12:00', '18:00']],
+    4: [['07:30', '10:30'], ['12:00', '18:00']],
+    5: [['07:30', '08:30'], ['10:00', '11:00'], ['12:00', '13:00'], ['15:00', '18:00']],
+    6: [['07:30', '18:00']]
+  };
+  var ZONES = { 'America/Los_Angeles': 'Pacific', 'America/Denver': 'Mountain', 'America/Phoenix': 'Arizona', 'America/Chicago': 'Central', 'America/New_York': 'Eastern', 'America/Anchorage': 'Alaska', 'Pacific/Honolulu': 'Hawaii' };
+  var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+  var card = document.getElementById('book'); if (!card) return;
+  var $ = function(s){ return card.querySelector(s); };
   var pad = function(n){ return String(n).padStart(2, '0'); };
-  var cfg = null, picked = null;
-
-  function parts(ts){
-    var p = new Intl.DateTimeFormat('en-US', { timeZone: TZ, hourCycle: 'h23', year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).formatToParts(new Date(ts));
-    var g = function(k){ return +p.find(function(x){ return x.type === k; }).value; };
-    return { y: g('year'), m: g('month'), d: g('day'), h: g('hour') % 24, mi: g('minute') };
-  }
-  function offset(ts){ var q = parts(ts); return Date.UTC(q.y, q.m - 1, q.d, q.h, q.mi) - Math.floor(ts / 60000) * 60000; }
-  function epoch(key){
-    var y = +key.slice(0,4), m = +key.slice(5,7), d = +key.slice(8,10), h = +key.slice(11,13), mi = +key.slice(14,16);
-    var wall = Date.UTC(y, m - 1, d, h, mi), t = wall - offset(wall);
-    var o2 = offset(t); return o2 === offset(wall) ? t : wall - o2;
-  }
   var hm = function(s){ return (+s.slice(0,2)) * 60 + (+s.slice(3,5)); };
-  function label(min){ var h = Math.floor(min / 60), mm = min % 60; return (h % 12 || 12) + (mm ? ':' + pad(mm) : '') + (h >= 12 ? ' PM' : ' AM'); }
-  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  var HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
 
-  function days(){
-    var t = parts(Date.now()), out = [];
-    for (var i = 0; i < (cfg.horizonDays || 14); i++){
-      var u = new Date(Date.UTC(t.y, t.m - 1, t.d + i));
-      out.push({ key: u.getUTCFullYear() + '-' + pad(u.getUTCMonth() + 1) + '-' + pad(u.getUTCDate()), dow: u.getUTCDay(), date: u, i: i });
+  // The visitor's own zone, the way the call page shows times.
+  var tz = PT;
+  try { var own = Intl.DateTimeFormat().resolvedOptions().timeZone; if (own) { new Intl.DateTimeFormat('en-US', { timeZone: own }); tz = own; } } catch (e) {}
+
+  function partsIn(ms, zone){
+    var p = {};
+    new Intl.DateTimeFormat('en-US', { timeZone: zone, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+      .formatToParts(new Date(ms)).forEach(function(x){ p[x.type] = x.value; });
+    return { y: +p.year, mo: +p.month, d: +p.day, h: +p.hour % 24, mi: +p.minute };
+  }
+  function dayKey(ms, zone){ var p = partsIn(ms, zone); return p.y + '-' + pad(p.mo) + '-' + pad(p.d); }
+  // A Pacific "YYYY-MM-DDTHH:MM" as a real instant (DST-safe).
+  function ptInstant(key){
+    var wall = Date.UTC(+key.slice(0,4), +key.slice(5,7) - 1, +key.slice(8,10), +key.slice(11,13), +key.slice(14,16)), ms = wall;
+    for (var i = 0; i < 2; i++){ var p = partsIn(ms, PT); ms = wall - (Date.UTC(p.y, p.mo - 1, p.d, p.h, p.mi) - ms); }
+    return ms;
+  }
+  function timeText(ms){ var p = partsIn(ms, tz), h = p.h % 12 || 12; return h + (p.mi ? ':' + pad(p.mi) : '') + (p.h >= 12 ? ' PM' : ' AM'); }
+
+  // Elijah's windows cut to the dashboard's own hours for that day (call.js clipWindows).
+  function clip(hours){
+    var out = {};
+    for (var d = 0; d < 7; d++){
+      var span = hours && hours[String(d)], open = span && HHMM.test(span[0]) && HHMM.test(span[1]) ? span : null;
+      out[d] = (WINDOWS[d] || []).map(function(w){ return open ? [w[0] < open[0] ? open[0] : w[0], w[1] > open[1] ? open[1] : w[1]] : null; })
+        .filter(function(w){ return w && w[0] < w[1]; });
     }
     return out;
   }
-  function busy(){
-    return (cfg.booked || []).map(function(b){
-      var s = typeof b === 'string' ? b : b && b.start; if (!s) return null;
-      var from = epoch(s); return { from: from, to: from + ((b && b.minutes) || cfg.slotMinutes || 30) * 60000 };
+
+  // Open times over the next two weeks, Pacific keys, minus anything already booked.
+  function openSlots(data){
+    var svc = (data.services || []).filter(function(s){ return s && s.id === SERVICE_ID; })[0] || (data.services || [])[0];
+    var minutes = (svc && +svc.minutes) || +data.slotMinutes || 30, step = +data.stepMinutes || +data.slotMinutes || 30;
+    var windows = clip(data.hours || {});
+    var booked = (data.booked || []).map(function(b){
+      var s = typeof b === 'string' ? b : b && b.start;
+      return s && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(s) ? { day: s.slice(0, 10), m: hm(s.slice(11, 16)), len: (b && +b.minutes) || minutes } : null;
     }).filter(Boolean);
-  }
-  function slotsFor(day){
-    var span = cfg.hours && cfg.hours[day.dow]; if (!span) return [];
-    var job = (cfg.services || []).reduce(function(a, s){ return s.id === SERVICE.id ? s.minutes : a; }, cfg.slotMinutes || 30);
-    var step = cfg.stepMinutes || 30, floor = Date.now() + (cfg.leadHours || 0) * 3600000, b = busy(), out = [];
-    for (var m = hm(span[0]); m + job <= hm(span[1]); m += step){
-      var key = day.key + 'T' + pad(Math.floor(m / 60)) + ':' + pad(m % 60), from = epoch(key);
-      if (from < floor) continue;
-      var to = from + job * 60000;
-      if (!b.some(function(x){ return x.from < to && from < x.to; })) out.push({ key: key, text: label(m), at: from });
+    var floor = Date.now() + LEAD_HOURS * 3600000, t = partsIn(Date.now(), PT), out = [];
+    for (var i = +data.minDaysAhead || 0; i < 15; i++){
+      var d = new Date(Date.UTC(t.y, t.mo - 1, t.d + i, 12));
+      var day = d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate());
+      (windows[d.getUTCDay()] || []).forEach(function(w){
+        for (var m = hm(w[0]); m + minutes <= hm(w[1]); m += step){
+          var key = day + 'T' + pad(Math.floor(m / 60)) + ':' + pad(m % 60), at = ptInstant(key);
+          if (at < floor) continue;
+          if (booked.some(function(b){ return b.day === day && m < b.m + b.len && b.m < m + minutes; })) continue;
+          out.push({ key: key, at: at, day: dayKey(at, tz), text: timeText(at) });
+        }
+      });
     }
     return out;
   }
-  function renderDays(){
-    var el = $('#days'), MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'], DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'], first = null;
-    el.innerHTML = '';
-    days().forEach(function(d){
-      var open = slotsFor(d).length > 0;
+
+  function render(data){
+    var slots = openSlots(data), byDay = {}, order = [];
+    slots.forEach(function(s){ if (!byDay[s.day]) { byDay[s.day] = []; order.push(s.day); } byDay[s.day].push(s); });
+    order = order.sort().slice(0, OPEN_DAYS);
+    var daysEl = $('#days'); daysEl.innerHTML = '';
+    if (!order.length){
+      $('#slots').innerHTML = '<p class="empty">No open times in the next few days. Text me at (916) 708-2759 and we\'ll find one.</p>';
+      return;
+    }
+    var today = dayKey(Date.now(), tz), tmrw = dayKey(Date.now() + 86400000, tz), first = null;
+    order.forEach(function(k){
+      var date = new Date(Date.UTC(+k.slice(0,4), +k.slice(5,7) - 1, +k.slice(8,10), 12));
       var b = document.createElement('button');
-      b.type = 'button'; b.className = 'day' + (open ? '' : ' off'); b.disabled = !open;
-      b.innerHTML = '<span class="dow">' + (d.i === 0 ? 'Today' : DOW[d.dow]) + '</span><span class="num">' + d.date.getUTCDate() + '</span><span class="mon">' + MON[d.date.getUTCMonth()] + '</span>';
-      b.addEventListener('click', function(){ pickDay(d, b); });
-      el.appendChild(b);
-      if (open && !first) first = [d, b];
+      b.type = 'button'; b.className = 'day';
+      b.innerHTML = '<span class="dow">' + (k === today ? 'Today' : k === tmrw ? 'Tmrw' : DOW[date.getUTCDay()]) + '</span><span class="num">' + date.getUTCDate() + '</span><span class="mon">' + MON[date.getUTCMonth()] + '</span>';
+      b.addEventListener('click', function(){ pickDay(byDay[k], b); });
+      daysEl.appendChild(b);
+      if (!first) first = [byDay[k], b];
     });
-    if (first) pickDay(first[0], first[1]);
-    else $('#slots').innerHTML = '<p class="empty">No open times in the next two weeks. Text me at (916) 708-2759 and we\'ll find one.</p>';
+    pickDay(first[0], first[1]);
+    $('#tznote').textContent = 'Times are in ' + (ZONES[tz] || tz.split('/').pop().replace(/_/g, ' ')) + ' time.';
+    $('#tznote').hidden = false;
+    $('#bookNext').hidden = false;
   }
-  function pickDay(d, btn){
-    picked = null; $('#picked').hidden = true;
-    $$('#days .day').forEach(function(x){ x.classList.toggle('sel', x === btn); });
+
+  function pickDay(list, btn){
+    Array.prototype.forEach.call(card.querySelectorAll('#days .day'), function(x){ x.classList.toggle('sel', x === btn); });
     var el = $('#slots'); el.innerHTML = '';
-    slotsFor(d).forEach(function(s){
-      var b = document.createElement('button');
-      b.type = 'button'; b.className = 'slot'; b.textContent = s.text;
-      b.addEventListener('click', function(){
-        picked = s;
-        $$('#slots .slot').forEach(function(x){ x.classList.toggle('sel', x === b); });
-        $('#picked').hidden = false;
-        if (window.bsTrack) bsTrack.event('PickedCallTime', { day: s.key.slice(0, 10), time: s.text });
-        $('#picked').innerHTML = esc(whenText(s)) + (localText(s) ? '<span>' + esc(localText(s)) + '</span>' : '');
+    list.forEach(function(s){
+      var a = document.createElement('a');
+      a.className = 'slot'; a.textContent = s.text;
+      a.href = CALL_PAGE + '?t=' + encodeURIComponent(s.key);
+      a.addEventListener('click', function(){
+        if (window.bsTrack) bsTrack.event('PickedCallTime', { day: s.key.slice(0, 10), time: s.key.slice(11) + ' PT' });
       });
-      el.appendChild(b);
+      el.appendChild(a);
     });
   }
-  function whenText(s){ return new Date(s.at).toLocaleDateString('en-US', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric' }) + ' at ' + s.text + ' Pacific'; }
-  function localText(s){
-    if (offset(s.at) === -new Date(s.at).getTimezoneOffset() * 60000) return '';
-    return 'That\'s ' + new Date(s.at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', timeZoneName: 'short' }) + ' your time.';
-  }
-  function showFallback(){
-    var v = function(id){ return $('#' + id).value.trim(); };
-    var body = 'Hi Elijah, I\'d like a call.' + (v('bName') ? ' I\'m ' + v('bName') : '') + (v('bBiz') ? ' with ' + v('bBiz') : '') + '.';
-    $('#bookSms').href = 'sms:+19167082759?&body=' + encodeURIComponent(body);
+
+  function fail(){
+    $('#slots').innerHTML = '';
     $('#bookFallback').classList.add('on');
   }
 
   fetch(API).then(function(r){ if (!r.ok) throw new Error(r.status); return r.json(); })
-    .then(function(j){ cfg = j; renderDays(); })
-    .catch(function(){ $('#slots').innerHTML = ''; $('#tznote').hidden = true; showFallback(); });
-
-  var started = false;
-  function startedForm(e){
-    if (started || !e.target.matches('input')) return;
-    started = true; if (window.bsTrack) bsTrack.event('StartedBookingForm');
-  }
-  form.addEventListener('focusin', startedForm);
-  form.addEventListener('input', startedForm);
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var err = $('#bookErr'); err.textContent = '';
-    if (!cfg){ showFallback(); err.textContent = 'The calendar isn\'t loading. Text me below instead.'; return; }
-    if (!picked){ err.textContent = 'Pick a time for the call.'; $('#days').scrollIntoView({ behavior: 'smooth', block: 'center' }); return; }
-    var need = [['bName','your name'],['bPhone','your mobile'],['bBiz','your business name']];
-    for (var i = 0; i < need.length; i++){
-      if (!$('#' + need[i][0]).value.trim()){ err.textContent = 'Add ' + need[i][1] + ' first.'; $('#' + need[i][0]).focus(); return; }
-    }
-    if ($('#bPhone').value.replace(/\D/g, '').length < 10){ err.textContent = 'That mobile number looks short.'; $('#bPhone').focus(); return; }
-
-    var biz = $('#bBiz').value.trim(), leak = $('#bLeak').value.trim();
-    var intake = [{ q: 'Business name', a: biz }, { q: 'Booked from', a: 'boyerscales.com homepage' }];
-    if (leak) intake.push({ q: 'What\'s costing them customers', a: leak });
-    if (window.bsTrack) intake = intake.concat(bsTrack.intake());
-    var btn = $('#bookBtn'); btn.disabled = true; btn.textContent = 'Booking your call';
-    var eventId = 'call-' + (window.bsTrack ? bsTrack.vid : 'x') + '-' + picked.key;
-    fetch(API + '/book', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({
-      name: $('#bName').value.trim(), phone: $('#bPhone').value.trim(), start: picked.key,
-      service_id: SERVICE.id, service: SERVICE.label + ': ' + biz, intake: intake,
-      meta: window.bsTrack ? bsTrack.meta(eventId) : undefined
-    }) })
-      .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ if (!r.ok || j.ok === false) throw new Error(j.error || 'That time was just taken. Pick another.'); }); })
-      .then(function(){
-        if (window.bsTrack){
-          bsTrack.user({ name: $('#bName').value, phone: $('#bPhone').value });
-          bsTrack.event('Schedule', { content_name: 'Free 30-minute call' }, { eventID: eventId });
-        }
-        form.hidden = true; $('#bookDone').hidden = false;
-        $('#bookWhen').textContent = 'I\'ll call you at ' + $('#bPhone').value.trim() + ' on ' + whenText(picked) + '.';
-      })
-      .catch(function(ex){
-        btn.disabled = false; btn.textContent = 'Book my free call';
-        if (window.bsTrack) bsTrack.event('BookingError', { reason: String(ex && ex.message || '').slice(0, 80) });
-        err.textContent = (ex && ex.message && !/fetch|network/i.test(ex.message)) ? ex.message : 'Couldn\'t book that. Try again, or text me at (916) 708-2759.';
-      });
-  });
+    .then(function(j){ try { render(j); } catch (e) { fail(); } })
+    .catch(fail);
 })();

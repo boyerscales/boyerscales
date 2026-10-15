@@ -187,7 +187,7 @@
       $('#ringK').textContent = d.k === '··' ? '' : d.k;
       $('#ringL').textContent = d.stage;
       const panel = $('#loopPanel');
-      $('#lpTag').innerHTML = `<i>${d.k === '··' ? '—' : d.k}</i>${esc(d.stage)}`;
+      $('#lpTag').innerHTML = `<i>${d.k}</i>${esc(d.stage)}`;
       $('#lpTitle').textContent = d.title;
       $('#lpBody').textContent = d.body;
       $('#lpVd').textContent = d.vd;

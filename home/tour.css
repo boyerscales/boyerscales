@@ -241,6 +241,9 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .rating .stars{color:#e8a317;letter-spacing:1px}
 .rating b{color:var(--ink);font-weight:600}
 .rating-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);padding-left:10px;border-left:1px solid var(--line)}
+.rating-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.rating-row .rating{margin-top:0}
+.rating-static:hover{border-color:var(--line-2)}
 .rule-note+.rule-note{margin-top:10px;padding-top:0;border-top:0}
 .built{margin-top:clamp(56px,7vw,90px)}
 .built-title{font-size:15px;font-family:var(--mono);font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:22px}
@@ -573,6 +576,11 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .book .slots{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:14px}
 .book .slot{border:1px solid var(--line-2);background:#fff;border-radius:10px;padding:11px 4px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;color:var(--ink)}
 .book .slot.sel{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.book a.slot{display:block;text-align:center;text-decoration:none}
+.book a.slot:hover{border-color:var(--ink)}
+.book .book-next{margin-top:6px}
+.start-grid .book{align-self:start}
+.book .fallback .btn{width:100%}
 .book .empty{grid-column:1/-1;color:var(--muted);font-size:15px;padding:10px 0;margin:0}
 .book .tznote{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin:14px 0 0}
 .book .picked{margin-top:14px;padding:14px 16px;border-radius:12px;background:#fff;border:1px solid var(--line-2);font-weight:600}
