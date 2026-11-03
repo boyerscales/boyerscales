@@ -599,10 +599,12 @@ a.url:hover{background:rgba(13,16,21,.08)}
 .book .fallback .btn{margin-top:10px}
 .book [hidden]{display:none!important}
 #pay{scroll-margin-top:calc(var(--nav-h,64px) + 16px);justify-content:flex-start}
-.guarantees{display:grid;gap:10px;margin-top:22px}
+.guarantees{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin-top:22px}
 .guarantee{padding:18px 20px;border-radius:14px;background:var(--card);border:1px solid var(--line-2);border-left:4px solid var(--ok)}
 .guarantee-head{font-weight:700;font-size:18px;letter-spacing:-.01em;color:var(--ink);margin-bottom:6px}
 .guarantee p:not(.guarantee-head){font-size:15px}
+.guarantee .entry-buy{max-width:100%;box-sizing:border-box}
+@media (max-width:420px){.guarantee .entry-buy{padding-left:18px;padding-right:18px}}
 .safe{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:12px}
 .safe li{position:relative;padding-left:28px;font-size:15px;color:var(--ink-2)}
 .safe li::before{content:"";position:absolute;left:2px;top:6px;width:14px;height:8px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
