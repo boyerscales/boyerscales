@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sleep Meta Check</title>
+<meta name="description" content="10 quick questions on your sleep habits. Get a score out of 100 and one habit to try tonight.">
+<meta name="theme-color" content="#0d0a26">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Manrope:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap">
+<style>body{margin:0;padding:0}:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+
+<style>
+/* Layout: one phone-width column, one question per screen like a night-sky app; matches the Sleep Meta deck (single dark look on purpose) */
+:root{
+  --bg:#0d0a26; --panel:#1a1640; --line:#2c2763; --fg:#f4f1ff; --muted:#aba5d9;
+  --m1:#b79cff; --m2:#6ef0c2; --m3:#7cc8ff; --m4:#ffd166; --m5:#ff9e7a;
+  --display:'Sora',Arial,sans-serif; --body:'Manrope',Arial,sans-serif; --mono:'Space Mono','Courier New',monospace;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:radial-gradient(circle at 85% 0%,#2b2066 0%,var(--bg) 60%) fixed,var(--bg);color:var(--fg);font-family:var(--body);font-size:18px;line-height:1.5}
+.wrap{max-width:560px;margin:0 auto;min-height:100%;box-sizing:border-box;padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:22px}
+.eyebrow{font:700 12px var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,10vw,52px);line-height:1.02;letter-spacing:-1px;margin:6px 0 0;text-wrap:balance}
+h2{font-family:var(--display);font-weight:600;font-size:clamp(23px,6.4vw,28px);line-height:1.2;margin:0;text-wrap:balance}
+p{margin:0}
+.muted{color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:700 12px var(--mono);letter-spacing:.5px;color:var(--bg);background:var(--c);border-radius:999px;padding:5px 11px}
+.btn{font:700 18px var(--body);color:var(--bg);background:var(--fg);border:0;border-radius:16px;padding:16px 20px;cursor:pointer;width:100%}
+.btn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
+button:focus-visible{outline:3px solid var(--m3);outline-offset:3px}
+.small{font-size:14px}
+
+.prog{display:flex;gap:4px}
+.prog i{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.prog i.on{background:var(--c)}
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.qtag{font:700 12px var(--mono);letter-spacing:1.5px;text-transform:uppercase;color:var(--c)}
+.back{font:700 14px var(--body);background:none;border:0;color:var(--muted);cursor:pointer;padding:6px 0}
+.opts{display:flex;flex-direction:column;gap:10px}
+.opt{font:600 17px var(--body);text-align:left;color:var(--fg);background:var(--panel);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px;cursor:pointer}
+@media (hover:hover){.opt:hover{border-color:var(--c)}}
+button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.opt[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 18%,var(--panel))}
+
+.score{display:flex;align-items:baseline;gap:10px}
+.score b{font-family:var(--display);font-weight:800;font-size:clamp(88px,26vw,120px);line-height:.95;letter-spacing:-4px;font-variant-numeric:tabular-nums}
+.score span{font:700 20px var(--mono);color:var(--muted)}
+.tier{font-family:var(--display);font-weight:600;font-size:26px}
+.bars{display:flex;flex-direction:column;gap:12px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
+.bar{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline}
+.bar .lab{font-weight:700;font-size:15px}
+.bar .lab small{font:400 12px var(--mono);color:var(--muted);letter-spacing:.5px;display:block}
+.bar .val{font:700 15px var(--mono);font-variant-numeric:tabular-nums}
+.bar .track{grid-column:1/-1;height:10px;border-radius:5px;background:var(--line);overflow:hidden}
+.bar .fill{height:100%;border-radius:5px;background:var(--c)}
+.tip{border:2px solid var(--c);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.tip .qtag{color:var(--c)}
+.tip h2{font-size:22px}
+.src{font-size:14px;color:var(--muted)}
+.fine{font-size:13px;color:var(--muted);text-align:center}
+@media (prefers-reduced-motion:no-preference){.fill{transition:width .7s ease}}
+</style>
+
+<main class="wrap" id="app" aria-live="polite"></main>
+
+<script>
+const M = {
+  1:{name:"Habits", who:"Viktoria", c:"var(--m1)"},
+  2:{name:"Writing before bed", who:"Chloe + Aisha", c:"var(--m2)"},
+  3:{name:"Sleep regularity", who:"Elijah + Viktoria", c:"var(--m3)"},
+  4:{name:"Caffeine", who:"Chloe + Aisha", c:"var(--m4)"},
+  5:{name:"Light", who:"Viktoria + Elijah", c:"var(--m5)"}
+};
+const S = [0,3,7,10];
+const Q = [
+  {m:1, q:"How many nights a week do you do the same few things before bed, in the same order?", o:["Almost never","1 or 2 nights","3 to 5 nights","6 or 7 nights"]},
+  {m:1, q:"Where is your phone when you fall asleep?", o:["In my hand, scrolling","In bed next to me","On the nightstand","Across the room or in another room"]},
+  {m:2, q:"How often do you write down tomorrow’s tasks before bed?", o:["Never","Rarely","A few nights a week","Most nights"]},
+  {m:2, q:"How often do you lie awake thinking about everything you have to do?", o:["Most nights","A few times a week","Once a week or less","Almost never"]},
+  {m:3, q:"How much later do you wake up on weekends than on weekdays?", o:["3 or more hours later","About 2 hours later","About 1 hour later","Within 30 minutes"]},
+  {m:3, q:"How much does your bedtime move around during the week?", o:["By 3 or more hours","By about 2 hours","By about an hour","It stays within 30 minutes"]},
+  {m:4, q:"On a normal day, when is your last coffee, energy drink, soda or caffeinated tea?", o:["Within 3 hours of bed","3 to 6 hours before bed","6 to 9 hours before bed","9+ hours before bed, or no caffeine"]},
+  {m:4, q:"When do you usually take pre-workout or an energy drink?", o:["After 5 PM","Between noon and 5 PM","Before noon","I don’t use them"]},
+  {m:5, q:"How soon after waking up do you get outside light?", o:["Rarely, I stay inside","Sometime in the afternoon","Within 2 hours","Within 30 minutes"]},
+  {m:5, q:"In the hour before bed, what are your lights and screens like?", o:["Bright lights and screens until I fall asleep","Screens on, lights dimmed","Dim lights, a little screen time","Dim lights, screens off"]}
+];
+const TIP = {
+  1:{h:"Move one cue tonight", t:"Charge your phone across the room, and tie a new habit to one you already have: when I brush my teeth, then I write my to-do list.", s:"Habits run on cues, not willpower (Gardner et al., 2024)."},
+  2:{h:"Write a 5-minute to-do list", t:"On paper, right before bed. Make it specific: “Read chapter 4 for bio at 3 PM,” not “study.”", s:"The to-do list group fell asleep about 9 minutes faster (Scullin et al., 2018), and a plan quiets unfinished tasks (Masicampo & Baumeister, 2011)."},
+  3:{h:"Pick one wake-up time", t:"Keep it within 30 minutes every day this week, weekends too. Choose a time that fits your schedule.", s:"Irregular sleepers had lower GPAs on the same total sleep (Phillips et al., 2017), and regularity predicted health better than sleep length (Windred et al., 2024)."},
+  4:{h:"Set a caffeine cutoff", t:"Finish your last regular coffee 8.8 hours before bed: 2 PM for an 11 PM bedtime. Pre-workout needs about 13 hours.", s:"Caffeine 6 hours before bed still cost over an hour of sleep (Drake et al., 2013; Gardiner et al., 2023)."},
+  5:{h:"Get morning light, dim the night", t:"Step outside within 30 minutes of waking, and dim lights and screens in the last hour before bed.", s:"A week of natural light moved body clocks about 2 hours earlier (Wright et al., 2013), and even one weekend moved them about 1.4 hours (Stothard et al., 2017)."}
+};
+const TIER = [
+  [85,"Sleep pro","You’re already doing most of what the research says. Keep it boring and consistent."],
+  [70,"Solid, with a few leaks","A couple of small changes would close the gap."],
+  [50,"Running on caffeine","Your habits are working against your sleep in a few places. Start with one."],
+  [0,"Sleep debt mode","Lots of room to improve, which means small changes will feel big. Start with one."]
+];
+
+const app = document.getElementById("app");
+let ans = Array(Q.length).fill(null), i = 0;
+try { const s = JSON.parse(localStorage.getItem("smc-ans") || "null"); if (Array.isArray(s) && s.length === Q.length) ans = s; } catch (e) {}
+const save = () => { try { localStorage.setItem("smc-ans", JSON.stringify(ans)); } catch (e) {} };
+const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function intro() {
+  app.style.removeProperty("--c");
+  app.innerHTML = `
+    <div><p class="eyebrow">Comms 5 · Sleep Meta</p><h1>How well are your sleep habits working?</h1></div>
+    <p>10 quick questions, about 2 minutes. You’ll get a score out of 100, a breakdown by each part of our speech, and one habit to try tonight.</p>
+    <div class="chips">${Object.entries(M).map(([k,v])=>`<span class="chip" style="--c:${v.c}">${k} ${v.name}</span>`).join("")}</div>
+    <button class="btn" id="start" type="button">Start</button>
+    <p class="fine">Answer for a normal week. Nothing is sent anywhere; only you see your answers. For class, not medical advice.</p>`;
+  document.getElementById("start").onclick = () => { i = 0; ask(); };
+}
+
+function ask() {
+  const q = Q[i], m = M[q.m];
+  app.style.setProperty("--c", m.c);
+  app.innerHTML = `
+    <div class="qhead">
+      <button class="back" id="back" type="button">${i ? "← Back" : "← Start"}</button>
+      <span class="eyebrow">${i+1} / ${Q.length}</span>
+    </div>
+    <div class="prog" aria-hidden="true">${Q.map((_,j)=>`<i class="${j<=i?"on":""}"></i>`).join("")}</div>
+    <p class="qtag">Main point ${q.m} · ${m.name}</p>
+    <h2>${esc(q.q)}</h2>
+    <div class="opts" role="group" aria-label="Answers">
+      ${q.o.map((o,j)=>`<button class="opt" type="button" id="o${i}-${j}" data-j="${j}" aria-pressed="${ans[i]===j}">${esc(o)}</button>`).join("")}
+    </div>`;
+  document.getElementById("back").onclick = () => { if (i) { i--; ask(); } else intro(); };
+  app.querySelectorAll(".opt").forEach(b => b.onclick = () => {
+    ans[i] = +b.dataset.j; save();
+    app.querySelectorAll(".opt").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
+    setTimeout(() => { if (i < Q.length - 1) { i++; ask(); } else result(); }, 180);
+  });
+  window.scrollTo(0, 0);
+}
+
+function result() {
+  const per = {1:0,2:0,3:0,4:0,5:0};
+  Q.forEach((q,j) => per[q.m] += S[ans[j] ?? 0]);
+  const total = Object.values(per).reduce((a,b)=>a+b,0);
+  const tier = TIER.find(t => total >= t[0]);
+  const low = Object.keys(per).reduce((a,b) => per[b] < per[a] ? b : a);
+  const tip = TIP[low];
+  app.style.setProperty("--c", M[low].c);
+  app.innerHTML = `
+    <p class="eyebrow">Your Sleep Meta score</p>
+    <div class="score"><b id="num">0</b><span>/ 100</span></div>
+    <div><p class="tier">${tier[1]}</p><p class="muted">${tier[2]}</p></div>
+    <div class="bars">
+      ${Object.entries(M).map(([k,v])=>`<div class="bar" style="--c:${v.c}"><span class="lab">${v.name}<small>POINT ${k} · ${v.who.toUpperCase()}</small></span><span class="val">${per[k]}/20</span><div class="track"><div class="fill" style="width:0%" data-w="${per[k]*5}"></div></div></div>`).join("")}
+    </div>
+    <div class="tip">
+      <p class="qtag">Try this tonight · Point ${low}</p>
+      <h2>${tip.h}</h2>
+      <p>${esc(tip.t)}</p>
+      <p class="src">${esc(tip.s)}</p>
+    </div>
+    <p class="muted small">When the presenters ask, shout out your score.</p>
+    <button class="btn ghost" id="again" type="button">Retake the quiz</button>
+    <p class="fine">For class only, not medical advice.</p>`;
+  requestAnimationFrame(() => requestAnimationFrame(() => app.querySelectorAll(".fill").forEach(f => f.style.width = f.dataset.w + "%")));
+  const num = document.getElementById("num");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) num.textContent = total;
+  else { const t0 = performance.now(); const step = t => { const k = Math.min(1,(t-t0)/700); num.textContent = Math.round(total*k); if (k<1) requestAnimationFrame(step); }; requestAnimationFrame(step); }
+  document.getElementById("again").onclick = () => { ans = Array(Q.length).fill(null); save(); i = 0; ask(); };
+}
+
+ans.every(a => a !== null) ? result() : intro();
+</script>
+</body>
+</html>

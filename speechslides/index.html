@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sleep Meta</title>
+<meta name="description" content="Sleep Meta: small habits for better nights and easier days. Comms 5 group presentation.">
+<meta name="theme-color" content="#0d0a26">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400..800&family=Manrope:wght@400..800&family=Space+Mono:wght@400;700&display=swap">
+<style>
+:root{--bg:#05040f;--fg:#f4f1ff;--muted:#aba5d9;--panel:#1a1640;--line:#2c2763}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--fg);font-family:Manrope,Arial,sans-serif;overflow:hidden;-webkit-tap-highlight-color:transparent}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{position:relative;width:1920px;height:1080px;flex:none;transform-origin:center center}
+#deck>section{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;color:#f4f1ff;font-family:Manrope,Arial,sans-serif;opacity:0;visibility:hidden;transition:opacity .35s ease,visibility 0s linear .35s}
+#deck>section.on{opacity:1;visibility:visible;transition:opacity .35s ease}
+#deck section h1,#deck section h2,#deck section h3,#deck section p{margin:0}
+#deck section aside{display:none}
+#deck x-shape,#deck x-icon{display:block;flex:none}
+#deck x-shape[kind=ellipse]{border-radius:50%}
+#deck x-shape[kind=arrow-right]{clip-path:polygon(0 30%,62% 30%,62% 0,100% 50%,62% 100%,62% 70%,0 70%)}
+#deck x-shape[kind=arrow-left]{clip-path:polygon(100% 30%,38% 30%,38% 0,0 50%,38% 100%,38% 70%,100% 70%)}
+#deck x-icon svg{width:100%;height:100%;display:block}
+@media (prefers-reduced-motion:reduce){#deck>section,#deck>section.on{transition:none}}
+
+#bar{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom,0px));transform:translateX(-50%);display:flex;align-items:center;gap:4px;padding:6px;background:rgba(26,22,64,.92);border:1px solid var(--line);border-radius:999px;transition:opacity .3s;z-index:5}
+body.idle #bar{opacity:0;pointer-events:none}
+#bar button{font:700 15px Manrope,Arial,sans-serif;color:var(--fg);background:transparent;border:0;border-radius:999px;min-width:44px;height:44px;padding:0 14px;cursor:pointer}
+#bar button:hover{background:var(--line)}
+#bar button:focus-visible{outline:3px solid #7cc8ff;outline-offset:2px}
+#bar button[aria-pressed=true]{background:var(--fg);color:#0d0a26}
+#count{font:700 14px 'Space Mono','Courier New',monospace;color:var(--muted);padding:0 8px;min-width:76px;text-align:center;font-variant-numeric:tabular-nums}
+#notes{position:fixed;left:50%;bottom:calc(max(16px,env(safe-area-inset-bottom,0px)) + 66px);transform:translateX(-50%);width:min(760px,calc(100vw - 32px));max-height:40vh;overflow:auto;white-space:pre-wrap;font-size:16px;line-height:1.5;background:rgba(13,10,38,.96);border:1px solid var(--line);border-radius:16px;padding:16px 18px;z-index:5}
+#notes[hidden]{display:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+</style>
+</head>
+<body>
+<main id="stage" aria-roledescription="slide deck" aria-label="Sleep Meta">
+<div id="deck">
+<section id="title" data-transition="fade" style="display:flex; flex-direction:column; gap:24px; padding:128px; background:linear-gradient(160deg, #0d0a26 0%, #1c1550 60%, #35205e 100%)">
+  <svg xmlns="http://www.w3.org/2000/svg" aria-label="" viewBox="0 0 1920 560" style="position:absolute; top:0; left:0; width:1920px; height:560px"><circle cx="1240" cy="90" r="3" fill="#F4F1FF" opacity="0.8"/><circle cx="1330" cy="210" r="2" fill="#F4F1FF" opacity="0.5"/><circle cx="1420" cy="140" r="4" fill="#B79CFF" opacity="0.9"/><circle cx="1510" cy="60" r="2" fill="#F4F1FF" opacity="0.6"/><circle cx="1580" cy="260" r="3" fill="#7CC8FF" opacity="0.8"/><circle cx="1660" cy="120" r="2" fill="#F4F1FF" opacity="0.7"/><circle cx="1740" cy="200" r="4" fill="#F4F1FF" opacity="0.9"/><circle cx="1820" cy="80" r="2" fill="#6EF0C2" opacity="0.8"/><circle cx="1290" cy="330" r="2" fill="#F4F1FF" opacity="0.4"/><circle cx="1470" cy="380" r="3" fill="#F4F1FF" opacity="0.6"/><circle cx="1690" cy="350" r="2" fill="#FFD166" opacity="0.8"/><circle cx="1850" cy="300" r="3" fill="#F4F1FF" opacity="0.5"/><circle cx="1180" cy="250" r="2" fill="#F4F1FF" opacity="0.5"/><circle cx="1560" cy="470" r="2" fill="#F4F1FF" opacity="0.4"/><circle cx="1790" cy="450" r="3" fill="#B79CFF" opacity="0.7"/><circle cx="1620" cy="170" r="70" fill="#F4F1FF" opacity="0.06"/><circle cx="1620" cy="170" r="44" fill="#ECE8FF"/><circle cx="1646" cy="152" r="40" fill="#1E1752"/></svg>
+  <p style="font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; letter-spacing:3px; color:#aba5d9">COMMS 5 · GROUP PRESENTATION</p>
+  <h1 style="font-family:Sora, Arial, sans-serif; font-size:120px; font-weight:800; line-height:1; letter-spacing:-3px; color:#f4f1ff">Sleep Meta</h1>
+  <p style="font-family:Manrope, Arial, sans-serif; font-size:40px; line-height:1.3; color:#f4f1ff">Small habits for better nights and easier days (that actually work)</p>
+  <div style="display:flex; flex-direction:row; flex-wrap:wrap; gap:16px">
+    <p style="padding:8px 18px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#0d0a26; background:#b79cff; border-radius:256px">01 HABITS</p>
+    <p style="padding:8px 18px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#0d0a26; background:#6ef0c2; border-radius:256px">02 WRITING BEFORE BED</p>
+    <p style="padding:8px 18px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#0d0a26; background:#7cc8ff; border-radius:256px">03 SLEEP REGULARITY</p>
+    <p style="padding:8px 18px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#0d0a26; background:#ffd166; border-radius:256px">04 CAFFEINE</p>
+    <p style="padding:8px 18px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#0d0a26; background:#FF9E7A; border-radius:256px">05 LIGHT</p>
+  </div>
+  <p style="position:absolute; top:610px; left:128px; width:1664px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; color:#aba5d9">ONE NIGHT OF SLEEP, STAGE BY STAGE</p>
+  <svg xmlns="http://www.w3.org/2000/svg" aria-label="A hypnogram: a stepped line showing one night moving between awake, light, deep and dream sleep" viewBox="0 0 1664 240" style="position:absolute; top:660px; left:128px; width:1664px; height:240px"><defs><linearGradient id="hyp" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B79CFF"/><stop offset="0.35" stop-color="#6EF0C2"/><stop offset="0.7" stop-color="#7CC8FF"/><stop offset="1" stop-color="#FFD166"/></linearGradient></defs><path d="M0 20 H120 V130 H260 V210 H420 V130 H520 V70 H640 V130 H760 V210 H880 V130 H1000 V70 H1160 V130 H1260 V210 H1340 V130 H1460 V70 H1560 V20 H1664" fill="none" stroke="url(#hyp)" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/></svg>
+  <p style="position:absolute; left:128px; bottom:64px; width:1664px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; letter-spacing:2px; color:#aba5d9">VIKTORIA · CHLOE · AISHA · ELIJAH</p>
+  <aside>VIKTORIA · Introduction (about 30 seconds)
+
+Tonight, set a caffeine cutoff and write tomorrow’s to-do list. In the morning, wake up at your usual time and get some sunlight. Small habits. Could they change how your whole day feels?
+
+Every college student in this room has woken up tired and already stressed about the day. We read nine peer-reviewed studies, from sleep labs to a study of 61,000 people, to find out what actually helps.
+
+Our thesis: practicing healthy habits can improve our physical and mental health. Today we’ll cover five things: how habits work, writing before bed, sleep regularity, caffeine, and light.</aside>
+</section>
+<section id="h1" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #2B2066 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#B79CFF;white-space:nowrap">MAIN HABITS</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:20px;background:#B79CFF;border-radius:6px;box-shadow:0px 0px 12px #B79CFF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">A habit starts with a cue</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">WHAT A HABIT IS</p>
+<div style="position:absolute;left:128px;top:310px;width:240px;display:flex;flex-direction:column;gap:6px;padding:24px;background:#1A1640;border:1px solid #2C2763;border-radius:24px"><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#B79CFF">Cue</p><p style="font-size:24px;line-height:1.35;color:#ABA5D9">a time, place or feeling</p></div>
+<x-shape kind="arrow-right" style="position:absolute;left:376px;top:375px;width:28px;height:20px;background:#B79CFF"></x-shape>
+<div style="position:absolute;left:412px;top:310px;width:240px;display:flex;flex-direction:column;gap:6px;padding:24px;background:#1A1640;border:1px solid #2C2763;border-radius:24px"><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#B79CFF">Urge</p><p style="font-size:24px;line-height:1.35;color:#ABA5D9">kicks in on its own</p></div>
+<x-shape kind="arrow-right" style="position:absolute;left:660px;top:375px;width:28px;height:20px;background:#B79CFF"></x-shape>
+<div style="position:absolute;left:696px;top:310px;width:240px;display:flex;flex-direction:column;gap:6px;padding:24px;background:#B79CFF;color:#0D0A26;border-radius:24px"><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">Action</p><p style="font-size:24px;line-height:1.35">no decision needed</p></div>
+<p style="position:absolute;left:128px;top:520px;width:808px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">The cue starts it, <span style="color:#B79CFF">not a decision.</span></p>
+<p style="position:absolute;left:128px;top:650px;width:808px;font-size:30px;line-height:1.4;color:#ABA5D9">A habit isn’t just something you do a lot. It’s an urge learned by repeating the same behavior in the same situation.</p>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:20px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">WHY WILLPOWER FAILS</p>
+<svg aria-label="Illustration: a dashed motivation line falls over time while a solid habit line stays level" width="728" height="200" viewBox="0 0 728 200"><line x1="0" y1="196" x2="728" y2="196" stroke="#2C2763" stroke-width="2"/><path d="M4 24 C 220 30, 360 150, 724 176" fill="none" stroke="#ABA5D9" stroke-width="5" stroke-dasharray="14 10" stroke-linecap="round"/><path d="M4 96 L724 96" fill="none" stroke="#B79CFF" stroke-width="7" stroke-linecap="round"/><circle cx="724" cy="96" r="10" fill="#B79CFF"/></svg>
+<div style="display:flex;flex-direction:row;gap:40px"><div style="display:flex;flex-direction:row;align-items:center;gap:12px"><div style="width:36px;height:5px;background:#ABA5D9"></div><p style="font-size:24px;color:#ABA5D9">Motivation fades</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:12px"><div style="width:36px;height:7px;background:#B79CFF"></div><p style="font-size:24px">Habit keeps running</p></div></div>
+<p style="font-size:30px;line-height:1.4">That’s why New Year’s resolutions fade. Gardner et al. (2024) call the mismatch between habit theory and real life the “theory-reality gap.”</p>
+</div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">VIKTORIA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">MAIN 1 OF 4</p></div>
+<aside>VIKTORIA · Main point 1, habits (about 40 seconds)
+
+Let’s start with how habits work. According to a 2024 review by Gardner and colleagues in Social and Personality Psychology Compass, a habit isn’t just something you do a lot. It’s an urge triggered automatically by a cue: a time, a place, or a feeling. The cue starts the behavior, not a decision.
+
+That’s why willpower alone usually fails. Motivation goes up and down, but a habit keeps running when motivation drops. Think about New Year’s resolutions. Everyone’s fired up on January first, and by February most are gone.</aside>
+</section>
+<section id="h2" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #2B2066 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#B79CFF;white-space:nowrap">MAIN HABITS</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:20px;background:#B79CFF;border-radius:6px;box-shadow:0px 0px 12px #B79CFF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Make the first step automatic</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">STARTING VS. DOING</p>
+<div style="position:absolute;left:128px;top:310px;width:320px;display:flex;flex-direction:column;gap:6px;padding:28px;background:#B79CFF;color:#0D0A26;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700">STARTING</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">Shoes on</p><p style="font-size:24px">automatic</p></div>
+<div style="position:absolute;left:464px;top:310px;width:472px;display:flex;flex-direction:column;gap:6px;padding:28px;border:2px dashed #B79CFF;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#B79CFF">DOING</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">The run itself</p><p style="font-size:24px;color:#ABA5D9">still takes effort</p></div>
+<p style="position:absolute;left:128px;top:540px;width:808px;font-size:30px;line-height:1.4"><b><span style="color:#B79CFF">Tip:</span></b> make the first step automatic and the rest gets easier.</p>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:20px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">SAME TIME, SAME PLACE</p>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Why is brushing your teeth automatic?</p>
+<p style="font-size:30px;line-height:1.4">Because the cue never changes: same time, same place, every single night.</p>
+<div style="display:flex;flex-direction:row;gap:16px"><div style="display:flex;flex-direction:row;align-items:center;gap:10px;padding:10px 20px;border:1px solid #B79CFF;border-radius:999px"><x-icon name="Clock" style="color:#B79CFF;width:28px;height:28px"></x-icon><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700">SAME TIME</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:10px;padding:10px 20px;border:1px solid #B79CFF;border-radius:999px"><x-icon name="Home" style="color:#B79CFF;width:28px;height:28px"></x-icon><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700">SAME PLACE</p></div></div>
+<p style="font-size:30px;line-height:1.4;color:#ABA5D9">Habits form when the context stays the same, and bedtime is full of contexts like this.</p>
+</div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">VIKTORIA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">MAIN 2 OF 4</p></div>
+<aside>VIKTORIA · Main point 1, habits (about 20 seconds)
+
+Gardner and colleagues say the trick is to make the first step automatic. Putting on your running shoes can be automatic even if the run is hard, and once they’re on, you’re more likely to go.
+
+Habits also form best when the context stays the same. Brushing your teeth is automatic because it’s the same time and place every night.</aside>
+</section>
+<section id="h3" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #2B2066 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#B79CFF;white-space:nowrap">MAIN HABITS</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:20px;background:#B79CFF;border-radius:6px;box-shadow:0px 0px 12px #B79CFF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Give it weeks, plus an if-then plan</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">HOW LONG IT TAKES</p>
+<p style="position:absolute;left:128px;top:290px;width:808px;font-family:'Sora', Arial, sans-serif;font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.1;color:#B79CFF">Weeks,<br>not days</p>
+<p style="position:absolute;left:128px;top:580px;width:808px;font-size:30px;line-height:1.4">Habits build slowly with repetition. Missing one day won’t ruin your progress.</p>
+<p style="position:absolute;left:128px;top:720px;width:808px;font-size:30px;line-height:1.4;color:#ABA5D9">(Gardner et al., 2024)</p>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:20px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">IF-THEN PLANS</p>
+<div style="display:flex;flex-direction:column;gap:8px"><p style="align-self:start;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#B79CFF;color:#0D0A26;padding:4px 14px;border-radius:8px">WHEN</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">I brush my teeth at night,</p></div>
+<div style="display:flex;flex-direction:column;gap:8px"><p style="align-self:start;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#B79CFF;color:#0D0A26;padding:4px 14px;border-radius:8px">THEN</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">I write tomorrow’s to-do list.</p></div>
+<p style="font-size:30px;line-height:1.4;color:#ABA5D9">“When X happens, I do Y.” Tying a new habit to a cue you already have makes it easier to stick with.</p>
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#6EF0C2">NEXT UP → MAIN POINT 2: WRITING BEFORE BED</p>
+</div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">VIKTORIA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">MAIN 3 OF 4</p></div>
+<aside>VIKTORIA · Main point 1, habits (about 20 seconds)
+
+Habits build slowly. Give it weeks, and don’t worry about missing a day.
+
+To build one, use an if-then plan: when I brush my teeth, then I write tomorrow’s to-do list. You’re tying the new habit to a cue you already have.</aside>
+</section>
+<section id="h4" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #2B2066 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#B79CFF;white-space:nowrap">MAIN HABITS</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:20px;background:#B79CFF;border-radius:6px;box-shadow:0px 0px 12px #B79CFF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Break the bad, reward the good</h2>
+<div style="position:absolute;left:128px;top:250px;width:808px;height:380px;display:flex;flex-direction:column;gap:12px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">BREAKING BAD HABITS</p>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><x-icon name="Lock" style="color:#B79CFF;width:44px;height:44px"></x-icon><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">Remove the cue</p></div>
+<p style="font-size:30px;line-height:1.4">Keep your phone off the bed so it can’t trigger scrolling.</p>
+<p style="font-size:30px;line-height:1.4;color:#ABA5D9">New semester or a move? The old cues are gone, so it’s a great time to change.</p>
+</div>
+<div style="position:absolute;left:984px;top:250px;width:808px;height:380px;display:flex;flex-direction:column;gap:12px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#B79CFF">MAKE IT REWARDING</p>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><x-icon name="Star" style="color:#B79CFF;width:44px;height:44px"></x-icon><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">Make it feel good</p></div>
+<p style="font-size:30px;line-height:1.4">Behaviors that feel good are easier to repeat.</p>
+<p style="font-size:30px;line-height:1.4;color:#ABA5D9">Make new routines enjoyable early on: good music, a comfy spot, a nice notebook.</p>
+</div>
+<div style="position:absolute;left:128px;top:680px;width:1664px;display:flex;flex-direction:column;gap:20px">
+<p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">Good sleep is basically a bundle of habits:</p>
+<div style="display:flex;flex-direction:row;gap:16px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#6EF0C2;color:#0D0A26;padding:8px 18px;border-radius:999px">02 WRITING BEFORE BED</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#7CC8FF;color:#0D0A26;padding:8px 18px;border-radius:999px">03 SLEEP REGULARITY</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#FFD166;color:#0D0A26;padding:8px 18px;border-radius:999px">04 CAFFEINE</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#FF9E7A;color:#0D0A26;padding:8px 18px;border-radius:999px">05 LIGHT</p></div>
+</div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">VIKTORIA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">MAIN 4 OF 4</p></div>
+<aside>VIKTORIA · Main point 1, habits (about 30 seconds)
+
+To break a bad habit, remove the cue. If you scroll in bed every night, charge your phone across the room. A new semester is a great time to reset, because your old cues are gone.
+
+And make good habits rewarding: music you like, a comfy spot, a notebook you actually want to write in.
+
+So good sleep is really a bundle of small habits.
+
+Next: Chloe.</aside>
+</section>
+<section id="w1" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #0D3A3C 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#6EF0C2;white-space:nowrap">MAIN WRITING BEFORE BED</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:20px;background:#6EF0C2;border-radius:6px;box-shadow:0px 0px 12px #6EF0C2"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">What if 5 minutes with a pen helped?</h2>
+<p style="position:absolute;left:128px;top:250px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#6EF0C2">THE HOOK</p>
+<p style="position:absolute;left:128px;top:296px;width:1664px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Almost everyone has lain in bed thinking about tomorrow.</p>
+<svg aria-label="A brain-wave line, like a sleep lab recording" width="1664" height="80" viewBox="0 0 1664 80" style="position:absolute;left:128px;top:374px;width:1664px;height:80px"><path d="M0 40 L60 40 L75 18 L90 62 L105 26 L120 52 L135 40 L220 40 L232 30 L244 50 L256 34 L268 46 L280 40 L380 40 L395 10 L410 70 L425 20 L440 60 L455 32 L470 48 L485 40 L600 40 L612 32 L624 48 L636 36 L648 44 L660 40 L780 40 L795 14 L810 66 L825 24 L840 56 L855 40 L960 40 L972 30 L984 50 L996 36 L1008 44 L1020 40 L1140 40 L1155 12 L1170 68 L1185 22 L1200 58 L1215 34 L1230 46 L1245 40 L1360 40 L1372 32 L1384 48 L1396 38 L1408 42 L1420 40 L1664 40" fill="none" stroke="#6EF0C2" stroke-width="4" stroke-linejoin="round" opacity="0.7"/></svg>
+<p style="position:absolute;left:128px;top:490px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#6EF0C2">THE STUDY (SCULLIN ET AL., 2018)</p>
+<div style="position:absolute;left:128px;top:540px;width:538px;display:flex;flex-direction:column;gap:8px;padding:36px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#6EF0C2">57</p><p style="font-size:30px;line-height:1.4">young adults in a sleep lab</p></div>
+<div style="position:absolute;left:691px;top:540px;width:538px;display:flex;flex-direction:column;gap:8px;padding:36px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#6EF0C2">Brain waves</p><p style="font-size:30px;line-height:1.4">measured all night, not self-reports</p></div>
+<div style="position:absolute;left:1254px;top:540px;width:538px;display:flex;flex-direction:column;gap:8px;padding:36px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#6EF0C2">5 min</p><p style="font-size:30px;line-height:1.4">writing a to-do list, or a list of things already done</p></div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">CHLOE</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-THE STUDY</p></div>
+<aside>CHLOE · Main point 2, sub-point 1 (with w2: 30 to 45 seconds)
+
+Now that we know how habits work, let’s look at the first one: writing before bed. Almost everyone has lain awake thinking about tomorrow.
+
+In a 2018 study in the Journal of Experimental Psychology, Scullin and colleagues brought 57 young adults into a sleep lab and tracked their brain waves all night. Before bed, half wrote a to-do list and half wrote what they had already finished.</aside>
+</section>
+<section id="w2" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #0D3A3C 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#6EF0C2;white-space:nowrap">MAIN WRITING BEFORE BED</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:20px;background:#6EF0C2;border-radius:6px;box-shadow:0px 0px 12px #6EF0C2"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Specific to-do lists win</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#6EF0C2">THE RESULT</p>
+<p style="position:absolute;left:128px;top:290px;width:808px;font-family:'Sora', Arial, sans-serif;font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.1;color:#6EF0C2">~9 min</p>
+<p style="position:absolute;left:128px;top:432px;width:808px;font-size:30px;line-height:1.4">faster to fall asleep for the to-do list group</p>
+<div style="position:absolute;left:128px;top:520px;width:808px;display:flex;flex-direction:row;align-items:center;gap:20px;padding:32px;background:#1A1640;border:1px solid #2C2763;border-radius:24px"><x-icon name="Lightbulb" style="color:#6EF0C2;width:48px;height:48px"></x-icon><p style="font-size:30px;line-height:1.4">Most people guess listing what you already finished is the calming option. <b>It wasn’t.</b></p></div>
+<p style="position:absolute;left:984px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#6EF0C2">SPECIFICITY MATTERS</p>
+<div style="position:absolute;left:984px;top:300px;width:808px;display:flex;flex-direction:column;gap:8px;padding:36px;border:2px dashed #4A447E;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#ABA5D9">VAGUE · HELPS LESS</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#ABA5D9">“Study”</p></div>
+<div style="position:absolute;left:984px;top:500px;width:808px;display:flex;flex-direction:column;gap:8px;padding:36px;background:#6EF0C2;color:#0D0A26;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700">SPECIFIC · HELPS MORE</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">“Read chapter 4 for bio at 3 PM”</p></div>
+<p style="position:absolute;left:984px;top:740px;width:808px;font-size:30px;line-height:1.4;color:#ABA5D9">The more specific the list, the faster people fell asleep.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">CHLOE</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-THE RESULT</p></div>
+<aside>CHLOE · Main point 2, sub-point 1 (continued)
+
+The to-do list group fell asleep about nine minutes faster.
+
+And the more specific the list, the faster they fell asleep.
+
+Next: Aisha.</aside>
+</section>
+<section id="w3" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #0D3A3C 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#6EF0C2;white-space:nowrap">MAIN WRITING BEFORE BED</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:20px;background:#6EF0C2;border-radius:6px;box-shadow:0px 0px 12px #6EF0C2"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Unfinished tasks nag you</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#6EF0C2">WHY IT WORKS</p>
+<p style="position:absolute;left:150px;top:310px;width:240px;font-size:30px;font-style:italic;text-align:center;white-space:nowrap;color:#ABA5D9;background:#1A1640;border:1px solid #2C2763;border-radius:999px;padding:10px 24px">the bio lab…</p>
+<p style="position:absolute;left:480px;top:370px;width:230px;font-size:30px;font-style:italic;text-align:center;white-space:nowrap;color:#ABA5D9;background:#1A1640;border:1px solid #2C2763;border-radius:999px;padding:10px 24px">that email</p>
+<p style="position:absolute;left:190px;top:440px;width:250px;font-size:30px;font-style:italic;text-align:center;white-space:nowrap;color:#ABA5D9;background:#1A1640;border:1px solid #2C2763;border-radius:999px;padding:10px 24px">quiz Friday?</p>
+<p style="position:absolute;left:470px;top:510px;width:310px;font-size:30px;font-style:italic;text-align:center;white-space:nowrap;color:#ABA5D9;background:#1A1640;border:1px solid #2C2763;border-radius:999px;padding:10px 24px">did I submit it?</p>
+<p style="position:absolute;left:170px;top:580px;width:240px;font-size:30px;font-style:italic;text-align:center;white-space:nowrap;color:#ABA5D9;background:#1A1640;border:1px solid #2C2763;border-radius:999px;padding:10px 24px">work shift…</p>
+<p style="position:absolute;left:128px;top:680px;width:808px;font-size:30px;line-height:1.4">Masicampo &amp; Baumeister (2011): unfinished tasks keep popping into your head and get in the way of other thinking. <span style="color:#ABA5D9">(Related to the Zeigarnik effect.)</span></p>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:20px;padding:40px;background:#6EF0C2;color:#0D0A26;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px">THE KEY FINDING</p>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;letter-spacing:-1px;line-height:1.1">“Consider it done.”</p>
+<p style="font-size:30px;line-height:1.4">Making a specific plan for a task stopped those intrusive thoughts, even though the task wasn’t done yet.</p>
+<p style="font-size:30px;font-weight:700;line-height:1.4">Your brain treats a plan almost like progress.</p>
+</div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">AISHA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-WHY IT WORKS</p></div>
+<aside>AISHA · Main point 2, sub-point 2 (with w4: 30 to 45 seconds)
+
+But why would a list help at all? In 2011, Masicampo and Baumeister, in the Journal of Personality and Social Psychology, found that unfinished tasks keep popping into your head and crowd out other thinking.
+
+Their key finding is in their title: “Consider it done.” Making a specific plan for a task stopped those nagging thoughts, even though the task wasn’t done. Your brain treats a plan almost like progress.</aside>
+</section>
+<section id="w4" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #0D3A3C 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#6EF0C2;white-space:nowrap">MAIN WRITING BEFORE BED</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:20px;background:#6EF0C2;border-radius:6px;box-shadow:0px 0px 12px #6EF0C2"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Hand your tasks to the paper</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#6EF0C2">CONNECTING THE STUDIES</p>
+<div style="position:absolute;left:128px;top:310px;width:320px;display:flex;flex-direction:column;gap:8px;padding:32px;background:#1A1640;border:1px solid #2C2763;border-radius:24px"><x-icon name="Lightbulb" style="color:#ABA5D9;width:48px;height:48px"></x-icon><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">Your head</p><p style="font-size:24px;color:#ABA5D9">rehearsing tasks all night</p></div>
+<x-shape kind="arrow-right" style="position:absolute;left:472px;top:400px;width:80px;height:40px;background:#6EF0C2"></x-shape>
+<div style="position:absolute;left:576px;top:310px;width:360px;display:flex;flex-direction:column;gap:8px;padding:32px;background:#6EF0C2;color:#0D0A26;border-radius:24px"><x-icon name="Book" style="color:#0D0A26;width:48px;height:48px"></x-icon><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">The paper</p><p style="font-size:24px">holds them for you</p></div>
+<p style="position:absolute;left:128px;top:560px;width:808px;font-size:30px;line-height:1.4">Masicampo explains why Scullin’s result happened. The list takes your open tasks, so your mind stops rehearsing them at night.</p>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:20px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#6EF0C2">TONIGHT’S ROUTINE</p>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><x-icon name="CheckCircle" style="color:#6EF0C2;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35">5 minutes, that’s it</p></div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><x-icon name="CheckCircle" style="color:#6EF0C2;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35">On paper, not your phone</p></div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><x-icon name="CheckCircle" style="color:#6EF0C2;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35">Specific tasks, each with a time</p></div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:16px"><x-icon name="CheckCircle" style="color:#6EF0C2;width:40px;height:40px"></x-icon><p style="font-size:30px;line-height:1.35">Right after a bedtime cue, like brushing your teeth</p></div>
+</div>
+<p style="position:absolute;left:128px;top:760px;width:1664px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">A cue plus a small action: <span style="color:#B79CFF">that’s topic 1 all over again.</span></p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">AISHA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-TRY IT TONIGHT</p></div>
+<aside>AISHA · Main point 2, sub-point 2 (continued)
+
+So the paper holds your tasks for you, and your mind stops rehearsing them at night.
+
+So tonight, take five minutes, on paper, not your phone, and write specific tasks with times.
+
+Next: Elijah.</aside>
+</section>
+<section id="r1" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #10305E 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#7CC8FF;white-space:nowrap">MAIN SLEEP REGULARITY</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:20px;background:#7CC8FF;border-radius:6px;box-shadow:0px 0px 12px #7CC8FF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Is “8 hours” the whole story?</h2>
+<p style="position:absolute;left:128px;top:250px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">THE HOOK</p>
+<p style="position:absolute;left:128px;top:296px;width:1664px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Everyone says “get 8 hours.” But <span style="color:#7CC8FF">when</span> you sleep may matter just as much.</p>
+<p style="position:absolute;left:128px;top:420px;width:620px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">THE HARVARD STUDY</p>
+<p style="position:absolute;left:128px;top:466px;width:620px;font-size:30px;line-height:1.4">Phillips et al. (2017) tracked 61 undergrads for about a month and gave each a <b>Sleep Regularity Index</b>: how likely you are to be asleep or awake at the same time on back-to-back days.</p>
+<p style="position:absolute;left:800px;top:420px;width:992px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#7CC8FF">HIGH REGULARITY</p>
+<p style="position:absolute;left:800px;top:462px;width:110px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;line-height:44px;color:#ABA5D9">DAY 1<br>DAY 2</p>
+<svg aria-label="Two days of sleep for a regular sleeper: the sleep bars line up at the same time both days" width="872" height="74" viewBox="0 0 872 74" style="position:absolute;left:920px;top:466px;width:872px;height:74px"><rect x="0" y="0" width="872" height="30" rx="15" fill="#262150"/><rect x="182" y="0" width="291" height="30" rx="15" fill="#7CC8FF"/><rect x="0" y="44" width="872" height="30" rx="15" fill="#262150"/><rect x="182" y="44" width="291" height="30" rx="15" fill="#7CC8FF"/></svg>
+<p style="position:absolute;left:800px;top:580px;width:992px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#FFD166">LOW REGULARITY</p>
+<p style="position:absolute;left:800px;top:622px;width:110px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;line-height:44px;color:#ABA5D9">DAY 1<br>DAY 2</p>
+<svg aria-label="An irregular sleeper's first day, sleeping at the same time as the regular sleeper" width="872" height="74" viewBox="0 0 872 74" style="position:absolute;left:920px;top:626px;width:872px;height:74px"><rect x="0" y="0" width="872" height="30" rx="15" fill="#262150"/><rect x="182" y="0" width="291" height="30" rx="15" fill="#FFD166"/><rect x="0" y="44" width="872" height="30" rx="15" fill="#262150"/></svg>
+<div style="position:absolute;left:1211px;top:670px;width:327px;height:30px;background:#FFD166;border-radius:15px"></div>
+<p style="position:absolute;left:920px;top:730px;width:120px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">6 PM</p>
+<p style="position:absolute;left:1058px;top:730px;width:160px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9;text-align:center">12 AM</p>
+<p style="position:absolute;left:1296px;top:730px;width:120px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9;text-align:center">6 AM</p>
+<p style="position:absolute;left:1672px;top:730px;width:120px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9;text-align:right">6 PM</p>
+<p style="position:absolute;left:920px;top:790px;width:872px;font-size:24px;color:#ABA5D9">Bars = when you’re asleep. Same bars two days in a row = a high score.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">ELIJAH</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-THE HARVARD STUDY</p></div>
+<aside>ELIJAH · Main point 3, sub-point 1 (with r2: 30 to 45 seconds)
+
+Writing helps you fall asleep, but when you fall asleep matters too. That’s sleep regularity.
+
+In 2017, Phillips and colleagues at Harvard tracked 61 undergrads for about a month, published in Scientific Reports. They gave each student a Sleep Regularity Index: how likely you are to be asleep or awake at the same times on back-to-back days.</aside>
+</section>
+<section id="r2" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #10305E 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#7CC8FF;white-space:nowrap">MAIN SLEEP REGULARITY</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:20px;background:#7CC8FF;border-radius:6px;box-shadow:0px 0px 12px #7CC8FF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Same sleep, lower grades</h2>
+<div style="position:absolute;left:128px;top:250px;width:808px;display:flex;flex-direction:column;gap:20px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">GRADES</p>
+<div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center;padding:0px 0px 16px 0px;border-bottom:1px solid #2C2763"><p style="font-size:30px;color:#ABA5D9">Total sleep</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700">About the same</p></div>
+<div style="display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-size:30px;color:#ABA5D9">GPA</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#FFD166">Lower</p></div>
+<p style="font-size:30px;line-height:1.4">Irregular sleepers got about as much sleep as everyone else. <b>Timing was the difference, not amount.</b></p>
+</div>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:12px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">SHIFTED BODY CLOCKS</p>
+<p style="font-family:'Sora', Arial, sans-serif;font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.1;color:#7CC8FF">+2.5 hrs</p>
+<p style="font-size:30px;line-height:1.4">later melatonin, the “time for sleep” hormone, in irregular sleepers</p>
+</div>
+<div style="position:absolute;left:984px;top:640px;width:392px;display:flex;flex-direction:column;gap:4px;padding:24px 28px;background:#7CC8FF;color:#0D0A26;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700">CLASS STARTS</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:64px;font-weight:700;line-height:1.1">9:00</p></div>
+<div style="position:absolute;left:1400px;top:640px;width:392px;display:flex;flex-direction:column;gap:4px;padding:24px 28px;border:2px dashed #7CC8FF;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#7CC8FF">YOUR BODY FEELS</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:64px;font-weight:700;line-height:1.1">6:30</p></div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">ELIJAH</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-THE RESULT</p></div>
+<aside>ELIJAH · Main point 3, sub-point 1 (continued)
+
+Irregular sleepers had lower GPAs, even though they got about the same total sleep. The difference was when they slept, not how much.
+
+Their melatonin, the hormone that says it’s time to sleep, came on about two and a half hours later. That’s like sitting in a 9 AM class while your body thinks it’s 6:30.
+
+Next: Viktoria.</aside>
+</section>
+<section id="r3" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #10305E 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#7CC8FF;white-space:nowrap">MAIN SLEEP REGULARITY</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:20px;background:#7CC8FF;border-radius:6px;box-shadow:0px 0px 12px #7CC8FF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">60,000 people, one big answer</h2>
+<p style="position:absolute;left:128px;top:250px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">THE BIG STUDY (WINDRED ET AL., 2024)</p>
+<div style="position:absolute;left:128px;top:300px;width:538px;display:flex;flex-direction:column;gap:8px;padding:36px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#7CC8FF">~61,000</p><p style="font-size:30px;line-height:1.4">adults in the UK Biobank</p></div>
+<div style="position:absolute;left:691px;top:300px;width:538px;display:flex;flex-direction:column;gap:8px;padding:36px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#7CC8FF">7 days</p><p style="font-size:30px;line-height:1.4">wearing activity trackers</p></div>
+<div style="position:absolute;left:1254px;top:300px;width:538px;display:flex;flex-direction:column;gap:8px;padding:36px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#7CC8FF">~6 yrs</p><p style="font-size:30px;line-height:1.4">followed afterward, on average</p></div>
+<p style="position:absolute;left:128px;top:560px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">THE RESULT</p>
+<div style="position:absolute;left:128px;top:610px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:48px">
+<p style="font-family:'Sora', Arial, sans-serif;font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.1;color:#7CC8FF;white-space:nowrap">20–48%</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px"><p style="font-size:30px;line-height:1.4">lower risk of dying from any cause for more regular sleepers, compared with the least regular 20%</p><p style="align-self:start;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#7CC8FF;color:#0D0A26;padding:6px 16px;border-radius:8px">REGULARITY BEAT SLEEP LENGTH AS A PREDICTOR</p></div>
+</div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">VIKTORIA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-61,000 PEOPLE</p></div>
+<aside>VIKTORIA · Main point 3, sub-point 2 (with r4: 30 to 45 seconds)
+
+And it goes way beyond grades. In 2024, Windred and colleagues published a study in the journal Sleep using about 61,000 adults from the UK Biobank. Each wore an activity tracker for a week, and researchers followed them for about six years.
+
+More regular sleepers had a 20 to 48 percent lower risk of dying from any cause than the least regular 20 percent, and regularity predicted that risk better than sleep length.</aside>
+</section>
+<section id="r4" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #10305E 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#7CC8FF;white-space:nowrap">MAIN SLEEP REGULARITY</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:20px;background:#7CC8FF;border-radius:6px;box-shadow:0px 0px 12px #7CC8FF"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Keep your body clock in sync</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">WHY IT MATTERS</p>
+<x-shape kind="ellipse" style="position:absolute;left:128px;top:310px;width:200px;height:200px;background:#1A1640;border:4px solid #7CC8FF;box-shadow:0px 0px 24px #10305E"></x-shape>
+<p style="position:absolute;left:128px;top:376px;width:200px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;line-height:1.4;text-align:center;color:#7CC8FF">BODY<br>CLOCK</p>
+<x-connector x1="330" y1="410" x2="400" y2="335" head="none" style="color:#7CC8FF;border-width:3px"></x-connector>
+<p style="position:absolute;left:400px;top:310px;width:300px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;padding:8px 20px;border:2px solid #7CC8FF;border-radius:999px">HORMONES</p>
+<x-connector x1="330" y1="410" x2="400" y2="412" head="none" style="color:#7CC8FF;border-width:3px"></x-connector>
+<p style="position:absolute;left:400px;top:387px;width:300px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;padding:8px 20px;border:2px solid #7CC8FF;border-radius:999px">METABOLISM</p>
+<x-connector x1="330" y1="410" x2="400" y2="489" head="none" style="color:#7CC8FF;border-width:3px"></x-connector>
+<p style="position:absolute;left:400px;top:464px;width:300px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;padding:8px 20px;border:2px solid #7CC8FF;border-radius:999px">ALERTNESS</p>
+<p style="position:absolute;left:128px;top:570px;width:808px;font-size:30px;line-height:1.4">Your body clock coordinates all of these. Keep changing your sleep times and they fall out of sync, <b>like jet lag every week.</b></p>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:14px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px">
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#7CC8FF">THE TAKEAWAY</p>
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SET ONE WAKE-UP TIME</p>
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:120px;font-weight:700;line-height:1.1;color:#7CC8FF">7:00</p>
+<p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700">± 30 MIN · EVERY DAY · WEEKENDS TOO</p>
+<p style="font-size:30px;line-height:1.4;color:#ABA5D9">Pick your own time. Consistency is the habit you’re building, which ties right back to topic 1.</p>
+</div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">VIKTORIA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-THE TAKEAWAY</p></div>
+<aside>VIKTORIA · Main point 3, sub-point 2 (continued)
+
+Your body clock keeps your hormones, metabolism and alertness in sync.
+
+So pick one wake-up time and keep it within 30 minutes, weekends too.
+
+Next: Chloe.</aside>
+</section>
+<section id="c1" data-transition="fade" style="display:flex; flex-direction:column; gap:16px; padding:128px 128px 160px; background:radial-gradient(circle at 92% 0%, #3d2e0e 0%, #0d0a26 55%)">
+  <div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#FFD166;white-space:nowrap">MAIN CAFFEINE</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:10px;background:#7CC8FF;border-radius:5px"></div><div style="flex:1;height:20px;background:#FFD166;border-radius:6px;box-shadow:0px 0px 12px #FFD166"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+  <h2 style="font-family:Sora, Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; letter-spacing:-1px; color:#f4f1ff">Caffeine hides your sleep pressure</h2>
+  <p style="position:absolute; top:250px; left:128px; width:808px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; letter-spacing:1px; color:#ffd166">HOW CAFFEINE WORKS</p>
+  <p style="position:absolute; top:296px; left:128px; width:808px; font-family:Manrope, Arial, sans-serif; font-size:30px; line-height:1.4; color:#f4f1ff">Adenosine builds up all day. That’s your “sleep pressure,” the thing that makes you sleepy at night.</p>
+  <div style="position:absolute; top:440px; left:128px; width:808px; height:44px; display:flex; flex-direction:column; background:linear-gradient(90deg, #262150 0%, #b79cff 100%); border-radius:22px">
+  </div>
+  <p style="position:absolute; top:496px; left:128px; width:300px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; color:#aba5d9">WAKE UP</p>
+  <p style="position:absolute; top:496px; left:636px; width:300px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; text-align:right; color:#aba5d9">BEDTIME</p>
+  <p style="position:absolute; top:432px; left:440px; width:420px; padding:10px 16px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; text-align:center; white-space:nowrap; color:#0d0a26; background:#ffd166; border-radius:256px; box-shadow:0 6px 20px #00000066">CAFFEINE BLOCKS IT</p>
+  <p style="position:absolute; top:570px; left:128px; width:808px; font-family:Manrope, Arial, sans-serif; font-size:30px; line-height:1.4; color:#aba5d9">You don’t feel tired, but the pressure is still there. And caffeine stays in your system for hours, longer than most people think.</p>
+  <div style="position:absolute; top:250px; left:984px; width:808px; display:flex; flex-direction:column; gap:20px; padding:40px; background:#1a1640; border:1px solid #2c2763; border-radius:28px">
+    <p style="font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; letter-spacing:1px; color:#ffd166">THE DRAKE STUDY (2013)</p>
+    <p style="font-family:Manrope, Arial, sans-serif; font-size:30px; line-height:1.4; color:#f4f1ff">400 mg of caffeine, about 4 cups of coffee, taken:</p>
+    <div style="display:flex; flex-direction:row; gap:16px">
+      <p style="padding:8px 16px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#f4f1ff; border:2px solid #ffd166; border-radius:256px">AT BEDTIME</p>
+      <p style="padding:8px 16px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#f4f1ff; border:2px solid #ffd166; border-radius:256px">3 HRS BEFORE</p>
+      <p style="padding:8px 16px; font-family:'Space Mono', 'Courier New', monospace; font-size:24px; font-weight:700; color:#0d0a26; background:#ffd166; border-radius:256px">6 HRS BEFORE</p>
+    </div>
+    <p style="font-family:Sora, Arial, sans-serif; font-size:120px; font-weight:800; line-height:1.1; letter-spacing:-3px; color:#ffd166">1 hr+</p>
+    <p style="font-family:Manrope, Arial, sans-serif; font-size:30px; line-height:1.4; color:#f4f1ff">less sleep, even when it was taken 6 hours before bed</p>
+  </div>
+  <div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">CHLOE</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-HOW CAFFEINE WORKS</p></div>
+  <aside>CHLOE · Main point 4, sub-point 1 (30 to 45 seconds)
+
+A steady schedule is hard to keep when something is fighting it, and for a lot of us, that’s caffeine. All day, a chemical called adenosine builds up and makes you sleepy. Caffeine blocks it, so you don’t feel tired, but the pressure is still there.
+
+In 2013, Drake and colleagues, in the Journal of Clinical Sleep Medicine, gave people about four cups of coffee’s worth of caffeine at bedtime, three hours before, or six hours before. Even at six hours, they lost over an hour of sleep, and they didn’t notice.
+
+Next: Aisha.</aside>
+</section>
+<section id="c2" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #3D2E0E 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#FFD166;white-space:nowrap">MAIN CAFFEINE</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:10px;background:#7CC8FF;border-radius:5px"></div><div style="flex:1;height:20px;background:#FFD166;border-radius:6px;box-shadow:0px 0px 12px #FFD166"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">A bigger review, and a real cutoff</h2>
+<div style="position:absolute;left:128px;top:250px;width:808px;display:flex;flex-direction:column;gap:20px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#FFD166">GARDINER ET AL., 2023</p><p style="font-size:30px;line-height:1.4">24 caffeine studies combined. On average, caffeine meant:</p><div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:0px 0px 16px 0px;border-bottom:1px solid #2C2763;"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#FFD166;width:280px;white-space:nowrap">−45 min</p><p style="font-size:30px">of total sleep</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:24px;padding:0px 0px 16px 0px;border-bottom:1px solid #2C2763;"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#FFD166;width:280px;white-space:nowrap">+9 min</p><p style="font-size:30px">to fall asleep</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:24px;"><p style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:800;line-height:1.1;color:#FFD166;width:280px;white-space:nowrap">−11 min</p><p style="font-size:30px">of deep sleep</p></div></div>
+<p style="position:absolute;left:984px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#FFD166">THE CUTOFF</p>
+<p style="position:absolute;left:984px;top:306px;width:300px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#FFD166">2 PM</p>
+<p style="position:absolute;left:1492px;top:306px;width:300px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;text-align:right;color:#B79CFF">11 PM</p>
+<p style="position:absolute;left:984px;top:362px;width:300px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">LAST COFFEE</p>
+<p style="position:absolute;left:1492px;top:362px;width:300px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9;text-align:right">BEDTIME</p>
+<div style="position:absolute;left:984px;top:420px;width:808px;height:8px;background:linear-gradient(90deg, #FFD166 0%, #B79CFF 100%);border-radius:4px"></div>
+<x-shape kind="ellipse" style="position:absolute;left:984px;top:410px;width:28px;height:28px;background:#FFD166"></x-shape>
+<x-shape kind="ellipse" style="position:absolute;left:1764px;top:410px;width:28px;height:28px;background:#B79CFF"></x-shape>
+<p style="position:absolute;left:1238px;top:446px;width:300px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;text-align:center;color:#FFD166">8.8 HOURS</p>
+<div style="position:absolute;left:984px;top:520px;width:808px;display:flex;flex-direction:row;align-items:center;gap:20px;padding:28px 32px;background:#1A1640;border:1px solid #2C2763;border-radius:24px"><x-icon name="Lightning" style="color:#FFD166;width:48px;height:48px"></x-icon><p style="font-size:30px;line-height:1.4">Pre-workout (a much bigger dose)? Make it about 13 hours before bed.</p></div>
+<p style="position:absolute;left:984px;top:700px;width:808px;font-size:30px;line-height:1.4;color:#ABA5D9">Finish a regular coffee at least 8.8 hours before bed.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">AISHA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-THE CUTOFF</p></div>
+<aside>AISHA · Main point 4, sub-point 2 (30 to 45 seconds)
+
+A bigger review backs this up. In 2023, Gardiner and colleagues combined 24 caffeine studies in Sleep Medicine Reviews. On average, caffeine cut about 45 minutes of total sleep, added about nine minutes to falling asleep, and cut about 11 minutes of deep sleep, the stage where your body recovers.
+
+Their advice: finish a regular coffee at least 8.8 hours before bed. With an 11 PM bedtime, that’s 2 PM. And pre-workout, a much bigger dose, should be about 13 hours before bed.
+
+Next: Viktoria.</aside>
+</section>
+<section id="c3" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #40201C 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#FF9E7A;white-space:nowrap">MAIN LIGHT</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:10px;background:#7CC8FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#FFD166;border-radius:5px"></div><div style="flex:1;height:20px;background:#FF9E7A;border-radius:6px;box-shadow:0px 0px 12px #FF9E7A"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Light sets your body clock</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#FF9E7A">WRIGHT ET AL., 2013 · A WEEK OF CAMPING</p>
+<p style="position:absolute;left:128px;top:296px;width:808px;font-size:30px;line-height:1.4">No electric lights. Only the sun.</p>
+<p style="position:absolute;left:128px;top:350px;width:808px;font-family:'Sora', Arial, sans-serif;font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.1;color:#FF9E7A">2 hrs</p>
+<p style="position:absolute;left:128px;top:492px;width:808px;font-size:30px;line-height:1.4">earlier body clocks, lined up with sunrise and sunset</p>
+<div style="position:absolute;left:128px;top:600px;width:808px;display:flex;flex-direction:row;align-items:center;gap:16px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;padding:8px 16px;border:2px solid #ABA5D9;border-radius:999px;color:#ABA5D9">NIGHT OWLS</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:30px;font-weight:700;color:#FF9E7A">→</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;padding:8px 16px;background:#FF9E7A;color:#0D0A26;border-radius:999px">LOOKED LIKE EARLY BIRDS</p></div>
+<div style="position:absolute;left:984px;top:250px;width:808px;display:flex;flex-direction:column;gap:28px;padding:40px;background:#1A1640;border:1px solid #2C2763;border-radius:28px"><svg aria-label="The sun rising over the horizon" width="728" height="260" viewBox="0 0 728 260"><line x1="0" y1="230" x2="728" y2="230" stroke="#2C2763" stroke-width="4"/><path d="M244 230 A120 120 0 0 1 484 230 Z" fill="#FF9E7A"/><line x1="223.0" y1="179.0" x2="176.0" y2="162.0" stroke="#FF9E7A" stroke-width="8" stroke-linecap="round"/><line x1="257.5" y1="123.5" x2="222.0" y2="88.0" stroke="#FF9E7A" stroke-width="8" stroke-linecap="round"/><line x1="325.0" y1="84.5" x2="312.0" y2="36.0" stroke="#FF9E7A" stroke-width="8" stroke-linecap="round"/><line x1="403.0" y1="84.5" x2="416.0" y2="36.0" stroke="#FF9E7A" stroke-width="8" stroke-linecap="round"/><line x1="470.5" y1="123.5" x2="506.0" y2="88.0" stroke="#FF9E7A" stroke-width="8" stroke-linecap="round"/><line x1="505.0" y1="179.0" x2="552.0" y2="162.0" stroke="#FF9E7A" stroke-width="8" stroke-linecap="round"/></svg><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Light is the main signal that sets your body clock.</p></div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">VIKTORIA</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-A WEEK OF CAMPING</p></div>
+<aside>VIKTORIA · Main point 5, sub-point 1 (30 to 45 seconds)
+
+Caffeine changes how sleepy you feel. Light changes when your body thinks it’s night.
+
+In 2013, Wright and colleagues, in Current Biology, sent people camping for a week with only natural light, no electric lights at all. Their body clocks shifted about two hours earlier and lined up with sunrise and sunset. The night owls in the group started to look like early birds.
+
+Light is the main signal that sets your body clock.
+
+Next: Elijah.</aside>
+</section>
+<section id="c4" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #40201C 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#FF9E7A;white-space:nowrap">MAIN LIGHT</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:10px;background:#7CC8FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#FFD166;border-radius:5px"></div><div style="flex:1;height:20px;background:#FF9E7A;border-radius:6px;box-shadow:0px 0px 12px #FF9E7A"></div><div style="flex:1;height:10px;background:#262150;border-radius:5px"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Even one weekend works</h2>
+<p style="position:absolute;left:128px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#FF9E7A">STOTHARD ET AL., 2017</p>
+<p style="position:absolute;left:128px;top:296px;width:808px;font-size:30px;line-height:1.4">They repeated the camping study in winter and found a similar effect. Then they tried just one weekend:</p>
+<x-shape kind="arrow-left" style="position:absolute;left:128px;top:452px;width:140px;height:64px;background:#FF9E7A"></x-shape>
+<p style="position:absolute;left:300px;top:440px;width:636px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">WEEKEND CAMPING</p>
+<p style="position:absolute;left:300px;top:476px;width:636px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#FF9E7A">Clock ~1.4 hrs earlier</p>
+<x-shape kind="arrow-right" style="position:absolute;left:128px;top:582px;width:140px;height:64px;background:#4A447E"></x-shape>
+<p style="position:absolute;left:300px;top:570px;width:636px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">NORMAL WEEKEND: LATE NIGHTS + SCREENS</p>
+<p style="position:absolute;left:300px;top:606px;width:636px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#ABA5D9">Clock pushed later</p>
+<p style="position:absolute;left:984px;top:250px;width:808px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:1px;color:#FF9E7A">WHAT TO DO WITH IT</p>
+<div style="position:absolute;left:984px;top:300px;width:808px;display:flex;flex-direction:column;gap:24px"><div style="display:flex;flex-direction:column;gap:8px;padding:32px;background:#FF9E7A;color:#0D0A26;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700">MORNING</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Get outside within 30 minutes of waking</p></div><div style="display:flex;flex-direction:column;gap:8px;padding:32px;background:#1A1640;border:1px solid #2C2763;border-radius:24px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#FF9E7A">NIGHT</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Dim lights and screens in the last hour</p></div></div>
+<p style="position:absolute;left:128px;top:740px;width:808px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">You don’t need a week in the woods.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">ELIJAH</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">SUB-ONE WEEKEND</p></div>
+<aside>ELIJAH · Main point 5, sub-point 2 (30 to 45 seconds)
+
+In 2017, Stothard and colleagues, also in Current Biology, followed up. They repeated the camping study in winter and found a similar effect. Then they tested just one weekend.
+
+A single weekend of camping moved people’s body clocks about 1.4 hours earlier, while a normal weekend of late nights and screens pushed them later.
+
+So you don’t need a week in the woods. Morning sun and dim screens at night add up.</aside>
+</section>
+<section id="recap" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #2B2066 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#F4F1FF;white-space:nowrap">CONCLUSION</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:10px;background:#7CC8FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#FFD166;border-radius:5px"></div><div style="flex:1;height:10px;background:#FF9E7A;border-radius:5px"></div><div style="flex:1;height:20px;background:#F4F1FF;border-radius:6px;box-shadow:0px 0px 12px #F4F1FF"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Five small habits, repeated</h2>
+<div style="position:absolute;left:128px;top:236px;width:1664px;display:flex;flex-direction:column;gap:14px"><div style="display:flex;flex-direction:row;align-items:center;gap:28px;padding:16px 28px;background:#1A1640;border:1px solid #2C2763;border-radius:20px"><p style="width:56px;height:56px;border-radius:28px;background:#B79CFF;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:30px;font-weight:800;text-align:center;line-height:56px">1</p><p style="width:300px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#B79CFF">Habits</p><p style="flex:1;font-size:30px">Tie it to a cue</p><p style="width:420px;font-family:'Space Mono', 'Courier New', monospace;font-size:30px;font-weight:700;text-align:right;color:#B79CFF">cue → action</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:28px;padding:16px 28px;background:#1A1640;border:1px solid #2C2763;border-radius:20px"><p style="width:56px;height:56px;border-radius:28px;background:#6EF0C2;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:30px;font-weight:800;text-align:center;line-height:56px">2</p><p style="width:300px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#6EF0C2">Writing</p><p style="flex:1;font-size:30px">5-minute to-do list</p><p style="width:420px;font-family:'Space Mono', 'Courier New', monospace;font-size:30px;font-weight:700;text-align:right;color:#6EF0C2">~9 min faster</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:28px;padding:16px 28px;background:#1A1640;border:1px solid #2C2763;border-radius:20px"><p style="width:56px;height:56px;border-radius:28px;background:#7CC8FF;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:30px;font-weight:800;text-align:center;line-height:56px">3</p><p style="width:300px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#7CC8FF">Regularity</p><p style="flex:1;font-size:30px">One wake-up time</p><p style="width:420px;font-family:'Space Mono', 'Courier New', monospace;font-size:30px;font-weight:700;text-align:right;color:#7CC8FF">20–48% lower risk</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:28px;padding:16px 28px;background:#1A1640;border:1px solid #2C2763;border-radius:20px"><p style="width:56px;height:56px;border-radius:28px;background:#FFD166;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:30px;font-weight:800;text-align:center;line-height:56px">4</p><p style="width:300px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#FFD166">Caffeine</p><p style="flex:1;font-size:30px">Cutoff 8.8 hrs before bed</p><p style="width:420px;font-family:'Space Mono', 'Courier New', monospace;font-size:30px;font-weight:700;text-align:right;color:#FFD166">1 hr+ lost if late</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:28px;padding:16px 28px;background:#1A1640;border:1px solid #2C2763;border-radius:20px"><p style="width:56px;height:56px;border-radius:28px;background:#FF9E7A;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:30px;font-weight:800;text-align:center;line-height:56px">5</p><p style="width:300px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;color:#FF9E7A">Light</p><p style="flex:1;font-size:30px">Morning sun, dim nights</p><p style="width:420px;font-family:'Space Mono', 'Courier New', monospace;font-size:30px;font-weight:700;text-align:right;color:#FF9E7A">1.4 hrs earlier</p></div></div>
+<p style="position:absolute;left:128px;top:770px;width:1664px;font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Healthy habits can improve our <span style="color:#B79CFF">physical</span> and <span style="color:#6EF0C2">mental</span> health.</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">ELIJAH</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">CONCLUSION · RECAP</p></div>
+<aside>ELIJAH · Conclusion, recap (about 45 seconds)
+
+So let’s bring it full circle. Habits run on cues, not willpower. Writing a specific to-do list helped people fall asleep about nine minutes faster. Waking up at the same time every day mattered for grades and even long-term health. Caffeine can cost you an hour of sleep without you noticing, so set a cutoff. And morning sunlight with dim screens at night pulls your body clock earlier.
+
+Practicing healthy habits can improve our physical and mental health. Now let’s see how yours are doing.</aside>
+</section>
+<section id="quiz" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #2B2066 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#F4F1FF;white-space:nowrap">CONCLUSION</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:10px;background:#7CC8FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#FFD166;border-radius:5px"></div><div style="flex:1;height:10px;background:#FF9E7A;border-radius:5px"></div><div style="flex:1;height:20px;background:#F4F1FF;border-radius:6px;box-shadow:0px 0px 12px #F4F1FF"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">How well are your sleep habits working?</h2>
+<div style="position:absolute;left:128px;top:300px;width:900px;display:flex;flex-direction:column;gap:28px"><div style="display:flex;flex-direction:row;align-items:center;gap:24px"><p style="width:64px;height:64px;border-radius:32px;background:#F4F1FF;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:32px;font-weight:800;text-align:center;line-height:64px">1</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Scan the code with your phone camera</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:24px"><p style="width:64px;height:64px;border-radius:32px;background:#F4F1FF;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:32px;font-weight:800;text-align:center;line-height:64px">2</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Answer 10 quick questions, about 2 minutes</p></div><div style="display:flex;flex-direction:row;align-items:center;gap:24px"><p style="width:64px;height:64px;border-radius:32px;background:#F4F1FF;color:#0D0A26;font-family:'Sora', Arial, sans-serif;font-size:32px;font-weight:800;text-align:center;line-height:64px">3</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Shout out your score out of 100</p></div><p style="font-size:30px;line-height:1.4;color:#ABA5D9">Two questions from each main point. You get a score for each part of our speech and one habit to try tonight.</p></div>
+<p style="position:absolute;left:128px;top:790px;width:900px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">boyerscales.com/speechquiz</p>
+<div style="position:absolute;left:1172px;top:236px;width:620px;height:620px;display:flex;align-items:center;justify-content:center;background:#F4F1FF;border-radius:32px"><svg xmlns="http://www.w3.org/2000/svg" aria-label="QR code that opens the Sleep Meta Check quiz" width="560" height="560" viewBox="0 0 37 37" shape-rendering="crispEdges" style="width:560px;height:560px"><path fill="#f4f1ff" d="M0 0h37v37H0z"/><path stroke="#0d0a26" d="M4 4.5h7m3 0h2m1 0h3m1 0h4m1 0h7M4 5.5h1m5 0h1m3 0h1m2 0h4m3 0h1m1 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h1m3 0h2m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m1 0h1m1 0h2m2 0h2m1 0h3m2 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h4m3 0h6m1 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m1 0h1m1 0h2m5 0h1m2 0h1m1 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 11.5h5m1 0h1m1 0h1m2 0h1M4 12.5h1m1 0h5m2 0h1m7 0h1m4 0h5M4 13.5h1m2 0h1m3 0h2m2 0h1m1 0h3m3 0h2m1 0h3m3 0h1M5 14.5h3m2 0h1m5 0h4m1 0h2m2 0h1m1 0h2M7 15.5h2m6 0h3m5 0h7m1 0h1M5 16.5h1m4 0h1m1 0h1m3 0h1m1 0h1m1 0h2m1 0h1m5 0h2M4 17.5h1m1 0h2m3 0h1m3 0h2m3 0h1m2 0h1m2 0h3m3 0h1M5 18.5h1m2 0h5m1 0h1m4 0h2m1 0h1m1 0h2m1 0h4M5 19.5h2m1 0h2m3 0h3m2 0h2m2 0h2m2 0h1m4 0h1M4 20.5h2m3 0h2m2 0h2m6 0h1m2 0h1m2 0h1m1 0h2M4 21.5h1m2 0h1m3 0h2m1 0h5m1 0h1m1 0h7m1 0h1m1 0h1M4 22.5h1m1 0h1m2 0h3m2 0h7m3 0h2m1 0h1m2 0h1M4 23.5h1m3 0h1m2 0h1m5 0h1m1 0h2m3 0h1m1 0h2m3 0h1M4 24.5h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h4m2 0h5m1 0h3M12 25.5h1m1 0h1m5 0h1m1 0h1m1 0h1m3 0h5M4 26.5h7m8 0h2m2 0h2m1 0h1m1 0h3M4 27.5h1m5 0h1m1 0h1m5 0h2m3 0h2m3 0h1m2 0h2M4 28.5h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h3m2 0h5m1 0h2M4 29.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h1m6 0h4M4 30.5h1m1 0h3m1 0h1m1 0h3m1 0h4m1 0h11M4 31.5h1m5 0h1m5 0h2m1 0h1m4 0h2m3 0h1m1 0h1M4 32.5h7m1 0h5m1 0h1m2 0h1m1 0h1m4 0h1m1 0h1"/></svg></div>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">ELIJAH</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">CONCLUSION · AUDIENCE QUIZ</p></div>
+<aside>ELIJAH · Conclusion, audience quiz (about 2 minutes 30 seconds)
+
+Pull out your phones and scan this code. It’s 10 quick questions, two from each of our main points, and it takes about two minutes. You’ll get a score out of 100 and one habit to try tonight.
+
+(Give them about 90 seconds. Walk the room. If someone can’t scan, read the link at the bottom.)
+
+Okay, let’s see. Raise your hand if you got 80 or higher. 60 to 79? Under 60? (Call on one or two people.) What was your lowest main point? (Most rooms: regularity or caffeine. Tie it back to who presented it.)</aside>
+</section>
+<section id="close" data-transition="fade" style="background:radial-gradient(circle at 92% 0%, #2B2066 0%, #0D0A26 55%);color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:56px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:32px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#F4F1FF;white-space:nowrap">CONCLUSION</p><div style="flex:1;display:flex;flex-direction:row;align-items:center;gap:6px"><div style="flex:1;height:10px;background:#F4F1FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#B79CFF;border-radius:5px"></div><div style="flex:1;height:10px;background:#6EF0C2;border-radius:5px"></div><div style="flex:1;height:10px;background:#7CC8FF;border-radius:5px"></div><div style="flex:1;height:10px;background:#FFD166;border-radius:5px"></div><div style="flex:1;height:10px;background:#FF9E7A;border-radius:5px"></div><div style="flex:1;height:20px;background:#F4F1FF;border-radius:6px;box-shadow:0px 0px 12px #F4F1FF"></div></div></div>
+<h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">Pick one habit tonight</h2>
+<div style="position:absolute;left:128px;top:250px;width:1664px;display:flex;flex-direction:row;gap:32px"><div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:36px;background:#1A1640;border:2px solid #6EF0C2;border-radius:28px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#6EF0C2">MAIN POINT 2</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Write a 5-minute to-do list</p></div><div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:36px;background:#1A1640;border:2px solid #FFD166;border-radius:28px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#FFD166">MAIN POINT 4</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Set a caffeine cutoff</p></div><div style="flex:1;display:flex;flex-direction:column;gap:12px;padding:36px;background:#1A1640;border:2px solid #7CC8FF;border-radius:28px"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;color:#7CC8FF">MAIN POINT 3</p><p style="font-family:'Sora', Arial, sans-serif;font-size:40px;font-weight:700;line-height:1.2">Keep one wake-up time</p></div></div>
+<p style="position:absolute;left:128px;top:500px;width:1664px;font-size:30px;line-height:1.4;color:#ABA5D9">Start small, tie it to a cue, and repeat it.</p>
+<p style="position:absolute;left:128px;top:620px;width:1664px;font-family:'Sora', Arial, sans-serif;font-size:120px;font-weight:800;letter-spacing:-3px;line-height:1.1">Thank you! <span style="color:#FFD166">Questions?</span></p>
+<p style="position:absolute;left:128px;top:780px;width:1664px;font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;letter-spacing:2px;color:#ABA5D9">VIKTORIA · CHLOE · AISHA · ELIJAH</p>
+<div style="position:absolute;left:128px;bottom:64px;width:1664px;display:flex;flex-direction:row;justify-content:space-between;align-items:center"><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;font-weight:700;background:#F4F1FF;color:#0D0A26;padding:4px 18px;border-radius:8px">ELIJAH</p><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">CONCLUSION · QUESTIONS</p></div>
+<aside>ELIJAH · Close and questions (about 30 seconds)
+
+Here’s our challenge for tonight: pick one habit. Write a to-do list right after you brush your teeth, set a caffeine cutoff, or choose one wake-up time for this week. Start small, tie it to a cue, and repeat it.
+
+Small habits, repeated, can improve our physical and mental health. Thank you. We’d love to take your questions.
+
+If they ask:
+• Late night? Keep your wake-up time the same (Windred, 2024).
+• Tea or soda? Yes, it’s caffeine. 8.8 hours is for a regular coffee (Gardiner, 2023).
+• To-do list on my phone? The study used paper, and a phone in bed is a cue to scroll.
+• How long until a habit sticks? Weeks to months; missing a day is fine (Gardner, 2024).</aside>
+</section>
+<section id="ref-a" data-transition="fade" style="background:#0D0A26;color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px"><h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">References</h2><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">1 / 2</p></div>
+<div style="display:flex;flex-direction:column;gap:22px">
+<p style="font-size:24px;line-height:1.45">Drake, C., Roehrs, T., Shambroom, J., &amp; Roth, T. (2013). Caffeine effects on sleep taken 0, 3, or 6 hours before going to bed. <i>Journal of Clinical Sleep Medicine, 9</i>(11), 1195–1200. https://doi.org/10.5664/jcsm.3170</p>
+<p style="font-size:24px;line-height:1.45">Gardiner, C., Weakley, J., Burke, L. M., Roach, G. D., Sargent, C., Maniar, N., Townshend, A., &amp; Halson, S. L. (2023). The effect of caffeine on subsequent sleep: A systematic review and meta-analysis. <i>Sleep Medicine Reviews, 69</i>, 101764. https://doi.org/10.1016/j.smrv.2023.101764</p>
+<p style="font-size:24px;line-height:1.45">Gardner, B., Rebar, A. L., de Wit, S., &amp; Lally, P. (2024). What is habit and how can it be used to change real-world behaviour? Narrowing the theory-reality gap. <i>Social and Personality Psychology Compass, 18</i>(6), e12975. https://doi.org/10.1111/spc3.12975</p>
+<p style="font-size:24px;line-height:1.45">Masicampo, E. J., &amp; Baumeister, R. F. (2011). Consider it done! Plan making can eliminate the cognitive effects of unfulfilled goals. <i>Journal of Personality and Social Psychology, 101</i>(4), 667–683. https://doi.org/10.1037/a0024192</p>
+</div>
+<aside>References, page 1 of 2 (APA, alphabetical). Not part of the 16 minutes. Leave these up during questions.</aside>
+</section>
+<section id="ref-b" data-transition="fade" style="background:#0D0A26;color:#F4F1FF;font-family:'Manrope', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:40px">
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px"><h2 style="font-family:'Sora', Arial, sans-serif;font-size:64px;font-weight:700;letter-spacing:-1px;line-height:1.1">References</h2><p style="font-family:'Space Mono', 'Courier New', monospace;font-size:24px;color:#ABA5D9">2 / 2</p></div>
+<div style="display:flex;flex-direction:column;gap:22px">
+<p style="font-size:24px;line-height:1.45">Phillips, A. J. K., Clerx, W. M., O’Brien, C. S., Sano, A., Barger, L. K., Picard, R. W., Lockley, S. W., Klerman, E. B., &amp; Czeisler, C. A. (2017). Irregular sleep/wake patterns are associated with poorer academic performance and delayed circadian and sleep/wake timing. <i>Scientific Reports, 7</i>, 3216. https://doi.org/10.1038/s41598-017-03171-4</p>
+<p style="font-size:24px;line-height:1.45">Scullin, M. K., Krueger, M. L., Ballard, H. K., Pruett, N., &amp; Bliwise, D. L. (2018). The effects of bedtime writing on difficulty falling asleep: A polysomnographic study comparing to-do lists and completed activity lists. <i>Journal of Experimental Psychology: General, 147</i>(1), 139–146. https://doi.org/10.1037/xge0000374</p>
+<p style="font-size:24px;line-height:1.45">Stothard, E. R., McHill, A. W., Depner, C. M., Birks, B. R., Moehlman, T. M., Ritchie, H. K., Guzzetti, J. R., Chinoy, E. D., LeBourgeois, M. K., Axelsson, J., &amp; Wright, K. P. (2017). Circadian entrainment to the natural light-dark cycle across seasons and the weekend. <i>Current Biology, 27</i>(4), 508–513. https://doi.org/10.1016/j.cub.2016.12.041</p>
+<p style="font-size:24px;line-height:1.45">Windred, D. P., Burns, A. C., Lane, J. M., Saxena, R., Rutter, M. K., Cain, S. W., &amp; Phillips, A. J. K. (2024). Sleep regularity is a stronger predictor of mortality risk than sleep duration: A prospective cohort study. <i>Sleep, 47</i>(1), zsad253. https://doi.org/10.1093/sleep/zsad253</p>
+<p style="font-size:24px;line-height:1.45">Wright, K. P., McHill, A. W., Birks, B. R., Griffin, B. R., Rusterholz, T., &amp; Chinoy, E. D. (2013). Entrainment of the human circadian clock to the natural light-dark cycle. <i>Current Biology, 23</i>(16), 1554–1558. https://doi.org/10.1016/j.cub.2013.06.039</p>
+</div>
+<aside>References, page 2 of 2 (APA, alphabetical).</aside>
+</section>
+</div>
+</main>
+<div id="notes" hidden></div>
+<nav id="bar" aria-label="Slide controls">
+<button id="prev" type="button" aria-label="Previous slide">←</button>
+<span id="count" aria-live="polite">1 / 1</span>
+<button id="next" type="button" aria-label="Next slide">→</button>
+<button id="notesBtn" type="button" aria-pressed="false" title="Speaker notes (N)">Notes</button>
+<button id="fs" type="button" title="Full screen (F)">Full screen</button>
+</nav>
+<script>
+(() => {
+  const ICONS = {
+    Lightning:'<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+    Clock:'<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    Home:'<path d="M3 9.5 12 2l9 7.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    Lock:'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+    Star:'<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+    Lightbulb:'<path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>',
+    Book:'<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>',
+    CheckCircle:'<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>'
+  };
+  const NS = 'http://www.w3.org/2000/svg';
+  document.querySelectorAll('#deck x-icon').forEach(el => {
+    const d = ICONS[el.getAttribute('name')];
+    if (d) el.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
+  });
+  document.querySelectorAll('#deck x-connector').forEach(el => {
+    const cs = el.getAttribute('style') || '';
+    const color = (cs.match(/color:\s*([^;]+)/) || [,'currentColor'])[1].trim();
+    const w = parseFloat((cs.match(/border-width:\s*([\d.]+)/) || [,2])[1]);
+    const svg = document.createElementNS(NS,'svg');
+    svg.setAttribute('viewBox','0 0 1920 1080');
+    svg.setAttribute('aria-hidden','true');
+    svg.style.cssText = 'position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none';
+    const line = document.createElementNS(NS,'line');
+    ['x1','y1','x2','y2'].forEach(a => line.setAttribute(a, el.getAttribute(a)));
+    line.setAttribute('stroke', color); line.setAttribute('stroke-width', w); line.setAttribute('stroke-linecap','round');
+    svg.appendChild(line); el.replaceWith(svg);
+  });
+
+  const deck = document.getElementById('deck');
+  const slides = [...deck.children].filter(n => n.tagName === 'SECTION');
+  const count = document.getElementById('count'), notes = document.getElementById('notes'), notesBtn = document.getElementById('notesBtn');
+  slides.forEach((s, k) => { s.setAttribute('aria-roledescription','slide'); s.setAttribute('aria-label', `${k+1} of ${slides.length}`); });
+  let cur = -1;
+
+  function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    deck.style.transform = `scale(${k})`;
+  }
+  function go(n, push = true) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    if (n === cur) return;
+    if (cur >= 0) { slides[cur].classList.remove('on'); slides[cur].setAttribute('aria-hidden','true'); }
+    cur = n;
+    slides[cur].classList.add('on'); slides[cur].removeAttribute('aria-hidden');
+    count.textContent = `${cur + 1} / ${slides.length}`;
+    const a = slides[cur].querySelector('aside');
+    notes.textContent = a ? a.textContent.trim() : 'No notes for this slide.';
+    const h = '#' + (cur + 1);
+    if (push && location.hash !== h) history.replaceState(null, '', h);
+  }
+  const fromHash = () => { const n = parseInt(location.hash.slice(1), 10); return Number.isFinite(n) ? n - 1 : 0; };
+  slides.forEach(s => s.setAttribute('aria-hidden','true'));
+  fit(); go(fromHash(), false);
+  addEventListener('resize', fit);
+  addEventListener('hashchange', () => go(fromHash(), false));
+
+  const toggleNotes = () => { notes.hidden = !notes.hidden; notesBtn.setAttribute('aria-pressed', String(!notes.hidden)); };
+  const fsBtn = document.getElementById('fs');
+  const canFs = !!(document.documentElement.requestFullscreen);
+  if (!canFs) fsBtn.hidden = true;
+  const toggleFs = () => { if (!canFs) return; document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen().catch(() => {}); };
+  document.getElementById('prev').onclick = () => go(cur - 1);
+  document.getElementById('next').onclick = () => go(cur + 1);
+  notesBtn.onclick = toggleNotes;
+  fsBtn.onclick = toggleFs;
+
+  addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    const k = e.key;
+    if (['ArrowRight','ArrowDown','PageDown',' ','Enter'].includes(k)) { if (k === 'Enter' && e.target.closest && e.target.closest('button')) return; e.preventDefault(); go(cur + 1); }
+    else if (['ArrowLeft','ArrowUp','PageUp','Backspace'].includes(k)) { e.preventDefault(); go(cur - 1); }
+    else if (k === 'Home') go(0);
+    else if (k === 'End') go(slides.length - 1);
+    else if (k === 'f' || k === 'F') toggleFs();
+    else if (k === 'n' || k === 'N') toggleNotes();
+    wake();
+  });
+
+  document.getElementById('stage').addEventListener('click', e => {
+    if (e.target.closest('a')) return;
+    e.clientX < innerWidth / 3 ? go(cur - 1) : go(cur + 1);
+  });
+  let sx = null, sy = null;
+  addEventListener('touchstart', e => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, {passive:true});
+  addEventListener('touchend', e => {
+    if (sx === null) return;
+    const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { go(cur + (dx < 0 ? 1 : -1)); e.preventDefault(); }
+    sx = null;
+  });
+
+  let idleT;
+  function wake() { document.body.classList.remove('idle'); clearTimeout(idleT); idleT = setTimeout(() => { if (notes.hidden) document.body.classList.add('idle'); }, 2500); }
+  addEventListener('mousemove', wake); addEventListener('touchstart', wake, {passive:true});
+  wake();
+})();
+</script>
+</body>
+</html>
