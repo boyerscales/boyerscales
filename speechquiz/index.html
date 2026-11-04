@@ -157,7 +157,7 @@ function result() {
     <div class="score"><b id="num">0</b><span>/ 100</span></div>
     <div><p class="tier">${tier[1]}</p><p class="muted">${tier[2]}</p></div>
     <div class="bars">
-      ${Object.entries(M).map(([k,v])=>`<div class="bar" style="--c:${v.c}"><span class="lab">${v.name}<small>POINT ${k} · ${v.who.toUpperCase()}</small></span><span class="val">${per[k]}/20</span><div class="track"><div class="fill" style="width:0%" data-w="${per[k]*5}"></div></div></div>`).join("")}
+      ${Object.entries(M).map(([k,v])=>`<div class="bar" style="--c:${v.c}"><span class="lab">${v.name}<small>MAIN POINT ${k}</small></span><span class="val">${per[k]}/20</span><div class="track"><div class="fill" style="width:0%" data-w="${per[k]*5}"></div></div></div>`).join("")}
     </div>
     <div class="tip">
       <p class="qtag">Try this tonight · Point ${low}</p>
