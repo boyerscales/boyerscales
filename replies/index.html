@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>What we text back when someone asks "how much?" · BoyerScales</title>
+<meta name="description" content="The exact replies Valley Details sends when a customer asks how much a detail costs, plus our price menu. Copy them and swap in your prices.">
+<meta property="og:title" content="What we text back when someone asks &quot;how much?&quot;">
+<meta property="og:description" content="The exact replies Valley Details sends to price questions, plus our price menu. Free for detailers.">
+<meta name="theme-color" content="#f4f2ee">
+<link rel="icon" type="image/webp" href="../home/img/bs-logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../home/tour.css?v=20260929a">
+<style>
+  html,body{overflow-x:hidden}
+  .rp{max-width:720px;margin:0 auto;padding:44px var(--gutter) 96px}
+  .rp h1{font-size:clamp(32px,7vw,54px);line-height:1.04}
+  .rlede{margin-top:16px;font-size:18px;color:var(--ink-2)}
+  .by{display:flex;gap:12px;align-items:center;margin-top:22px;font-size:15px;color:var(--muted)}
+  .by img{width:40px;height:40px;border-radius:50%;object-fit:cover;background:var(--paper-2)}
+  .by b{color:var(--ink);font-weight:600}
+  .rule{margin-top:34px;background:var(--ink);color:var(--paper);border-radius:var(--r-lg);padding:22px 22px 24px}
+  .rule h2{font-size:21px;color:#fff}
+  .rule p{margin-top:8px;color:#c9ccd3;font-size:16px}
+  .jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+  .jump a{display:inline-flex;align-items:center;height:38px;padding:0 14px;border:1px solid var(--line-2);border-radius:999px;background:var(--card);font-size:14.5px;font-weight:500;text-decoration:none}
+  .rsec{margin-top:52px}
+  .rsec > h2{font-size:clamp(24px,4.6vw,32px)}
+  .rsec > p.sub{margin-top:8px;color:var(--muted);font-size:16px}
+  .rcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px 16px 18px;margin-top:16px}
+  .rcard h3{font-size:17px;letter-spacing:-.01em}
+  .rcard h3 span{font-family:var(--mono);font-size:12px;color:var(--faint);font-weight:500;margin-right:8px}
+  .chat{display:flex;flex-direction:column;gap:6px;margin-top:14px}
+  .b{max-width:86%;padding:10px 14px;border-radius:20px;font-size:15.5px;line-height:1.38}
+  .b.in{align-self:flex-start;background:#e6e5ea;color:var(--ink);border-bottom-left-radius:6px}
+  .b.out{align-self:flex-end;background:var(--imsg);color:#fff;border-bottom-right-radius:6px}
+  .who{font-size:11.5px;font-family:var(--mono);color:var(--faint);margin:4px 4px 0}
+  .who.r{align-self:flex-end}
+  .rwhy{margin-top:14px;font-size:15px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:12px}
+  .rwhy b{font-weight:600}
+  .copy{margin-top:12px;display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line-2);background:#fff;font-size:14.5px;font-weight:600;cursor:pointer}
+  .copy.done{background:var(--ok);border-color:var(--ok);color:#fff}
+  table.menu{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px;background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+  .menu th,.menu td{padding:11px 8px;text-align:left;border-bottom:1px solid var(--line)}
+  .menu th{font-family:var(--mono);font-size:11.5px;font-weight:500;color:var(--muted);letter-spacing:.03em}
+  .menu td:not(:first-child),.menu th:not(:first-child){text-align:right;white-space:nowrap}
+  .menu th:not(:first-child){white-space:normal;width:17%}
+  .menu tr:last-child td{border-bottom:0}
+  .menu td small{display:block;color:var(--muted);font-size:13px;font-weight:400}
+  .menu td:first-child{font-weight:600}
+  .rrules{margin-top:18px;display:grid;gap:10px}
+  .rrules li{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:13px 14px;font-size:15.5px}
+  .rrules li b{font-weight:600}
+  .cta{margin-top:56px;background:var(--night);color:var(--night-text);border-radius:var(--r-lg);padding:26px 20px 28px}
+  .cta h2{font-size:clamp(24px,5vw,32px);color:#fff}
+  .cta p{margin-top:10px;color:var(--night-muted);font-size:16.5px}
+  .cta .btns{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+  .rbtn{display:flex;align-items:center;justify-content:center;height:52px;border-radius:14px;font-weight:600;font-size:16.5px;text-decoration:none}
+  .rbtn.p{background:#fff;color:var(--ink)}
+  .rbtn.s{border:1px solid var(--night-line);color:var(--night-text)}
+  .foot{margin-top:28px;font-size:13.5px;color:var(--faint)}
+  @media (min-width:640px){.rcard{padding:22px 22px 22px}.cta .btns{flex-direction:row}.rbtn{flex:1}}
+</style>
+<!-- Meta Pixel -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','1995055151120545',(function(){try{var v=localStorage.getItem('bsVid');if(!v){v='v'+Date.now().toString(36)+Math.random().toString(36).slice(2,8);localStorage.setItem('bsVid',v);}return {external_id:v};}catch(_){return {};}})());
+  fbq('track','PageView');
+  fbq('track','ViewContent',{content_name:'Lead magnet: price replies'});
+</script>
+</head>
+<body>
+<main class="rp">
+  <h1>What we text back when someone asks "how much?"</h1>
+  <p class="rlede">These are the real replies Valley Details sends to price questions, pulled straight from our DMs, plus our price menu. Copy them and swap in your prices.</p>
+  <div class="by"><img src="../home/img/vd-logo.webp" alt="Valley Details logo" width="40" height="40"><span><b>Elijah Boyer</b>, co-owner of Valley Details in Elk Grove, CA</span></div>
+
+  <div class="rule">
+    <h2>The one rule</h2>
+    <p>Never send a price and stop. A price alone ends the conversation, and they go ask the next detailer. Every reply below ends with a question that moves them toward a time.</p>
+  </div>
+
+  <nav class="jump" aria-label="Jump to">
+    <a href="#how-much">How much?</a>
+    <a href="#cheapest">Cheapest?</a>
+    <a href="#interior">Just interior</a>
+    <a href="#size">"It's not that big"</a>
+    <a href="#stains">Stains, pet mess</a>
+    <a href="#budget">Too expensive</a>
+    <a href="#book">Locking the time</a>
+    <a href="#menu">Price menu</a>
+  </nav>
+
+  <section class="rsec" id="how-much">
+    <h2>1. "How much for a detail?"</h2>
+    <p class="sub">The most common message you get. Don't answer with a range.</p>
+
+    <div class="rcard">
+      <h3><span>STEP 1</span>Ask for the car first</h3>
+      <div class="chat">
+        <div class="b in">Hi how much would it be for my car?</div>
+        <div class="b out" data-copy>Happy to help! What's the year, make and model? Then I can give you the exact price.</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> the price depends on the size, so asking first gets you an exact number instead of a scary range. It also gets them typing back, and a person who's typing back is halfway booked.</p>
+    </div>
+
+    <div class="rcard">
+      <h3><span>STEP 2</span>Exact price, then the next step</h3>
+      <div class="chat">
+        <div class="b in">2019 Cruze</div>
+        <div class="b out" data-copy>Got it! A Full Detail on a Cruze is $150, or $145 if we come to you. Want me to find you a time?</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> one number for their exact car, plus the question that moves them to a time in the same message. No back and forth about "it depends".</p>
+    </div>
+
+    <div class="rcard">
+      <h3><span>IF</span>They only send a photo</h3>
+      <div class="chat">
+        <div class="b in">[photo] how much?</div>
+        <div class="b out" data-copy>Thanks for the photo! I can't tell the exact model from a picture, so what's the year, make and model? Then I'll give you the price right away.</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+    </div>
+  </section>
+
+  <section class="rsec" id="cheapest">
+    <h2>2. "What's your cheapest option?"</h2>
+    <div class="rcard">
+      <div class="chat">
+        <div class="b in">What's you guys's cheapest option</div>
+        <div class="b out" data-copy>The cheapest is the Express at $50 for a sedan, about an hour. Good if it just needs a wipe down and a quick wash, not for pet hair, spills or ground-in dirt. The Full Detail is $150. Which one would you like?</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> give them the cheap one honestly and say what it's not for. The right customers book it, and the people with a trashed car pick the bigger job on their own.</p>
+    </div>
+  </section>
+
+  <section class="rsec" id="interior">
+    <h2>3. "How much for just the interior?"</h2>
+    <div class="rcard">
+      <div class="chat">
+        <div class="b in">how much for just the interior?</div>
+        <div class="b out" data-copy>Interior Only is $85 for a sedan, $95 for an SUV and $105 for a truck or 3-row, and $5 less each if we come to you. What's the year, make and model so I can give you the exact one?</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> they asked a direct question, so give all three sizes at once, then ask for the car. They see you're straight with prices and keep going.</p>
+    </div>
+  </section>
+
+  <section class="rsec" id="size">
+    <h2>4. "It's not that big though"</h2>
+    <p class="sub">When they push back on the size tier.</p>
+    <div class="rcard">
+      <div class="chat">
+        <div class="b in">Well it's a mid size suv tho not as big as an Escalade</div>
+        <div class="b out" data-copy>Totally fair, it's not Escalade size! Our sizing goes by seating though, and with a third row it lands in our largest tier. We confirm the size when we see it. Want me to find you a time?</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> agree with them first, then give a simple rule they can check themselves (seats, not looks). "We confirm when we see it" takes the pressure off, and the question brings it back to booking.</p>
+    </div>
+  </section>
+
+  <section class="rsec" id="stains">
+    <h2>5. Stains, pet mess, "can you get this out?"</h2>
+    <div class="rcard">
+      <div class="chat">
+        <div class="b in">what about dog pee, its just on the driver seat</div>
+        <div class="b out" data-copy>For that, Interior Only is the right one, the Express won't cut it. If it soaked into the seat it usually needs a shampoo, which is extra, so we'll look at it and tell you what it needs before we start. Want me to find you a time?</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> never quote a stain job over text. Point them to the right service, be upfront that it might cost more, and promise no surprises. "Before we start" is the line that makes them trust you.</p>
+    </div>
+  </section>
+
+  <section class="rsec" id="budget">
+    <h2>6. "That's out of my budget"</h2>
+    <div class="rcard">
+      <div class="chat">
+        <div class="b in">I will have to pass as it's out my budget. Weekly is a little much</div>
+        <div class="b out" data-copy>Totally understand, thanks for letting us know! Whenever you want one for the season, just message us here.</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> don't discount and don't beg. Leave the door open and keep the thread. They come back when the car gets bad enough, and you're the one they already talked to.</p>
+    </div>
+  </section>
+
+  <section class="rsec" id="book">
+    <h2>7. They say yes. Lock the time.</h2>
+    <div class="rcard">
+      <h3><span>STEP 1</span>Mobile or drop-off, plus real times</h3>
+      <div class="chat">
+        <div class="b in">Yes please what times work</div>
+        <div class="b out" data-copy>Tomorrow has every start from 8am to 6pm open. Would you like us to come to you, or would you rather drop it off?</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+    </div>
+    <div class="rcard">
+      <h3><span>STEP 2</span>Get the number</h3>
+      <div class="chat">
+        <div class="b in">Drop it off. 8 am works for me</div>
+        <div class="b out" data-copy>Sounds good, drop-off tomorrow at 8am. Can I get your first name and mobile number for your confirmation text?</div>
+      </div>
+      <button class="copy" type="button">Copy reply</button>
+      <p class="rwhy"><b>Why:</b> repeat the time back so there's no confusion, then ask for the number "for your confirmation text". Nobody says no to that, and now you can text a reminder the day before so they actually show up.</p>
+    </div>
+    <p class="sub" style="margin-top:16px;color:var(--muted)">Bonus: answer in whatever language they write in. Our assistant has answered price questions in Spanish, Punjabi and Russian.</p>
+  </section>
+
+  <section class="rsec" id="menu">
+    <h2>Our price menu</h2>
+    <p class="sub">Valley Details' real prices in Elk Grove, CA. Use the layout, set your own numbers.</p>
+    <table class="menu">
+      <thead><tr><th>SERVICE</th><th>SEDAN</th><th>SUV</th><th>TRUCK, 3-ROW</th></tr></thead>
+      <tbody>
+        <tr><td>Express<small>About 1 hour. Quick inside and out.</small></td><td>$50</td><td>$60</td><td>$70</td></tr>
+        <tr><td>Exterior Only<small>About 1 hour. Paint, glass, wheels.</small></td><td>$75</td><td>$85</td><td>$95</td></tr>
+        <tr><td>Interior Only<small>About 90 min. The whole inside.</small></td><td>$85</td><td>$95</td><td>$105</td></tr>
+        <tr><td>Full Detail<small>About 2 hours. Inside and out.</small></td><td>$150</td><td>$170</td><td>$190</td></tr>
+      </tbody>
+    </table>
+    <ul class="rrules">
+      <li><b>Four services, no gold or platinum tiers.</b> People book faster when they can pick in two seconds.</li>
+      <li><b>Size goes by seats.</b> Sedan, SUV, or truck and 3-row. It ends the "it's not that big" argument.</li>
+      <li><b>Every service says what it's not for.</b> That's how the Express sells without cheapening the Full Detail.</li>
+      <li><b>One simple rule for coming to them.</b> Ours is $5 less mobile, since we run off their water and power.</li>
+    </ul>
+  </section>
+
+  <section class="cta" aria-labelledby="cta-h">
+    <h2 id="cta-h">We don't type any of these.</h2>
+    <p>Valley's assistant sends every reply on this page by itself, in seconds, at 11pm or while we're mid-detail, and books the time. I build the same thing for detailers: your prices, your booking page, texts from your own number.</p>
+    <p>Want to see what yours would look like? DM me "preview" and I'll build your page from your Instagram, free.</p>
+    <div class="btns">
+      <a class="rbtn p" href="https://ig.me/m/boyerscales" data-ev="dm">DM me on Instagram</a>
+      <a class="rbtn s" href="https://valleydetails.site" data-ev="valley">See it on Valley's site</a>
+    </div>
+  </section>
+
+  <p class="foot">BoyerScales · Elk Grove, CA · <a href="/">boyerscales.com</a></p>
+</main>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var bubble = btn.previousElementSibling && btn.previousElementSibling.querySelector('[data-copy]');
+      var text = bubble ? bubble.textContent.trim() : '';
+      function done(){ btn.textContent = 'Copied'; btn.classList.add('done'); setTimeout(function(){ btn.textContent = 'Copy reply'; btn.classList.remove('done'); }, 1600); }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+      function fallback(){ var t = document.createElement('textarea'); t.value = text; t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); done(); } catch (_) {} document.body.removeChild(t); }
+      try { fbq('trackCustom', 'CopyReply', { reply: (btn.closest('section') || {}).id || '' }); } catch (_) {}
+    });
+  });
+  document.querySelectorAll('[data-ev]').forEach(function(a){
+    a.addEventListener('click', function(){ try { fbq('track', 'Contact', { content_name: 'Replies page: ' + a.getAttribute('data-ev') }); } catch (_) {} });
+  });
+</script>
+<script src="../home/track.js?v=20261007a" defer></script>
+</body>
+</html>
