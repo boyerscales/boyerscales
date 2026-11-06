@@ -65,6 +65,15 @@ button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .src{font-size:14px;color:var(--muted)}
 .fine{font-size:13px;color:var(--muted);text-align:center}
 @media (prefers-reduced-motion:no-preference){.fill{transition:width .7s ease}}
+.guess{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.guess label{font-weight:700}
+.guess output{font-family:var(--display);font-weight:800;font-size:48px;line-height:1;font-variant-numeric:tabular-nums}
+.guess output small{font:700 16px var(--mono);color:var(--muted)}
+input[type=range]{width:100%;accent-color:var(--c,var(--m3));height:32px}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.vs div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.vs b{display:block;font-family:var(--display);font-size:30px;font-variant-numeric:tabular-nums}
+.vs span{font:700 11px var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
 </style>
 
 <main class="wrap" id="app" aria-live="polite"></main>
@@ -104,21 +113,72 @@ const TIER = [
   [0,"Sleep debt mode","Lots of room to improve, which means small changes will feel big. Start with one."]
 ];
 
+// Live class results: anonymous rows in Supabase (insert-only for the public key), shown at /speechquiz/live
+const SB = "https://ldplfdmbcdheijlmccek.supabase.co/rest/v1/speechquiz_events";
+const SB_KEY = "sb_publishable_49CCJGrqFnbiwWoJ7wtvMg_KBnIJw-z";
+
 const app = document.getElementById("app");
+const ls = {
+  get(k, d) { try { const v = JSON.parse(localStorage.getItem(k) || "null"); return v === null ? d : v; } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+};
+if (new URLSearchParams(location.search).has("new")) ["smc2-ans","smc2-pred","smc2-cid","smc2-sent"].forEach(k => { try { localStorage.removeItem(k); } catch (e) {} });
 let ans = Array(Q.length).fill(null), i = 0;
-try { const s = JSON.parse(localStorage.getItem("smc-ans") || "null"); if (Array.isArray(s) && s.length === Q.length) ans = s; } catch (e) {}
-const save = () => { try { localStorage.setItem("smc-ans", JSON.stringify(ans)); } catch (e) {} };
+const savedAns = ls.get("smc2-ans", null); if (Array.isArray(savedAns) && savedAns.length === Q.length) ans = savedAns;
+let pred = ls.get("smc2-pred", null);
+let cid = ls.get("smc2-cid", null);
+if (!cid) { cid = (crypto.randomUUID ? crypto.randomUUID() : "10000000-1000-4000-8000-100000000000".replace(/[018]/g, c => (c ^ Math.random() * 16 >> c / 4).toString(16))); ls.set("smc2-cid", cid); }
+const sent = ls.get("smc2-sent", {});
+const save = () => ls.set("smc2-ans", ans);
 const esc = s => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function send(kind, row) {
+  if (sent[kind]) return;
+  fetch(SB, { method: "POST", headers: { apikey: SB_KEY, "Content-Type": "application/json", Prefer: "return=minimal" },
+    body: JSON.stringify(Object.assign({ client_id: cid, kind }, row)) })
+    .then(r => { if (r.ok || r.status === 409) { sent[kind] = true; ls.set("smc2-sent", sent); } })
+    .catch(() => {});
+}
 
 function intro() {
   app.style.removeProperty("--c");
   app.innerHTML = `
     <div><p class="eyebrow">Comms 5 · Sleep Meta</p><h1>How well are your sleep habits working?</h1></div>
-    <p>10 quick questions, about 2 minutes. You’ll get a score out of 100, a breakdown by each part of our speech, and one habit to try tonight.</p>
+    <p>First, two guesses. Then 10 quick questions, about 2 minutes. You’ll get a score out of 100, a breakdown by each part of our speech, and one habit to try tonight.</p>
     <div class="chips">${Object.entries(M).map(([k,v])=>`<span class="chip" style="--c:${v.c}">${k} ${v.name}</span>`).join("")}</div>
     <button class="btn" id="start" type="button">Start</button>
-    <p class="fine">Answer for a normal week. Nothing is sent anywhere; only you see your answers. For class, not medical advice.</p>`;
-  document.getElementById("start").onclick = () => { i = 0; ask(); };
+    <p class="fine">Answer for a normal week. Your guesses and score go to the class results screen anonymously, with no name attached. For class, not medical advice.</p>`;
+  document.getElementById("start").onclick = () => { i = 0; pred ? ask() : predict(); };
+}
+
+function predict() {
+  app.style.setProperty("--c", "var(--m3)");
+  const p = pred || { self: 50, avg: 50 };
+  app.innerHTML = `
+    <div class="qhead"><button class="back" id="back" type="button">← Start</button><span class="eyebrow">Before you start</span></div>
+    <h2>Make your guesses</h2>
+    <div class="guess">
+      <label for="gs">What will YOU score, out of 100?</label>
+      <output id="os" for="gs">${p.self}<small> / 100</small></output>
+      <input type="range" id="gs" min="0" max="100" step="1" value="${p.self}">
+    </div>
+    <div class="guess">
+      <label for="ga">What will the CLASS average be?</label>
+      <output id="oa" for="ga">${p.avg}<small> / 100</small></output>
+      <input type="range" id="ga" min="0" max="100" step="1" value="${p.avg}">
+    </div>
+    <button class="btn" id="lock" type="button">Lock in my guesses</button>
+    <p class="fine">Guesses show up live on the screen, anonymously.</p>`;
+  const gs = document.getElementById("gs"), ga = document.getElementById("ga");
+  gs.oninput = () => document.getElementById("os").innerHTML = `${gs.value}<small> / 100</small>`;
+  ga.oninput = () => document.getElementById("oa").innerHTML = `${ga.value}<small> / 100</small>`;
+  document.getElementById("back").onclick = intro;
+  document.getElementById("lock").onclick = () => {
+    pred = { self: +gs.value, avg: +ga.value }; ls.set("smc2-pred", pred);
+    send("prediction", { predicted_self: pred.self, predicted_avg: pred.avg });
+    i = 0; ask();
+  };
+  window.scrollTo(0, 0);
 }
 
 function ask() {
@@ -135,7 +195,7 @@ function ask() {
     <div class="opts" role="group" aria-label="Answers">
       ${q.o.map((o,j)=>`<button class="opt" type="button" id="o${i}-${j}" data-j="${j}" aria-pressed="${ans[i]===j}">${esc(o)}</button>`).join("")}
     </div>`;
-  document.getElementById("back").onclick = () => { if (i) { i--; ask(); } else intro(); };
+  document.getElementById("back").onclick = () => { if (i) { i--; ask(); } else if (!sent.prediction) predict(); else intro(); };
   app.querySelectorAll(".opt").forEach(b => b.onclick = () => {
     ans[i] = +b.dataset.j; save();
     app.querySelectorAll(".opt").forEach(x => x.setAttribute("aria-pressed", String(x === b)));
@@ -151,11 +211,20 @@ function result() {
   const tier = TIER.find(t => total >= t[0]);
   const low = Object.keys(per).reduce((a,b) => per[b] < per[a] ? b : a);
   const tip = TIP[low];
+  send("result", { answers: ans.map(a => a ?? 0), per: [1,2,3,4,5].map(k => per[k]), total });
+  const diff = pred ? total - pred.self : null;
+  const vs = pred ? `
+    <div class="vs">
+      <div><span>You guessed</span><b>${pred.self}</b></div>
+      <div><span>You got</span><b>${total}</b></div>
+    </div>
+    <p class="muted small">${diff === 0 ? "Exactly right. Nice." : diff > 0 ? `You beat your guess by ${diff}.` : `${-diff} under your guess.`} Your class-average guess was ${pred.avg}. Watch the screen to see the real one.</p>` : "";
   app.style.setProperty("--c", M[low].c);
   app.innerHTML = `
     <p class="eyebrow">Your Sleep Meta score</p>
     <div class="score"><b id="num">0</b><span>/ 100</span></div>
     <div><p class="tier">${tier[1]}</p><p class="muted">${tier[2]}</p></div>
+    ${vs}
     <div class="bars">
       ${Object.entries(M).map(([k,v])=>`<div class="bar" style="--c:${v.c}"><span class="lab">${v.name}<small>MAIN POINT ${k}</small></span><span class="val">${per[k]}/20</span><div class="track"><div class="fill" style="width:0%" data-w="${per[k]*5}"></div></div></div>`).join("")}
     </div>

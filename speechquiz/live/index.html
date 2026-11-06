@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Sleep Meta Live</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0d0a26">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Manrope:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+/* Projector view of the class quiz: guesses vs actual, score bands, main points, talking points. Same night palette as the deck. */
+:root{
+  --bg:#0d0a26; --panel:#1a1640; --line:#2c2763; --fg:#f4f1ff; --muted:#aba5d9;
+  --m1:#b79cff; --m2:#6ef0c2; --m3:#7cc8ff; --m4:#ffd166; --m5:#ff9e7a;
+  --display:'Sora',Arial,sans-serif; --body:'Manrope',Arial,sans-serif; --mono:'Space Mono','Courier New',monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 85% 0%,#2b2066 0%,var(--bg) 60%) fixed,var(--bg);color:var(--fg);font-family:var(--body);font-size:clamp(15px,1.25vw,22px);line-height:1.4}
+.wrap{max-width:1600px;margin:0 auto;padding:clamp(16px,2.2vw,36px);display:grid;gap:clamp(12px,1.4vw,22px)}
+header{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.eyebrow{font:700 .7em var(--mono);letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,3.2vw,56px);line-height:1.05;margin:4px 0 0;letter-spacing:-1px}
+.join{display:flex;align-items:center;gap:14px}
+.join .qr{background:#fff;padding:8px;border-radius:12px;line-height:0}
+.join p{margin:0;font:700 .85em var(--mono)}
+.join small{display:block;color:var(--muted);font-weight:400}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:clamp(14px,1.5vw,24px)}
+.headline{font-family:var(--display);font-weight:600;font-size:clamp(20px,2vw,36px);line-height:1.25;margin:0;text-wrap:balance}
+.headline em{font-style:normal;color:var(--m4)}
+.big{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.2vw,20px)}
+.stat b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,5vw,96px);line-height:1;letter-spacing:-2px;font-variant-numeric:tabular-nums}
+.stat .eyebrow{margin-bottom:8px}
+.stat small{color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr 1fr;gap:clamp(10px,1.2vw,20px)}
+h2{font-family:var(--display);font-weight:600;font-size:1.15em;margin:0 0 12px}
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline}
+.bar .lab{font-weight:700}
+.bar .lab small{font:400 .7em var(--mono);color:var(--muted);letter-spacing:.5px;display:block}
+.bar .val{font:700 1em var(--mono);font-variant-numeric:tabular-nums}
+.bar .track{grid-column:1/-1;height:12px;border-radius:6px;background:var(--line);overflow:hidden}
+.bar .fill{height:100%;border-radius:6px;background:var(--c);transition:width .6s ease}
+.bar.low .lab::after{content:"  ← lowest";color:var(--c);font:700 .7em var(--mono)}
+.facts{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+.facts li{border-left:4px solid var(--c);padding:2px 0 2px 12px}
+.facts b{font-family:var(--display);font-size:1.5em;font-variant-numeric:tabular-nums}
+.facts small{display:block;color:var(--muted);font-size:.8em}
+svg text{fill:var(--muted);font:12px var(--mono)}
+.foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:.75em}
+.foot button{font:700 1em var(--body);color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.foot button:hover{color:var(--fg)}
+.empty{color:var(--muted)}
+.err{color:var(--m5)}
+@media (max-width:900px){.big{grid-template-columns:1fr 1fr}.grid2{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.bar .fill{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <div><p class="eyebrow">Comms 5 · Sleep Meta · Live</p><h1>How did the class do?</h1></div>
+    <div class="join"><div class="qr" id="qr"></div><p>boyerscales.com/speechquiz<small id="counts">waiting for the first answers</small></p></div>
+  </header>
+
+  <section class="panel"><p class="headline" id="headline">Scan the code, make your two guesses, then take the quiz.</p></section>
+
+  <section class="big">
+    <div class="panel stat"><p class="eyebrow">Class guessed the average</p><b id="s-gavg">–</b><small id="s-gavg-n">&nbsp;</small></div>
+    <div class="panel stat"><p class="eyebrow">Actual class average</p><b id="s-avg">–</b><small id="s-avg-n">&nbsp;</small></div>
+    <div class="panel stat"><p class="eyebrow">Average self-guess</p><b id="s-self">–</b><small id="s-self-n">&nbsp;</small></div>
+    <div class="panel stat"><p class="eyebrow">Overestimated themselves</p><b id="s-over">–</b><small id="s-over-n">&nbsp;</small></div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel">
+      <h2>Raise your hand if you got…</h2>
+      <div class="bars" id="bands"></div>
+      <h2 style="margin-top:20px">Your guess vs your score</h2>
+      <svg id="scatter" viewBox="0 0 260 190" width="100%" role="img" aria-label="Each dot is one person: their guess across, their real score up"></svg>
+    </div>
+    <div class="panel">
+      <h2>Average by main point, out of 20</h2>
+      <div class="bars" id="points"></div>
+    </div>
+    <div class="panel">
+      <h2>What the room told us</h2>
+      <ul class="facts" id="facts"><li class="empty" style="--c:var(--line)">Shows up once 3 people finish.</li></ul>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span id="since"></span>
+    <span>
+      <button type="button" id="fresh">Start fresh (hide practice runs)</button>
+      <button type="button" id="today">Show all of today</button>
+      <button type="button" id="fs">Full screen</button>
+    </span>
+  </footer>
+</main>
+
+<script>
+const SB = "https://ldplfdmbcdheijlmccek.supabase.co/rest/v1/speechquiz_events";
+const SB_KEY = "sb_publishable_49CCJGrqFnbiwWoJ7wtvMg_KBnIJw-z";
+const QUIZ = "https://boyerscales.com/speechquiz/";
+const M = {
+  1:{name:"Habits", who:"Viktoria", c:"var(--m1)"},
+  2:{name:"Writing before bed", who:"Chloe + Aisha", c:"var(--m2)"},
+  3:{name:"Sleep regularity", who:"Elijah + Viktoria", c:"var(--m3)"},
+  4:{name:"Caffeine", who:"Chloe + Aisha", c:"var(--m4)"},
+  5:{name:"Light", who:"Viktoria + Elijah", c:"var(--m5)"}
+};
+// Talking points: question index, which answers count, what to say, the study it ties to
+const FACTS = [
+  {q:4, bad:[0,1], m:3, t:"wake up 2+ hours later on weekends", s:"That’s the irregular pattern linked to lower GPAs (Phillips, 2017)."},
+  {q:5, bad:[0,1], m:3, t:"have a bedtime that moves 2+ hours", s:"Regularity predicted health better than sleep length (Windred, 2024)."},
+  {q:6, bad:[0,1], m:4, t:"have caffeine within 6 hours of bed", s:"Even 6 hours before bed cost over an hour of sleep (Drake, 2013)."},
+  {q:7, bad:[0,1], m:4, t:"take pre-workout or energy drinks after noon", s:"Pre-workout needs about 13 hours before bed (Gardiner, 2023)."},
+  {q:1, bad:[0,1], m:1, t:"fall asleep with their phone in bed", s:"The phone is the cue. Move it and the habit breaks (Gardner, 2024)."},
+  {q:2, bad:[0,1], m:2, t:"rarely or never write tomorrow’s tasks down", s:"A to-do list got people asleep about 9 minutes faster (Scullin, 2018)."},
+  {q:3, bad:[0,1], m:2, t:"lie awake thinking about tasks a few nights a week or more", s:"A specific plan quiets those thoughts (Masicampo, 2011)."},
+  {q:8, bad:[0,1], m:5, t:"don’t get outside light until the afternoon, if at all", s:"Morning light pulls your body clock earlier (Stothard, 2017)."},
+  {q:9, bad:[0,1], m:5, t:"have screens on right up to bed", s:"Late light pushed body clocks later (Wright, 2013)."},
+  {q:0, bad:[0,1], m:1, t:"have a bedtime routine 2 nights a week or less", s:"Same cue, same order is how habits form (Gardner, 2024)."}
+];
+
+const $ = id => document.getElementById(id);
+const mean = a => a.length ? a.reduce((x,y)=>x+y,0)/a.length : null;
+const r0 = x => Math.round(x);
+const pct = (n,d) => d ? Math.round(100*n/d) : 0;
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+
+function startOfToday(){ const d = new Date(); d.setHours(0,0,0,0); return d.toISOString(); }
+let since = new URLSearchParams(location.search).get("since") || store.get("sml-since");
+if (!since || new Date(since) < new Date(startOfToday())) since = startOfToday();
+function showSince(){ $("since").textContent = "Counting answers since " + new Date(since).toLocaleTimeString([], {hour:"numeric", minute:"2-digit"}) + (new Date(since).toDateString() === new Date().toDateString() ? " today" : ""); }
+$("fresh").onclick = () => { since = new Date().toISOString(); store.set("sml-since", since); showSince(); load(); };
+$("today").onclick = () => { since = startOfToday(); store.set("sml-since", since); showSince(); load(); };
+$("fs").onclick = () => { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); };
+showSince();
+
+if (window.QRCode) new QRCode($("qr"), {text: QUIZ, width: 120, height: 120, colorDark: "#0d0a26", colorLight: "#ffffff"});
+
+function bar(label, sub, val, max, shown, color, low){
+  return `<div class="bar${low?" low":""}" style="--c:${color}"><span class="lab">${label}<small>${sub}</small></span><span class="val">${shown}</span><div class="track"><div class="fill" style="width:${max ? Math.min(100, 100*val/max) : 0}%"></div></div></div>`;
+}
+
+function render(rows){
+  const preds = rows.filter(r => r.kind === "prediction");
+  const res = rows.filter(r => r.kind === "result");
+  const predBy = new Map(preds.map(p => [p.client_id, p]));
+  const pairs = res.filter(r => predBy.has(r.client_id)).map(r => ({guess: predBy.get(r.client_id).predicted_self, got: r.total}));
+
+  $("counts").textContent = `${preds.length} guess${preds.length===1?"":"es"} in · ${res.length} finished`;
+
+  const gAvg = mean(preds.map(p => p.predicted_avg));
+  const avg = mean(res.map(r => r.total));
+  const self = mean(preds.map(p => p.predicted_self));
+  const over = pairs.filter(p => p.guess > p.got).length;
+
+  $("s-gavg").textContent = gAvg === null ? "–" : r0(gAvg);
+  $("s-gavg-n").textContent = preds.length ? `from ${preds.length} guesses` : " ";
+  $("s-avg").textContent = avg === null ? "–" : r0(avg);
+  $("s-avg-n").textContent = res.length ? `from ${res.length} finished` : " ";
+  $("s-self").textContent = self === null ? "–" : r0(self);
+  $("s-self-n").textContent = preds.length ? "what people thought they’d get" : " ";
+  $("s-over").textContent = pairs.length ? pct(over, pairs.length) + "%" : "–";
+  $("s-over-n").textContent = pairs.length ? `${over} of ${pairs.length} guessed too high` : " ";
+
+  // Score bands, same brackets as the hand-raise
+  const b = [res.filter(r => r.total >= 80).length, res.filter(r => r.total >= 60 && r.total < 80).length, res.filter(r => r.total < 60).length];
+  const bmax = Math.max(1, ...b);
+  $("bands").innerHTML = bar("80 or higher","SLEEP PRO TERRITORY",b[0],bmax,`${b[0]} · ${pct(b[0],res.length)}%`,"var(--m2)")
+    + bar("60 to 79","A FEW LEAKS",b[1],bmax,`${b[1]} · ${pct(b[1],res.length)}%`,"var(--m4)")
+    + bar("Under 60","RUNNING ON CAFFEINE",b[2],bmax,`${b[2]} · ${pct(b[2],res.length)}%`,"var(--m5)");
+
+  // Main points
+  const ptAvg = [1,2,3,4,5].map(k => mean(res.map(r => r.per[k-1])));
+  const lowK = res.length ? 1 + ptAvg.indexOf(Math.min(...ptAvg)) : null;
+  $("points").innerHTML = [1,2,3,4,5].map(k => bar(`${k}. ${M[k].name}`, M[k].who.toUpperCase(), ptAvg[k-1] ?? 0, 20, ptAvg[k-1] === null ? "–" : ptAvg[k-1].toFixed(1), M[k].c, k === lowK)).join("");
+
+  // Scatter: guess across, actual up, dashed line = guessed exactly right
+  const X = v => 30 + v*2.2, Y = v => 170 - v*1.6;
+  let svg = `<line x1="${X(0)}" y1="${Y(0)}" x2="${X(100)}" y2="${Y(100)}" stroke="var(--muted)" stroke-dasharray="4 4" opacity=".6"/>`
+    + `<line x1="${X(0)}" y1="${Y(0)}" x2="${X(100)}" y2="${Y(0)}" stroke="var(--line)"/><line x1="${X(0)}" y1="${Y(0)}" x2="${X(0)}" y2="${Y(100)}" stroke="var(--line)"/>`
+    + `<text x="${X(50)}" y="186" text-anchor="middle">their guess →</text><text x="10" y="${Y(50)}" transform="rotate(-90 10 ${Y(50)})" text-anchor="middle">real score →</text>`
+    + `<text x="${X(100)}" y="${Y(100)-4}" text-anchor="end">guessed right</text>`;
+  pairs.forEach(p => { svg += `<circle cx="${X(p.guess)}" cy="${Y(p.got)}" r="5" fill="${p.got >= p.guess ? "var(--m2)" : "var(--m5)"}" opacity=".85"/>`; });
+  $("scatter").innerHTML = svg;
+
+  // Talking points
+  if (res.length >= 3) {
+    const f = FACTS.map(x => ({...x, p: pct(res.filter(r => x.bad.includes(r.answers[x.q])).length, res.length)}))
+      .sort((a,b2) => b2.p - a.p).slice(0, 4);
+    $("facts").innerHTML = f.map(x => `<li style="--c:${M[x.m].c}"><b>${x.p}%</b> ${x.t}<small>${x.s}</small></li>`).join("");
+  } else {
+    $("facts").innerHTML = `<li class="empty" style="--c:var(--line)">Shows up once 3 people finish.</li>`;
+  }
+
+  // Headline
+  let h;
+  if (!preds.length && !res.length) h = "Scan the code, make your two guesses, then take the quiz.";
+  else if (!res.length) h = `${preds.length} guess${preds.length===1?"":"es"} in. The class thinks the average will be <em>${r0(gAvg)}</em>, and the average self-guess is <em>${r0(self)}</em>. Now let’s see.`;
+  else {
+    const parts = [];
+    if (gAvg !== null) {
+      const d = r0(avg) - r0(gAvg);
+      parts.push(`The class guessed <em>${r0(gAvg)}</em>. The real average is <em>${r0(avg)}</em>` + (Math.abs(d) <= 2 ? ", almost dead on." : `, ${Math.abs(d)} points ${d < 0 ? "lower" : "higher"} than you thought.`));
+    } else parts.push(`Class average so far: <em>${r0(avg)}</em>.`);
+    if (pairs.length >= 3) parts.push(pct(over, pairs.length) >= 50 ? `${pct(over, pairs.length)}% of you thought you were doing better than you are.` : `Most of you were humble: ${100 - pct(over, pairs.length)}% matched or beat your own guess.`);
+    if (lowK) parts.push(`Weakest area: <em>${M[lowK].name}</em>.`);
+    h = parts.join(" ");
+  }
+  $("headline").innerHTML = h;
+}
+
+let busy = false, failed = 0;
+async function load(){
+  if (busy) return; busy = true;
+  try {
+    const url = `${SB}?select=client_id,kind,predicted_self,predicted_avg,answers,per,total,created_at&created_at=gte.${encodeURIComponent(since)}&order=created_at.asc&limit=1000`;
+    const r = await fetch(url, {headers: {apikey: SB_KEY}});
+    if (!r.ok) throw new Error(r.status);
+    render(await r.json()); failed = 0;
+  } catch (e) {
+    if (++failed >= 2) $("counts").innerHTML = `<span class="err">can’t reach results, retrying</span>`;
+  } finally { busy = false; }
+}
+load();
+setInterval(load, 3000);
+</script>
+</body>
+</html>
