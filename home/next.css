@@ -1,0 +1,207 @@
+/* BoyerScales homepage, free setup version. Loads after tour.css and reuses its tokens,
+   buttons, nav, phone frames, pins, notes, book card and footer.
+   Accent rule, same as tour.css: brand blue (.btn-ink) is only on the free setup button
+   (hero form, phone sticky bar, one repeat by the price, and the nav copy once the form is
+   off screen). The pay link, the call times and everything else are ink or outline. */
+
+.nx{overflow-x:clip}
+.nx .sec{padding:clamp(72px,9vw,120px) 0}
+.nx .sec-head{margin-bottom:clamp(32px,4.4vw,56px)}
+.nx h2{font-size:clamp(30px,3.8vw,48px)}
+.nx .sec-head .lede{margin-top:18px}
+.nx a:not(.btn):not(.brand):not(.slot){text-underline-offset:3px}
+
+/* ---------- 1. first screen ---------- */
+.nx-hero{padding:clamp(22px,5vw,76px) 0 clamp(44px,6vw,92px)}
+.nx-hero-grid{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  grid-template-areas:"copy setup" "proof setup";column-gap:clamp(32px,5vw,76px);row-gap:28px;align-items:start}
+.nx-hero-copy{grid-area:copy;align-self:end}
+.nx-setup{grid-area:setup;align-self:center;scroll-margin-top:calc(var(--nav-h) + 16px)}
+.nx-proof{grid-area:proof}
+.nx-hero h1{font-size:clamp(40px,4.9vw,62px);letter-spacing:-.035em;line-height:1.02}
+.nx-sub{margin-top:22px;font-size:clamp(17px,1.5vw,19.5px);color:var(--ink-2);line-height:1.5;max-width:46ch}
+.nx-proof{font-size:15.5px;line-height:1.5;color:var(--ink-2);max-width:52ch;padding-top:20px;border-top:1px solid var(--line-2)}
+.nx-proof b{color:var(--ink);font-weight:600}
+
+.nx-setup{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:clamp(18px,2.8vw,34px);
+  box-shadow:0 30px 60px -40px rgba(13,16,21,.35)}
+.setup .f{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.setup label{font-size:15px;font-weight:600;letter-spacing:-.005em}
+.setup input{font:inherit;font-size:17px;color:var(--ink);background:#fff;border:1px solid var(--line-2);border-radius:12px;
+  height:52px;padding:0 15px;width:100%;min-width:0;-webkit-appearance:none;appearance:none;transition:border-color .2s}
+.setup input:hover{border-color:rgba(13,16,21,.32)}
+.setup input:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:transparent}
+.setup input[aria-invalid="true"]{border-color:#b42318}
+.setup-go{width:100%;height:54px;font-size:17px;font-weight:600;margin-top:4px}
+.setup-go[disabled]{cursor:default;opacity:.72}
+.setup-go[disabled]:active{transform:none}
+.f-err{color:#b42318;font-size:14.5px;line-height:1.4}
+.f-err a{color:inherit;font-weight:600;white-space:nowrap}
+.setup-err{margin-top:12px}
+.consent{margin-top:12px;font-size:12.5px;line-height:1.45;color:var(--faint)}
+.consent a{color:var(--ink-2)}
+.nx [hidden]{display:none!important}
+.setup-done{outline:none}
+.setup-done h2{font-size:clamp(30px,3.4vw,40px);margin-bottom:12px}
+.setup-done p{color:var(--ink-2);font-size:17px}
+.setup-done p+p{margin-top:10px}
+
+@media (prefers-reduced-motion:no-preference){
+  .nx-hero-copy,.nx-setup,.nx-proof{animation:rise .7s var(--ease) both}
+  .nx-setup{animation-delay:.06s}
+  .nx-proof{animation-delay:.12s}
+  /* Below-the-fold reveal. next.js adds .rv-wait only to elements that are still off screen
+     when it runs, so nothing is ever hidden while the script is slow or missing. */
+  .rv.rv-wait{opacity:0;transform:translateY(14px)}
+  .rv.rv-go{transition:opacity .7s var(--ease),transform .7s var(--ease)}
+}
+
+/* ---------- 2. what is on during the week ---------- */
+.on-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,4vw,60px)}
+.on-list li{display:grid;gap:24px;align-content:start}
+.on-list .phone{max-width:250px;box-shadow:0 0 0 1px rgba(0,0,0,.6),inset 0 0 0 1px rgba(255,255,255,.16),0 30px 60px -24px rgba(0,0,0,.8)}
+.on-copy h3{color:var(--night-text);margin-bottom:8px}
+.on-copy p{color:var(--night-muted);font-size:16px;line-height:1.5}
+.on-copy .on-cap{font-size:13px;line-height:1.45;color:#8a919d;margin-top:12px;padding-top:12px;border-top:1px solid var(--night-line)}
+
+/* ---------- 3. the week ---------- */
+.week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--ink)}
+.week li{padding:22px 20px 0 0}
+.week li+li{padding-left:20px;border-left:1px solid var(--line)}
+.week-when{display:block;font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:22px}
+.week h3{margin-bottom:8px}
+.week p{color:var(--ink-2);font-size:15.5px;line-height:1.5}
+
+/* ---------- 4. proof ---------- */
+.proof-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:clamp(28px,4vw,64px);align-items:start}
+.proof-shots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,20px);align-items:start;
+  position:sticky;top:calc(var(--nav-h) + 28px)}
+.proof-shots .phone{max-width:none}
+.proof-shots:focus-visible{outline-offset:8px}
+.strip-hint{display:none}
+/* Status bar and home indicator colors for screenshots whose top and bottom edges differ. */
+.phone-screen.pill-k{--pill:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 134 5'%3E%3Crect width='134' height='5' rx='2.5' fill='%23000'/%3E%3C/svg%3E")}
+.phone-screen.pill-w{--pill:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 134 5'%3E%3Crect width='134' height='5' rx='2.5' fill='%23fff'/%3E%3C/svg%3E")}
+/* Pins on light screenshots: ink box with a paper halo so it reads over photos and white alike. */
+.pin.k{border-color:#0d1015;box-shadow:0 0 0 1.5px rgba(255,255,255,.75)}
+.pin.k.hot{border-color:#0d1015;background:rgba(13,16,21,.05);box-shadow:0 0 0 1.5px rgba(255,255,255,.75),0 0 0 4.5px rgba(13,16,21,.2)}
+.proof-shots.has-hot .pin:not(.hot){opacity:.4}
+.proof-notes .notes li{cursor:default}
+.proof-notes .fine a{color:var(--ink-2)}
+
+/* ---------- 5. what it costs to keep it ---------- */
+.fork{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:16px}
+.fork-card{background:var(--card);border:1px solid var(--line-2);border-radius:var(--r-lg);padding:clamp(22px,3vw,38px)}
+.fork-off{background:transparent;border-style:dashed}
+.fork-card h3{font-size:16px;font-weight:500;color:var(--muted);letter-spacing:0}
+.fork-price{font-size:clamp(30px,3.6vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.08;margin-top:10px;color:var(--ink)}
+.fork-price span{color:var(--muted);font-weight:500}
+.fork-card .safe li{font-size:16px}
+.keep-actions{display:flex;align-items:center;gap:14px 28px;margin-top:28px;flex-wrap:wrap}
+.keep-actions .btn{flex:none}
+.keep-skip{flex:1 1 320px;font-size:15px;color:var(--muted);max-width:58ch}
+.keep-skip a{color:var(--ink);font-weight:500}
+
+/* ---------- 6. straight answers ---------- */
+.answers-grid{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,5vw,80px);align-items:start}
+.answers-grid .sec-head{position:sticky;top:calc(var(--nav-h) + 40px);margin-bottom:0}
+.qa{margin:0}
+.qa>div{padding:24px 0;border-top:1px solid var(--line)}
+.qa>div:first-child{border-top-color:var(--ink)}
+.qa dt{font-size:clamp(19px,1.8vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.25}
+.qa dd{margin:8px 0 0;color:var(--ink-2);font-size:16.5px;line-height:1.55;max-width:62ch}
+.qa dd a{color:var(--ink);white-space:nowrap}
+
+/* ---------- 7. talk first ---------- */
+.talk-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,72px);align-items:start}
+.talk-grid .sec-head{margin-bottom:0}
+.talk-grid .reach{text-align:left;margin-top:22px}
+.nx .book .slots{min-height:48px}
+
+.nx .foot nav{flex-wrap:wrap;gap:10px 22px}
+
+/* ================= responsive ================= */
+@media (max-width:1080px){
+  .week{grid-template-columns:1fr;border-top:0;max-width:640px}
+  .week li,.week li+li{position:relative;padding:0 0 26px 30px;border-left:0}
+  .week li:last-child{padding-bottom:0}
+  /* A plain rail with a marker per step. It is a timeline, so the line carries the order. */
+  .week li::before{content:"";position:absolute;left:5px;top:8px;bottom:-8px;width:1.5px;background:var(--line-2)}
+  .week li:last-child::before{display:none}
+  .week li::after{content:"";position:absolute;left:0;top:5px;width:11px;height:11px;border-radius:50%;background:var(--paper-2);border:1.5px solid var(--ink)}
+  .week li:last-child::after{background:var(--ink)}
+  .week-when{margin-bottom:6px}
+  .week h3{margin-bottom:6px}
+}
+
+@media (max-width:900px){
+  .nx-hero-grid{grid-template-columns:minmax(0,1fr);grid-template-areas:"copy" "setup" "proof";row-gap:20px}
+  .nx-setup{align-self:start}
+  .nx-sub{max-width:none}
+  .nx-proof{max-width:none}
+  .proof-grid,.answers-grid,.talk-grid{grid-template-columns:minmax(0,1fr)}
+  .proof-shots,.answers-grid .sec-head{position:static}
+  .proof-shots{max-width:640px}
+  .fork{grid-template-columns:minmax(0,1fr)}
+}
+
+@media (max-width:760px){
+  .on-list{grid-template-columns:minmax(0,1fr);gap:30px}
+  .on-list li{grid-template-columns:42% minmax(0,1fr);gap:18px;align-items:center}
+  .on-list .phone{max-width:none}
+}
+
+@media (max-width:640px){
+  .nx .sec{padding:60px 0}
+  .nx .sec-head{margin-bottom:28px}
+  .nx h2{font-size:clamp(27px,7.6vw,32px)}
+  .nx .sec-head .lede{margin-top:14px;font-size:16.5px}
+  .nx .nav .btn{display:none}
+
+  .nx-hero{padding:18px 0 40px}
+  .nx-hero h1{font-size:clamp(31px,8.9vw,36px);line-height:1.04}
+  .nx-sub{margin-top:12px;font-size:16px;line-height:1.45}
+  .nx-hero-grid{row-gap:16px}
+  .nx-setup{padding:16px}
+  .setup .f{margin-bottom:11px;gap:6px}
+  .setup label{font-size:14.5px}
+  .setup input{height:50px}
+  .setup-go{height:52px}
+  .consent{margin-top:10px;font-size:12px}
+  .nx-proof{font-size:14px;line-height:1.45;padding-top:14px}
+
+  .on-copy h3{font-size:18.5px}
+  .on-copy p{font-size:15px}
+  .on-copy .on-cap{font-size:12.5px;margin-top:10px;padding-top:10px}
+
+  /* Three phones in a strip you swipe, so each screenshot stays big enough to read. */
+  .proof-shots{display:flex;gap:14px;max-width:none;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+    margin:0 calc(var(--gutter) * -1);padding:12px var(--gutter) 26px;scroll-padding:0 var(--gutter);
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+  .proof-shots::-webkit-scrollbar{display:none}
+  .proof-shots .phone{flex:0 0 66%;scroll-snap-align:center;
+    box-shadow:0 0 0 1px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,255,255,.16),0 14px 22px -14px rgba(13,16,21,.45)}
+  .strip-hint{display:block;margin:0 0 6px;text-align:center}
+  .nx .notes li{grid-template-columns:34px 1fr;gap:12px;padding:18px 0}
+  .nx .notes p{font-size:15.5px}
+
+  .fork-card{padding:20px}
+  .fork-card .safe{margin-top:16px;gap:10px}
+  .fork-card .safe li{font-size:15.5px}
+  .keep-actions{flex-direction:column;align-items:stretch;gap:14px;margin-top:22px}
+  .keep-actions .btn{width:100%}
+  .keep-skip{flex:none;font-size:14.5px}
+
+  .qa>div{padding:18px 0}
+  .qa dt{font-size:18.5px}
+  .qa dd{font-size:15.5px;line-height:1.5}
+
+  .talk-grid{gap:22px}
+  .talk-grid .reach{margin-top:16px;font-size:14.5px}
+
+  .setup-sent .mcta{display:none}
+}
+
+@media (max-width:380px){
+  .nx-hero h1{font-size:31px}
+}
