@@ -57,6 +57,8 @@
       const pastHero = hero.getBoundingClientRect().bottom < 0;
       const atStart = start.getBoundingClientRect().top < innerHeight;
       mcta.classList.toggle('show', pastHero && !atStart);
+      // The nav button takes the accent only while no other accent button is on screen (see tour.css).
+      nav.classList.toggle('cta-on', pastHero && !atStart);
     }
   }
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });

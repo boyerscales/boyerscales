@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../home/tour.css?v=20260929a">
+<link rel="stylesheet" href="../home/tour.css?v=20261114a">
 <style>
   .start{max-width:760px;margin:0 auto;padding:56px var(--gutter) 80px}
   .start h1{font-size:clamp(34px,5.4vw,56px)}
@@ -27,7 +27,7 @@
   .f .opt{font-weight:400;color:var(--faint)}
   .f input,.f select,.f textarea{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;width:100%}
   .f textarea{min-height:96px;resize:vertical;line-height:1.45}
-  .f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+  .f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:transparent}
   .f .hint{font-size:13px;color:var(--faint)}
   .choices{display:grid;gap:8px}
   .choices label{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;background:#fff;cursor:pointer;font-weight:500}
@@ -38,11 +38,11 @@
   .chips input{position:absolute;opacity:0;width:1px;height:1px}
   .chips span{display:inline-flex;align-items:center;height:42px;padding:0 16px;border:1px solid var(--line-2);border-radius:999px;background:#fff;font-weight:500;font-size:15px}
   .chips input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--paper)}
-  .chips input:focus-visible + span{outline:2px solid var(--brand);outline-offset:2px}
+  .chips input:focus-visible + span{outline:2px solid var(--ink);outline-offset:2px}
   .svc-row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) 44px;gap:8px;margin-bottom:8px}
   .svc-row input{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line-2);border-radius:12px;padding:12px 14px;width:100%}
   .svc-row button{border:1px solid var(--line-2);background:#fff;border-radius:12px;font-size:20px;color:var(--muted);cursor:pointer}
-  .linkbtn{background:none;border:0;padding:8px 0;font:inherit;font-size:15px;font-weight:600;color:var(--brand-ink);cursor:pointer}
+  .linkbtn{background:none;border:0;padding:8px 0;font:inherit;font-size:15px;font-weight:600;color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(13,16,21,.45);cursor:pointer}
   .check-inline{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:15px;cursor:pointer}
   .check-inline input{margin-top:4px;accent-color:var(--ink);width:auto;flex:0 0 auto;padding:0}
   .quote-on .svc-row input.price{opacity:.35;pointer-events:none}
