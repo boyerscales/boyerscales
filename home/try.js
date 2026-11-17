@@ -19,7 +19,7 @@
   let pastHero = false, atWeek = false;
   const setBar = () => bar.classList.toggle('on', pastHero && !atWeek);
   new IntersectionObserver(([e]) => { pastHero = !e.isIntersecting && e.boundingClientRect.top < 0; setBar(); }).observe(heroFoot);
-  new IntersectionObserver(([e]) => { atWeek = e.isIntersecting; setBar(); }, { threshold: .15 }).observe(week);
+  new IntersectionObserver(([e]) => { atWeek = e.isIntersecting; setBar(); }).observe(week);
 
   /* ================= the stage: four things in one phone ================= */
   const seg = $('.seg'), tabs = $$('.seg [role=tab]'), cap = $('#stageCap'), phone = $('#phone');
@@ -185,7 +185,7 @@
   /* ---------- free week: opens a text to Elijah with the shop filled in. No backend needed. ---------- */
   const form = $('#startForm'), handle = $('#handle'), err = $('#handleErr'), how = $('#startHow');
   const coarse = matchMedia('(pointer: coarse)').matches;
-  if (!coarse) how.textContent = 'This opens an email to me with your shop filled in. Or text (916) 708-2759 from your phone.';
+  if (!coarse) { how.textContent = 'On a computer this opens an email to me, Elijah, with your shop filled in. I reply to that email.'; $('#startGo').textContent = 'Email it to me'; }
   form.addEventListener('submit', e => {
     e.preventDefault();
     const v = handle.value.trim();

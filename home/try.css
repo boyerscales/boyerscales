@@ -4,7 +4,7 @@
   --navy:#070b14;--txt:#f3f6fb;--mut:#a9b4c6;--dim:#7c889b;
   --glass:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);
   /* the one accent: only on the buttons that start the free week, and the logo arrow */
-  --go:#2f5bff;--go-rgb:47 91 255;--go-ink:#fff;
+  --go:#d2ff3a;--go-rgb:210 255 58;--go-ink:#0a0f1c;
   --r:22px;--ease-out:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -31,7 +31,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.06;text-wrap:balanc
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 22px;border-radius:16px;border:0;font-weight:700;font-size:16.5px;letter-spacing:-.01em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .35s var(--spring),background .2s}
 .btn:active{transform:scale(.96)}
 .btn-white{background:#fff;color:#0a0f1c}
-.btn-go{background:var(--go);color:var(--go-ink);box-shadow:0 10px 30px -8px rgb(var(--go-rgb) / .8)}
+.btn-go{background:var(--go);color:var(--go-ink);box-shadow:0 10px 30px -10px rgb(var(--go-rgb) / .55)}
 .btn-sm{min-height:40px;padding:0 15px;font-size:14.5px;border-radius:12px;box-shadow:none}
 .fine{font-size:13px;color:var(--dim);line-height:1.45}
 @media (hover:hover){.btn-white:hover{background:#e9edf5}.btn-go:hover{filter:brightness(1.08)}}
@@ -142,10 +142,12 @@ main{max-width:1120px;margin:0 auto;padding:0 16px}
 .steps{list-style:none;display:grid;margin-top:20px}
 .steps li{display:grid;grid-template-columns:104px 1fr;gap:12px;padding:13px 0;border-top:1px solid var(--line);font-size:15.5px}
 .steps b{font-weight:700}.steps span{color:var(--mut)}
-.start{display:grid;gap:14px;margin-top:20px}
+.start{display:grid;gap:12px;margin-top:12px}
 .start h3{font-size:20px;letter-spacing:-.02em}
-.start-call,.start-text{background:rgba(7,11,20,.55);border:1px solid var(--line);border-radius:18px;padding:18px}
-.start-call p{color:var(--mut);font-size:15px;margin:6px 0 14px}
+.start-h{font-size:20px;letter-spacing:-.02em;margin-top:26px}
+.start-ig,.start-call,.start-text{background:rgba(7,11,20,.55);border:1px solid var(--line);border-radius:18px;padding:18px}
+.start-call p,.start-ig p{color:var(--mut);font-size:15px;margin:6px 0 14px}
+.start-ig{border-color:rgb(var(--go-rgb) / .45)}
 .start .btn{width:100%}
 .start-or{text-align:center;color:var(--dim);font-size:14px}
 .start-text label{display:block;font-size:14px;color:var(--mut);margin:12px 0 6px}
@@ -208,9 +210,8 @@ main{max-width:1120px;margin:0 auto;padding:0 16px}
   .week{padding:44px;margin-top:96px}
   .steps{grid-template-columns:repeat(4,1fr);gap:18px}
   .steps li{grid-template-columns:1fr;gap:6px;border-top:2px solid rgba(255,255,255,.2);padding-top:14px}
-  .start{grid-template-columns:1fr auto 1fr;align-items:stretch;gap:18px}
-  .start-or{align-self:center}
-  .start-call{display:flex;flex-direction:column}.start-call .btn{margin-top:auto}
+  .start{grid-template-columns:repeat(3,1fr);align-items:stretch;gap:16px}
+  .start-call,.start-ig,.start-text{display:flex;flex-direction:column}.start-call .btn,.start-ig .btn{margin-top:auto}
   .price{grid-template-columns:1fr 1fr;gap:16px}
   .price article{padding:30px}
   .qa{max-width:760px;margin:0 auto;padding-top:100px}
