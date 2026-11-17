@@ -6,33 +6,26 @@
 <base href="/">
 <meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>BoyerScales · Your booking page, live and free for a week</title>
-<meta name="description" content="I set up a booking page, an owner dashboard and customer texting for owner-run mobile detailers. Your page is live and free for 7 days. No card, no call needed. Keep it for $250 setup plus $50 a month, or it switches off and you owe nothing.">
+<title>BoyerScales · The front desk I built for my detailing shop. Play with it.</title>
+<meta name="description" content="For owner-run mobile detailers. The live owner dashboard, the texts, the AI receptionist and the booking page, all on one screen to play with. Then get it on your shop free for 7 days.">
 <meta property="og:site_name" content="BoyerScales">
-<meta property="og:title" content="BoyerScales: your booking page, live and free for a week.">
-<meta property="og:description" content="For owner-run mobile detailers. I build your booking page and text you the live link. Free for 7 days, no card, no call needed.">
+<meta property="og:title" content="BoyerScales: I built this for my own detailing shop. Play with it.">
+<meta property="og:description" content="The live dashboard, the texts, the AI receptionist and the booking page on one screen. No signup. Then free on your shop for 7 days.">
 <meta property="og:image" content="https://boyerscales.com/home/img/og-boyerscales.jpg">
-<meta property="og:image:secure_url" content="https://boyerscales.com/home/img/og-boyerscales.jpg">
-<meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="BoyerScales: I build the systems that keep detailers booked. boyerscales.com">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://boyerscales.com/">
 <link rel="canonical" href="https://boyerscales.com/">
 <link rel="apple-touch-icon" href="home/img/bs-logo.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BoyerScales: your booking page, live and free for a week.">
-<meta name="twitter:description" content="For owner-run mobile detailers. I build your booking page and text you the live link. Free for 7 days, no card, no call needed.">
-<meta name="twitter:image" content="https://boyerscales.com/home/img/og-boyerscales.jpg">
-<meta name="twitter:image:alt" content="BoyerScales: I build the systems that keep detailers booked. boyerscales.com">
-<meta name="theme-color" content="#f4f2ee">
+<meta name="theme-color" content="#070b14">
 <link rel="icon" type="image/webp" href="home/img/bs-logo.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home/tour.css?v=20261114a">
-<link rel="stylesheet" href="home/next.css?v=20261114a">
+<link rel="preconnect" href="https://dashboard.boyerscales.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home/try.css?v=20261117e">
 <!-- Meta Pixel -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -45,310 +38,190 @@
   fbq('track','PageView');
 </script>
 </head>
-<body class="nx">
+<body>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1995055151120545&amp;ev=PageView&amp;noscript=1"></noscript>
+
+<!-- Backdrop: blurred photos of real Valley Details jobs, drifting behind the page -->
+<div class="bg" aria-hidden="true">
+  <i style="background-image:url(home/img/bg-blur-1.webp)"></i>
+  <i style="background-image:url(home/img/bg-blur-2.webp)"></i>
+  <i style="background-image:url(home/img/bg-blur-3.webp)"></i>
+  <i style="background-image:url(home/img/bg-blur-4.webp)"></i>
+  <b></b>
+</div>
 
 <a class="skip" href="#main">Skip to content</a>
 
-<header class="nav" id="nav">
-  <div class="nav-in">
-    <a class="brand" href="#top" aria-label="BoyerScales, back to top">
-      <img src="home/img/bs-logo.webp" alt="" width="28" height="28">
-      <span>BoyerScales</span>
-    </a>
-    <nav class="nav-links" aria-label="Sections">
-      <a href="#on">What's on</a>
-      <a href="#week">The week</a>
-      <a href="#valley">Valley Details</a>
-      <a href="#keep">Price</a>
-      <a href="#answers">Questions</a>
-      <a href="#talk">Call</a>
-    </nav>
-    <a class="btn btn-ink btn-sm" href="#setup">Start my free week</a>
-  </div>
+<header class="top" id="top">
+  <a class="brand" href="#main" aria-label="BoyerScales, back to top"><img src="home/img/bs-wordmark.svg" alt="BoyerScales" width="194" height="22"></a>
+  <a class="btn btn-go btn-sm" href="#week">Start my free week</a>
 </header>
 
 <main id="main">
 
-<!-- ============ 1. FIRST SCREEN: THE OFFER AND THE FORM ============ -->
-<section class="nx-hero" id="top">
-  <div class="wrap nx-hero-grid">
-    <div class="nx-hero-copy">
-      <h1>Your booking page, live and free for a week, before you pay anything.</h1>
-      <p class="nx-sub">For owner-run mobile detailers. I build it and text you the link. No card. No call needed.</p>
+<!-- ============ 1. FIRST SCREEN: THE PRODUCT ITSELF, IN ONE PHONE ============ -->
+<section class="hero">
+  <h1>I built this for my own detailing shop. <em>Play with it.</em></h1>
+
+  <div class="stage">
+    <div class="seg" role="tablist" aria-label="What to look at">
+      <button type="button" role="tab" id="tab-dash" aria-controls="pane-dash" aria-selected="true" data-tab="dash">Dashboard</button>
+      <button type="button" role="tab" id="tab-texts" aria-controls="pane-texts" aria-selected="false" data-tab="texts">Texts</button>
+      <button type="button" role="tab" id="tab-calls" aria-controls="pane-calls" aria-selected="false" data-tab="calls">Calls</button>
+      <button type="button" role="tab" id="tab-page" aria-controls="pane-page" aria-selected="false" data-tab="page">Booking</button>
+      <i class="seg-thumb" aria-hidden="true"></i>
     </div>
 
-    <div class="nx-setup" id="setup">
-      <form class="setup" id="setupForm" method="post" action="/" novalidate onsubmit="return false" aria-label="Free 7-day setup">
-        <div class="f">
-          <label for="suName">Instagram handle or business name</label>
-          <input id="suName" name="name" type="text" autocomplete="organization" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="next" maxlength="80" required aria-describedby="suNameErr">
-          <p class="f-err" id="suNameErr" hidden></p>
-        </div>
-        <div class="f">
-          <label for="suPhone">Mobile number</label>
-          <input id="suPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" enterkeyhint="send" maxlength="24" required aria-describedby="suPhoneErr">
-          <p class="f-err" id="suPhoneErr" hidden></p>
-        </div>
-        <button class="btn btn-ink setup-go" id="suGo" type="submit">Start my free week</button>
-        <p class="f-err setup-err" id="suErr" role="alert" hidden><span id="suErrMsg"></span> <a id="suErrText" href="sms:+19167082759" hidden>Text me at (916) 708-2759</a></p>
-        <p class="consent">By sending this you agree to get texts from BoyerScales about your setup. Reply STOP to opt out. See the <a href="/privacypolicy/">privacy policy</a>.</p>
-        <noscript><p class="consent">This form needs JavaScript. If it will not send, text me at <a href="sms:+19167082759">(916) 708-2759</a>.</p></noscript>
-      </form>
-      <div class="setup-done" id="setupDone" role="status" tabindex="-1" hidden>
-        <h2>Got it.</h2>
-        <p>I am building your page now and will text you the live link <span data-turnaround>within 2 days</span>. It comes from (916) 708-2759.</p>
-        <p>You can reply to that text with your logo or prices to speed it up.</p>
-      </div>
-    </div>
+    <figure class="phone" id="phone">
+      <div class="phone-screen">
 
-    <p class="nx-proof"><b>32 of the 43 jobs</b> Valley Details completed from Sep 1 to Nov 14, 2026 were booked by the customer on its website. Nobody picked up a phone. Valley is my own detailing business and it runs on this.</p>
+        <!-- Dashboard: the real app, running on sample data -->
+        <div class="pane on" id="pane-dash" role="tabpanel" aria-labelledby="tab-dash">
+          <img class="dash-poster" src="home/img/dash3-phone-home.webp" alt="The owner dashboard: 3 jobs today, $590 on the books, 2 texts waiting and a chart of money earned over the last 30 days." width="390" height="844">
+          <div class="dash-live" id="dashLive"></div>
+          <button class="pill-cta" type="button" id="dashUse">This is live. Tap to use it</button>
+        </div>
+
+        <!-- Texts: tap a question a customer would send -->
+        <div class="pane imsg" id="pane-texts" role="tabpanel" aria-labelledby="tab-texts" hidden>
+          <div class="imsg-head"><span class="imsg-av" aria-hidden="true">VD</span><b>Valley Details</b></div>
+          <div class="imsg-thread" id="thread" aria-live="polite"></div>
+          <div class="chips" id="chips" aria-label="Send one of these as the customer"></div>
+        </div>
+
+        <!-- Calls: a call being answered and booked -->
+        <div class="pane call" id="pane-calls" role="tabpanel" aria-labelledby="tab-calls" hidden>
+          <div class="call-top">
+            <span class="call-av" aria-hidden="true">VD</span>
+            <b>Valley Details</b>
+            <span class="call-time" id="callTime">0:00</span>
+            <div class="wave" id="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="call-lines" id="callLines" aria-live="polite"></div>
+          <a class="pill-cta pill-call" href="tel:+19166598131" data-try="call" id="callReal">Call it yourself: (916) 659-8131</a>
+        </div>
+
+        <!-- Booking page: tap through it -->
+        <div class="pane story" id="pane-page" role="tabpanel" aria-labelledby="tab-page" tabindex="0" hidden>
+          <div class="story-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <img src="home/img/vd2-phone-hero.webp" alt="Valley Details on a phone: a photo of a cleaned car interior, the line We come to you, and a bar with Starts at $150, Call and Book." width="390" height="844" loading="lazy">
+          <img src="home/img/vd2-phone-price.webp" alt="Valley Details asks Which one is your car, with Express at $150 and Full at $250 shown by photo." width="390" height="844" loading="lazy">
+          <img src="home/img/vd2-phone-step1.webp" alt="Booking step 1 of 2, Pick a time: service, vehicle, day and a grid of times with taken times crossed out." width="390" height="844" loading="lazy">
+          <img src="home/img/vd2-phone-step2.webp" alt="Booking step 2 of 2, Where and who: name, mobile and address, then the Book button." width="390" height="844" loading="lazy">
+        </div>
+
+      </div>
+    </figure>
+
+    <p class="stage-cap" id="stageCap">The real owner dashboard, on sample customers.</p>
+  </div>
+
+  <div class="hero-foot">
+    <p class="hero-proof"><b>32 of the 43 jobs</b> my shop, Valley Details, finished from Sep 1 to Nov 14, 2026 were booked by the customer on the website. Nobody picked up a phone.</p>
+    <a class="btn btn-go" href="#week">Get it on my shop, free for 7 days</a>
   </div>
 </section>
 
-<!-- ============ 2. WHAT IS ON DURING THE WEEK ============ -->
-<section class="sec sec-dark" id="on">
-  <div class="wrap">
-    <header class="sec-head">
-      <h2>What's on during your free week</h2>
-      <p class="lede">All of it is live from the day I text you the link. I built it for detailers who book by DM or text, or whose booking link is broken.</p>
-    </header>
+<!-- ============ 2. THE FREE WEEK ============ -->
+<section class="week glass rv" id="week">
+  <h2>Free on your shop for 7 days.</h2>
+  <p class="lede">I build your booking page, load your past customers and switch on the texts. No card. You decide on day 7, after you've seen what it caught.</p>
 
-    <ol class="on-list">
-      <li class="rv">
-        <figure class="phone">
-          <div class="phone-screen" style="--top:url(/home/img/vd2-phone-hero.webp) center top / 100% 5000cqw;--bot:#000"><img src="home/img/vd2-phone-hero.webp" alt="The Valley Details booking site on a phone: a photo of a cleaned car interior, the line We come to you, and a bar at the bottom with Starts at $150, Call and Book." width="390" height="844" loading="lazy"></div>
-        </figure>
-        <div class="on-copy">
-          <h3>Your booking page</h3>
-          <p>Your own page on a BoyerScales link, taking real bookings from your customers.</p>
-          <p class="on-cap">Shown: the page I built for Valley Details. Yours has your name and your prices.</p>
-        </div>
-      </li>
-      <li class="rv">
-        <figure class="phone">
-          <div class="phone-screen light" style="--top:#f2f4f5;--bot:#fbfbfc"><img src="home/img/dash-phone-people.webp" alt="The owner dashboard on a phone: a list of customers, each marked Booked, In progress or Done, with tabs for Home, Schedule, Inbox, People and Automations." width="390" height="844" loading="lazy"></div>
-        </figure>
-        <div class="on-copy">
-          <h3>Your owner dashboard</h3>
-          <p>Your calendar, your customers and your texts in one place, on your phone.</p>
-          <p class="on-cap">Shown: sample customers.</p>
-        </div>
-      </li>
-      <li class="rv">
-        <figure class="phone">
-          <div class="phone-screen light" style="--top:#f9f9fb"><img src="home/img/dash-phone-text.webp" alt="A text thread in the owner dashboard with a sample customer: a booking confirmation, a review ask and a follow-up, each marked sent from the owner's iPhone, then the customer's reply." width="390" height="844" loading="lazy"></div>
-        </figure>
-        <div class="on-copy">
-          <h3>Texts to your past customers on day one</h3>
-          <p>Your past customers get loaded in. You send them a review ask and a come-back text from your own phone.</p>
-          <p class="on-cap">Shown: a sample thread.</p>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
+  <ol class="steps">
+    <li><b>Today</b><span>You send me your Instagram handle or shop name.</span></li>
+    <li><b>Within 2 days</b><span>Your page is live and I text you the link. Your 7 days start then.</span></li>
+    <li><b>Day 1</b><span>Your past customers get a review ask and a come-back text from your own phone.</span></li>
+    <li><b>Day 7</b><span>Keep it for $250 setup plus $50 a month, or it switches off and you owe nothing.</span></li>
+  </ol>
 
-<!-- ============ 3. HOW THE WEEK GOES ============ -->
-<section class="sec sec-tint" id="week">
-  <div class="wrap">
-    <header class="sec-head">
-      <h2>How the week goes</h2>
-    </header>
-
-    <ol class="week">
-      <li class="rv">
-        <span class="week-when">Today</span>
-        <h3>You send the form</h3>
-        <p>Your Instagram handle or business name, and your mobile number. That's all I need to start.</p>
-      </li>
-      <li class="rv">
-        <span class="week-when" data-turnaround="cap">Within 2 days</span>
-        <h3>Your page is live</h3>
-        <p>I build it and text you the link from (916) 708-2759. Your 7 days start then.</p>
-      </li>
-      <li class="rv">
-        <span class="week-when">Day 1</span>
-        <h3>Your past customers are loaded in</h3>
-        <p>You send them a review ask and a come-back text from your own phone.</p>
-      </li>
-      <li class="rv">
-        <span class="week-when">Before day 7</span>
-        <h3>I text you what it caught</h3>
-        <p>The bookings, the reviews and the repeat customers.</p>
-      </li>
-      <li class="rv">
-        <span class="week-when">Day 7</span>
-        <h3>You keep it, or it switches off</h3>
-        <p>Keeping it is $250 setup plus $50 a month. If you don't, you owe nothing.</p>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<!-- ============ 4. PROOF: VALLEY DETAILS ============ -->
-<section class="sec" id="valley">
-  <div class="wrap">
-    <header class="sec-head">
-      <h2>Valley Details is my own detailing business. I built everything it runs on.</h2>
-      <p class="lede">It's a mobile detailer in Elk Grove, California. From Sep 1 to Nov 14, 2026 it completed 43 jobs. Customers booked 32 of them on the website, with nobody picking up a phone.</p>
-    </header>
-
-    <div class="proof-grid">
-      <div class="proof-shots" id="proofShots" tabindex="0" role="group" aria-label="Three screenshots of the Valley Details website on a phone">
-        <figure class="phone" data-shot="1">
-          <div class="phone-screen light pill-w" style="--top:#fff;--bot:#000"><div class="shot">
-            <img src="home/img/vd2-phone-price.webp" alt="Valley Details on a phone: the question Which one is your car, then two photos side by side, Express at $150 and Full at $250, with a Book button pinned to the bottom of the screen." width="390" height="844" loading="lazy">
-            <span class="pin k" style="--x:3%;--y:18.3%;--w:94%;--h:57%"><b>1</b></span>
-            <span class="pin l" style="--x:64%;--y:92%;--w:34%;--h:7.4%"><b>2</b></span>
-          </div></div>
-        </figure>
-        <figure class="phone" data-shot="2">
-          <div class="phone-screen pill-k" style="--top:#616161;--bot:#fff"><div class="shot">
-            <img src="home/img/vd2-phone-step1.webp" alt="Valley Details booking pop-up, step 1 of 2, titled Pick a time: service, vehicle, day and a grid of times with taken times crossed out." width="390" height="844" loading="lazy">
-            <span class="pin k" style="--x:2.5%;--y:25.6%;--w:95%;--h:7%"><b>3</b></span>
-            <span class="pin k l" style="--x:3%;--y:72.2%;--w:94%;--h:18.2%"><b>4</b></span>
-          </div></div>
-        </figure>
-        <figure class="phone" data-shot="3">
-          <div class="phone-screen pill-k" style="--top:#616161;--bot:#fff"><div class="shot">
-            <img src="home/img/vd2-phone-step2.webp" alt="Valley Details booking pop-up, step 2 of 2, titled Where and who: name, mobile and address fields, then the Book button." width="390" height="844" loading="lazy">
-            <span class="pin k" style="--x:3%;--y:31.8%;--w:94%;--h:10%"><b>4</b></span>
-          </div></div>
-        </figure>
-      </div>
-
-      <div class="proof-notes">
-        <p class="fine strip-hint">Swipe to see both booking steps.</p>
-        <ol class="notes" id="proofNotes">
-          <li class="rv" data-shot="1"><i>1</i><div><h3>Two prices, shown by photo</h3><p>The page asks “Which one is your car?” and the customer picks the photo that looks like theirs. Express is $150, $170 or $190 by vehicle size. Full is $250, $280 or $310.</p></div></li>
-          <li class="rv" data-shot="1"><i>2</i><div><h3>The Book button never leaves the screen</h3><p>It stays pinned to the bottom of the phone the whole way down the page.</p></div></li>
-          <li class="rv" data-shot="2"><i>3</i><div><h3>Booking is a pop-up with two short steps</h3><p>It opens over the page they were already on. Times come from the real calendar, and taken ones are crossed out.</p></div></li>
-          <li class="rv" data-shot="2"><i>4</i><div><h3>Time first, then name and number</h3><p>Nobody types anything until they've picked a time. Then it asks for a name and a mobile number.</p></div></li>
-        </ol>
-        <p class="fine">Screenshots from <a href="https://valleydetails.site" target="_blank" rel="noopener">valleydetails.site</a>, taken Nov 14, 2026.</p>
-      </div>
+  <div class="start">
+    <form class="start-text" id="startForm" novalidate>
+      <h3>Send me your shop</h3>
+      <label for="handle">Instagram handle or shop name</label>
+      <input id="handle" name="handle" type="text" autocomplete="organization" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="80" enterkeyhint="send" required>
+      <p class="err" id="handleErr" hidden>Type your Instagram handle or shop name first.</p>
+      <button class="btn btn-go" type="submit" id="startGo">Start my free week</button>
+      <p class="fine" id="startHow">This opens a text to me at (916) 708-2759 with your shop filled in. Hit send and I take it from there.</p>
+    </form>
+    <div class="start-or" aria-hidden="true">or</div>
+    <div class="start-call">
+      <h3>Do it on a 5 minute call</h3>
+      <p>The easiest way. We pick your prices and hours together and I start building the same day.</p>
+      <a class="btn btn-white" href="https://preview.boyerscales.com/call" data-try="call-elijah">Pick a time</a>
     </div>
   </div>
 </section>
 
-<!-- ============ 5. WHAT IT COSTS TO KEEP IT ============ -->
-<section class="sec sec-tint" id="keep">
-  <div class="wrap">
-    <header class="sec-head">
-      <h2>What it costs to keep it</h2>
-      <p class="lede">One price. You decide on day 7, after you've seen what it caught.</p>
-    </header>
-
-    <div class="fork">
-      <article class="fork-card" id="pay">
-        <h3>If you keep it</h3>
-        <p class="fork-price">$250 setup <span>plus</span> $50 a month</p>
-        <ul class="safe">
-          <li>The $250 setup is <b>fully refundable for 30 days</b>.</li>
-          <li>Your <b>first month</b> of the $50 is <b>free</b>.</li>
-          <li>The $50 a month is me managing it: any change you want, any time, plus support.</li>
-          <li>Your page moves onto your own domain.</li>
-        </ul>
-      </article>
-      <article class="fork-card fork-off">
-        <h3>If you don't</h3>
-        <p class="fork-price">$0</p>
-        <ul class="safe">
-          <li>It switches off.</li>
-          <li>You owe nothing.</li>
-          <li>Bookings your customers already made stay yours to honor.</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="keep-actions">
-      <a class="btn btn-ink" id="repeatGo" href="#setup">Start my free week</a>
-      <p class="keep-skip">Already sure? <a href="https://buy.stripe.com/4gM14n65u2OF92X9tsa3u0h">Skip the free week and pay the $250 setup now</a>. Stripe takes the payment. I never see your card number.</p>
-    </div>
-  </div>
+<!-- ============ 3. PRICE ============ -->
+<section class="price" id="price">
+  <article class="glass rv">
+    <h3>If you keep it</h3>
+    <p class="big">$250 setup <span>plus</span> $50 a month</p>
+    <ul>
+      <li>The $250 setup is fully refundable for 30 days.</li>
+      <li>Your first month of the $50 is free.</li>
+      <li>The $50 a month is me managing it: any change you want, any time, plus support.</li>
+      <li>Your page moves onto your own domain.</li>
+    </ul>
+  </article>
+  <article class="glass rv">
+    <h3>If you don't</h3>
+    <p class="big">$0</p>
+    <ul>
+      <li>It switches off.</li>
+      <li>You owe nothing.</li>
+      <li>Bookings your customers already made stay yours to honor.</li>
+    </ul>
+  </article>
 </section>
 
-<!-- ============ 6. STRAIGHT ANSWERS ============ -->
-<section class="sec" id="answers">
-  <div class="wrap answers-grid">
-    <header class="sec-head">
-      <h2>Straight answers</h2>
-    </header>
-
-    <dl class="qa">
-      <div class="rv">
-        <dt>Is there a catch?</dt>
-        <dd>No. There's no card, no call, and nothing owed if you don't keep it. I do it this way because a week of real bookings on your own page will tell you more than I could on a call. I won't promise you more jobs. The promise is your booking fixed and live, and a week to see for yourself.</dd>
-      </div>
-      <div class="rv">
-        <dt>Do I need a card?</dt>
-        <dd>No. I need your Instagram handle or business name and your mobile number. A card only comes up if you decide to keep it.</dd>
-      </div>
-      <div class="rv">
-        <dt>What if I already have a website?</dt>
-        <dd>Keep it. During the free week your booking page lives on a BoyerScales link, so nothing on your site changes. If you keep the page, it moves onto your own domain. And if people can already book a time on your site without calling or messaging you, you might not need me.</dd>
-      </div>
-      <div class="rv">
-        <dt>What do my customers see?</dt>
-        <dd>A page with your business name, your prices and your open times. They pick a time first, then type a name and a number. The Valley Details page works the same way, and you can look at it at <a href="https://valleydetails.site" target="_blank" rel="noopener">valleydetails.site</a>.</dd>
-      </div>
-      <div class="rv">
-        <dt>What happens to my bookings if I don't keep it?</dt>
-        <dd>The page switches off and you owe nothing. Any booking a customer already made is still yours to honor.</dd>
-      </div>
-      <div class="rv">
-        <dt>Who are you?</dt>
-        <dd>Elijah. BoyerScales is one person, me. Valley Details is my own mobile detailing business in Elk Grove, California, and I built everything it runs on. I build your page myself, and I'm the one who texts you. My cell is <a href="sms:+19167082759">(916) 708-2759</a>.</dd>
-      </div>
-    </dl>
-  </div>
-</section>
-
-<!-- ============ 7. TALK FIRST ============ -->
-<section class="sec sec-tint" id="talk">
-  <div class="wrap talk-grid">
-    <header class="sec-head">
-      <h2>Rather talk first? Book a 15-minute call.</h2>
-      <p class="lede">Pick a time and I'll call you. If I can't help, I'll tell you.</p>
-      <p class="reach">Rather text? <a href="sms:+19167082759">(916) 708-2759</a> · <a href="mailto:elijah@boyerscales.com">elijah@boyerscales.com</a></p>
-    </header>
-
-    <article class="book" id="book" aria-label="Book a 15-minute call">
-      <div class="days" id="days" aria-label="Days"></div>
-      <div class="slots" id="slots" aria-label="Open times"><p class="empty">Loading open times</p></div>
-      <p class="tznote" id="tznote" hidden></p>
-      <p class="fine book-next" id="bookNext" hidden>Tap a time. You'll add your name and number on the next screen.</p>
-      <div class="fallback" id="bookFallback">
-        <p class="fine">The times aren't loading here. Open the booking page, or text me and I'll reply with a time.</p>
-        <a class="btn btn-line" href="https://preview.boyerscales.com/call">See open times</a>
-        <a class="btn btn-line" href="sms:+19167082759">Text Elijah for a time</a>
-      </div>
-      <noscript><p class="fine">See open times on the <a href="https://preview.boyerscales.com/call">booking page</a>.</p></noscript>
-    </article>
-  </div>
+<!-- ============ 4. STRAIGHT ANSWERS ============ -->
+<section class="qa" id="answers">
+  <h2 class="rv">Straight answers</h2>
+  <details class="glass rv">
+    <summary>Is there a catch?</summary>
+    <p>No. There's no card and nothing owed if you don't keep it. I do it this way because a week of real bookings on your own page tells you more than I could on a call. I won't promise you more jobs. The promise is your booking fixed and live, and a week to see for yourself.</p>
+  </details>
+  <details class="glass rv">
+    <summary>What if I already have a website?</summary>
+    <p>Keep it. During the free week your booking page lives on a BoyerScales link, so nothing on your site changes. The receptionist, the texts and the dashboard work with the site you have. And if people can already book a time with you without calling or messaging, you might not need the page at all.</p>
+  </details>
+  <details class="glass rv">
+    <summary>Do the texts really come from my number?</summary>
+    <p>Yes. On an iPhone they send through your own phone, so customers see the same blue thread they already have with you. On a business line they send from that number instead.</p>
+  </details>
+  <details class="glass rv">
+    <summary>Who are you?</summary>
+    <p>Elijah. BoyerScales is one person, me. Valley Details is my own mobile detailing business in Elk Grove, California, and I built everything it runs on. I build your setup myself, and I'm the one who texts you. My number is <a href="sms:+19167082759">(916) 708-2759</a>.</p>
+  </details>
 </section>
 
 </main>
 
 <footer class="foot">
-  <div class="wrap foot-in">
-    <span>© BoyerScales. This page is part of the proof: I built it too.</span>
-    <nav aria-label="Footer">
-      <a href="https://valleydetails.site" target="_blank" rel="noopener">valleydetails.site</a>
-      <a href="https://dashboard.boyerscales.com/">Client login</a>
-      <a href="/privacypolicy/">Privacy policy</a>
-      <a href="/termsconditions/">Terms</a>
-    </nav>
-  </div>
+  <span>© BoyerScales. I built this page too.</span>
+  <nav aria-label="Footer">
+    <a href="https://valleydetails.site" target="_blank" rel="noopener">valleydetails.site</a>
+    <a href="https://dashboard.boyerscales.com/">Client login</a>
+    <a href="/privacypolicy/">Privacy policy</a>
+    <a href="/termsconditions/">Terms</a>
+  </nav>
 </footer>
 
-<div class="mcta" id="mcta">
-  <a class="btn btn-ink" href="#setup">Start my free week</a>
+<div class="bar" id="bar">
+  <a class="btn btn-go" href="#week">Get it free for 7 days</a>
+</div>
+
+<!-- The live dashboard opens full screen here on phones -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Live owner dashboard, sample data" hidden>
+  <div class="sheet-bar">
+    <span>Live demo · sample customers</span>
+    <button type="button" id="sheetClose">Close</button>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
 </div>
 
 <script src="home/track.js?v=20261007a" defer></script>
-<script src="home/next.js?v=20261114a" defer></script>
-<script src="home/book.js?v=20261015a" defer></script>
+<script src="home/try.js?v=20261117e" defer></script>
 </body>
 </html>
