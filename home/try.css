@@ -2,7 +2,9 @@
    One accent rule: brand blue is only on the buttons that start the free week. */
 :root{
   --navy:#070b14;--txt:#f3f6fb;--mut:#a9b4c6;--dim:#7c889b;
-  --glass:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);--blue:#2f5bff;--blue2:#4a70ff;
+  --glass:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);
+  /* the one accent: only on the buttons that start the free week, and the logo arrow */
+  --go:#2f5bff;--go-rgb:47 91 255;--go-ink:#fff;
   --r:22px;--ease-out:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -20,7 +22,7 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.06;text-wrap:balanc
 .bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--navy)}
 .bg i{position:absolute;inset:-12%;background-size:cover;background-position:center;opacity:0;animation:bgfade 36s linear infinite,bgdrift 36s ease-in-out infinite alternate;will-change:opacity,transform}
 .bg i:nth-child(2){animation-delay:-27s}.bg i:nth-child(3){animation-delay:-18s}.bg i:nth-child(4){animation-delay:-9s}
-.bg b{position:absolute;inset:0;background:radial-gradient(120% 55% at 50% 0%,rgba(47,91,255,.18),transparent 62%),linear-gradient(180deg,rgba(7,11,20,.42),rgba(7,11,20,.60) 50%,rgba(7,11,20,.78))}
+.bg b{position:absolute;inset:0;background:radial-gradient(120% 55% at 50% 0%,rgb(var(--go-rgb) / .16),transparent 62%),linear-gradient(180deg,rgba(7,11,20,.42),rgba(7,11,20,.60) 50%,rgba(7,11,20,.78))}
 @keyframes bgfade{0%,100%{opacity:0}8%,25%{opacity:1}33%{opacity:0}}
 @keyframes bgdrift{from{transform:translate3d(-3%,-2%,0) scale(1.05)}to{transform:translate3d(3%,2%,0) scale(1.14)}}
 
@@ -29,17 +31,18 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.06;text-wrap:balanc
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 22px;border-radius:16px;border:0;font-weight:700;font-size:16.5px;letter-spacing:-.01em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .35s var(--spring),background .2s}
 .btn:active{transform:scale(.96)}
 .btn-white{background:#fff;color:#0a0f1c}
-.btn-go{background:var(--blue);color:#fff;box-shadow:0 10px 30px -8px rgba(47,91,255,.8)}
+.btn-go{background:var(--go);color:var(--go-ink);box-shadow:0 10px 30px -8px rgb(var(--go-rgb) / .8)}
 .btn-sm{min-height:40px;padding:0 15px;font-size:14.5px;border-radius:12px;box-shadow:none}
 .fine{font-size:13px;color:var(--dim);line-height:1.45}
-@media (hover:hover){.btn-white:hover{background:#e9edf5}.btn-go:hover{background:var(--blue2)}}
+@media (hover:hover){.btn-white:hover{background:#e9edf5}.btn-go:hover{filter:brightness(1.08)}}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
 .rv.on{opacity:1;transform:none}
 
 /* ---------- top ---------- */
 .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;
   background:rgba(7,11,20,.55);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
-.brand img{height:21px;width:auto}
+.brand svg{height:27px;width:auto;display:block;margin-top:5px}
+.brand .arrow{stroke:var(--go)}
 
 /* ---------- hero: the product in one phone ---------- */
 main{max-width:1120px;margin:0 auto;padding:0 16px}
@@ -54,7 +57,7 @@ main{max-width:1120px;margin:0 auto;padding:0 16px}
 .seg-thumb{position:absolute;z-index:0;top:4px;bottom:4px;left:4px;width:calc((100% - 8px)/4);border-radius:12px;background:#fff;transform:translateX(calc(var(--i)*100%));transition:transform .5s var(--spring);box-shadow:0 4px 14px rgba(0,0,0,.35)}
 
 .phone{position:relative;width:min(332px,88vw);margin:18px auto 0;border-radius:46px;padding:9px;background:linear-gradient(160deg,#39425a,#0e1422 60%);
-  box-shadow:0 0 0 1px rgba(255,255,255,.12) inset,0 40px 90px -24px rgba(0,0,0,.85),0 0 110px -18px rgba(47,91,255,.55);animation:rise 1s var(--spring) both .1s}
+  box-shadow:0 0 0 1px rgba(255,255,255,.12) inset,0 40px 90px -24px rgba(0,0,0,.85),0 0 110px -18px rgb(var(--go-rgb) / .5);animation:rise 1s var(--spring) both .1s}
 @keyframes rise{from{opacity:0;transform:translateY(40px) scale(.94)}}
 .phone-screen{position:relative;border-radius:38px;overflow:hidden;height:520px;height:clamp(420px,calc(100svh - 262px),640px);background:#0b101b}
 .pane{position:absolute;inset:0;animation:pane .5s var(--ease-out) both}
@@ -189,7 +192,7 @@ main{max-width:1120px;margin:0 auto;padding:0 16px}
 @media (min-width:900px){
   body{padding-bottom:0}
   .bar{display:none}
-  .top{padding:14px 32px}.brand img{height:25px}
+  .top{padding:14px 32px}.brand svg{height:32px}
   main{padding:0 32px}
   .hero{display:grid;grid-template-columns:1fr 372px;grid-template-areas:"h p" "s p" "c p" "f p" ". p";column-gap:72px;align-items:start;padding:64px 0 24px}
   .hero h1{grid-area:h;font-size:clamp(46px,4.8vw,64px);margin-top:26px}
