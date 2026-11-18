@@ -41,8 +41,10 @@ h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.06;text-wrap:balanc
 .rv.on{opacity:1;transform:none}
 
 /* ---------- top ---------- */
+/* iPhone Safari paints the strip behind the clock in the body's flat navy. The header starts in that same navy
+   and fades to glass, so the strip reads as the top of the header and not a separate black bar. */
 .top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px 16px;
-  background:rgba(7,11,20,.55);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+  background:linear-gradient(180deg,var(--navy) 0%,rgba(7,11,20,.55) 100%);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
 .brand svg{height:27px;width:auto;display:block;margin-top:5px}
 .brand .arrow{stroke:var(--go)}
 
@@ -226,7 +228,7 @@ html.lock .bar{opacity:0;visibility:hidden}
 @media (min-width:900px){
   body{padding-bottom:0}
   .bar{display:none}
-  .top{padding:14px 32px}.brand svg{height:32px}
+  .top{padding:14px 32px;background:rgba(7,11,20,.55)}.brand svg{height:32px}
   main{padding:0 32px}
   .hero{display:grid;grid-template-columns:minmax(0,1fr) 400px;grid-template-areas:"h p" "s p" "c p" "f p" ". p";column-gap:clamp(40px,6vw,96px);align-items:start;padding:30px 0 24px}
   .hero h1{grid-area:h;font-size:clamp(40px,3.9vw,58px);margin-top:10px;max-width:13.5em}
