@@ -21,21 +21,9 @@
   let locks = 0;
   const lock = on => { locks = Math.max(0, locks + (on ? 1 : -1)); root.classList.toggle('lock', locks > 0); };
 
-  /* ---------- scroll reveals and the bottom bar ---------- */
+  /* ---------- scroll reveals ---------- */
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
   $$('.rv').forEach(n => io.observe(n));
-  // The bar shows once the first free week button has scrolled away, and steps aside while the second one is on screen.
-  const bar = $('#bar'), heroBtn = $('.hero-foot .btn'), weekBtn = $('.week-go .btn');
-  let ticking = false;
-  function setBar() {
-    ticking = false;
-    const vh = innerHeight, a = heroBtn.getBoundingClientRect(), b = weekBtn.getBoundingClientRect();
-    bar.classList.toggle('on', a.bottom < 0 && !(b.top < vh && b.bottom > 0));
-  }
-  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(setBar); } }, { passive: true });
-  addEventListener('resize', setBar);
-  setBar();
-
   /* ================= the stage: four things in one phone ================= */
   const seg = $('.seg'), tabs = $$('.seg [role=tab]'), cap = $('#stageCap'), phone = $('#phone');
   const ORDER = ['dash', 'texts', 'calls', 'page'];
@@ -229,12 +217,12 @@
   function openFree(from) {
     if (!free.hidden) return;
     freeFrom = from || 'page'; freeFocus = document.activeElement;
-    free.hidden = false; lock(true); bar.classList.remove('on');
+    free.hidden = false; lock(true);
     track('FreeWeekOpen', { from: freeFrom });
     // On a phone the keyboard jumping up by itself is jarring, so they tap the box. On a computer the cursor is ready.
     if (!coarse && !ask.hidden) fShop.focus(); else $('.free-x', free).focus({ preventScroll: true });
   }
-  function closeFree() { if (free.hidden) return; free.hidden = true; lock(false); setBar(); if (freeFocus && freeFocus.focus) freeFocus.focus({ preventScroll: true }); }
+  function closeFree() { if (free.hidden) return; free.hidden = true; lock(false); if (freeFocus && freeFocus.focus) freeFocus.focus({ preventScroll: true }); }
   $$('[data-free]').forEach(b => b.addEventListener('click', () => openFree(b.dataset.free)));
   $$('[data-free-close]').forEach(b => b.addEventListener('click', closeFree));
   document.addEventListener('keydown', e => { if (e.key !== 'Escape') return; if (!free.hidden) closeFree(); else closeSheet(); });
