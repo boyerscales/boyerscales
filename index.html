@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://dashboard.boyerscales.com">
 <link rel="preconnect" href="https://valleydetails.site">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home/try.css?v=20261117m">
+<link rel="stylesheet" href="home/try.css?v=20261117p">
 <!-- Meta Pixel -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -77,7 +77,6 @@
         <div class="pane on" id="pane-dash" role="tabpanel" aria-labelledby="tab-dash">
           <img class="dash-poster" src="home/img/dash3-phone-home.webp" alt="The owner dashboard: 3 jobs today, $590 on the books, 2 texts waiting and a chart of money earned over the last 30 days." width="390" height="844">
           <div class="dash-live" id="dashLive"></div>
-          <button class="pill-cta" type="button" id="dashUse">This is live. Tap to use it</button>
         </div>
 
         <!-- Texts: tap a question a customer would send -->
@@ -85,7 +84,6 @@
           <div class="imsg-head"><span class="imsg-av" aria-hidden="true">VD</span><b>Valley Details</b></div>
           <div class="imsg-thread" id="thread" aria-live="polite"></div>
           <div class="chips" id="chips" aria-label="Send one of these as the customer"></div>
-          <a class="real-row" id="textReal" href="sms:+19167082759?&amp;body=Hey%20Elijah%2C%20I%20saw%20the%20site.%20Show%20me%20the%20texts%20on%20my%20shop." data-try="text-elijah">Text me for real: (916) 708-2759</a>
         </div>
 
         <!-- Calls: a call being answered and booked -->
@@ -97,7 +95,6 @@
             <div class="wave" id="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
           </div>
           <div class="call-lines" id="callLines" aria-live="polite"></div>
-          <a class="pill-cta pill-call" href="tel:+19166598131" data-try="call" id="callReal">Call it yourself: (916) 659-8131</a>
         </div>
 
         <!-- Booking page: tap through it -->
@@ -108,13 +105,15 @@
           <img src="home/img/vd2-phone-step1.webp" alt="Booking step 1 of 2, Pick a time: service, vehicle, day and a grid of times with taken times crossed out." width="390" height="844" loading="lazy">
           <img src="home/img/vd2-phone-step2.webp" alt="Booking step 2 of 2, Where and who: name, mobile and address, then the Book button." width="390" height="844" loading="lazy">
           <div class="dash-live" id="pageLive"></div>
-          <button class="pill-cta" type="button" id="pageUse">My real page. Tap to try booking</button>
         </div>
 
       </div>
     </figure>
 
-    <p class="stage-cap" id="stageCap">The real owner dashboard, on sample customers.</p>
+    <div class="stage-foot">
+      <a class="stage-act" id="stageAct" href="https://dashboard.boyerscales.com/?demo">Use it yourself</a>
+      <p class="stage-cap" id="stageCap">The real owner dashboard, on sample customers.</p>
+    </div>
   </div>
 
   <div class="hero-foot">
@@ -244,6 +243,6 @@
 </div>
 
 <script src="home/track.js?v=20261007a" defer></script>
-<script src="home/try.js?v=20261117m" defer></script>
+<script src="home/try.js?v=20261117p" defer></script>
 </body>
 </html>

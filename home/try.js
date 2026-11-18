@@ -46,6 +46,21 @@
     page: '',
   };
   let current = 'dash', touched = false, tour = null;
+  // The way to the real thing sits under the phone, so nothing covers the screen.
+  const act = $('#stageAct');
+  const ACTS = {
+    dash: { text: 'Use it yourself', href: 'https://dashboard.boyerscales.com/?demo', live: 'dash', used: 'Open it in its own tab' },
+    texts: { text: 'Text me for real: (916) 708-2759', href: 'sms:' + ELIJAH_SMS + '?&body=' + encodeURIComponent('Hey Elijah, I saw the site. Show me the texts on my shop.'), tag: 'text-elijah' },
+    calls: { text: 'Call it yourself: (916) 659-8131', href: 'tel:+19166598131', tag: 'call' },
+    page: { text: 'Try booking on my real page', href: 'https://valleydetails.site/?demo=1', live: 'page', used: 'Open it in its own tab' },
+  };
+  const inUse = k => ACTS[k].live && live[ACTS[k].live].box.classList.contains('use');
+  function setAct() { const a = ACTS[current]; act.textContent = inUse(current) ? a.used : a.text; act.href = a.href; if (inUse(current)) { act.target = '_blank'; act.rel = 'noopener'; } else { act.removeAttribute('target'); act.removeAttribute('rel'); } }
+  act.addEventListener('click', e => {
+    const a = ACTS[current];
+    if (a.live && !inUse(current)) { e.preventDefault(); use(a.live); }
+    else track('DemoTap', { demo: a.tag || a.live + '-open' });
+  });
   const stopTour = () => { touched = true; clearTimeout(tour); seg.classList.remove('auto'); };
 
   function select(tab, byUser) {
@@ -56,6 +71,7 @@
     tabs.forEach(t => { const on = t.dataset.tab === tab; t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1; });
     ORDER.forEach(k => { $('#pane-' + k).hidden = k !== tab; });
     if (CAPS[tab]) cap.textContent = CAPS[tab];
+    setAct();
     restart(tab);
     if (!touched) schedule();
   }
@@ -88,8 +104,8 @@
 
   /* ---------- the live things: the dashboard and the booking page, right in the phone ---------- */
   const sheet = $('#sheet'), sheetBody = $('#sheetBody'), sheetTitle = $('#sheetTitle'), sheetOpen = $('#sheetOpen');
-  const live = { dash: { box: $('#dashLive'), pill: $('#dashUse'), pane: $('#pane-dash'), frame: null, sheetFrame: null },
-                 page: { box: $('#pageLive'), pill: $('#pageUse'), pane: $('#pane-page'), frame: null, sheetFrame: null } };
+  const live = { dash: { box: $('#dashLive'), pane: $('#pane-dash'), frame: null, sheetFrame: null },
+                 page: { box: $('#pageLive'), pane: $('#pane-page'), frame: null, sheetFrame: null } };
   let lastFocus = null;
   const mkFrame = kind => { const f = document.createElement('iframe'); f.src = LIVE[kind].url; f.title = LIVE[kind].title; return f; };
   // The phone on the page is narrower than a real one, so the live page is laid out at 390 wide and scaled to fit.
@@ -111,7 +127,7 @@
     if (wide()) { // big screen: use it right there in the phone
       mount(kind);
       L.box.classList.add('on', 'use'); L.frame.removeAttribute('aria-hidden'); L.frame.tabIndex = 0;
-      L.pill.hidden = true; L.pane.classList.add('using');
+      L.pane.classList.add('using'); setAct();
       if (kind === 'page') { stopStory(); cap.textContent = 'My real booking page. Pick a job and a time. Book is switched off here, so nothing lands on my calendar.'; }
       return;
     }
@@ -126,7 +142,6 @@
   }
   function closeSheet() { if (sheet.hidden) return; sheet.hidden = true; lock(false); if (lastFocus) lastFocus.focus(); }
   live.dash.pane.addEventListener('click', () => { if (!live.dash.box.classList.contains('use')) use('dash'); });
-  live.page.pill.addEventListener('click', e => { e.stopPropagation(); use('page'); });
   $('#sheetClose').addEventListener('click', closeSheet);
   const warm = () => setTimeout(() => mount('dash'), 200);
   if (document.readyState === 'complete') warm(); else addEventListener('load', warm);
