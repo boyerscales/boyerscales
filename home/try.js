@@ -107,7 +107,8 @@
   const live = { dash: { box: $('#dashLive'), pane: $('#pane-dash'), frame: null, sheetFrame: null },
                  page: { box: $('#pageLive'), pane: $('#pane-page'), frame: null, sheetFrame: null } };
   let lastFocus = null;
-  const mkFrame = kind => { const f = document.createElement('iframe'); f.src = LIVE[kind].url; f.title = LIVE[kind].title; return f; };
+  // The dashboard follows the phone's light or dark setting. Inside this dark page it is always dark, to match its still picture.
+  const mkFrame = kind => { const f = document.createElement('iframe'); f.src = LIVE[kind].url; f.title = LIVE[kind].title; if (kind === 'dash') f.style.colorScheme = 'dark'; return f; };
   // The phone on the page is narrower than a real one, so the live page is laid out at 390 wide and scaled to fit.
   function fit(kind) {
     const L = live[kind]; if (!L.frame || !L.box.clientWidth) return;
@@ -147,9 +148,10 @@
   if (document.readyState === 'complete') warm(); else addEventListener('load', warm);
 
   /* ---------- texts: tap what a customer would send ---------- */
-  // Prices are Valley Details' real ones (full detail: $250 car, $280 SUV, $310 truck). The open times are examples.
+  // Prices are Valley Details' real ones (Full: $150 sedan, $170 SUV, $190 truck or 3-row). The open times are examples.
+  // The caller in the call demo has a Tahoe, which is a 3-row, so that one is $190.
   const QA = [
-    { q: 'How much for a full detail on an SUV?', a: 'A full detail on an SUV is $280, inside and out, and we come to you. Want me to find you a time?' },
+    { q: 'How much for a full detail on an SUV?', a: 'A full detail on an SUV is $170, inside and out, and we come to you. Want me to find you a time?' },
     { q: 'Do you come to me?', a: "Yep, we're mobile. We come to your driveway around Elk Grove and south Sacramento. We just need an outlet and a spigot." },
     { q: 'Anything open Saturday?', a: 'Saturday has 9:00 AM and 1:00 PM open. Want one of those?',
       next: { q: '9 works', a: "You're booked with Valley Details on Saturday at 9:00 AM. I'll text you a reminder the day before." } },
@@ -161,11 +163,13 @@
     chips.innerHTML = '';
     if (my !== textRun) return;
     if (!left.length) {
-      thread.append(el('div', 'note', 'On your shop it answers with your prices and your calendar.')); down();
+      thread.append(el('div', 'note', 'On your shop it answers with your prices and your calendar.'));
       const b = el('button', '', 'Start over'); b.type = 'button'; b.addEventListener('click', () => { track('DemoTextRestart', {}); startTexts(true); }); chips.append(b);
+      down(); // after the button is in, or it covers the last line
       return;
     }
     left.forEach(item => { const b = el('button', '', item.q); b.type = 'button'; b.addEventListener('click', () => { track('DemoTextSend', { q: item.q }); send(item, my); }); chips.append(b); });
+    down(); // the choices take room from the thread, so scroll once they are in or they cover the newest reply
   }
   async function send(item, my) {
     chips.innerHTML = '';
@@ -190,7 +194,7 @@
   // The caller talks the way people do on the phone: half sentences, a change of mind, a question out of order.
   const CALL = [
     { who: 'Caller', t: "Hey, uh, yeah. Do you guys do Saturdays? I got a Tahoe that's, honestly, it's pretty bad. Kids.", ms: 4300 },
-    { who: 'AI receptionist', ai: 1, t: 'We see a lot of those. Yes, Saturday at 9 is open. A full detail on an SUV is $280, inside and out.', ms: 4400 },
+    { who: 'AI receptionist', ai: 1, t: 'We see a lot of those. Yes, Saturday at 9 is open. A full detail on a Tahoe is $190, inside and out.', ms: 4400 },
     { who: 'Caller', t: 'Okay. Wait, do I gotta bring it somewhere?', ms: 2300 },
     { who: 'AI receptionist', ai: 1, t: 'No, we come to your driveway. We just need an outlet and a spigot. Want the 9?', ms: 3700 },
     { who: 'Caller', t: "Oh nice. Yeah, yeah, let's do that.", ms: 2100 },
@@ -214,7 +218,7 @@
     if (my !== callRun) return;
     clearInterval(clock);
     $$('.cl', lines).forEach(n => n.classList.add('old'));
-    const b = el('div', 'cl booked'); b.append(el('small', '', 'On the calendar before they hung up'), document.createTextNode('Saturday 9:00 AM · Full detail, SUV · $280')); lines.append(b);
+    const b = el('div', 'cl booked'); b.append(el('small', '', 'On the calendar before they hung up'), document.createTextNode('Saturday 9:00 AM · Full detail, 3-row\u00a0·\u00a0$190')); lines.append(b);
   }
 
   /* ---------- booking page: four screens play, and the real page is one tap away ---------- */
