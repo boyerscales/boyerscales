@@ -16,14 +16,17 @@
 <link rel="canonical" href="https://boyerscales.com/">
 <link rel="apple-touch-icon" href="home/img/bs-logo.webp">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#121a1e">
+<meta name="theme-color" content="#121a1e" media="(max-width:899px)">
+<meta name="theme-color" content="#070b14" media="(min-width:900px)">
 <link rel="icon" type="image/webp" href="home/img/bs-logo.webp">
+<!-- Start fetching the dashboard still picture for this time of day before the stylesheets, so it is there on first paint. -->
+<script>(function(){var h=new Date().getHours(),l=document.createElement('link');l.rel='preload';l.as='image';l.href='home/img/dash4-phone-'+(h<12?'am':h<17?'pm':'eve')+'.webp';document.head.appendChild(l);})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://dashboard.boyerscales.com">
 <link rel="preconnect" href="https://valleydetails.site">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home/try.css?v=20261119c">
+<link rel="stylesheet" href="home/try.css?v=20261119e">
 <!-- Meta Pixel -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -78,6 +81,7 @@
           <img class="dash-poster" id="dashPoster" alt="The owner dashboard: 3 jobs today, $650 on the books, 2 texts waiting and a chart of money earned over the last 30 days." width="390" height="844">
           <!-- The still picture shown for a second before the live dashboard loads. Picked by the hour so its greeting matches the live one. -->
           <script>(function(){var h=new Date().getHours();document.getElementById('dashPoster').src='home/img/dash4-phone-'+(h<12?'am':h<17?'pm':'eve')+'.webp';})();</script>
+          <noscript><img class="dash-poster" src="home/img/dash4-phone-pm.webp" alt="" width="390" height="844"></noscript>
           <div class="dash-live" id="dashLive"></div>
         </div>
 
