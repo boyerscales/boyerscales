@@ -23,7 +23,7 @@
 <link rel="preconnect" href="https://dashboard.boyerscales.com">
 <link rel="preconnect" href="https://valleydetails.site">
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="home/try.css?v=20261119b">
+<link rel="stylesheet" href="home/try.css?v=20261119c">
 <!-- Meta Pixel -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -75,7 +75,9 @@
 
         <!-- Dashboard: the real app, running on sample data -->
         <div class="pane on" id="pane-dash" role="tabpanel" aria-labelledby="tab-dash">
-          <img class="dash-poster" src="home/img/dash3-phone-home.webp" alt="The owner dashboard: 3 jobs today, $590 on the books, 2 texts waiting and a chart of money earned over the last 30 days." width="390" height="844">
+          <img class="dash-poster" id="dashPoster" alt="The owner dashboard: 3 jobs today, $650 on the books, 2 texts waiting and a chart of money earned over the last 30 days." width="390" height="844">
+          <!-- The still picture shown for a second before the live dashboard loads. Picked by the hour so its greeting matches the live one. -->
+          <script>(function(){var h=new Date().getHours();document.getElementById('dashPoster').src='home/img/dash4-phone-'+(h<12?'am':h<17?'pm':'eve')+'.webp';})();</script>
           <div class="dash-live" id="dashLive"></div>
         </div>
 
