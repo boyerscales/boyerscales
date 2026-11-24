@@ -56,7 +56,7 @@ h2{font-size:clamp(23px,6.4vw,34px)}
 .stat{padding:16px 18px;display:flex;align-items:baseline;gap:14px}
 .stat b{flex:none;width:3.15em;font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat span{color:var(--mut);font-size:15px;line-height:1.35}
-.stat:nth-child(2){transition-delay:.08s}.stat:nth-child(3){transition-delay:.16s}
+.stat:nth-child(2){transition-delay:.08s}.stat:nth-child(3){transition-delay:.16s}.stat:nth-child(4){transition-delay:.24s}
 
 /* where the bookings went */
 .flow,.log{padding:20px 18px}
@@ -122,7 +122,7 @@ tfoot td:first-child{color:var(--txt)}
 @media (min-width:700px){
   body{padding-bottom:0}
   .dock{display:none}
-  .stats{grid-template-columns:repeat(3,1fr)}
+  .stats{grid-template-columns:repeat(2,1fr)}
   .stat{flex-direction:column;gap:8px}
   .step{grid-template-columns:1.2fr 1fr;align-items:center;padding:26px}
   .flow,.log,.offer article{padding:26px}
