@@ -53,8 +53,8 @@ h2{font-size:clamp(23px,6.4vw,34px)}
 .hero h1 span{display:block;color:#fff}
 .lede{margin-top:14px;color:var(--mut);font-size:16.5px;max-width:36em}
 .stats{display:grid;gap:10px;margin-top:18px}
-.stat{padding:16px 18px;display:flex;align-items:baseline;gap:14px}
-.stat b{flex:none;width:3.15em;font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat{padding:16px 18px;display:flex;flex-direction:column;gap:6px}
+.stat b{flex:none;font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
 .stat span{color:var(--mut);font-size:15px;line-height:1.35}
 .stat:nth-child(2){transition-delay:.08s}.stat:nth-child(3){transition-delay:.16s}.stat:nth-child(4){transition-delay:.24s}
 
@@ -123,7 +123,6 @@ tfoot td:first-child{color:var(--txt)}
   body{padding-bottom:0}
   .dock{display:none}
   .stats{grid-template-columns:repeat(2,1fr)}
-  .stat{flex-direction:column;gap:8px}
   .step{grid-template-columns:1.2fr 1fr;align-items:center;padding:26px}
   .flow,.log,.offer article{padding:26px}
 }
@@ -135,4 +134,3 @@ tfoot td:first-child{color:var(--txt)}
 /* only one volt button on screen at a time: the header one steps aside while the bottom bar shows */
 .top .btn{transition:opacity .25s ease}
 body.docked .top .btn{opacity:0;pointer-events:none}
-@media (min-width:700px){.stat b{width:auto}}
