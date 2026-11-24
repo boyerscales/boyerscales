@@ -1,0 +1,138 @@
+/* boyerscales.com/valley/ : the Valley Details case study. Same look as the homepage (slate, Onest, glass over
+   blurred Valley jobs). One accent: volt, only on the buttons that text Elijah (and the logo arrow). */
+:root{
+  --navy:#070b14;--top:18 26 30;--txt:#f3f6fb;--mut:#a9b4c6;--dim:#7c889b;
+  --glass:rgba(255,255,255,.06);--line:rgba(255,255,255,.12);
+  --go:#d2ff3a;--go-rgb:210 255 58;--go-ink:#0a0f1c;
+  --r:22px;--ease-out:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Onest,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;background:rgb(var(--top));color:var(--txt);
+  line-height:1.5;font-size:16px;overflow-x:clip;-webkit-font-smoothing:antialiased;padding-bottom:calc(84px + env(safe-area-inset-bottom))}
+img{max-width:100%;display:block}
+a{color:inherit;-webkit-tap-highlight-color:transparent}
+h1,h2,h3{font-weight:800;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
+:focus-visible{outline:2px solid #fff;outline-offset:3px}
+
+/* backdrop: real jobs, blurred, drifting */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;background:var(--navy)}
+.bg i{position:absolute;inset:-12%;background-size:cover;background-position:center;opacity:0;animation:bgfade 36s linear infinite,bgdrift 36s ease-in-out infinite alternate;will-change:opacity,transform}
+.bg i:nth-child(2){animation-delay:-27s}.bg i:nth-child(3){animation-delay:-18s}.bg i:nth-child(4){animation-delay:-9s}
+.bg b{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,11,20,.5),rgba(7,11,20,.66) 50%,rgba(7,11,20,.82))}
+.bg::after{content:"";position:absolute;z-index:1;left:0;right:0;top:0;height:260px;pointer-events:none;background:linear-gradient(180deg,rgb(var(--top)) 0%,rgb(var(--top) / .66) 28%,rgb(var(--top) / .24) 64%,rgb(var(--top) / 0) 100%)}
+@keyframes bgfade{0%,100%{opacity:0}8%,25%{opacity:1}33%{opacity:0}}
+@keyframes bgdrift{from{transform:translate3d(-3%,-2%,0) scale(1.05)}to{transform:translate3d(3%,2%,0) scale(1.14)}}
+
+/* shared */
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);-webkit-backdrop-filter:blur(18px) saturate(1.3);backdrop-filter:blur(18px) saturate(1.3)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 22px;border-radius:16px;border:0;font-weight:700;font-size:16.5px;letter-spacing:-.01em;text-decoration:none;cursor:pointer;white-space:nowrap;transition:transform .35s var(--spring),filter .2s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn-go{background:var(--go);color:var(--go-ink);box-shadow:0 10px 30px -10px rgb(var(--go-rgb) / .55)}
+.btn-white{background:#fff;color:#0a0f1c}
+.btn-sm{min-height:40px;padding:0 15px;font-size:14.5px;border-radius:12px;box-shadow:none}
+@media (hover:hover){.btn-go:hover{filter:brightness(1.08)}.btn-white:hover{background:#e9edf5}}
+.fine{font-size:13px;color:var(--dim);line-height:1.45}
+.note{font-size:13.5px;color:var(--dim);margin-top:12px}
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
+.js .rv.on{opacity:1;transform:none}
+
+/* top */
+.top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:11px max(16px,calc((100% - 760px)/2 + 16px));
+  background:linear-gradient(180deg,rgb(var(--top)) 0%,rgb(var(--top) / .72) 45%,rgb(var(--top) / .46) 100%);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.brand img{height:22px;width:auto}
+
+main{max-width:760px;margin:0 auto;padding:0 16px}
+section{margin-top:18px}
+h2{font-size:clamp(23px,6.4vw,34px)}
+.sub{color:var(--mut);margin-top:6px;font-size:15px}
+
+/* hero */
+.hero{padding-top:18px;margin-top:0}
+.hero h1{font-size:clamp(31px,9.4vw,58px);color:rgba(243,246,251,.62)}
+.hero h1 span{display:block;color:#fff}
+.lede{margin-top:14px;color:var(--mut);font-size:16.5px;max-width:36em}
+.stats{display:grid;gap:10px;margin-top:18px}
+.stat{padding:16px 18px;display:flex;align-items:baseline;gap:14px}
+.stat b{flex:none;width:3.15em;font-size:40px;font-weight:800;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stat span{color:var(--mut);font-size:15px;line-height:1.35}
+.stat:nth-child(2){transition-delay:.08s}.stat:nth-child(3){transition-delay:.16s}
+
+/* where the bookings went */
+.flow,.log{padding:20px 18px}
+.bars{display:grid;gap:12px;margin-top:16px}
+.bar-row{display:grid;grid-template-columns:1fr auto;grid-template-areas:"l n" "b b";gap:6px 10px;align-items:end}
+.bar-row span{grid-area:l;font-size:15px;color:var(--mut)}
+.bar-row b{grid-area:n;font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
+.bar-row i{grid-area:b;display:block;height:12px;border-radius:999px;background:rgba(255,255,255,.55);width:var(--w);transition:width 1.1s var(--ease-out)}
+.bar-row i.ok{background:#fff}
+.bar-row i.off{background:rgba(255,255,255,.22)}
+.js .flow:not(.on) .bar-row i{width:0}
+.flow.on .bar-row:nth-child(2) i{transition-delay:.15s}.flow.on .bar-row:nth-child(3) i{transition-delay:.3s}
+
+/* job log */
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px;font-variant-numeric:tabular-nums}
+th{font-size:12.5px;font-weight:600;color:var(--dim);text-align:left;padding:0 0 8px}
+td{padding:9px 0;border-top:1px solid var(--line);vertical-align:top}
+td:first-child{white-space:nowrap;color:var(--mut);padding-right:12px;width:4.4em}
+th:last-child,td:last-child{text-align:right;white-space:nowrap;padding-left:10px}
+tfoot td{font-weight:800;font-size:17px;border-top:1px solid rgba(255,255,255,.4);color:var(--txt)}
+tfoot td:first-child{color:var(--txt)}
+
+/* how it works */
+.how h2{margin:30px 0 0}
+.how .sub{margin-bottom:12px}
+.step{padding:20px 18px;display:grid;gap:16px;margin-top:10px}
+.step h3{font-size:20px}
+.step p{color:var(--mut);margin-top:6px}
+.shot{width:min(240px,70%);margin:0 auto;border-radius:26px;border:6px solid #1b2232;box-shadow:0 24px 60px -20px rgba(0,0,0,.8)}
+.sms{background:#fff;border-radius:18px;padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+.sms .bub{align-self:flex-start;max-width:92%;background:#e9e9eb;color:#000;border-radius:18px;border-bottom-left-radius:5px;padding:9px 13px;font-size:14.5px;line-height:1.35;margin:0}
+.sms .bub u{color:#0b84fe;text-decoration:none}
+.sms .when{align-self:center;font-size:11px;color:#8a8a8e;margin:2px 0 0}
+
+/* offer */
+.offer h2{margin:30px 0 12px}
+.offer article{padding:22px 18px;margin-top:10px}
+.offer h3{font-size:21px}
+.big{margin-top:8px;font-size:clamp(24px,7vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.15}
+.big b{white-space:nowrap}
+.nw{white-space:nowrap}
+.big span{color:var(--dim);font-weight:600;font-size:.7em}
+.plus{color:var(--mut);margin-top:8px}
+.offer ul{list-style:none;margin:16px 0 0;display:grid;gap:9px}
+.offer li{position:relative;padding-left:20px;color:var(--txt)}
+.offer li::before{content:"";position:absolute;left:2px;top:.62em;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.5)}
+.honest{margin-top:16px;color:var(--mut);font-size:15px}
+.offer .main .btn{width:100%;margin-top:18px}
+.offer .main .fine{margin-top:10px;text-align:center}
+.offer .main .fine a{color:var(--mut)}
+.lite p{color:var(--mut);margin-top:6px}
+.lite .btn{margin-top:14px}
+
+/* footer and bottom bar */
+.foot{max-width:760px;margin:44px auto 0;padding:22px 16px;border-top:1px solid var(--line);color:var(--dim);font-size:13.5px;display:grid;gap:10px}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 16px}
+.foot a{text-decoration:none}
+.dock{position:fixed;z-index:30;left:0;right:0;bottom:0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgb(var(--top));
+  opacity:0;visibility:hidden;transform:translateY(100%);transition:opacity .2s ease,transform .3s ease,visibility 0s .3s}
+.dock.on{opacity:1;visibility:visible;transform:none;transition:opacity .25s ease,transform .35s var(--ease-out)}
+.dock .btn{width:100%;min-height:52px}
+
+@media (min-width:700px){
+  body{padding-bottom:0}
+  .dock{display:none}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .stat{flex-direction:column;gap:8px}
+  .step{grid-template-columns:1.2fr 1fr;align-items:center;padding:26px}
+  .flow,.log,.offer article{padding:26px}
+}
+@media (prefers-reduced-motion:reduce){
+  .bg i{animation:none;opacity:0}.bg i:first-child{opacity:1}
+  .rv,.bar-row i{transition:none}
+}
+
+/* only one volt button on screen at a time: the header one steps aside while the bottom bar shows */
+.top .btn{transition:opacity .25s ease}
+body.docked .top .btn{opacity:0;pointer-events:none}
+@media (min-width:700px){.stat b{width:auto}}
